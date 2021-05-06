@@ -1,5 +1,5 @@
 header{
-    background-image: url("./images/background.png");
+    background-image: url("./Images/background.png");
     /* Set rules to fill background */
     background-size: 100% auto;
 
@@ -116,6 +116,6 @@ header{
   }
 
 html{
-    background-image: url("./images/background1.png");
+    background-image: url("./Images/background1.png");
     background-size: 100%;
 }
