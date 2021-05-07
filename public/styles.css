@@ -29,6 +29,22 @@ header{
     color: #0fc1d8;
   }
 
+  #cureJM{
+    text-align: center;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 0px;
+    padding: 0px 0px;
+    margin: 0px;
+    color: black;
+    font-size: 100%;
+    font-weight: normal;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: none; 
+    border: none; 
+    padding: none;
+  }
+
   #busyQuizzy, #gitHub, #codersPlatform {
     font-size: 175%;
     border-radius: 12px; 
@@ -54,8 +70,7 @@ header{
   nav.navigationAbout ul{           /*aboutMe links*/
     background-color: #0128a5;
     align-items: center;
-    text-align: center;
-    margin-left: 83%;
+    margin-left: 80%;
     margin-top: 1%;
     border-radius: 35px;
     position: absolute;
@@ -68,8 +83,8 @@ header{
     background-color: #7eb6ff;
     align-items: center;
     text-align: center;
-    margin-left: 40%;
-    margin-right: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
     border-radius: 80px;
     border-radius: 12px; 
     border: 3px solid black; 
