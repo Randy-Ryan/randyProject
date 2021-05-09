@@ -88,7 +88,7 @@ header{
     border: 2px solid black; 
     padding: 8px;
     background-color: #0128a5;
-    color: lightgrey;
+    color: #7eb6ff;
     font-family: 'Times New Roman', Times, serif;
   }
   #busyQuizzy:hover, #gitHub:hover, #codersPlatform:hover{
@@ -109,13 +109,13 @@ header{
   }
 
   nav.navigationProjects ul{           /*my projects tab*/
-    background-color: #7eb6ff;
+    background-color: black;
     align-items: center;
     text-align: center;
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 20%;
+    margin-right: 20%;
     border-radius: 12px; 
-    border: 3px solid black; 
+    border: 3px solid #0128a5; 
     padding: 0px;
   }
 
