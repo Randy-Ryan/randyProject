@@ -76,7 +76,7 @@ header{
     border-radius: 12px; 
     border: 2px solid black; 
     padding: 8px;
-    background-color: #0128a5;
+    background-color: white;
     font-family: 'Times New Roman', Times, serif;
   }
   
@@ -93,7 +93,7 @@ header{
     padding: 0px;
   }
 
-  nav.navigationAbout ul{           /*aboutMe links*/
+  nav.navigationAbout ul{           /*aboutMe link*/
     background-color: #0128a5;
     align-items: center;
     margin-left: 80%;
