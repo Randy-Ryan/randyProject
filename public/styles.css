@@ -20,6 +20,7 @@ header{
     color: black;
     margin: 10px;
     text-align: center;
+    font-family: 'Times New Roman', Times, serif;
   }
 
   body h3{
@@ -27,6 +28,13 @@ header{
     text-align: center;
     padding-left: 20%;
     padding-right: 20%;
+  }
+  body h4{
+    color: black;
+    text-align: center;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 250%;
   }
 
   nav ul{
@@ -65,7 +73,7 @@ header{
     border-radius: 12px;
     padding: 8px 10px;
     margin: 10px;
-    color: white;
+    color: lightgrey;
     font-size: 175%;
     font-weight: bold;
     font-family:'Times New Roman', Times, serif;
@@ -80,7 +88,7 @@ header{
     border: 2px solid black; 
     padding: 8px;
     background-color: #0128a5;
-    color: white;
+    color: lightgrey;
     font-family: 'Times New Roman', Times, serif;
   }
   #busyQuizzy:hover, #gitHub:hover, #codersPlatform:hover{
