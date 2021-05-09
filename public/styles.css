@@ -57,6 +57,9 @@ header{
     padding-right: 0;
   }
 
+  #home:hover, #project:hover, #resume:hover, #videos:hover, #about:hover {
+    color:black
+  }
   #home, #project, #resume, #videos, #about {
     background-color: #7eb6ff;
     border-radius: 12px;
@@ -76,8 +79,12 @@ header{
     border-radius: 12px; 
     border: 2px solid black; 
     padding: 8px;
-    background-color: white;
+    background-color: #0128a5;
+    color: white;
     font-family: 'Times New Roman', Times, serif;
+  }
+  #busyQuizzy:hover, #gitHub:hover, #codersPlatform:hover{
+    color:black;
   }
   
   nav.navigationHome ul{           /*home,resume,projects links*/
