@@ -12,7 +12,7 @@ header{
     width: 100%;
     margin-right: -50%;
     color:rgb(255, 255, 255);
-    font-size: 350%;
+    font-size: 400%;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
   }
 
@@ -20,6 +20,13 @@ header{
     color: black;
     margin: 10px;
     text-align: center;
+  }
+
+  body h3{
+    color: black;
+    text-align: center;
+    padding-left: 20%;
+    padding-right: 20%;
   }
 
   nav ul{
@@ -43,6 +50,25 @@ header{
     border-radius: none; 
     border: none; 
     padding: none;
+  }
+
+  #img1, #img2 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #home, #project, #resume, #videos, #about {
+    background-color: #7eb6ff;
+    border-radius: 12px;
+    padding: 8px 10px;
+    margin: 10px;
+    color: white;
+    font-size: 175%;
+    font-weight: bold;
+    font-family:cursive;
+    border-radius: 12px; 
+    border: 2px solid black; 
+    padding: 8px;
   }
 
   #busyQuizzy, #gitHub, #codersPlatform {
@@ -91,6 +117,11 @@ header{
     padding: 0px;
   }
 
+  #video1, #video2, #video3{
+    border-radius: 12px; 
+    border: 3px solid white; 
+  }
+
   nav ul li{
     display: inline-table;
   }
@@ -111,19 +142,6 @@ header{
   }
 
   /*Style navigation text*/
-  a{
-    background-color: #7eb6ff;
-    border-radius: 12px;
-    padding: 8px 10px;
-    margin: 10px;
-    color: white;
-    font-size: 175%;
-    font-weight: bold;
-    font-family:cursive;
-    border-radius: 12px; 
-    border: 2px solid black; 
-    padding: 8px;
-  }
   a:hover {
     color: rgb(0, 0, 0)
  }
