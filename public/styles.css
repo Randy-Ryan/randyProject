@@ -34,7 +34,7 @@ header{
     text-align: center;
     font-family: monospace;
     font-weight: bold;
-    font-size: 250%;
+    font-size: 300%;
   }
 
   nav ul{
@@ -73,7 +73,7 @@ header{
     border-radius: 12px;
     padding: 8px 10px;
     margin: 10px;
-    color: lightgrey;
+    color: white;
     font-size: 175%;
     font-weight: bold;
     font-family:'Times New Roman', Times, serif;
@@ -112,8 +112,8 @@ header{
     background-color: #7eb6ff;
     align-items: center;
     text-align: center;
-    margin-left: 33%;
-    margin-right: 33%;
+    margin-left: 30%;
+    margin-right: 30%;
     border-radius: 12px; 
     border: 3px solid black; 
     padding: 0px;
