@@ -68,14 +68,14 @@ header{
     color: white;
     font-size: 175%;
     font-weight: bold;
-    font-family:cursive;
+    font-family:'Times New Roman', Times, serif;
     border-radius: 12px; 
     border: 2px solid black; 
     padding: 8px;
   }
 
   #busyQuizzy, #gitHub, #codersPlatform {
-    font-size: 175%;
+    font-size: 125%;
     border-radius: 12px; 
     border: 2px solid black; 
     padding: 8px;
@@ -91,21 +91,9 @@ header{
     background-color: #0128a5;
     align-items: center;
     text-align: center;
-    margin-right: 5%;
+    right:1%;
     border-radius: 35px;
     margin-top: 1%;
-    position: absolute;
-    border-radius: 12px; 
-    border: 3px solid black; 
-    padding: 0px;
-  }
-
-  nav.navigationAbout ul{           /*aboutMe link*/
-    background-color: #0128a5;
-    align-items: center;
-    margin-left: 80%;
-    margin-top: 1%;
-    border-radius: 35px;
     position: absolute;
     border-radius: 12px; 
     border: 3px solid black; 
@@ -116,9 +104,8 @@ header{
     background-color: #7eb6ff;
     align-items: center;
     text-align: center;
-    margin-left: 30%;
-    margin-right: 30%;
-    border-radius: 80px;
+    margin-left: 41%;
+    margin-right: 41%;
     border-radius: 12px; 
     border: 3px solid black; 
     padding: 0px;
