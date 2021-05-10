@@ -1,3 +1,33 @@
+#preloadedImages
+{
+    width: 0px;
+    height: 0px;
+    display: inline;
+    background-image: url("./Images/back1.jpg");
+    background-image: url("./Images/back2.jpg");
+    background-image: url("./Images/background.png");
+    background-image: url("./Images/background1.png");
+    background-image: url("./Images/busyquizzy.png");
+    background-image: url("./Images/codersplatform.png");
+    background-image: url("./Images/fresh.jpeg");
+    background-image: url("./Images/junior.jpeg");
+    background-image: url("./Images/lax.jpeg");
+    background-image: url("./Images/laxback.jpg");
+    background-image: url("./Images/liam1.png");
+    background-image: url("./Images/liam2.JPG");
+    background-image: url("./Images/livyliam.JPG");
+    background-image: url("./Images/loading.gif");
+    background-image: url("./Images/pride.jpg");
+    background-image: url("./Images/quirky.jpeg");
+    background-image: url("./Images/resume.jpeg");
+    background-image: url("./Images/senior.jpeg");
+    background-image: url("./Images/shayna.jpeg");
+    background-image: url("./Images/soph.jpeg");
+    background-image: url("./Images/stogie.jpeg");
+    background-image: url("./Images/wyattmaddie.jpeg");
+
+}
+
 header{
     background-image: url("./Images/back1.jpg");
     /* Set rules to fill background */
@@ -110,6 +140,7 @@ header{
     background-color: white;
     color: black;
     font-family: 'Times New Roman', Times, serif;
+    font-style:italic;
   }
   #busyQuizzy:hover, #gitHub:hover, #codersPlatform:hover{
     color:#7eb6ff;
