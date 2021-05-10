@@ -10,6 +10,12 @@ header{
     /* Set rules to fill background */
     background-size: 100% auto;
   }
+
+  #laxVid4 {
+    background-image: url("./Images/back1.jpg");
+    /* Set rules to fill background */
+    background-size: 100% auto;
+  }
   
   /*Style title and buttons position*/
   body h1 {
