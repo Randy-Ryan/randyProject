@@ -32,6 +32,7 @@ window.onload = function() {
         "./Images/shayna.jpeg",
         "./Images/soph.jpeg",
         "./Images/stogie.jpeg",
+        "./Images/textback.JPG",
         "./Images/wyattmaddie.jpeg",
 				"https://www.youtube.com/embed/wae5ZGp-v3w",
 				"https://www.youtube.com/embed/npn1Jncglu8",

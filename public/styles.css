@@ -116,7 +116,6 @@ header{
     background-color: white;
     color: black;
     font-family: 'Times New Roman', Times, serif;
-    font-style:italic;
   }
   #busyQuizzy:hover, #gitHub:hover, #codersPlatform:hover{
     color:#7eb6ff;
@@ -177,6 +176,9 @@ header{
     height: 300px;
     text-align: left;
     color: black;
+    background-image: url("./Images/textback.JPG");
+    /* Set rules to fill background */
+    background-size: 100% auto;
   }
   p.inputName{
     border-radius: 15px;
@@ -187,6 +189,9 @@ header{
     height: 100px;
     text-align: left;
     color: black;
+    background-image: url("./Images/textback.JPG");
+    /* Set rules to fill background */
+    background-size: 100% auto;
   }
 
   #nText, #mText{
