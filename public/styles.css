@@ -86,12 +86,12 @@ header{
 
   #busy {
     float:left;
-    width: 49%;
+    width: 47%;
   }
 
   #coders{
     float:right;
-    width: 49%;
+    width: 47%;
   }
 
   #busyQuizzy, #gitHub, #codersPlatform {
