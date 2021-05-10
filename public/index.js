@@ -35,7 +35,8 @@ window.onload = function() {
         "./Images/wyattmaddie.jpeg",
 				"https://www.youtube.com/embed/wae5ZGp-v3w",
 				"https://www.youtube.com/embed/npn1Jncglu8",
-				"https://www.youtube.com/embed/vc_nom7fSYc"
+				"https://www.youtube.com/embed/vc_nom7fSYc",
+        "https://www.youtube.com/embed/olz4c-x_jvc"
 			)
       window.location.href = "./HomePage/home.html";
       }, 2500);
