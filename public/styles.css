@@ -262,8 +262,7 @@ header{
   }
 
   .siteFooter{
-    bottom:0%;
-    position: fixed;
+    position: absolute;
     width: 100%;
     font-size:medium;
     font-weight: bold;
