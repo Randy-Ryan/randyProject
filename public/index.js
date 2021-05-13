@@ -4,6 +4,6 @@ window.onload = function() {
     
     setTimeout(function(){ 
       window.location.href = "./HomePage/home.html";
-      }, 3500);
+      }, 1500);
   
   }
