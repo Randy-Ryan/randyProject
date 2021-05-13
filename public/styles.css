@@ -133,7 +133,7 @@ header{
   }
   
   nav.navigationHome ul{           /*home,resume,projects links*/
-    background-image: linear-gradient(to right, #a1c4fd,#c2e9fb);
+    background-color: #a1c4fd;
     align-items: center;
     text-align: center;
     border-radius: 35px;
