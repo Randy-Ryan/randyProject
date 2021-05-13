@@ -123,6 +123,10 @@ header{
     background-color: white;
     color: black;
     font-family: 'Times New Roman', Times, serif;
+    -ms-transform: skewX(-10deg);
+    -webkit-transform: skewX(-10deg);
+    transform: skewX(-10deg);  
+    display: inline-block;
   }
   #busyQuizzy:hover, #gitHub:hover, #codersPlatform:hover{
     color:#7eb6ff;
