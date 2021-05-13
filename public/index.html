@@ -12,7 +12,22 @@
       Loading randysryan.com
     </p>
 
-
+    <div class="hidden">
+      <script type="text/javascript">
+        var images = new Array()
+        function preload() {
+          for (i = 0; i < preload.arguments.length; i++) {
+          images[i] = new Image()
+          images[i].src = preload.arguments[i]
+          }
+        }
+        preload(
+          "./Images/back1.jpg",
+          "./Images/lax.jpeg",
+          "https://www.youtube.com/embed/olz4c-x_jvc"
+        );
+      </script>
+      </div>
   </body>
 
 </html>
