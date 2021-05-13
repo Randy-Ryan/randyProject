@@ -20,7 +20,7 @@ function isBlank(inputField) {
 //function to make the input fields red
 function makeRed(inputDiv) {
     //input field set to red
-   	inputDiv.style.backgroundColor = "#ff0000";
+   	inputDiv.style.backgroundColor = "#c80815";
 }
 
 //function to reset the input fields to normal
