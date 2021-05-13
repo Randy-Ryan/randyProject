@@ -46,7 +46,6 @@ header{
     color: black;
     text-align: center;
     font-family: monospace;
-    font-weight: bold;
     font-size: 250%;
   }
   .shadow {
@@ -97,6 +96,10 @@ header{
     border: 2px solid black; 
     padding: 5px;
     text-align: center;
+    -ms-transform: skewX(-10deg);
+    -webkit-transform: skewX(-10deg);
+    transform: skewX(-10deg);  
+    display: inline-block;
   }
 
   #busy {
@@ -126,7 +129,7 @@ header{
   }
   
   nav.navigationHome ul{           /*home,resume,projects links*/
-    background-color: #7eb6ff;
+    background-image: linear-gradient(to right, #a1c4fd,#c2e9fb);
     align-items: center;
     text-align: center;
     border-radius: 35px;
@@ -157,14 +160,13 @@ header{
 
   desc{
     display: block;
-    background-color: #7eb6ff;
+    background-image: linear-gradient(#a1c4fd,#c2e9fb);
     margin-left: auto;
     margin-right: auto;
     width: 50%;
     text-align: center;
     color: black;
     font-size: 100%;
-    font-weight: bold;
     font-family:'Times New Roman', Times, serif;
     padding: 10px;
     border-radius:20px;
@@ -182,24 +184,7 @@ header{
     color: black;
     background-color:#7eb6ff;
     box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
-
-  /* We stack linear gradients on top of each
-     other to create our color strip effect.
-     As you will notice, color gradients are
-     considered to be images and can be
-     manipulated as such */
-  background-image: linear-gradient(175deg, rgba(0,0,0,0) 95%, #8da389 95%),
-                    linear-gradient( 85deg, rgba(0,0,0,0) 95%, #8da389 95%),
-                    linear-gradient(175deg, rgba(0,0,0,0) 90%, #b4b07f 90%),
-                    linear-gradient( 85deg, rgba(0,0,0,0) 92%, #b4b07f 92%),
-                    linear-gradient(175deg, rgba(0,0,0,0) 85%, #c5a68e 85%),
-                    linear-gradient( 85deg, rgba(0,0,0,0) 89%, #c5a68e 89%),
-                    linear-gradient(175deg, rgba(0,0,0,0) 80%, #ba9499 80%),
-                    linear-gradient( 85deg, rgba(0,0,0,0) 86%, #ba9499 86%),
-                    linear-gradient(175deg, rgba(0,0,0,0) 75%, #9f8fa4 75%),
-                    linear-gradient( 85deg, rgba(0,0,0,0) 83%, #9f8fa4 83%),
-                    linear-gradient(175deg, rgba(0,0,0,0) 70%, #74a6ae 70%),
-                    linear-gradient( 85deg, rgba(0,0,0,0) 80%, #74a6ae 80%);
+        
   }
   p.inputName{
     border-radius: 15px;
@@ -213,23 +198,6 @@ header{
     background-color:#7eb6ff;
     box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
 
-  /* We stack linear gradients on top of each
-     other to create our color strip effect.
-     As you will notice, color gradients are
-     considered to be images and can be
-     manipulated as such */
-  background-image: linear-gradient(175deg, rgba(0,0,0,0) 95%, #8da389 95%),
-                    linear-gradient( 85deg, rgba(0,0,0,0) 95%, #8da389 95%),
-                    linear-gradient(175deg, rgba(0,0,0,0) 90%, #b4b07f 90%),
-                    linear-gradient( 85deg, rgba(0,0,0,0) 92%, #b4b07f 92%),
-                    linear-gradient(175deg, rgba(0,0,0,0) 85%, #c5a68e 85%),
-                    linear-gradient( 85deg, rgba(0,0,0,0) 89%, #c5a68e 89%),
-                    linear-gradient(175deg, rgba(0,0,0,0) 80%, #ba9499 80%),
-                    linear-gradient( 85deg, rgba(0,0,0,0) 86%, #ba9499 86%),
-                    linear-gradient(175deg, rgba(0,0,0,0) 75%, #9f8fa4 75%),
-                    linear-gradient( 85deg, rgba(0,0,0,0) 83%, #9f8fa4 83%),
-                    linear-gradient(175deg, rgba(0,0,0,0) 70%, #74a6ae 70%),
-                    linear-gradient( 85deg, rgba(0,0,0,0) 80%, #74a6ae 80%);
   }
 
   #nText, #mText{
@@ -283,8 +251,8 @@ header{
     border: 2px solid black; 
     padding: 10px;
     font-size: 125%;
-    font-weight: bold;
-    background-color:#7eb6ff;
+    background-image: linear-gradient(#a1c4fd,#c2e9fb);
+    
   }
 
   .body{
@@ -308,6 +276,6 @@ header{
   }
 
 html{
-    background-image: url("./Images/background1.png");
     background-size: 100%;
+    background-image: linear-gradient(#f5f7fa,#b8c6db);
 }
