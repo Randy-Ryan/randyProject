@@ -133,9 +133,11 @@ header{
   }
   
   #project1, #project2 {
-    height: 575px;
+    height: 400px;
     width: 400px;
     margin:auto;
+    margin-bottom: 10%;
+    margin-top: 5%;
     text-align: center;
   }
   nav.navigationHome ul{           /*home,resume,projects links*/
