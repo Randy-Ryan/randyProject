@@ -132,6 +132,10 @@ header{
     color:#7eb6ff;
   }
   
+  #project1, #project2 {
+    height: 400px;
+    width: 400px;
+  }
   nav.navigationHome ul{           /*home,resume,projects links*/
     background-color: #a1c4fd;
     align-items: center;
