@@ -90,8 +90,6 @@ header{
   #home, #project, #resume, #videos, #about {
     background-color: white;
     border-radius: 12px;
-    padding: 8px 10px;
-    margin: 5px;
     color: black;
     font-size: 275%;
     font-weight: bold;
