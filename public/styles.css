@@ -2,6 +2,7 @@ header{
     background-image: url("./Images/back1.jpg");
     /* Set rules to fill background */
     background-size: 100% auto;
+    border-radius: 10px; 
     width: 100%;
   }
 
