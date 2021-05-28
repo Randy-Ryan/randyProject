@@ -179,14 +179,14 @@ header{
   desc{
     display: block;
     background-image: linear-gradient(#a1c4fd,#c2e9fb);
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
     color: black;
     font-size: 100%;
     font-family:'Times New Roman', Times, serif;
     padding: 10px;
     border-radius:20px;
-    margin-left: 10%;
-    margin-right: 10%;
     border: 3px solid black; 
   }
 
