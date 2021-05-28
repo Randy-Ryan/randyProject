@@ -20,7 +20,10 @@
           images[i] = new Image()
           images[i].src = preload.arguments[i]
           }
-          window.location.href = "./AboutPage/about.html";
+              
+        setTimeout(function(){ 
+        window.location.href = "./AboutPage/about.html";
+        }, 1000);
         }
         preload(
         "./Images/back1.jpg",
