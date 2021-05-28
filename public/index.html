@@ -21,10 +21,7 @@
           images[i].src = preload.arguments[i]
           }
         }
-
-        setTimeout(function(){ 
-        window.location.href = "./AboutPage/about.html";
-        },  preload(
+        preload(
         "./Images/back1.jpg",
         "./Images/giphy.gif",
 		    "./Images/giphy1.gif",
@@ -41,8 +38,12 @@
         "./Images/headshot.jpeg",
 		    "./Images/codersplatform.png",
 		    "./Images/resum.png"
-        ));
-       
+        );
+        
+        setTimeout(function(){ 
+        window.location.href = "./AboutPage/about.html";
+        }, 1500);
+        
 
       </script>
       </div>
