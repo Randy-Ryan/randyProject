@@ -3,7 +3,7 @@ window.onload = function() {
     //TODO make index.html a loading screen
     
      setTimeout(function(){ 
-      window.location.href = "./HomePage/home.html";
+      window.location.href = "./HomePage/about.html";
        }, 2000);
   
   }
