@@ -160,8 +160,7 @@ header{
   }
 
   nav.navigationProjects ul{           /*my projects tab*/
-    /* background-image: url("./Images/back1.jpg"); */
-    background-color: black;
+    background-image: url("./Images/back1.jpg");
     background-size: 100% auto;
     align-items: center;
     text-align: center;
