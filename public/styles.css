@@ -353,10 +353,10 @@ span {
   background-image: url("./Images/wyattmaddie.jpeg");
  transform: rotateY(200deg) translateZ(430px); }
 .carousel__face:nth-child(7) { 
-  background-image: url("./Images/giphy.gif");
+  background-image: url("./Images/resum.png");
  transform: rotateY(240deg) translateZ(430px); }
 .carousel__face:nth-child(8) {
-  background-image: url("./Images/giphy1.gif");
+  background-image: url("./Images/laxback.jpg");
   transform: rotateY(280deg) translateZ(430px); }
 .carousel__face:nth-child(9) {
   background-image: url("./Images/liam1.png");
