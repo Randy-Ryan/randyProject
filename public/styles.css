@@ -1,9 +1,12 @@
 header{
-    background-image: url("./Images/back1.jpg");
+    /* background-image: url("./Images/back1.jpg");  */
+    background-color: black;
     /* Set rules to fill background */
     background-size: 100% auto;
     border-radius: 10px; 
-    width: 100%;
+    /* width: 100%; */
+    
+    
   }
 
   #laxVid1, #laxVid2{
@@ -28,7 +31,8 @@ header{
     margin-right: -50%;
     color:rgb(255, 255, 255);
     font-size: 400%;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    text-shadow: 2px 2px  black;
+    
   }
 
   body h2{
@@ -46,7 +50,7 @@ header{
     padding-right: 20%;
   }
   body h4{
-    color: black;
+    color: white;
     text-align: center;
     font-family: monospace;
     font-size: 250%;
@@ -93,7 +97,7 @@ header{
   #home, #project, #resume, #videos, #about {
     background-color: white;
     color: black;
-    font-size: 300%;
+    font-size: 250%;
     font-weight: bold;
     font-family:'Times New Roman', Times, serif;
     border-radius: 12px; 
@@ -156,7 +160,8 @@ header{
   }
 
   nav.navigationProjects ul{           /*my projects tab*/
-    background-image: url("./Images/back1.jpg");
+    /* background-image: url("./Images/back1.jpg"); */
+    background-color: black;
     background-size: 100% auto;
     align-items: center;
     text-align: center;
@@ -285,12 +290,17 @@ header{
     text-align: center;
     color: white;
     padding: 20px;
-    background-image: url("./Images/back1.jpg");
+    /* background-image: url("./Images/back1.jpg"); */
     /* Set rules to fill background */
-    background-size: 100% auto;
+    /* background-size: 100% auto; */
   }
 
 html{
-    background-size: 100%;
+
+    background-size: 100%; 
     background-image: linear-gradient(#f5f7fa,#b8c6db);
+    /* Add the blur effect */
+    
+    
+    
 }
