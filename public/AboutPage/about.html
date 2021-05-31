@@ -6,6 +6,24 @@
         <script type="text/javascript" src="about.js" ></script>
 	</head>
 
+    <div class="hidden">
+        <script type="text/javascript">
+          var images = new Array()
+          function preload() {
+            for (i = 0; i < preload.arguments.length; i++) {
+            images[i] = new Image()
+            images[i].src = preload.arguments[i]
+            }
+          }
+          preload(
+            "./Images/giphy.gif",
+            "./Images/giphy1.gif",
+            "https://www.youtube.com/embed/olz4c-x_jvc",
+            "https://www.youtube.com/embed/wae5ZGp-v3w",
+            "https://www.youtube.com/embed/npn1Jncglu8",
+          );
+        </script>
+        </div>
 	<body>
         <nav class="navigationHome">
             <ul>
