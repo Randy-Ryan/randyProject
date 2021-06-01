@@ -24,6 +24,16 @@ header{
     background-size: 100% 100%;
   }
   
+  #emailForm {
+    background-color: #a1c4fd;
+    /* Set rules to fill background */
+    background-size: 100% auto;
+    border-radius: 12px; 
+    border: 3px solid black; 
+    margin-left: 25%;
+    margin-right: 25%;
+    /* width: 100%; */
+  }
   /*Style title and buttons position*/
   body h1 {
     text-align: center;
