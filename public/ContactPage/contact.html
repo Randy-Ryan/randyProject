@@ -22,27 +22,7 @@
     <br>
     <h2>Send me an email using the form below!</h2>
 		<br>
-<!-- 
-		<form method="POST" id = "mainForm">
-		<h3>
-					<p class = "inputName">
-						<label id = "nText">SUBJECT:</label><br><br>
-						<input onclick="makeClean(document.getElementById('name'))" id = "name" type="text" class="required"/>
-						<br/><br/>
-					</p>
-	 <br>
-	</h3>
-	<h3>
-		<p class = "inputMessage">
-			<label id = "mText">MESSAGE:</label><br><br>
-			<textarea onclick="makeClean(document.getElementById('message'))" id = "message" rows = "10" cols = "1" name = "name" class="required"></textarea>
-			<br/><br/>
-		</p>
-	</h2>	
-	<h3>
-		<input type="submit" value = "SEND" id="sendButton"form="mainForm" class = "button" style= "background-color: black; align-items: center; width: 50%; display: inline-block; text-align:center; font-size: 125%;"/>
-	</h3>
-</form> -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,9 +70,25 @@ function makeClean(inputDiv){
 
 }
 
+
         window.onload = function() {
 
     var mainForm = document.getElementById("contact-form");
+	document.getElementById('message').addEventListener('keydown', function(e) {
+  if (e.key == 'Tab') {
+    e.preventDefault();
+    var start = this.selectionStart;
+    var end = this.selectionEnd;
+
+    // set textarea value to: text before caret + tab + text after caret
+    this.value = this.value.substring(0, start) +
+      "\t" + this.value.substring(end);
+
+    // put caret at right position again
+    this.selectionStart =
+      this.selectionEnd = start + 1;
+  }
+});
     mainForm.onsubmit = function(e){
         //error2 var needed for when first submission is invalid
         e.preventDefault();

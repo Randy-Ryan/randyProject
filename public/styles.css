@@ -115,9 +115,9 @@ header{
     padding: 15px;
     margin-right: 10px;
     text-align: center;
-    -ms-transform: skewX(-10deg);
-    -webkit-transform: skewX(-10deg);
-    transform: skewX(-10deg);  
+    -ms-transform: skewX(-17deg);
+    -webkit-transform: skewX(-17deg);
+    transform: skewX(-17deg);  
     display: inline-block;
   }
 
@@ -170,7 +170,8 @@ header{
   }
 
   nav.navigationProjects ul{           /*my projects tab*/
-    background-image: url("./Images/back1.jpg");
+    /* background-image: url("./Images/back1.jpg"); */
+    background-color: #a1c4fd;
     background-size: 100% auto;
     align-items: center;
     text-align: center;
