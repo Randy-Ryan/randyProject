@@ -24,7 +24,7 @@
     <br>
     <h2>Send me an email using the form below!</h2>
 		<br>
-
+<!-- 
 		<form method="POST" id = "mainForm">
 		<h3>
 					<p class = "inputName">
@@ -44,8 +44,27 @@
 	<h3>
 		<input type="submit" value = "SEND" id="sendButton"form="mainForm" class = "button" style= "background-color: black; align-items: center; width: 50%; display: inline-block; text-align:center; font-size: 125%;"/>
 	</h3>
+</form> -->
+<!-- Sample HTML Form -->
+
+<form method="post" name="contact_form"
+action="mail.php">
+	Your Name:
+	<input type="text" name="name">
+	Email Address:
+	<input type="text" name="email">
+	Message:
+	<textarea name="message"></textarea>
+	<input type="submit" value="Submit">
 </form>
-<br>
+
+<script language="JavaScript">
+    var frmvalidator  = new Validator("contactform");
+    frmvalidator.addValidation("name","req","Please provide your name");
+    frmvalidator.addValidation("email","req","Please provide your email");
+    frmvalidator.addValidation("email","email",
+      "Please enter a valid email address");
+    </script>
 
 <div class="container">
     <div class="carousel">
