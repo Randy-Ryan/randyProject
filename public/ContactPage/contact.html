@@ -5,19 +5,40 @@
         <link rel="stylesheet" href="../styles.css">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	</head>
+        <script type="text/javascript">
+            /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+            function myFunction() {
+                var x = document.getElementById("myLinks");
+                if (x.style.display === "block") {
+                  x.style.display = "none";
+                } else {
+                  x.style.display = "block";
+                }
+              }
+                      </script>
+    </head>
 
 	<body>
-        <nav class="navigationHome">
-            <ul>
-                <li><a href="../AboutPage/about.html"id = "about" class = "shadow" >About Me</a></li>
-            	<li><a href="../ResumePage/resume.html"id = "home" class = "shadow">Resume</a></li>   
-            	<li><a href="../ProjectPage/project.html" id ="project" class = "shadow">Projects</a></li>  
-            	<li><a href="../VideosPage/videos.html" id ="videos" class = "shadow">Lacrosse</a></li>
-                <li><a href="../ContactPage/contact.html"id = "home" class = "shadow" style="background-color:lightgray;">Contact</a></li>
+      		<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-            </ul>
-        </nav>
+<!-- Top Navigation Menu -->
+<div class="topnav">
+  <a href="../ContactPage/contact.html" >CONTACT</a>
+  <!-- Navigation links (hidden by default) -->
+  <div id="myLinks">
+    <a href="../HomePage/home.html">HOME</a>
+    <a href="../AboutPage/about.html">ABOUT ME</a>
+    <a href="../ResumePage/resume.html">RESUME</a>
+    <a href="../ProjectPage/project.html">PROJECTS</a>
+    <a href="../VideosPage/videos.html">LAX PAGE</a>
+    
+  </div>
+  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
 	</body>
     <br>
     <h2>Send me an email using the form below!</h2>

@@ -3,26 +3,46 @@
 		<meta charset="utf-8">
 		<title>Randy Ryan</title>
         <link rel="stylesheet" href="../styles.css">
+        <script type="text/javascript">
+            /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+            function myFunction() {
+                var x = document.getElementById("myLinks");
+                if (x.style.display === "block") {
+                  x.style.display = "none";
+                } else {
+                  x.style.display = "block";
+                }
+              }
+                      </script>
 	</head>
 	<body>
-        <nav class="navigationHome">
-            <ul>
-                <li><a href="../AboutPage/about.html"id = "about" class = "shadow" style="background-color:lightgray;">About Me</a></li>
-            	<li><a href="../ResumePage/resume.html"id = "home" class = "shadow">Resume</a></li>   
-            	<li><a href="../ProjectPage/project.html" id ="project" class = "shadow">Projects</a></li>  
-            	<li><a href="../VideosPage/videos.html" id ="videos" class = "shadow">Lacrosse</a></li>
-                <li><a href="../ContactPage/contact.html"id = "home" class = "shadow">Contact</a></li>
+      		<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-            </ul>
-        </nav>
+<!-- Top Navigation Menu -->
+<div class="topnav">
+  <a href="../AboutPage/about.html">ABOUT ME</a>
+  <!-- Navigation links (hidden by default) -->
+  <div id="myLinks">
+    <a href="../HomePage/home.html">HOME</a>
+    <a href="../ResumePage/resume.html">RESUME</a>
+    <a href="../ProjectPage/project.html">PROJECTS</a>
+    <a href="../VideosPage/videos.html">LAX PAGE</a>
+    <a href="../ContactPage/contact.html">CONTACT</a>
+    
+  </div>
+  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
 	</body>
     <h3>
         <br><br>
         <desc class = "shadow">
 			<h3 style="padding-left: 0%; padding-right: 0%;">
-				Hello, my name is Randy Ryan. Welcome to my website!
-				I'm a senior at Wentworth Institute of Technology in Boston, Massachusetts,
-				majoring in Computer Science with a minor in the Applied Mathematics field.
+				Hello, my name is Randy Ryan. I'm a senior at Wentworth Institute of Technology in 
+                Boston, Massachusetts, majoring in Computer Science with a minor in the Applied Mathematics field.
 				</h3>
 				<br>
 				<img src="../Images/headshot.jpeg" loading="eager" alt="home" height=300px width=300px style="border-radius: 12px; border: 3px solid black; padding: 0px; margin-right: 2%;">
