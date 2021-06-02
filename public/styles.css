@@ -96,6 +96,20 @@ header{
     padding: none;
   }
 
+  #home1, #home2, #home3, #home4, #home5 {
+    background-color: white;
+    color: black;
+    font-size: 300%;
+    width: 300%;
+    font-weight: bold;
+    font-family:'Times New Roman', Times, serif;
+    border-radius: 12px; 
+    border: 2px solid black; 
+    -ms-transform: skewX(-17deg);
+    -webkit-transform: skewX(-17deg);
+    transform: skewX(-17deg);  
+  }
+
   #img1, #img2 {
     padding-left: 0;
     padding-right: 0;
@@ -171,7 +185,7 @@ header{
 
   nav.navigationProjects ul{           /*my projects tab*/
     /* background-image: url("./Images/back1.jpg"); */
-    background-color: #a1c4fd;
+    background-color: #c2e9fb;
     background-size: 100% auto;
     align-items: center;
     text-align: center;

@@ -1,0 +1,106 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,900);
+
+html{
+  background-image: linear-gradient(#a1c4fd,#c2e9fb);
+  margin: 0;
+  font-family: Lato;
+  color: white;
+}
+
+.box {
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+.box p {
+  position: relative;
+  z-index: 1;
+}
+
+#welcome{
+  text-align: center;
+  font-size: 400%;
+  font-weight: bold;
+  color: white;
+}
+#welcomeText{
+  text-align: center;
+  font-size: 250%;
+  color: gray;
+}
+
+.box:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(#a1c4fd,#c2e9fb);
+  filter: blur(6px);
+  z-index: 1;
+}
+body {
+  margin: 10%;
+  font-family: Lato;
+  color: white;
+  filter:none;
+}
+
+#page1 { 
+  margin: 10%;
+  filter:none;
+}
+
+.tabled, .middled {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.thin { font-weight: 300; }
+.thick { font-weight: 900; }
+
+a {
+  text-transform: uppercase;
+  font-size: 50px;
+  color: white;
+  text-decoration: none;
+  position: relative;
+  display: block;
+}
+
+p {
+  font-weight: 100;
+  font-size: 100%;
+  margin: 1px;
+  color: grey;
+}
+
+[class^="link-"] {
+  display: inline-block;
+  margin: 2em
+}
+
+/* linkone */
+.link-1 a:before, .link-1 a:after {
+  content: '';
+  border-bottom: solid 1px white;
+  position: absolute;
+  bottom: 0;
+  width: 0;
+}
+
+.link-1 a:before { left: 0; }
+.link-1 a:after { right: 0; }
+
+.link-1 a:hover:before, .link-1 a:hover:after {
+  width: 50%;
+}
+
+.link-1 a:before, .link-1 a:after {
+  -webkit-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+}
