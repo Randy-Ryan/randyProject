@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:100,300,900);
 
 html{
-  background-image: linear-gradient(#a1c4fd,#c2e9fb);
+  background-image: linear-gradient(#f5f7fa,#b8c6db);
   margin: 0;
   font-family: Lato;
   color: white;
@@ -22,14 +22,26 @@ html{
 
 #welcome{
   text-align: center;
-  font-size: 400%;
+  font-size: 500%;
   font-weight: bold;
   color: white;
+  text-shadow: 0 1px 0 #ccc,
+  0 2px 0 #c9c9c9,
+  0 3px 0 #bbb,
+  0 4px 0 #b9b9b9,
+  0 5px 0 #aaa,
+  0 6px 1px rgba(0,0,0,.1),
+  0 0 5px rgba(0,0,0,.1),
+  0 1px 3px rgba(0,0,0,.3),
+  0 3px 5px rgba(0,0,0,.2),
+  0 5px 10px rgba(0,0,0,.25),
+  0 10px 10px rgba(0,0,0,.2),
+  0 20px 20px rgba(0,0,0,.15);
 }
 #welcomeText{
   text-align: center;
   font-size: 250%;
-  color: gray;
+  color: black;
 }
 
 .box:before {
@@ -48,6 +60,7 @@ body {
   font-family: Lato;
   color: white;
   filter:none;
+  
 }
 
 #page1 { 
@@ -65,18 +78,30 @@ body {
 
 a {
   text-transform: uppercase;
-  font-size: 50px;
+  font-size: 80px;
   color: white;
   text-decoration: none;
   position: relative;
   display: block;
+  text-shadow: 0 1px 0 #ccc,
+  0 2px 0 #c9c9c9,
+  0 3px 0 #bbb,
+  0 4px 0 #b9b9b9,
+  0 5px 0 #aaa,
+  0 6px 1px rgba(0,0,0,.1),
+  0 0 5px rgba(0,0,0,.1),
+  0 1px 3px rgba(0,0,0,.3),
+  0 3px 5px rgba(0,0,0,.2),
+  0 5px 10px rgba(0,0,0,.25),
+  0 10px 10px rgba(0,0,0,.2),
+  0 20px 20px rgba(0,0,0,.15);
 }
 
 p {
   font-weight: 100;
-  font-size: 100%;
+  font-size: 35px;
   margin: 1px;
-  color: grey;
+  color: black;
 }
 
 [class^="link-"] {
