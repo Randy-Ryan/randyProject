@@ -185,7 +185,7 @@ header{
 
   nav.navigationProjects ul{           /*my projects tab*/
     /* background-image: url("./Images/back1.jpg"); */
-    background-color: #c2e9fb;
+    background-color: #a1c4fd;
     background-size: 100% auto;
     align-items: center;
     text-align: center;
@@ -572,6 +572,7 @@ input[type="submit"].fcf-btn-block, input[type="reset"].fcf-btn-block, input[typ
   overflow: hidden;
   background-color: #333;
   position: relative;
+  border-radius: 12px; 
 }
 
 /* Hide the links inside the navigation menu (except for logo/home) */
@@ -584,7 +585,7 @@ input[type="submit"].fcf-btn-block, input[type="reset"].fcf-btn-block, input[typ
   color: white;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 50px;
+  font-size: 70px;
   display: block;
 }
 
@@ -593,7 +594,6 @@ input[type="submit"].fcf-btn-block, input[type="reset"].fcf-btn-block, input[typ
   background: black;
   display: block;
   position: absolute;
-  width: 50px;
   height: 100%;
   right: 0;
   top: 0;
