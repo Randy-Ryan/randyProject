@@ -1,31 +1,36 @@
 header{
     /* background-image: url("./Images/back1.jpg");  */
-    background-image: linear-gradient(#a1c4fd,#c2e9fb);
+    background-image: linear-gradient(#f5f7fa, #b8c6db);
     /* Set rules to fill background */
     background-size: 100% auto;
     border-radius: 12px; 
     border: 2px solid lightgray; 
+    /* color: #3c5148; */
     /* width: 100%; */
     
     
   }
 
   #laxVid1, #laxVid2{
-    background-image: url("./Images/laxback.jpg");
+    /* background-image: url("./Images/laxback.jpg"); */
+    
     /* Set rules to fill background */
-    background-size: 100% 100%;
-    margin-right: 20%;
-    margin-left: 20%;
+    /* background-size: 100% 100%; */
+/* 
+    margin-left: 50%;
+    margin-right: 50%; */
   }
 
   #laxVid4 {
-    background-image: url("./Images/laxback.jpg");
+    /* background-image: linear-gradient(#b8c6db,#f5f7fa); */
+    /* background-image: url("./Images/laxback.jpg"); */
     /* Set rules to fill background */
-    background-size: 100% 100%;
+    /* background-size: 100% 100%; */
   }
   
   #emailForm {
-    background-color: #a1c4fd;
+    background-image: linear-gradient(#b8c6db,#f5f7fa);
+    /* background-color: #a1c4fd; */
     /* Set rules to fill background */
     background-size: 100% auto;
     border-radius: 12px; 
@@ -198,7 +203,9 @@ header{
 
   #video1, #video2, #video3{
     border-radius: 12px; 
-    border: 3px solid black; 
+    padding: 5%;
+    background-image: linear-gradient(#f5f7fa,lightgray,#b8c6db);
+    border: 3px solid lightgray;
   }
 
   nav ul li{
@@ -207,7 +214,8 @@ header{
 
   desc{
     display: block;
-    background-color: #a1c4fd;
+    background-color: #b8c6db;
+     /* background-image: linear-gradient(#b8c6db, #f5f7fa); */
     /* background-image: linear-gradient(#a1c4fd,#c2e9fb); */
     margin-left: auto;
     margin-right: auto;
@@ -296,10 +304,12 @@ header{
     padding: 10px;
     border-radius: 10px; 
     border: 1px solid black; 
-    padding: 12px;
+    padding: 15px;
     font-size: 125%;
-    background-color: #a1c4fd;
-    /* background-image: linear-gradient(#a1c4fd,#c2e9fb); */
+    color: black;
+    
+    background-color: #f5f7fa;
+    /* background-image: linear-gradient(#b8c6db, #f5f7fa); */
     
   }
 
@@ -572,7 +582,7 @@ input[type="submit"].fcf-btn-block, input[type="reset"].fcf-btn-block, input[typ
 /* Style the navigation menu */
 .topnav {
   overflow: hidden;
-  background-image: linear-gradient(#a1c4fd,#c2e9fb);
+  background-image: linear-gradient(#f5f7fa, #b8c6db);
   position:relative;
   border-radius: 12px; 
   padding: 3%;
@@ -1216,3 +1226,5 @@ SETTINGS
 .ai-element_type3{
 	--aiElementColor: #fff;
 }
+
+
