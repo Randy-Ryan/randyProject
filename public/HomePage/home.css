@@ -10,9 +10,9 @@ html{
 
 #welcome{
   text-align: center;
-  font-size: 100px;
+  font-size: 125px;
   font-weight: bold;
-  color: #a1c4fd;
+  color: lightgray;
   
   text-shadow: 0 1px 0 #ccc,
   0 2px 0 #c9c9c9,
@@ -34,7 +34,7 @@ html{
 }
 
 body {
-  margin: 10%;
+  margin: 5%;
   font-family: Lato;
   color: white;
   filter:none;
@@ -42,7 +42,6 @@ body {
 }
 
 #page1 { 
-  margin: 10%;
   filter:none;
 }
 

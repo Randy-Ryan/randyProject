@@ -629,9 +629,19 @@ input[type="submit"].fcf-btn-block, input[type="reset"].fcf-btn-block, input[typ
 
 /* Add a grey background color on mouse-over */
 .topnav a:hover {
-  background: lightgray;
+  /* background: lightgray; */
   color: whitesmoke;
   width: auto;
+  right: 0;
+  padding-left: 3%;
+  
+}
+.topnav .fa:hover {
+  /* background: lightgray; */
+  color: whitesmoke;
+  width: auto;
+  right: 0;
+  padding: 5%;
   
 }
 
