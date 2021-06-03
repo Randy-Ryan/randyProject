@@ -11,29 +11,14 @@ header{
     
   }
 
-  #laxVid1, #laxVid2{
-    /* background-image: url("./Images/laxback.jpg"); */
-    
-    /* Set rules to fill background */
-    /* background-size: 100% 100%; */
-/* 
-    margin-left: 50%;
-    margin-right: 50%; */
-  }
 
-  #laxVid4 {
-    /* background-image: linear-gradient(#b8c6db,#f5f7fa); */
-    /* background-image: url("./Images/laxback.jpg"); */
-    /* Set rules to fill background */
-    /* background-size: 100% 100%; */
-  }
   
   #emailForm {
     background-image: linear-gradient(#b8c6db,#f5f7fa);
     /* background-color: #a1c4fd; */
     /* Set rules to fill background */
     background-size: 100% auto;
-    border-radius: 12px; 
+    border-radius: 75px; 
     border: 1px solid black; 
     margin-left: 25%;
     margin-right: 25%;
@@ -1165,10 +1150,6 @@ DEMO STYLES
   display: flex;
   min-height: 300px;	
   text-align: center;
-}
-
-.section:nth-child(2n+1){
-  /* background-color: #f1f4fa; */
 }
 
 .section__item{
