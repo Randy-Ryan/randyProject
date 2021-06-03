@@ -217,7 +217,7 @@ header{
     font-family:'Times New Roman', Times, serif;
     padding: 10px;
     border-radius:20px;
-    border: 3px solid black; 
+    border: 1px solid black; 
   }
 
   p.inputMessage{
@@ -295,7 +295,7 @@ header{
     text-align: center;
     padding: 10px;
     border-radius: 10px; 
-    border: 2px solid black; 
+    border: 1px solid black; 
     padding: 12px;
     font-size: 125%;
     background-color: #a1c4fd;
@@ -575,6 +575,7 @@ input[type="submit"].fcf-btn-block, input[type="reset"].fcf-btn-block, input[typ
   background-image: linear-gradient(#a1c4fd,#c2e9fb);
   position:relative;
   border-radius: 12px; 
+  padding: 3%;
   border: 2px solid lightgray;
   text-shadow: 0 .5px 0 #ccc,
   0 2px 0 #c9c9c9,
@@ -632,7 +633,7 @@ input[type="submit"].fcf-btn-block, input[type="reset"].fcf-btn-block, input[typ
 /* Add a grey background color on mouse-over */
 .topnav a:hover {
   /* background: lightgray; */
-  color: whitesmoke;
+  color: lightgray;
   width: auto;
   right: 0;
   padding-left: 3%;
