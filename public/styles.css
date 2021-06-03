@@ -1,10 +1,12 @@
 header{
-    /* background-image: url("./Images/back1.jpg");  */
-    background-image: linear-gradient(#f5f7fa, #b8c6db);
+   
+  /* background-image: url("./Images/back1.jpg");  */
+    /* background-image: linear-gradient(to right, #f5f7fa, #b8c6db, lightgray); */
+    background-color: #b8c6db;
     /* Set rules to fill background */
     background-size: 100% auto;
-    border-radius: 12px; 
-    border: 2px solid lightgray; 
+    border-radius: 150px; 
+    border: 10px solid lightgray; 
     /* color: #3c5148; */
     /* width: 100%; */
     
