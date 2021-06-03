@@ -1,45 +1,93 @@
-<!doctype html>
+
+
 
 <html>
-  <body>
-    <p style="margin: 100px; text-align:center;">
-      <img src="./Images/loading.gif" alt="loading" height=400px width=600px><br>
-      Loading randysryan.com (This may take a moment)
-    </p>
-
-    <div class="hidden">
-      <script type="text/javascript">
-        var images = new Array()
-        function preload() {
-          for (i = 0; i < preload.arguments.length; i++) {
-          images[i] = new Image()
-          images[i].src = preload.arguments[i]
+	<head>  
+		<meta charset="utf-8">
+		<title>Randy Ryan</title>
+        <link rel="stylesheet" href="./home.css">
+        <script type="text/javascript">
+          var images = new Array()
+          function preload() {
+            for (i = 0; i < preload.arguments.length; i++) {
+            images[i] = new Image()
+            images[i].src = preload.arguments[i]
+            }
           }
-        }
-        preload(
-        "./Images/back1.jpg",
-        "./Images/liam1.png",
-		    "./Images/liam2.JPG",
-		    "./Images/livyliam.JPG",
-		    "./Images/wyattmaddie.jpeg",
-        "./Images/giphy.gif",
-		    "./Images/giphy1.gif",
-        "https://www.youtube.com/embed/olz4c-x_jvc",
-			  "https://www.youtube.com/embed/wae5ZGp-v3w",
-			  "https://www.youtube.com/embed/npn1Jncglu8",
-		    "./Images/busyquizzy.png",
-        "./Images/headshot.jpeg",
-		    "./Images/codersplatform.png",
-		    "./Images/resum.png"
-        );
+          window.onload = function() {
+            preload(
+          "./Images/back1.jpg",
+          "./Images/liam1.png",
+          "./Images/liam2.JPG",
+          "./Images/livyliam.JPG",
+          "./Images/wyattmaddie.jpeg",
+          "./Images/giphy.gif",
+          "./Images/giphy1.gif",
+          "https://www.youtube.com/embed/olz4c-x_jvc",
+          "https://www.youtube.com/embed/wae5ZGp-v3w",
+          "https://www.youtube.com/embed/npn1Jncglu8",
+          "./Images/busyquizzy.png",
+          "./Images/headshot.jpeg",
+          "./Images/codersplatform.png",
+          "./Images/resum.png"
+          );
+          }
+        </script>
+	</head>
+    
+    
+	<body>  
+    <p id = "welcome">Randall Stone Ryan</p><br>
 
-        setTimeout(function(){ 
-        window.location.href = "./HomePage/home.html";
-        }, 1500);
-        
+    <br>
+    <p id = "welcomeText">Welcome to my website! Click a link below to learn more about me.</p><br>
+    <hr style = "width: 85%;"> 
+        <div class="wrapper tabled">
+            <div class="stage" id="page1">
+                <div class="holder">
+                    <body>
+                    <div class="backgroundImage"></div>
+                    <div class="transparentText">
+                    <div class="middled">
+                        <div class="link-1">
+                          <a href="./AboutPage/about.html">
+                            <span class="thin">About </span><span class="thick">Me</span>
+                          </a>
+                          <p>Read and learn about me</p>  
+                        
+                        </div>
+                        
+                        <br><br>
+                        <div class="link-1">
+                            <a href="./ResumePage/resume.html">
+                              <span class="thin">My </span><span class="thick">Resume</span>
+                            </a>
+                            <p>View my Resume</p>    
+                          </div>
+                          <br>
+                          <br>
+                          <div class="link-1">
+                            <a href="./ProjectPage/project.html">
+                              <span class="thin">My </span><span class="thick">Projects</span>
+                            </a>
+                            <p>View my projects</p>    
+                          </div>
+                          <br><br>
+                          <div class="link-1">
+                            <a href="./VideosPage/videos.html">
+                              <span class="thin">Lacrosse </span><span class="thick">Page</span>
+                            </a>
+                            <p>Check out my stick skills</p>    
+                          </div>
+                          <br><br>
+                          <div class="link-1">
+                            <a href="./ContactPage/contact.html">
+                              <span class="thin">Contact </span><span class="thick">Me</span>
+                            </a>
+                            <p>Get in touch with me</p>    
+                          </div>
+                    </div>
+          </div>
 
-      </script>
-      </div>
-  </body>
-
+	</body>
 </html>
