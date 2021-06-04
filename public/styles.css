@@ -41,7 +41,6 @@ header{
     color: black;
     margin: 10px;
     text-align: center;
-    font-family: 'Times New Roman', Times, serif;
     
   }
 
@@ -82,7 +81,6 @@ header{
     color: black;
     font-size: 100%;
     font-weight: normal;
-    font-family: 'Times New Roman', Times, serif;
     border-radius: none; 
     border: none; 
     padding: none;
@@ -94,7 +92,6 @@ header{
     font-size: 300%;
     width: 300%;
     font-weight: bold;
-    font-family:'Times New Roman', Times, serif;
     border-radius: 12px; 
     border: 2px solid black; 
     -ms-transform: skewX(-17deg);
@@ -121,7 +118,6 @@ header{
     color: black;
     font-size: 225%;
     font-weight: bold;
-    font-family:'Times New Roman', Times, serif;
     border-radius: 12px; 
     border: 2px solid black; 
     padding: 15px;
@@ -152,7 +148,6 @@ header{
     font-weight: bold;
     background-color: white;
     color: black;
-    font-family: 'Times New Roman', Times, serif;
     -ms-transform: skewX(-10deg);
     -webkit-transform: skewX(-10deg);
     transform: skewX(-10deg);  
