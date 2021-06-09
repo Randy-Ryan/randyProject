@@ -94,11 +94,10 @@ window.onload = function () {
             // set variables from front end user input values
             var username = requiredInputs[0].value;
             var email = requiredInputs[1].value;
-            var password = requiredInputs[2].value;
 
             // create firebase account with email/password
             // this logic may be a little buggy and route to account page before creating the document in the firestore database
-            firebase.auth().createUserWithEmailAndPassword(email, password)
+            firebase.auth().createUserWithEmailAndPassword(email, requiredInputs[2].value)
                 .then((res) => {
                     var user = firebase.auth().currentUser;
                     // set current user id 
