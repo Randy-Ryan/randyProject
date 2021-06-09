@@ -524,7 +524,7 @@ function addFoodAndWater() {
         }).then(() => {
             console.log("Document successfully written!");
             clearChildren();
-            alert("Exercise post published");
+            alert("Food/bev post published");
 
             loadFeed(date, month);
 
@@ -551,24 +551,44 @@ function loadFeed(date, month) {
     db.collection("exercise").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
-            createNewExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message)
+            createNewExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id)
         });
     });
 
     db.collection("foodAndWater").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
-            createNewFood(doc.data().food, doc.data().water, doc.data().time, doc.data().message)
+            createNewFood(doc.data().food, doc.data().water, doc.data().time, doc.data().message, doc.id)
         });
     });
 
 
 }
 
+function deleteExercise(id) {
+    db.collection("exercise").doc(""+ id).delete().then(() => {
+        console.log("Document successfully deleted!");
+        clearChildren();
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
+        
+    });
+}
+
+function deleteFood(id) {
+    db.collection("foodAndWater").doc("" + id).delete().then(() => {
+        console.log("Document successfully deleted!");
+        clearChildren();
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
+        
+    });
+}
+
 
 
 //this fucntion creates a new element when you load the posts for each exercise post in the database
-function createNewExercise(r, s, w, t, m) {
+function createNewExercise(r, s, w, t, m, id) {
     // First create a DIV element.
     var reps = r;
     var sets = s;
@@ -578,7 +598,44 @@ function createNewExercise(r, s, w, t, m) {
 
     var newExercise = document.createElement('div');
     newExercise.onclick = function () {
-        //edit functionality for a post
+        
+        clearChildren();
+        // initialize div elements
+        var message = document.createElement('div');
+        var reps = document.createElement('div');
+        var sets = document.createElement('div');
+        var weight = document.createElement('div');
+        var time = document.createElement('div');
+        var postButton = document.createElement('div');
+        var deleteButton = document.createElement('div');
+    
+        message.id = "messageNewEdit";
+        reps.id = "repsNewEdit";
+        sets.id = "setsNewEdit";
+        weight.id = "weightNewEdit";
+        time.id = "timeExNewEdit";
+        postButton.id = "postButtonExNewEdit";
+        deleteButton.id = "deleteButtonExNewEdit";
+    
+      // Then add the content of the element
+    message.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: DB Bench Press. Difficult) <br><br></label><input type='text' class = 'required' id='messageInput' value = '" + m + "'><br><br><br>";
+    reps.innerHTML = "<label class = 'exClass1'>Reps (ex: 8) <br><br></label> <input type='text' class = 'required' id='repsInput' value = '" + r + "'><br><br><br>";
+    sets.innerHTML = "<label class = 'exClass1'>Sets (ex: 3)<br><br></label><input type='text' class = 'required' id='setsInput' value = '" + s + "'><br><br><br>";
+    weight.innerHTML = "<label class = 'exClass1'>Weight (ex: 100 lbs)<br><br></label><input type='text' class = 'required' id='weightInput' value = '" + w + "'><br><br><br>";
+    time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm) <br><br></label><input type='text' class = 'required' id='timeInput' value = '" + t + "'><br><br><br>";
+    postButton.innerHTML = "<input onclick = 'updateExercise( "+ id + ")'type='submit' form='mainForm' id = 'pButton1' class = 'filler2' value = 'UPDATE'/>"
+    deleteButton.innerHTML = "<input onclick = 'deleteExercise( "+ id + ")'type='submit' form='mainForm' id = 'pButton1' class = 'filler2' value = 'DELETE'/>"
+
+    
+        document.getElementById("feed")
+            .appendChild(message)
+            .appendChild(reps)
+            .appendChild(sets)
+            .appendChild(weight)
+            .appendChild(time)
+            .appendChild(postButton)
+            .appendChild(deleteButton);
+
 
     }
     // Then add the content (a new input box) of the element.
@@ -593,8 +650,100 @@ function createNewExercise(r, s, w, t, m) {
 
 }
 
+
+
+function updateExerciseEntry(docId) {
+
+    docId = "" + docId;
+
+    date = ""+ getDate();
+    month = "" + getMonth();
+    
+ 
+
+    var requiredInputs = document.querySelectorAll(".required");
+
+    var repsEdit = requiredInputs[0].value;
+    var setsEdit = requiredInputs[1].value;
+    var weightEdit = requiredInputs[2].value;
+    var timeEdit = requiredInputs[3].value;s
+    var messageEdit = requiredInputs[4].value;
+
+    db.collection("exercise").doc(docId).set({
+        reps: repsEdit,
+        sets: setsEdit,
+        weight: weightEdit,
+        time: timeEdit,
+        message: messageEdit,
+        date: date,
+        month: month
+    }).then(() => {
+        console.log("Document successfully updated!");
+        clearChildren();
+        alert("Exercise post published");
+
+        loadFeed(date, month);
+
+
+    })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+            alert("ERROR submitting post!");
+        });;
+
+
+
+
+}
+
+
+
+
+
+function updateFoodEntry(docId) {
+
+    docId = "" + docId;
+
+    date = ""+ getDate();
+    month = "" + getMonth();
+    
+ 
+
+    var requiredInputs = document.querySelectorAll(".required");
+
+    var foodEdit = requiredInputs[0].value;
+    var waterEdit = requiredInputs[1].value;
+    var timeEdit = requiredInputs[2].value;
+    var messageEdit = requiredInputs[3].value;
+
+    db.collection("foodAndWater").doc(docId).set({
+        food:foodEdit,
+        water:waterEdit,
+        time:timeEdit,
+        message:messageEdit,
+        date:date,
+        month:month
+    }).then(() => {
+        console.log("Document successfully updated!");
+        clearChildren();
+        alert("Exercise post published");
+
+        loadFeed(date, month);
+
+
+    })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+            alert("ERROR submitting post!");
+        });;
+
+
+
+
+}
+
 //this fucntion creates a new element when you load the posts for each food/water post in the database
-function createNewFood(f, w, t, m) {
+function createNewFood(f, w, t, m, id) {
     // First create a DIV element.
     var food = f;
     var water = w;
@@ -604,6 +753,53 @@ function createNewFood(f, w, t, m) {
     var newFood = document.createElement('div');
     newFood.onclick = function () {
         //edit functionality for a post
+
+        console.log("edit, delete");
+        
+
+        clearChildren();
+        // initialize div elements
+        var food = document.createElement('div');
+        var water = document.createElement('div');
+        var time = document.createElement('div');
+        var message = document.createElement('div');
+        var postButton = document.createElement('div');
+        var deleteButton = document.createElement('div');
+    
+        food.id = "foodNewEdit";
+        water.id = "waterNewEdit";
+        time.id = "timeFoodNewEdit";
+        message.id = "messageFoodNewEdit";
+        postButton.id = "postButtonFoodNewEdit";
+        deleteButton.id = "deleteButtonExNewEdit";
+    
+        console.log(id);
+
+        var date = "" + getDate();
+        var month = "" + getMonth();
+         var coll = "foodAndWater";
+
+        string = id + ", " + coll + ", " + date + ", " + month;
+
+        console.log(string);
+    
+        // Then add the content of the element
+        food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: PB&J plus a banana)<br><br> </label> <input type='text' class = 'required' id='foodInput' value = '" + f + "'><br><br><br>  ";
+        water.innerHTML = "<label class = 'exClass1'>Water/Beverages (ex: Water, Protein Shake)<br> <br> </label><input type='text' class = 'required' id='waterInput' value = '" + w + "'><br><br><br>  ";
+        time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br>  </label><input type='text' class = 'required' id='timeFoodInput' value = '" + t + "'><br><br> <br> ";
+        message.innerHTML = "<label class = 'exClass1'>Note (ex: 400 calories)<br><br> </label><input type='text' class = 'required' id='messageFoodInput' value = '" + m + "'><br><br><br>";
+        postButton.innerHTML = "<input onclick = 'updateFoodEntry(" + id + ");' type='submit' id = 'pButton2' class = 'filler2' value = 'UPDATE'/>"
+        deleteButton.innerHTML = "<input onclick = 'deleteFood(" + id + ");' type='submit' id = 'pButton2' class = 'filler2' value = 'DELETE'/>"
+    
+    
+    
+        document.getElementById("feed")
+            .appendChild(food)
+            .appendChild(water)
+            .appendChild(time)
+            .appendChild(message)
+            .appendChild(postButton)
+            .appendChild(deleteButton);
 
     }
     // Then add the content (a new input box) of the element.
