@@ -9,9 +9,9 @@ var firebaseConfig = {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
 var db = firebase.firestore();
 
+// return the value of the url param
 function getURLParameter(name) {
     return decodeURI(
         (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
@@ -28,9 +28,9 @@ function myFunction() {
     }
 }
 
-//function to check if input field is blank
+// function to check if input field is blank
 function isBlank(inputField) {
-    //checks for empty checkbox
+    // checks for empty checkbox
     if (inputField.type === "checkbox") {
         if (inputField.checked) {
             return false;
@@ -39,7 +39,7 @@ function isBlank(inputField) {
             return true;
         }
     }
-    //checks for empty input fields
+    // checks for empty input fields
     if (inputField.value === "") {
         return true;
     }
@@ -47,17 +47,17 @@ function isBlank(inputField) {
         return false;
     }
 }
-//function to make the input fields red
+// function to make the input fields red
 function makeRed(inputDiv) {
-    //input field set to red
+    // input field set to red
     inputDiv.style.backgroundColor = "#c80815";
 }
 
-//function to reset the input fields to normal
+// function to reset the input fields to normal
 function makeClean(inputDiv) {
-    //text set to black
+    // text set to black
     inputDiv.parentNode.style.color = "#000000";
-    //text field set to white	
+    // text field set to white	
     inputDiv.style.backgroundColor = "#FFFFFF";
 }
 
@@ -74,6 +74,7 @@ window.onload = function () {
         var requiredInputs = document.querySelectorAll(".required");
         for (var i = 0; i < requiredInputs.length; i++) {
             error = false;
+            console.log(requiredInputs.length);
             // if blank input, prevent form submission
             // make input fields red and set error to true
             if (isBlank(requiredInputs[i])) {
@@ -89,19 +90,43 @@ window.onload = function () {
             }
         }
         if (error2 == false) {
-            // no input errors, should then log into account through firebase
-            var email = requiredInputs[0].value;
-            var password = requiredInputs[1].value;
-            firebase.auth().signInWithEmailAndPassword(email, password).then(user => {
-                //get current user and display the username
-                var fuser = firebase.auth().currentUser;
-                alert("Welcome " + fuser.displayName);
-                //route to tracking page
-                window.location.href = "../TrackingPage/tracking.html?userID=" + fuser.uid;
-            }).catch(err => {
-                alert(err.message);
-            });
+            // no input errors, should then create an account through firebase
+            // set variables from front end user input values
+            var username = requiredInputs[0].value;
+            var email = requiredInputs[1].value;
+            var password = requiredInputs[2].value;
+
+            // create firebase account with email/password
+            // this logic may be a little buggy and route to account page before creating the document in the firestore database
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((res) => {
+                    var user = firebase.auth().currentUser;
+                    // set current user id 
+                    userId = firebase.auth().currentUser.uid;
+                    // create a new document in firestore database with the following fields
+                    db.collection("users").doc(userId).set({
+                        username: username,
+                        email: email,
+                        userID: userId,
+                    });
+                    // update this users display name with the inputted username
+                    user.updateProfile({
+                        displayName: username,
+                    })
+                        .then(function () {
+                            // route to home page and set the url params respectivly
+                            alert('Account successfully created! Welcome ' + username);
+                            window.location.href = "../TrackingPage/tracking.html?userID=" + userId;
+                        }).catch(function (error) {
+                            // An error happened.
+                            alert(error);
+                        });
+
+                });
         }
+
+
+
 
     }
 }

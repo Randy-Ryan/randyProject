@@ -14,6 +14,8 @@ const db = firebase.firestore();
 var currDate;
 var currMonth;
 
+var userID;
+
 //get todays date and load the feed
 window.onload = function () {
 
@@ -21,6 +23,14 @@ window.onload = function () {
     var day = s.substring(0, 2);
     var month = s.substring(3, 5);
 
+    userID = getURLParameter("userID");
+
+console.log(userID);
+    if (userID == "null"){
+        alert("Error");
+        window.location.href = "../index.html"
+
+    }
 
 
     if (month == '01') {
@@ -78,6 +88,12 @@ window.onload = function () {
 
 }
 
+//get the url params
+function getURLParameter(name) {
+    return decodeURI(
+        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
+    );
+}
 
 //function to check if input field is blank
 function isBlank(inputField) {
@@ -384,7 +400,7 @@ function addFoodAndWater() {
 
         //db post goes here
         var fill = "" + generateRandomNumber(1, 1000000);
-        db.collection("foodAndWater").doc(fill).set({
+        db.collection("users").doc(userID).collection("foodAndWater").doc(fill).set({
             food: food,
             water: water,
             time: time,
@@ -450,7 +466,7 @@ function addExercise() {
 
         //db post goes here
         var fill = "" + generateRandomNumber(1, 100000);
-        db.collection("exercise").doc(fill).set({
+        db.collection("users").doc(userID).collection("exercises").doc(fill).set({
             reps: reps,
             sets: sets,
             weight: weight,
@@ -563,14 +579,14 @@ function loadFeed(date, month) {
         day = "0" + day;
     }
 
-    db.collection("exercise").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
+    db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             createNewExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id)
         });
     });
 
-    db.collection("foodAndWater").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
+    db.collection("users").doc(userID).collection("foodAndWater").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             createNewFood(doc.data().food, doc.data().water, doc.data().time, doc.data().message, doc.id)
@@ -583,7 +599,7 @@ function loadFeed(date, month) {
 
 //function for deleting a exercise post
 function deleteExercise(id) {
-    db.collection("exercise").doc("" + id).delete().then(() => {
+    db.collection("users").doc(userID).collection("exercises").doc("" + id).delete().then(() => {
         // console.log("Document successfully deleted!");
         clearChildren();
         loadFeed(currDate, currMonth);
@@ -594,7 +610,7 @@ function deleteExercise(id) {
 }
 //function for deleting a food post
 function deleteFood(id) {
-    db.collection("foodAndWater").doc("" + id).delete().then(() => {
+    db.collection("users").doc(userID).collection("foodAndWater").doc("" + id).delete().then(() => {
         // console.log("Document successfully deleted!");
         clearChildren();
         loadFeed(currDate, currMonth);
@@ -747,7 +763,7 @@ function updateExerciseEntry(docId) {
     var timeEdit = requiredInputs[4].value;
     var messageEdit = requiredInputs[0].value;
 
-    db.collection("exercise").doc(docId).set({
+    db.collection("users").doc(userID).collection("exercises").doc(docId).set({
         reps: repsEdit,
         sets: setsEdit,
         weight: weightEdit,
@@ -790,7 +806,7 @@ function updateFoodEntry(docId) {
     var timeEdit = requiredInputs[2].value;
     var messageEdit = requiredInputs[3].value;
 
-    db.collection("foodAndWater").doc(docId).set({
+    db.collection("users").doc(userID).collection("foodAndWater").doc(docId).set({
         food: foodEdit,
         water: waterEdit,
         time: timeEdit,
