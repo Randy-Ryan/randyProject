@@ -1,0 +1,156 @@
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;}
+
+h2 {
+    margin: 2%;
+}
+
+/* Month header */
+.month {
+  padding: 70px 25px;
+  width: auto;
+  background: #1abc9c;
+  text-align: center;
+}
+
+/* Month list */
+.month ul {
+  margin: 0;
+  padding: 0;
+
+}
+
+.month ul li, a{
+  color: white;
+  font-size: 50px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/* Previous button inside month header */
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+#exSample, #foodSample{
+    font-size: 40px;
+   
+}
+
+/* Next button */
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+  margin: 0;
+  padding: 10px 10px;
+  background-color:#ddd;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  color: #666;
+  text-align: center;
+}
+
+#exButton {
+    float: right;
+    font-size: 50px;
+    width: 40%;
+    padding: 2%;
+    margin-top: 5%;
+    margin-right: 5%;
+
+
+}
+
+#pButton1, #pButton2{
+    margin-left: 20%;
+    width: 60%;
+    height: 20%;
+    margin-top: 5%;
+    font-size: 75px;
+    border-radius: 30px;
+}
+
+.filler2:hover{
+    color: white;  
+    background-color: black;
+}
+
+
+.exClass1{
+    font-size: 30px;
+    align-items: center;
+}
+
+#foodButton {
+
+    font-size: 50px;
+    width: 40%;
+    padding: 2%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+}
+
+/* Days (1-31) */
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.5%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 30px;
+  color: #777;
+}
+
+.required{
+    width: 85%;
+    height: 10%;
+    font-size: 50px;
+}
+
+li:hover{
+  background-color: black;
+  color: white;
+}
+
+.prev li:hover, .next li:hover{
+    background-color: black;
+    color: white;
+}
+
+/* Highlight the "current" day */
+.days .active {
+  background: black;
+  color: white !important
+}
+
+#prev { 
+    font-size: 25px;
+    padding: 1%;
+    border-radius: 35px;
+    position: absolute; left: 2%;
+}
+
+#next{
+    font-size: 25px;
+    padding: 1%;
+    border-radius: 35px;
+    position: absolute; right: 2%;
+}

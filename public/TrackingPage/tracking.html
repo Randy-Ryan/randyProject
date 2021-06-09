@@ -1,0 +1,528 @@
+<html>
+
+<head>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+
+    <!-- ***************************************************************************************************** -->
+    <!-- ******************* THIS STUFF IS FOR THE WEB ICON AND URL LINK THUMBNAILS ************************** -->
+    <!-- ***************************************************************************************************** -->
+
+    <!-- <meta name="description" content="Skate Shoe Mate" />
+    <meta name="title" property="og:title" content="Skate Shoe Mate" />
+    <meta property="og:type" content="website" />
+    <meta name="image" 
+      property="og:image" 
+      content="./Images/screenshot.png" />
+    <meta 
+      name="description" 
+      property="og:description" 
+      content="Skate Shoe Mate" />
+    <meta name="author" content="Randy Ryan, Kyle McDevitt, Alton Deluca" /> -->
+
+    <!-- <link rel="icon" href="./favicon_io/favicon.ico" /> -->
+
+    <!-- ************************************************************************************************************ -->
+    <!-- ******************* THIS SCRIPT IS CRUCIAL FOR PRELOADING IMAGES FOR A BETTER UI *************************** -->
+    <!-- ************************************************************************************************************ -->
+
+    <!-- <script type="text/javascript">
+          var images = new Array()
+          function preload() {
+            for (i = 0; i < preload.arguments.length; i++) {
+            images[i] = new Image()
+            images[i].src = preload.arguments[i]
+            }
+          }
+          window.onload = function() {
+            preload(
+          "img 1 url link here",
+          "img 2 url link here",
+          );
+          }
+        </script> -->
+
+    <meta charset="utf-8">
+    <title>Randy Tracking</title>
+    <link rel="stylesheet" href="./tracking.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="./tracking.js"></script>
+</head>
+
+
+<body>
+    <!-- <p id="welcome">Randy Tracking</p><br>
+  <br>
+  <p id="welcomeText">Welcome to Skate Shoe Mate! Click a link below to ...</p><br>
+  <hr style="width: 85%;">
+  <br><br><br>
+  <div id="newElementId"></div> -->
+    <div class="month">
+        <ul>
+            <button id = "prev" class="prev" onclick="prevMonth(document.getElementById('monthTitle').innerHTML);">PREV</button>
+            <button id = "next" class="next" onclick="nextMonth(document.getElementById('monthTitle').innerHTML);">NEXT</button>
+            <a id="monthTitle"></a>
+        </ul>
+    </div>
+
+    <ul class="weekdays">
+        <li style="pointer-events: none;">Mo</li>
+        <li style="pointer-events: none;">Tu</li>
+        <li style="pointer-events: none;">We</li>
+        <li style="pointer-events: none;">Th</li>
+        <li style="pointer-events: none;">Fr</li>
+        <li style="pointer-events: none;">Sa</li>
+        <li style="pointer-events: none;">Su</li>
+    </ul>
+
+    <ul class="days">
+        <div id="daysJanuary" style="display: none;">
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li id="id01January" onclick="openDay(1, document.getElementById('monthTitle').innerHTML)">1</li>
+            <li id="id02January" onclick="openDay(2, document.getElementById('monthTitle').innerHTML)">2</li>
+            <li id="id03January" onclick="openDay(3, document.getElementById('monthTitle').innerHTML)">3</li>
+            <li id="id04January" onclick="openDay(4, document.getElementById('monthTitle').innerHTML)">4</li>
+            <li id="id05January" onclick="openDay(5, document.getElementById('monthTitle').innerHTML)">5</li>
+            <li id="id06January" onclick="openDay(6, document.getElementById('monthTitle').innerHTML)">6</li>
+            <li id="id07January" onclick="openDay(7, document.getElementById('monthTitle').innerHTML)">7</li>
+            <li id="id08January" onclick="openDay(8, document.getElementById('monthTitle').innerHTML)">8</li>
+            <li id="id09January" onclick="openDay(9, document.getElementById('monthTitle').innerHTML)">9</li>
+            <li id="id10January" onclick="openDay(10, document.getElementById('monthTitle').innerHTML)">10</li>
+            <li id="id11January" onclick="openDay(11, document.getElementById('monthTitle').innerHTML)">11</li>
+            <li id="id12January" onclick="openDay(12, document.getElementById('monthTitle').innerHTML)">12</li>
+            <li id="id13January" onclick="openDay(13, document.getElementById('monthTitle').innerHTML)">13</li>
+            <li id="id14January" onclick="openDay(14, document.getElementById('monthTitle').innerHTML)">14</li>
+            <li id="id15January" onclick="openDay(15, document.getElementById('monthTitle').innerHTML)">15</li>
+            <li id="id16January" onclick="openDay(16, document.getElementById('monthTitle').innerHTML)">16</li>
+            <li id="id17January" onclick="openDay(17, document.getElementById('monthTitle').innerHTML)">17</li>
+            <li id="id18January" onclick="openDay(18, document.getElementById('monthTitle').innerHTML)">18</li>
+            <li id="id19January" onclick="openDay(19, document.getElementById('monthTitle').innerHTML)">19</li>
+            <li id="id20January" onclick="openDay(20, document.getElementById('monthTitle').innerHTML)">20</li>
+            <li id="id21January" onclick="openDay(21, document.getElementById('monthTitle').innerHTML)">21</li>
+            <li id="id22January" onclick="openDay(22, document.getElementById('monthTitle').innerHTML)">22</li>
+            <li id="id23January" onclick="openDay(23, document.getElementById('monthTitle').innerHTML)">23</li>
+            <li id="id24January" onclick="openDay(24, document.getElementById('monthTitle').innerHTML)">24</li>
+            <li id="id25January" onclick="openDay(25, document.getElementById('monthTitle').innerHTML)">25</li>
+            <li id="id26January" onclick="openDay(26, document.getElementById('monthTitle').innerHTML)">26</li>
+            <li id="id27January" onclick="openDay(27, document.getElementById('monthTitle').innerHTML)">27</li>
+            <li id="id28January" onclick="openDay(28, document.getElementById('monthTitle').innerHTML)">28</li>
+            <li id="id29January" onclick="openDay(29, document.getElementById('monthTitle').innerHTML)">29</li>
+            <li id="id30January" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">30</li>
+            <li id="id31January" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">31</li>
+
+        </div>
+        <div id="daysFebruary" style="display: none;">
+            <li id="id01February" onclick="openDay(1, document.getElementById('monthTitle').innerHTML)">1</li>
+            <li id="id02February" onclick="openDay(2, document.getElementById('monthTitle').innerHTML)">2</li>
+            <li id="id03February" onclick="openDay(3, document.getElementById('monthTitle').innerHTML)">3</li>
+            <li id="id04February" onclick="openDay(4, document.getElementById('monthTitle').innerHTML)">4</li>
+            <li id="id05February" onclick="openDay(5, document.getElementById('monthTitle').innerHTML)">5</li>
+            <li id="id06February" onclick="openDay(6, document.getElementById('monthTitle').innerHTML)">6</li>
+            <li id="id07February" onclick="openDay(7, document.getElementById('monthTitle').innerHTML)">7</li>
+            <li id="id08February" onclick="openDay(8, document.getElementById('monthTitle').innerHTML)">8</li>
+            <li id="id09February" onclick="openDay(9, document.getElementById('monthTitle').innerHTML)">9</li>
+            <li id="id10February" onclick="openDay(10, document.getElementById('monthTitle').innerHTML)">10</li>
+            <li id="id11February" onclick="openDay(11, document.getElementById('monthTitle').innerHTML)">11</li>
+            <li id="id12February" onclick="openDay(12, document.getElementById('monthTitle').innerHTML)">12</li>
+            <li id="id13February" onclick="openDay(13, document.getElementById('monthTitle').innerHTML)">13</li>
+            <li id="id14February" onclick="openDay(14, document.getElementById('monthTitle').innerHTML)">14</li>
+            <li id="id15February" onclick="openDay(15, document.getElementById('monthTitle').innerHTML)">15</li>
+            <li id="id16February" onclick="openDay(16, document.getElementById('monthTitle').innerHTML)">16</li>
+            <li id="id17February" onclick="openDay(17, document.getElementById('monthTitle').innerHTML)">17</li>
+            <li id="id18February" onclick="openDay(18, document.getElementById('monthTitle').innerHTML)">18</li>
+            <li id="id19February" onclick="openDay(19, document.getElementById('monthTitle').innerHTML)">19</li>
+            <li id="id20February" onclick="openDay(20, document.getElementById('monthTitle').innerHTML)">20</li>
+            <li id="id21February" onclick="openDay(21, document.getElementById('monthTitle').innerHTML)">21</li>
+            <li id="id22February" onclick="openDay(22, document.getElementById('monthTitle').innerHTML)">22</li>
+            <li id="id23February" onclick="openDay(23, document.getElementById('monthTitle').innerHTML)">23</li>
+            <li id="id24February" onclick="openDay(24, document.getElementById('monthTitle').innerHTML)">24</li>
+            <li id="id25February" onclick="openDay(25, document.getElementById('monthTitle').innerHTML)">25</li>
+            <li id="id26February" onclick="openDay(26, document.getElementById('monthTitle').innerHTML)">26</li>
+            <li id="id27February" onclick="openDay(27, document.getElementById('monthTitle').innerHTML)">27</li>
+            <li id="id28February" onclick="openDay(28, document.getElementById('monthTitle').innerHTML)">28</li>
+        </div>
+        <div id="daysMarch" style="display: none;">
+            <li id="id01March" onclick="openDay(1, document.getElementById('monthTitle').innerHTML)">1</li>
+            <li id="id02March" onclick="openDay(2, document.getElementById('monthTitle').innerHTML)">2</li>
+            <li id="id03March" onclick="openDay(3, document.getElementById('monthTitle').innerHTML)">3</li>
+            <li id="id04March" onclick="openDay(4, document.getElementById('monthTitle').innerHTML)">4</li>
+            <li id="id05March" onclick="openDay(5, document.getElementById('monthTitle').innerHTML)">5</li>
+            <li id="id06March" onclick="openDay(6, document.getElementById('monthTitle').innerHTML)">6</li>
+            <li id="id07March" onclick="openDay(7, document.getElementById('monthTitle').innerHTML)">7</li>
+            <li id="id08March" onclick="openDay(8, document.getElementById('monthTitle').innerHTML)">8</li>
+            <li id="id09March" onclick="openDay(9, document.getElementById('monthTitle').innerHTML)">9</li>
+            <li id="id10March" onclick="openDay(10, document.getElementById('monthTitle').innerHTML)">10</li>
+            <li id="id11March" onclick="openDay(11, document.getElementById('monthTitle').innerHTML)">11</li>
+            <li id="id12March" onclick="openDay(12, document.getElementById('monthTitle').innerHTML)">12</li>
+            <li id="id13March" onclick="openDay(13, document.getElementById('monthTitle').innerHTML)">13</li>
+            <li id="id14March" onclick="openDay(14, document.getElementById('monthTitle').innerHTML)">14</li>
+            <li id="id15March" onclick="openDay(15, document.getElementById('monthTitle').innerHTML)">15</li>
+            <li id="id16March" onclick="openDay(16, document.getElementById('monthTitle').innerHTML)">16</li>
+            <li id="id17March" onclick="openDay(17, document.getElementById('monthTitle').innerHTML)">17</li>
+            <li id="id18March" onclick="openDay(18, document.getElementById('monthTitle').innerHTML)">18</li>
+            <li id="id19March" onclick="openDay(19, document.getElementById('monthTitle').innerHTML)">19</li>
+            <li id="id20March" onclick="openDay(20, document.getElementById('monthTitle').innerHTML)">20</li>
+            <li id="id21March" onclick="openDay(21, document.getElementById('monthTitle').innerHTML)">21</li>
+            <li id="id22March" onclick="openDay(22, document.getElementById('monthTitle').innerHTML)">22</li>
+            <li id="id23March" onclick="openDay(23, document.getElementById('monthTitle').innerHTML)">23</li>
+            <li id="id24March" onclick="openDay(24, document.getElementById('monthTitle').innerHTML)">24</li>
+            <li id="id25March" onclick="openDay(25, document.getElementById('monthTitle').innerHTML)">25</li>
+            <li id="id26March" onclick="openDay(26, document.getElementById('monthTitle').innerHTML)">26</li>
+            <li id="id27March" onclick="openDay(27, document.getElementById('monthTitle').innerHTML)">27</li>
+            <li id="id28March" onclick="openDay(28, document.getElementById('monthTitle').innerHTML)">28</li>
+            <li id="id29March" onclick="openDay(29, document.getElementById('monthTitle').innerHTML)">29</li>
+            <li id="id30March" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">30</li>
+            <li id="id31March" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">31</li>
+
+        </div>
+        <div id="daysApril" style="display: none;">
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li id="id01April" onclick="openDay(1, document.getElementById('monthTitle').innerHTML)">1</li>
+            <li id="id02April" onclick="openDay(2, document.getElementById('monthTitle').innerHTML)">2</li>
+            <li id="id03April" onclick="openDay(3, document.getElementById('monthTitle').innerHTML)">3</li>
+            <li id="id04April" onclick="openDay(4, document.getElementById('monthTitle').innerHTML)">4</li>
+            <li id="id05April" onclick="openDay(5, document.getElementById('monthTitle').innerHTML)">5</li>
+            <li id="id06April" onclick="openDay(6, document.getElementById('monthTitle').innerHTML)">6</li>
+            <li id="id07April" onclick="openDay(7, document.getElementById('monthTitle').innerHTML)">7</li>
+            <li id="id08April" onclick="openDay(8, document.getElementById('monthTitle').innerHTML)">8</li>
+            <li id="id09April" onclick="openDay(9, document.getElementById('monthTitle').innerHTML)">9</li>
+            <li id="id10April" onclick="openDay(10, document.getElementById('monthTitle').innerHTML)">10</li>
+            <li id="id11April" onclick="openDay(11, document.getElementById('monthTitle').innerHTML)">11</li>
+            <li id="id12April" onclick="openDay(12, document.getElementById('monthTitle').innerHTML)">12</li>
+            <li id="id13April" onclick="openDay(13, document.getElementById('monthTitle').innerHTML)">13</li>
+            <li id="id14April" onclick="openDay(14, document.getElementById('monthTitle').innerHTML)">14</li>
+            <li id="id15April" onclick="openDay(15, document.getElementById('monthTitle').innerHTML)">15</li>
+            <li id="id16April" onclick="openDay(16, document.getElementById('monthTitle').innerHTML)">16</li>
+            <li id="id17April" onclick="openDay(17, document.getElementById('monthTitle').innerHTML)">17</li>
+            <li id="id18April" onclick="openDay(18, document.getElementById('monthTitle').innerHTML)">18</li>
+            <li id="id19April" onclick="openDay(19, document.getElementById('monthTitle').innerHTML)">19</li>
+            <li id="id20April" onclick="openDay(20, document.getElementById('monthTitle').innerHTML)">20</li>
+            <li id="id21April" onclick="openDay(21, document.getElementById('monthTitle').innerHTML)">21</li>
+            <li id="id22April" onclick="openDay(22, document.getElementById('monthTitle').innerHTML)">22</li>
+            <li id="id23April" onclick="openDay(23, document.getElementById('monthTitle').innerHTML)">23</li>
+            <li id="id24April" onclick="openDay(24, document.getElementById('monthTitle').innerHTML)">24</li>
+            <li id="id25April" onclick="openDay(25, document.getElementById('monthTitle').innerHTML)">25</li>
+            <li id="id26April" onclick="openDay(26, document.getElementById('monthTitle').innerHTML)">26</li>
+            <li id="id27April" onclick="openDay(27, document.getElementById('monthTitle').innerHTML)">27</li>
+            <li id="id28April" onclick="openDay(28, document.getElementById('monthTitle').innerHTML)">28</li>
+            <li id="id29April" onclick="openDay(29, document.getElementById('monthTitle').innerHTML)">29</li>
+            <li id="id30April" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">30</li>
+        </div>
+        <div id="daysMay" style="display: none;">
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li id="id01May" onclick="openDay(1, document.getElementById('monthTitle').innerHTML)">1</li>
+            <li id="id02May" onclick="openDay(2, document.getElementById('monthTitle').innerHTML)">2</li>
+            <li id="id03May" onclick="openDay(3, document.getElementById('monthTitle').innerHTML)">3</li>
+            <li id="id04May" onclick="openDay(4, document.getElementById('monthTitle').innerHTML)">4</li>
+            <li id="id05May" onclick="openDay(5, document.getElementById('monthTitle').innerHTML)">5</li>
+            <li id="id06May" onclick="openDay(6, document.getElementById('monthTitle').innerHTML)">6</li>
+            <li id="id07May" onclick="openDay(7, document.getElementById('monthTitle').innerHTML)">7</li>
+            <li id="id08May" onclick="openDay(8, document.getElementById('monthTitle').innerHTML)">8</li>
+            <li id="id09May" onclick="openDay(9, document.getElementById('monthTitle').innerHTML)">9</li>
+            <li id="id10May" onclick="openDay(10, document.getElementById('monthTitle').innerHTML)">10</li>
+            <li id="id11May" onclick="openDay(11, document.getElementById('monthTitle').innerHTML)">11</li>
+            <li id="id12May" onclick="openDay(12, document.getElementById('monthTitle').innerHTML)">12</li>
+            <li id="id13May" onclick="openDay(13, document.getElementById('monthTitle').innerHTML)">13</li>
+            <li id="id14May" onclick="openDay(14, document.getElementById('monthTitle').innerHTML)">14</li>
+            <li id="id15May" onclick="openDay(15, document.getElementById('monthTitle').innerHTML)">15</li>
+            <li id="id16May" onclick="openDay(16, document.getElementById('monthTitle').innerHTML)">16</li>
+            <li id="id17May" onclick="openDay(17, document.getElementById('monthTitle').innerHTML)">17</li>
+            <li id="id18May" onclick="openDay(18, document.getElementById('monthTitle').innerHTML)">18</li>
+            <li id="id19May" onclick="openDay(19, document.getElementById('monthTitle').innerHTML)">19</li>
+            <li id="id20May" onclick="openDay(20, document.getElementById('monthTitle').innerHTML)">20</li>
+            <li id="id21May" onclick="openDay(21, document.getElementById('monthTitle').innerHTML)">21</li>
+            <li id="id22May" onclick="openDay(22, document.getElementById('monthTitle').innerHTML)">22</li>
+            <li id="id23May" onclick="openDay(23, document.getElementById('monthTitle').innerHTML)">23</li>
+            <li id="id24May" onclick="openDay(24, document.getElementById('monthTitle').innerHTML)">24</li>
+            <li id="id25May" onclick="openDay(25, document.getElementById('monthTitle').innerHTML)">25</li>
+            <li id="id26May" onclick="openDay(26, document.getElementById('monthTitle').innerHTML)">26</li>
+            <li id="id27May" onclick="openDay(27, document.getElementById('monthTitle').innerHTML)">27</li>
+            <li id="id28May" onclick="openDay(28, document.getElementById('monthTitle').innerHTML)">28</li>
+            <li id="id29May" onclick="openDay(29, document.getElementById('monthTitle').innerHTML)">29</li>
+            <li id="id30May" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">30</li>
+            <li id="id31May" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">31</li>
+
+        </div>
+        <div id="daysJune" style="display: none;">
+            <li style="pointer-events: none;"></li>
+            <li id="id01June" onclick="openDay(1, document.getElementById('monthTitle').innerHTML)">1</li>
+            <li id="id02June" onclick="openDay(2, document.getElementById('monthTitle').innerHTML)">2</li>
+            <li id="id03June" onclick="openDay(3, document.getElementById('monthTitle').innerHTML)">3</li>
+            <li id="id04June" onclick="openDay(4, document.getElementById('monthTitle').innerHTML)">4</li>
+            <li id="id05June" onclick="openDay(5, document.getElementById('monthTitle').innerHTML)">5</li>
+            <li id="id06June" onclick="openDay(6, document.getElementById('monthTitle').innerHTML)">6</li>
+            <li id="id07June" onclick="openDay(7, document.getElementById('monthTitle').innerHTML)">7</li>
+            <li id="id08June" onclick="openDay(8, document.getElementById('monthTitle').innerHTML)">8</li>
+            <li id="id09June" onclick="openDay(9, document.getElementById('monthTitle').innerHTML)">9</li>
+            <li id="id10June" onclick="openDay(10, document.getElementById('monthTitle').innerHTML)">10</li>
+            <li id="id11June" onclick="openDay(11, document.getElementById('monthTitle').innerHTML)">11</li>
+            <li id="id12June" onclick="openDay(12, document.getElementById('monthTitle').innerHTML)">12</li>
+            <li id="id13June" onclick="openDay(13, document.getElementById('monthTitle').innerHTML)">13</li>
+            <li id="id14June" onclick="openDay(14, document.getElementById('monthTitle').innerHTML)">14</li>
+            <li id="id15June" onclick="openDay(15, document.getElementById('monthTitle').innerHTML)">15</li>
+            <li id="id16June" onclick="openDay(16, document.getElementById('monthTitle').innerHTML)">16</li>
+            <li id="id17June" onclick="openDay(17, document.getElementById('monthTitle').innerHTML)">17</li>
+            <li id="id18June" onclick="openDay(18, document.getElementById('monthTitle').innerHTML)">18</li>
+            <li id="id19June" onclick="openDay(19, document.getElementById('monthTitle').innerHTML)">19</li>
+            <li id="id20June" onclick="openDay(20, document.getElementById('monthTitle').innerHTML)">20</li>
+            <li id="id21June" onclick="openDay(21, document.getElementById('monthTitle').innerHTML)">21</li>
+            <li id="id22June" onclick="openDay(22, document.getElementById('monthTitle').innerHTML)">22</li>
+            <li id="id23June" onclick="openDay(23, document.getElementById('monthTitle').innerHTML)">23</li>
+            <li id="id24June" onclick="openDay(24, document.getElementById('monthTitle').innerHTML)">24</li>
+            <li id="id25June" onclick="openDay(25, document.getElementById('monthTitle').innerHTML)">25</li>
+            <li id="id26June" onclick="openDay(26, document.getElementById('monthTitle').innerHTML)">26</li>
+            <li id="id27June" onclick="openDay(27, document.getElementById('monthTitle').innerHTML)">27</li>
+            <li id="id28June" onclick="openDay(28, document.getElementById('monthTitle').innerHTML)">28</li>
+            <li id="id29June" onclick="openDay(29, document.getElementById('monthTitle').innerHTML)">29</li>
+            <li id="id30June" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">30</li>
+        </div>
+        <div id="daysJuly" style="display: none;">
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li id="id01July" onclick="openDay(1, document.getElementById('monthTitle').innerHTML)">1</li>
+            <li id="id02July" onclick="openDay(2, document.getElementById('monthTitle').innerHTML)">2</li>
+            <li id="id03July" onclick="openDay(3, document.getElementById('monthTitle').innerHTML)">3</li>
+            <li id="id04July" onclick="openDay(4, document.getElementById('monthTitle').innerHTML)">4</li>
+            <li id="id05July" onclick="openDay(5, document.getElementById('monthTitle').innerHTML)">5</li>
+            <li id="id06July" onclick="openDay(6, document.getElementById('monthTitle').innerHTML)">6</li>
+            <li id="id07July" onclick="openDay(7, document.getElementById('monthTitle').innerHTML)">7</li>
+            <li id="id08July" onclick="openDay(8, document.getElementById('monthTitle').innerHTML)">8</li>
+            <li id="id09July" onclick="openDay(9, document.getElementById('monthTitle').innerHTML)">9</li>
+            <li id="id10July" onclick="openDay(10, document.getElementById('monthTitle').innerHTML)">10</li>
+            <li id="id11July" onclick="openDay(11, document.getElementById('monthTitle').innerHTML)">11</li>
+            <li id="id12July" onclick="openDay(12, document.getElementById('monthTitle').innerHTML)">12</li>
+            <li id="id13July" onclick="openDay(13, document.getElementById('monthTitle').innerHTML)">13</li>
+            <li id="id14July" onclick="openDay(14, document.getElementById('monthTitle').innerHTML)">14</li>
+            <li id="id15July" onclick="openDay(15, document.getElementById('monthTitle').innerHTML)">15</li>
+            <li id="id16July" onclick="openDay(16, document.getElementById('monthTitle').innerHTML)">16</li>
+            <li id="id17July" onclick="openDay(17, document.getElementById('monthTitle').innerHTML)">17</li>
+            <li id="id18July" onclick="openDay(18, document.getElementById('monthTitle').innerHTML)">18</li>
+            <li id="id19July" onclick="openDay(19, document.getElementById('monthTitle').innerHTML)">19</li>
+            <li id="id20July" onclick="openDay(20, document.getElementById('monthTitle').innerHTML)">20</li>
+            <li id="id21July" onclick="openDay(21, document.getElementById('monthTitle').innerHTML)">21</li>
+            <li id="id22July" onclick="openDay(22, document.getElementById('monthTitle').innerHTML)">22</li>
+            <li id="id23July" onclick="openDay(23, document.getElementById('monthTitle').innerHTML)">23</li>
+            <li id="id24July" onclick="openDay(24, document.getElementById('monthTitle').innerHTML)">24</li>
+            <li id="id25July" onclick="openDay(25, document.getElementById('monthTitle').innerHTML)">25</li>
+            <li id="id26July" onclick="openDay(26, document.getElementById('monthTitle').innerHTML)">26</li>
+            <li id="id27July" onclick="openDay(27, document.getElementById('monthTitle').innerHTML)">27</li>
+            <li id="id28July" onclick="openDay(28, document.getElementById('monthTitle').innerHTML)">28</li>
+            <li id="id29July" onclick="openDay(29, document.getElementById('monthTitle').innerHTML)">29</li>
+            <li id="id30July" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">30</li>
+            <li id="id31July" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">31</li>
+
+        </div>
+        <div id="daysAugust" style="display: none;">
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li id="id01August" onclick="openDay(1, document.getElementById('monthTitle').innerHTML)">1</li>
+            <li id="id02August" onclick="openDay(2, document.getElementById('monthTitle').innerHTML)">2</li>
+            <li id="id03August" onclick="openDay(3, document.getElementById('monthTitle').innerHTML)">3</li>
+            <li id="id04August" onclick="openDay(4, document.getElementById('monthTitle').innerHTML)">4</li>
+            <li id="id05August" onclick="openDay(5, document.getElementById('monthTitle').innerHTML)">5</li>
+            <li id="id06August" onclick="openDay(6, document.getElementById('monthTitle').innerHTML)">6</li>
+            <li id="id07August" onclick="openDay(7, document.getElementById('monthTitle').innerHTML)">7</li>
+            <li id="id08August" onclick="openDay(8, document.getElementById('monthTitle').innerHTML)">8</li>
+            <li id="id09August" onclick="openDay(9, document.getElementById('monthTitle').innerHTML)">9</li>
+            <li id="id10August" onclick="openDay(10, document.getElementById('monthTitle').innerHTML)">10</li>
+            <li id="id11August" onclick="openDay(11, document.getElementById('monthTitle').innerHTML)">11</li>
+            <li id="id12August" onclick="openDay(12, document.getElementById('monthTitle').innerHTML)">12</li>
+            <li id="id13August" onclick="openDay(13, document.getElementById('monthTitle').innerHTML)">13</li>
+            <li id="id14August" onclick="openDay(14, document.getElementById('monthTitle').innerHTML)">14</li>
+            <li id="id15August" onclick="openDay(15, document.getElementById('monthTitle').innerHTML)">15</li>
+            <li id="id16August" onclick="openDay(16, document.getElementById('monthTitle').innerHTML)">16</li>
+            <li id="id17August" onclick="openDay(17, document.getElementById('monthTitle').innerHTML)">17</li>
+            <li id="id18August" onclick="openDay(18, document.getElementById('monthTitle').innerHTML)">18</li>
+            <li id="id19August" onclick="openDay(19, document.getElementById('monthTitle').innerHTML)">19</li>
+            <li id="id20August" onclick="openDay(20, document.getElementById('monthTitle').innerHTML)">20</li>
+            <li id="id21August" onclick="openDay(21, document.getElementById('monthTitle').innerHTML)">21</li>
+            <li id="id22August" onclick="openDay(22, document.getElementById('monthTitle').innerHTML)">22</li>
+            <li id="id23August" onclick="openDay(23, document.getElementById('monthTitle').innerHTML)">23</li>
+            <li id="id24August" onclick="openDay(24, document.getElementById('monthTitle').innerHTML)">24</li>
+            <li id="id25August" onclick="openDay(25, document.getElementById('monthTitle').innerHTML)">25</li>
+            <li id="id26August" onclick="openDay(26, document.getElementById('monthTitle').innerHTML)">26</li>
+            <li id="id27August" onclick="openDay(27, document.getElementById('monthTitle').innerHTML)">27</li>
+            <li id="id28August" onclick="openDay(28, document.getElementById('monthTitle').innerHTML)">28</li>
+            <li id="id29August" onclick="openDay(29, document.getElementById('monthTitle').innerHTML)">29</li>
+            <li id="id30August" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">30</li>
+            <li id="id31August" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">31</li>
+
+        </div>
+        <div id="daysSeptember" style="display: none;">
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li id="id01September" onclick="openDay(1, document.getElementById('monthTitle').innerHTML)">1</li>
+            <li id="id02September" onclick="openDay(2, document.getElementById('monthTitle').innerHTML)">2</li>
+            <li id="id03September" onclick="openDay(3, document.getElementById('monthTitle').innerHTML)">3</li>
+            <li id="id04September" onclick="openDay(4, document.getElementById('monthTitle').innerHTML)">4</li>
+            <li id="id05September" onclick="openDay(5, document.getElementById('monthTitle').innerHTML)">5</li>
+            <li id="id06September" onclick="openDay(6, document.getElementById('monthTitle').innerHTML)">6</li>
+            <li id="id07September" onclick="openDay(7, document.getElementById('monthTitle').innerHTML)">7</li>
+            <li id="id08September" onclick="openDay(8, document.getElementById('monthTitle').innerHTML)">8</li>
+            <li id="id09September" onclick="openDay(9, document.getElementById('monthTitle').innerHTML)">9</li>
+            <li id="id10September" onclick="openDay(10, document.getElementById('monthTitle').innerHTML)">10</li>
+            <li id="id11September" onclick="openDay(11, document.getElementById('monthTitle').innerHTML)">11</li>
+            <li id="id12September" onclick="openDay(12, document.getElementById('monthTitle').innerHTML)">12</li>
+            <li id="id13September" onclick="openDay(13, document.getElementById('monthTitle').innerHTML)">13</li>
+            <li id="id14September" onclick="openDay(14, document.getElementById('monthTitle').innerHTML)">14</li>
+            <li id="id15September" onclick="openDay(15, document.getElementById('monthTitle').innerHTML)">15</li>
+            <li id="id16September" onclick="openDay(16, document.getElementById('monthTitle').innerHTML)">16</li>
+            <li id="id17September" onclick="openDay(17, document.getElementById('monthTitle').innerHTML)">17</li>
+            <li id="id18September" onclick="openDay(18, document.getElementById('monthTitle').innerHTML)">18</li>
+            <li id="id19September" onclick="openDay(19, document.getElementById('monthTitle').innerHTML)">19</li>
+            <li id="id20September" onclick="openDay(20, document.getElementById('monthTitle').innerHTML)">20</li>
+            <li id="id21September" onclick="openDay(21, document.getElementById('monthTitle').innerHTML)">21</li>
+            <li id="id22September" onclick="openDay(22, document.getElementById('monthTitle').innerHTML)">22</li>
+            <li id="id23September" onclick="openDay(23, document.getElementById('monthTitle').innerHTML)">23</li>
+            <li id="id24September" onclick="openDay(24, document.getElementById('monthTitle').innerHTML)">24</li>
+            <li id="id25September" onclick="openDay(25, document.getElementById('monthTitle').innerHTML)">25</li>
+            <li id="id26September" onclick="openDay(26, document.getElementById('monthTitle').innerHTML)">26</li>
+            <li id="id27September" onclick="openDay(27, document.getElementById('monthTitle').innerHTML)">27</li>
+            <li id="id28September" onclick="openDay(28, document.getElementById('monthTitle').innerHTML)">28</li>
+            <li id="id29September" onclick="openDay(29, document.getElementById('monthTitle').innerHTML)">29</li>
+            <li id="id30September" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">30</li>
+        </div>
+        <div id="daysOctober" style="display: none;">
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li id="id01October" onclick="openDay(1, document.getElementById('monthTitle').innerHTML)">1</li>
+            <li id="id02October" onclick="openDay(2, document.getElementById('monthTitle').innerHTML)">2</li>
+            <li id="id03October" onclick="openDay(3, document.getElementById('monthTitle').innerHTML)">3</li>
+            <li id="id04October" onclick="openDay(4, document.getElementById('monthTitle').innerHTML)">4</li>
+            <li id="id05October" onclick="openDay(5, document.getElementById('monthTitle').innerHTML)">5</li>
+            <li id="id06October" onclick="openDay(6, document.getElementById('monthTitle').innerHTML)">6</li>
+            <li id="id07October" onclick="openDay(7, document.getElementById('monthTitle').innerHTML)">7</li>
+            <li id="id08October" onclick="openDay(8, document.getElementById('monthTitle').innerHTML)">8</li>
+            <li id="id09October" onclick="openDay(9, document.getElementById('monthTitle').innerHTML)">9</li>
+            <li id="id10October" onclick="openDay(10, document.getElementById('monthTitle').innerHTML)">10</li>
+            <li id="id11October" onclick="openDay(11, document.getElementById('monthTitle').innerHTML)">11</li>
+            <li id="id12October" onclick="openDay(12, document.getElementById('monthTitle').innerHTML)">12</li>
+            <li id="id13October" onclick="openDay(13, document.getElementById('monthTitle').innerHTML)">13</li>
+            <li id="id14October" onclick="openDay(14, document.getElementById('monthTitle').innerHTML)">14</li>
+            <li id="id15October" onclick="openDay(15, document.getElementById('monthTitle').innerHTML)">15</li>
+            <li id="id16October" onclick="openDay(16, document.getElementById('monthTitle').innerHTML)">16</li>
+            <li id="id17October" onclick="openDay(17, document.getElementById('monthTitle').innerHTML)">17</li>
+            <li id="id18October" onclick="openDay(18, document.getElementById('monthTitle').innerHTML)">18</li>
+            <li id="id19October" onclick="openDay(19, document.getElementById('monthTitle').innerHTML)">19</li>
+            <li id="id20October" onclick="openDay(20, document.getElementById('monthTitle').innerHTML)">20</li>
+            <li id="id21October" onclick="openDay(21, document.getElementById('monthTitle').innerHTML)">21</li>
+            <li id="id22October" onclick="openDay(22, document.getElementById('monthTitle').innerHTML)">22</li>
+            <li id="id23October" onclick="openDay(23, document.getElementById('monthTitle').innerHTML)">23</li>
+            <li id="id24October" onclick="openDay(24, document.getElementById('monthTitle').innerHTML)">24</li>
+            <li id="id25October" onclick="openDay(25, document.getElementById('monthTitle').innerHTML)">25</li>
+            <li id="id26October" onclick="openDay(26, document.getElementById('monthTitle').innerHTML)">26</li>
+            <li id="id27October" onclick="openDay(27, document.getElementById('monthTitle').innerHTML)">27</li>
+            <li id="id28October" onclick="openDay(28, document.getElementById('monthTitle').innerHTML)">28</li>
+            <li id="id29October" onclick="openDay(29, document.getElementById('monthTitle').innerHTML)">29</li>
+            <li id="id30October" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">30</li>
+            <li id="id31October" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">31</li>
+
+        </div>
+        <div id="daysNovember" style="display: none;">
+            <li id="id01November" onclick="openDay(1, document.getElementById('monthTitle').innerHTML)">1</li>
+            <li id="id02November" onclick="openDay(2, document.getElementById('monthTitle').innerHTML)">2</li>
+            <li id="id03November" onclick="openDay(3, document.getElementById('monthTitle').innerHTML)">3</li>
+            <li id="id04November" onclick="openDay(4, document.getElementById('monthTitle').innerHTML)">4</li>
+            <li id="id05November" onclick="openDay(5, document.getElementById('monthTitle').innerHTML)">5</li>
+            <li id="id06November" onclick="openDay(6, document.getElementById('monthTitle').innerHTML)">6</li>
+            <li id="id07November" onclick="openDay(7, document.getElementById('monthTitle').innerHTML)">7</li>
+            <li id="id08November" onclick="openDay(8, document.getElementById('monthTitle').innerHTML)">8</li>
+            <li id="id09November" onclick="openDay(9, document.getElementById('monthTitle').innerHTML)">9</li>
+            <li id="id10November" onclick="openDay(10, document.getElementById('monthTitle').innerHTML)">10</li>
+            <li id="id11November" onclick="openDay(11, document.getElementById('monthTitle').innerHTML)">11</li>
+            <li id="id12November" onclick="openDay(12, document.getElementById('monthTitle').innerHTML)">12</li>
+            <li id="id13November" onclick="openDay(13, document.getElementById('monthTitle').innerHTML)">13</li>
+            <li id="id14November" onclick="openDay(14, document.getElementById('monthTitle').innerHTML)">14</li>
+            <li id="id15November" onclick="openDay(15, document.getElementById('monthTitle').innerHTML)">15</li>
+            <li id="id16November" onclick="openDay(16, document.getElementById('monthTitle').innerHTML)">16</li>
+            <li id="id17November" onclick="openDay(17, document.getElementById('monthTitle').innerHTML)">17</li>
+            <li id="id18November" onclick="openDay(18, document.getElementById('monthTitle').innerHTML)">18</li>
+            <li id="id19November" onclick="openDay(19, document.getElementById('monthTitle').innerHTML)">19</li>
+            <li id="id20November" onclick="openDay(20, document.getElementById('monthTitle').innerHTML)">20</li>
+            <li id="id21November" onclick="openDay(21, document.getElementById('monthTitle').innerHTML)">21</li>
+            <li id="id22November" onclick="openDay(22, document.getElementById('monthTitle').innerHTML)">22</li>
+            <li id="id23November" onclick="openDay(23, document.getElementById('monthTitle').innerHTML)">23</li>
+            <li id="id24November" onclick="openDay(24, document.getElementById('monthTitle').innerHTML)">24</li>
+            <li id="id25November" onclick="openDay(25, document.getElementById('monthTitle').innerHTML)">25</li>
+            <li id="id26November" onclick="openDay(26, document.getElementById('monthTitle').innerHTML)">26</li>
+            <li id="id27November" onclick="openDay(27, document.getElementById('monthTitle').innerHTML)">27</li>
+            <li id="id28November" onclick="openDay(28, document.getElementById('monthTitle').innerHTML)">28</li>
+            <li id="id29November" onclick="openDay(29, document.getElementById('monthTitle').innerHTML)">29</li>
+            <li id="id30November" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">30</li>
+        </div>
+        <div id="daysDecember" style="display: none;">
+            <li style="pointer-events: none;"></li>
+            <li style="pointer-events: none;"></li>
+            <li id="id01December" onclick="openDay(1, document.getElementById('monthTitle').innerHTML)">1</li>
+            <li id="id02December" onclick="openDay(2, document.getElementById('monthTitle').innerHTML)">2</li>
+            <li id="id03December" onclick="openDay(3, document.getElementById('monthTitle').innerHTML)">3</li>
+            <li id="id04December" onclick="openDay(4, document.getElementById('monthTitle').innerHTML)">4</li>
+            <li id="id05December" onclick="openDay(5, document.getElementById('monthTitle').innerHTML)">5</li>
+            <li id="id06December" onclick="openDay(6, document.getElementById('monthTitle').innerHTML)">6</li>
+            <li id="id07December" onclick="openDay(7, document.getElementById('monthTitle').innerHTML)">7</li>
+            <li id="id08December" onclick="openDay(8, document.getElementById('monthTitle').innerHTML)">8</li>
+            <li id="id09December" onclick="openDay(9, document.getElementById('monthTitle').innerHTML)">9</li>
+            <li id="id10December" onclick="openDay(10, document.getElementById('monthTitle').innerHTML)">10</li>
+            <li id="id11December" onclick="openDay(11, document.getElementById('monthTitle').innerHTML)">11</li>
+            <li id="id12December" onclick="openDay(12, document.getElementById('monthTitle').innerHTML)">12</li>
+            <li id="id13December" onclick="openDay(13, document.getElementById('monthTitle').innerHTML)">13</li>
+            <li id="id14December" onclick="openDay(14, document.getElementById('monthTitle').innerHTML)">14</li>
+            <li id="id15December" onclick="openDay(15, document.getElementById('monthTitle').innerHTML)">15</li>
+            <li id="id16December" onclick="openDay(16, document.getElementById('monthTitle').innerHTML)">16</li>
+            <li id="id17December" onclick="openDay(17, document.getElementById('monthTitle').innerHTML)">17</li>
+            <li id="id18December" onclick="openDay(18, document.getElementById('monthTitle').innerHTML)">18</li>
+            <li id="id19December" onclick="openDay(19, document.getElementById('monthTitle').innerHTML)">19</li>
+            <li id="id20December" onclick="openDay(20, document.getElementById('monthTitle').innerHTML)">20</li>
+            <li id="id21December" onclick="openDay(21, document.getElementById('monthTitle').innerHTML)">21</li>
+            <li id="id22December" onclick="openDay(22, document.getElementById('monthTitle').innerHTML)">22</li>
+            <li id="id23December" onclick="openDay(23, document.getElementById('monthTitle').innerHTML)">23</li>
+            <li id="id24December" onclick="openDay(24, document.getElementById('monthTitle').innerHTML)">24</li>
+            <li id="id25December" onclick="openDay(25, document.getElementById('monthTitle').innerHTML)">25</li>
+            <li id="id26December" onclick="openDay(26, document.getElementById('monthTitle').innerHTML)">26</li>
+            <li id="id27December" onclick="openDay(27, document.getElementById('monthTitle').innerHTML)">27</li>
+            <li id="id28December" onclick="openDay(28, document.getElementById('monthTitle').innerHTML)">28</li>
+            <li id="id29December" onclick="openDay(29, document.getElementById('monthTitle').innerHTML)">29</li>
+            <li id="id30December" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">30</li>
+            <li id="id31December" onclick="openDay(30, document.getElementById('monthTitle').innerHTML)">31</li>
+
+        </div>
+
+    </ul>
+    <br>
+    <h2 id = "filler1">Choose a date to view/add exercise and diet tracking</h2>
+    <button id="exButton" onclick="newExercise()" style="display:none;">Add exercise</button>
+    <button id="foodButton" onclick="newFoodAndWater()" style="display: none;">Add food/bev</button>
+    <!-- SCHOOL OR TASK BUTTON FOR SCHEDULE IMPLEMENTATION -->
+    <!-- <button onclick="loadFeed()">Load Feed</button> -->
+    <!-- <h2 id = "displayDate"></h2> -->
+
+
+
+    <div id="feed" style="margin-left: 10%;">
+        <div id="exerciseID" style="display: none; align-items: center; text-align: center;"></div><br><br><br>
+        <div id="foodID" style="display: none; align-items: center; text-align: center; "></div>
+        <div id="activeDay"></div>
+
+    </div>
+
+
+</html>
