@@ -103,19 +103,25 @@ window.onload = function () {
                     // set current user id 
                     userId = firebase.auth().currentUser.uid;
                     // create a new document in firestore database with the following fields
-                    db.collection("users").doc(userId).set({
-                        username: username,
-                        email: email,
-                        userID: userId,
-                    });
+                   
                     // update this users display name with the inputted username
                     user.updateProfile({
                         displayName: username,
                     })
                         .then(function () {
                             // route to home page and set the url params respectivly
-                            alert('Account successfully created! Welcome ' + username);
+                            db.collection("users").doc(userId).set({
+                                username: username,
+                                email: email,
+                                userID: userId,
+                            }).then(function () {
+                                alert('Account successfully created and added to database! Welcome ' + username);
                             window.location.href = "../TrackingPage/tracking.html?userID=" + userId + "&username=" + username;
+                            }).catch(function (error) {
+                                // An error happened.
+                                alert(error);
+                            });
+                            
                         }).catch(function (error) {
                             // An error happened.
                             alert(error);
