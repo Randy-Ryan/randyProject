@@ -191,7 +191,7 @@ function nextMonth(currMonth) {
 }
 function prevMonth(currMonth) {
     clearChildren();
-    document.getElementById("filler1").style.display = "none";
+    document.getElementById("filler1").style.display = "";
     var active = document.getElementsByClassName("active");
     if (active[0] != null) {
         active[0].className = "";
