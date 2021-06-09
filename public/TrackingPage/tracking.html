@@ -60,6 +60,8 @@
   <hr style="width: 85%;">
   <br><br><br>
   <div id="newElementId"></div> -->
+
+  <div id = "calendar">
     <div class="month">
         <ul>
             <button id = "prev" class="prev" onclick="prevMonth(document.getElementById('monthTitle').innerHTML);">PREV</button>
@@ -507,7 +509,10 @@
         </div>
 
     </ul>
+</div>
     <br>
+    <h2 id = "todaysDate"></h2>
+
     <h2 id = "filler1">Choose a date to view/add exercise and diet tracking</h2>
     <button id="exButton" onclick="newExercise()" style="display:none;">Add exercise</button>
     <button id="foodButton" onclick="newFoodAndWater()" style="display: none;">Add food/bev</button>
@@ -517,12 +522,22 @@
 
 
 
-    <div id="feed" style="margin-left: 10%;">
+    <div id="feed">
         <div id="exerciseID" style="display: none; align-items: center; text-align: center;"></div><br><br><br>
         <div id="foodID" style="display: none; align-items: center; text-align: center; "></div>
         <div id="activeDay"></div>
 
     </div>
 
+    <div id = "exFeed" >
+
+    </div>
+
+    <div id = "foodFeed">
+        
+    </div>
+    <!-- <br><br><br><br><br><br><br><br><br> -->
+
 
 </html>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
