@@ -116,7 +116,7 @@ window.onload = function () {
                         .then(function () {
                             // route to home page and set the url params respectivly
                             alert('Account successfully created! Welcome ' + username);
-                            window.location.href = "../TrackingPage/tracking.html?userID=" + userId;
+                            window.location.href = "../TrackingPage/tracking.html?userID=" + userId + "&username=" + username;
                         }).catch(function (error) {
                             // An error happened.
                             alert(error);

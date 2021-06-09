@@ -97,7 +97,7 @@ window.onload = function () {
                 var fuser = firebase.auth().currentUser;
                 alert("Welcome " + fuser.displayName);
                 //route to tracking page
-                window.location.href = "../TrackingPage/tracking.html?userID=" + fuser.uid;
+                window.location.href = "../TrackingPage/tracking.html?userID=" + fuser.uid + "&username=" + fuser.displayName;
             }).catch(err => {
                 alert(err.message);
             });

@@ -15,6 +15,7 @@ var currDate;
 var currMonth;
 
 var userID;
+var username;
 
 //get todays date and load the feed
 window.onload = function () {
@@ -24,6 +25,7 @@ window.onload = function () {
     var month = s.substring(3, 5);
 
     userID = getURLParameter("userID");
+    username = getURLParameter("username");
 
 console.log(userID);
     if (userID == "null"){
@@ -72,6 +74,7 @@ console.log(userID);
 
     //set month title and todays date on load
     document.getElementById("monthTitle").innerHTML = "" + month;
+    document.getElementById("userHead").innerHTML = username + "'s Tracking";
     clearChildren();
     document.getElementById("exButton").style.display = "";
     document.getElementById("foodButton").style.display = "";
