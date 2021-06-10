@@ -140,6 +140,7 @@ function userSignedOut() {
     document.getElementById('taskButton').style.display = 'none';
     document.getElementById('exButton').style.display = 'none';
     document.getElementById('foodButton').style.display = 'none';
+    document.getElementById('todaysDate').style.display = 'none';
 
 
     // show links to pages when user is logged out
