@@ -52,6 +52,24 @@
     <script type="text/javascript" src="./tracking.js"></script>
 </head>
 <br>
+	<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- Top Navigation Menu -->
+<div class="topnav">
+    <div id = "hamburger"></div>
+    <a style="text-align: center; pointer-events: none; color: white;">TRACKING PAGE</a><br>
+    <!-- Navigation links (hidden by default) -->
+    <div id="myLinks">
+        <br>
+        <a href="./myAccount.html">MY ACCOUNT</a>
+        <a href="./myFavorites.html">ADD FAVORITES</a>
+    </div>
+    <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
 <body>
     <!-- USERNAME TITLE -->
     <div id="usernameHeader">

@@ -90,7 +90,7 @@ window.onload = function () {
     // set month title and todays date on load
     document.getElementById("monthTitle").innerHTML = "" + month;
     // style username display title
-    document.getElementById("userHead").innerHTML = username + "'s Tracking";
+    document.getElementById("userHead").innerHTML = username + "'s Tracking Calendar";
     // show post buttons
     document.getElementById("exButton").style.display = "";
     document.getElementById("foodButton").style.display = "";
@@ -711,12 +711,12 @@ function openDay(date, month) {
     loadFeed(date, month);
 
     // style calendar: 
-    // set this date to active, remove the current active class & set the new active date
-    document.getElementById('id' + d + month).className = "active";
+    // remove the current active class & set the new active date
     var active = document.getElementsByClassName("active");
     if (active[0] != null) {
         active[0].className = "";
     }
+    document.getElementById('id' + d + month).className = "active";
 
     // style feed: 
     // make date title visible & set content
@@ -731,7 +731,6 @@ function openDay(date, month) {
     // hide empty feed title element (filler1 = empty feed title)
     document.getElementById("filler1").style.display = "none";
 }
-
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1404,3 +1403,16 @@ function makeClean(inputDiv) {
     // text field set to white	
     inputDiv.style.backgroundColor = "#FFFFFF";
 }
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- TOGGLE HAMBURGER MENU -------------------/////////////
+///////////////////////////////////////////////////////////////////////////////////// 
+// TOGGLE BETWEEN HIDDEN/SHOWN STATE
+function myFunction() {
+    var x = document.getElementById("myLinks");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
