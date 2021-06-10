@@ -1,60 +1,37 @@
+/* ************************************************************************* */
+/* ************************************************************************* */
+/*                               COMMON TAGS                                           */
+/* ************************************************************************* */
+/* ************************************************************************* */
 html{
   background-color: #CCCCB2;
   width: 100%;
-  /* background-image: linear-gradient(#CCCCB2, #757519); */
+  font-family: 'Times New Roman', Times, serif;
 
+  /* background-image: linear-gradient(#CCCCB2, #757519); */
 }
 
-ul {list-style-type: none;}
-body {font-family: Verdana, sans-serif;}
+ul {
+  list-style-type: none;
+}
+
+body {
+  /* font-family: Verdana, sans-serif; */
+}
 
 h2 {
     margin: 2%;
 }
 
-/* Month header */
-.month {
-  padding: 70px 25px;
-  width: auto;
-  background: #1abc9c;
-  text-align: center;
+/* ************************************************************************* */
+/* ************************************************************************* */
+/*                               POST ELEMENTS (EX, TASK, FOOD)                                            */
+/* ************************************************************************* */
+/* ************************************************************************* */
 
-}
-
-#calendar {
-  margin-left: 15%;
-  margin-right: 15%;
-  border: 1px solid black;
-}
-
-/* Month list */
-.month ul {
-  margin: 0;
-  padding: 0;
-
-}
-
-.month ul li, a{
-  color: white;
-  font-size: 50px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-}
-
-/* Previous button inside month header */
-.month .prev {
-  float: left;
-  padding-top: 10px;
-  margin-left: 15%;
-}
-
-#todaysDate{
-  text-align: center;
-  font-size: 100px;
-}
-
+/* EXERCISE POST ELEMENT */
 #exerciseID {
-  font-size: 300%;
+  font-size: 250%;
   color: black;
   background-color: #C19A6B;
   /* background-image: linear-gradient(#3d72b4, #525252); */
@@ -64,7 +41,7 @@ h2 {
   width: 47%;
   margin-left: 1%; */
   border-radius: 20px;
-  margin-bottom: 20%;
+  margin-bottom: 10%;
   border: 1px solid black;
   /* text-shadow: 0 1px 0 #ccc,
   0 2px 0 #c9c9c9,
@@ -78,15 +55,10 @@ h2 {
   0 5px 10px rgba(0,0,0,.25),
   0 10px 10px rgba(0,0,0,.2),
   0 20px 20px rgba(0,0,0,.15); */
-
 }
 
-#feed{
-  margin-left: 0%;
-  text-align: center;
-}
+/* FOOD POST ELEMENT */
 #foodId{
-
   text-align: center;
   font-size: 250%;
   /* float:left;
@@ -96,10 +68,9 @@ h2 {
    background-color: #8e9eab;
 
    /* background-image: linear-gradient(#F1F2B5, #135058); */
-  margin-bottom: 20%;
+   margin-bottom: 10%;
 
   /* margin-right: 55%;  */
-  padding: 2%;
   border-radius: 20px;
   border: 1px solid black;
   /* text-shadow: 0 1px 0 #ccc,
@@ -116,31 +87,160 @@ h2 {
   0 20px 20px rgba(0,0,0,.15); */
 }
 
-.randy {
-  background-color: red;
+#taskId{
+  text-align: center;
+  font-size: 50px;
+  font-weight: 900;
+   color: white;
+   background-color: #800020;
+margin-left: 20%;
+margin-right: 20%;
+margin-bottom: 10%;
+   border-radius: 20px;
+  border: 1px solid black;
+  text-shadow: 0 1px 0 #ccc,
+  0 2px 0 #c9c9c9,
+  0 3px 0 #bbb,
+  0 4px 0 #b9b9b9,
+  0 5px 0 #aaa,
+  0 6px 1px rgba(0,0,0,.1),
+  0 0 5px rgba(0,0,0,.1),
+  0 1px 3px rgba(0,0,0,.3),
+  0 3px 5px rgba(0,0,0,.2),
+  0 5px 10px rgba(0,0,0,.25),
+  0 10px 10px rgba(0,0,0,.2),
+  0 20px 20px rgba(0,0,0,.15);
 }
 
-/* Next button */
-.month .next {
-  float: right;
-  padding-top: 10px;
-  margin-right: 15%;
+
+
+
+
+/* ************************************************************************* */
+/* ************************************************************************* */
+/*                               FEEDS (EX FEED, TASK FEED, FOOD FEED)                                          */
+/* ************************************************************************* */
+/* ************************************************************************* */
+
+
+/* GENERAL FEED */
+#feed{
+  margin-left: 0%;
+  text-align: center;
 }
 
-/* Weekdays (Mon-Sun) */
+/* TASK ELEMENTS DISPLAY FEED */
+#taskFeed{
+  /* float:left;
+  width: 40%;
+  margin: 5%; */
+}
+/* EXERCISE ELEMENTS DISPLAY FEED */
+#exFeed {
+  float:right;
+  width: 40%;
+  margin: 5%;
+}
+/* FOOD ELEMENTS DISPLAY FEED */
+#foodFeed{
+  float:left;
+  width: 40%;
+  margin: 5%;
+}
+
+/* ************************************************************************* */
+/* ************************************************************************* */
+/*                               CALENDAR STYLING                                            */
+/* ************************************************************************* */
+/* ************************************************************************* */
+
+/* WEEKDAY ELEMENTS */
 .weekdays {
   margin: 0;
-  padding: 10px 10px;
+  padding: 20px 20px;
+  font-size: 25px;
   background-color:#ddd;
 }
-
+/* WEEKDAY LISTITEMS */
 .weekdays li {
   display: inline-block;
-  width: 13.6%;
+  width: 13.2%;
   color: #666;
   text-align: center;
 }
 
+/* INNER DISPLAY OF CALENDAR DATES */
+.days {
+  padding: 10px;
+  background: #eee;
+  margin: 0%;
+}
+
+/* DAY LIST ITEM FIELDS ON CALENDAR */
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.5%;
+  text-align: center;
+  font-size:12px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 30px;
+  color: #777;
+}
+
+/* Highlight the "current" day */
+.days .active {
+  background: black;
+  color: white 
+}
+
+/* LIST ITEM HOVER (EACH DATE ON CALENDAR) */
+li:hover{
+  background-color: black;
+  color: white;
+}
+
+/* Month header */
+.month {
+  padding: 70px 25px;
+  width: auto;
+  background: #1abc9c;
+  text-align: center;
+}
+
+/* CALENDER DIV */
+#calendar {
+  margin-left: 10%;
+  margin-right: 10%;
+  border: 2px solid black;
+}
+
+/* STYLE THE MONTH TITLE DIV */
+.month ul {
+  margin: 0;
+  color: white;
+  font-size: 50px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 5px;
+}
+
+/* STYLE THE MONTH TITLE TEXT */
+/* .month ul li, a{
+  color: white;
+  font-size: 50px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+} */
+
+/* ************************************************************************* */
+/* ************************************************************************* */
+/*                               ADD POST BUTTONS (CREATE FORMS)                                           */
+/* ************************************************************************* */
+/* ************************************************************************* */
+
+/* ADD EXERCISE BUTTON */
 #exButton {
     float: right;
     font-size: 50px;
@@ -151,11 +251,9 @@ h2 {
     background-color: black;
     color: white;
     border-radius: 10px;
-
 }
-
+/* ADD FOOD BUTTON */
 #foodButton {
-
   font-size: 50px;
   width: 40%;
   padding: 2%;
@@ -166,9 +264,25 @@ h2 {
   color: white;
   border-radius: 10px;
 }
+/* ADD TASK BUTTON */
+#taskButton{
+  font-size: 75px;
+  padding: 2%;
+  width: 50%;
+  border-radius: 20px;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+}
+/* TASK BUTTON FULL DIV - */
+#taskButtonID{
+  text-align: center;
+  /* background-color: BLUE; */
+}
 
-#pButton1, #pButton2{
-    width: 60%;
+/* SUBMIT/POST/DELETE BUTTONS */
+#pButton1{
+    width: 90%;
     height: 20%;
     margin-top: 5%;
     font-size: 75px;
@@ -178,71 +292,56 @@ h2 {
     border: 1px solid white;
 }
 
+/* INPUT FIELDS ON FORMS */
+/* REQUIRED CLASS NAME STYLING */
+.required{
+  width: 85%;
+  height: 10%;
+  font-size: 50px;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+}
+
+/* ************************************************************************* */
+/* ************************************************************************* */
+/*                               TEXT IDS & STYLING                                           */
+/* ************************************************************************* */
+/* ************************************************************************* */
+
+#usernameHeader{
+  font-size: 75px;
+  text-align: center;
+}
+/* CURRENT DATE TITLE */
+#todaysDate{
+  text-align: center;
+  font-size: 75px;
+  color: gray;
+}
+/* EMPTY DATE TITLE */
 #filler1{
   text-align: center;
 }
-
-.filler2:hover{
-    color: white;  
-    background-color: black;
-}
-
-
+/* FORM TITLE/TEXT ELEMENTS  */
 .exClass1{
-    font-size: 30px;
+    font-size: 40px;
     align-items: center;
+    padding: 5%;
 }
 
+/* ************************************************************************* */
+/* ************************************************************************* */
+/*                               PREV/NEXT MONTH BUTTONS                                            */
+/* ************************************************************************* */
+/* ************************************************************************* */
 
 
-/* Days (1-31) */
-.days {
-  padding: 10px 0;
-  background: #eee;
-  margin: 0;
-}
-
-.days li {
-  list-style-type: none;
-  display: inline-block;
-  width: 13.5%;
-  text-align: center;
-  margin-bottom: 5px;
-  font-size:12px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-size: 30px;
-  color: #777;
-}
-
-.required{
-    width: 85%;
-    height: 10%;
-    font-size: 50px;
-
-    border-radius: 10px;
-
-    background-color: lightgray;
-    color: black;
-}
-
-li:hover{
-  background-color: black;
-  color: white;
-}
-
-.prev li:hover, .next li:hover{
-    background-color: black;
-    color: white;
-}
-
-/* Highlight the "current" day */
-.days .active {
-  background: black;
-  color: white !important
-}
-
+/* PREV MONTH BUTTON */
 #prev { 
+  float: left;
+  padding-top: 10px;
+  margin-left: 15%;
     font-size: 25px;
     padding: 1%;
     border-radius: 35px;
@@ -250,8 +349,11 @@ li:hover{
     background-color: white;
     border: 3px solid black;
 }
-
+/* NEXT MONTH BUTTON ID */
 #next{
+  float: right;
+  padding-top: 10px;
+  margin-right: 15%;
     font-size: 25px;
     padding: 1%;
     border-radius: 35px;
@@ -260,23 +362,17 @@ li:hover{
     border: 3px solid black;
 }
 
-
-#exFeed {
-  float:right;
-  width: 40%;
-  margin: 5%;
-  
-  
-}
-
-#foodFeed{
-  float:left;
-  width: 40%;
-  margin: 5%;
+/* PREV AND NEXT BUTTON HOVER */
+.prev li:hover, .next li:hover{
+  background-color: black;
+  color: white;
 }
 
 
+
+
+/* sample test hover set for class name testtt */
 .testtt:hover{
   /* color: gray;   */
-  background-color: black;
+  /* background-color: black; */
 }
