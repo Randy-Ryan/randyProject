@@ -25,21 +25,16 @@ h2 {
 
 /* ************************************************************************* */
 /* ************************************************************************* */
-/*                               POST ELEMENTS (EX, TASK, FOOD)                                            */
+/*                                FEED ELEMENT STYLING                                           */
 /* ************************************************************************* */
 /* ************************************************************************* */
 
 /* EXERCISE POST ELEMENT */
-#exerciseID {
+#exerciseId {
   font-size: 250%;
   color: black;
   background-color: #C19A6B;
-  /* background-image: linear-gradient(#3d72b4, #525252); */
-  padding: 2%;
   text-align: center;
-  /* float:left;
-  width: 47%;
-  margin-left: 1%; */
   border-radius: 20px;
   margin-bottom: 10%;
   border: 1px solid black;
@@ -61,16 +56,9 @@ h2 {
 #foodId{
   text-align: center;
   font-size: 250%;
-  /* float:left;
-    width: 47%;
-    margin-left: 1%; */
-   color: black;
-   background-color: #8e9eab;
-
-   /* background-image: linear-gradient(#F1F2B5, #135058); */
-   margin-bottom: 10%;
-
-  /* margin-right: 55%;  */
+  color: black;
+  background-color: #8e9eab;
+  margin-bottom: 10%;
   border-radius: 20px;
   border: 1px solid black;
   /* text-shadow: 0 1px 0 #ccc,
@@ -87,18 +75,16 @@ h2 {
   0 20px 20px rgba(0,0,0,.15); */
 }
 
+/* TASK POST ELEMENT */
 #taskId{
   text-align: center;
-  font-size: 50px;
-  font-weight: 900;
-   color: white;
-   background-color: #800020;
-margin-left: 20%;
-margin-right: 20%;
-margin-bottom: 10%;
-   border-radius: 20px;
+  font-size: 250%;
+  color: white;
+  background-color: #800020;
+  margin-bottom: 10%;
+  border-radius: 20px;
   border: 1px solid black;
-  text-shadow: 0 1px 0 #ccc,
+  /* text-shadow: 0 1px 0 #ccc,
   0 2px 0 #c9c9c9,
   0 3px 0 #bbb,
   0 4px 0 #b9b9b9,
@@ -109,7 +95,7 @@ margin-bottom: 10%;
   0 3px 5px rgba(0,0,0,.2),
   0 5px 10px rgba(0,0,0,.25),
   0 10px 10px rgba(0,0,0,.2),
-  0 20px 20px rgba(0,0,0,.15);
+  0 20px 20px rgba(0,0,0,.15); */
 }
 
 
@@ -118,40 +104,74 @@ margin-bottom: 10%;
 
 /* ************************************************************************* */
 /* ************************************************************************* */
-/*                               FEEDS (EX FEED, TASK FEED, FOOD FEED)                                          */
+/*                                FEED STYLING & TITLES                              */
 /* ************************************************************************* */
 /* ************************************************************************* */
 
 
 /* GENERAL FEED */
 #feed{
-  margin-left: 0%;
   text-align: center;
 }
 
-/* TASK ELEMENTS DISPLAY FEED */
-#taskFeed{
-  /* float:left;
-  width: 40%;
-  margin: 5%; */
-  margin-bottom: 0;
+
+/* TASK FEED TITLE */
+#taskFeedTitle{
+  float:right;
+  width: 33%;
+  margin: 0;
+  margin-bottom: 0%;
+  text-align: center;
+  margin-bottom: 2%;
+
 }
+/* EXERCISE FEED TITLE */
+#exFeedTitle{
+  float:left;
+  width: 33%;
+  margin: 0;
+  margin-left: 1%;
+  text-align: center;
+  margin-bottom: 2%;
+}
+
 /* EXERCISE ELEMENTS DISPLAY FEED */
 #exFeed {
-  float:right;
-  width: 40%;
-  margin: 5%;
+  float:left;
+  width: 33%;
+  margin: 0;
+  margin-left: 1%;
+
+
+}
+/* FOOD FEED TITLE */
+#foodFeedTitle{
+  width: 33%;
+  margin: 0;
+  float: right;
+  margin-bottom: 0%;
+  text-align: center;
+  margin-bottom: 2%;
 }
 /* FOOD ELEMENTS DISPLAY FEED */
 #foodFeed{
-  float:left;
-  width: 40%;
-  margin: 5%;
+  width: 33%;
+  margin: 0;
+  float: right;
+  margin-bottom: 0%;
+
+}
+/* TASK ELEMENTS DISPLAY FEED */
+#taskFeed{
+  float:right;
+  width: 33%;
+  margin: 0;
+  margin-bottom: 0%;
 }
 
 /* ************************************************************************* */
 /* ************************************************************************* */
-/*                               CALENDAR STYLING                                            */
+/*                                CALENDAR STYLING                                            */
 /* ************************************************************************* */
 /* ************************************************************************* */
 
@@ -237,49 +257,48 @@ li:hover{
 
 /* ************************************************************************* */
 /* ************************************************************************* */
-/*                               ADD POST BUTTONS (CREATE FORMS)                                           */
+/*                                 BUTTONS STYLING                                           */
 /* ************************************************************************* */
 /* ************************************************************************* */
 
+
 /* ADD EXERCISE BUTTON */
-#exButton {
-    float: right;
-    font-size: 50px;
-    width: 40%;
-    padding: 2%;
-    margin-top: 5%;
-    margin-right: 5%;
-    background-color: black;
-    color: white;
-    border-radius: 10px;
-}
-/* ADD FOOD BUTTON */
 #foodButton {
-  font-size: 50px;
-  width: 40%;
-  padding: 2%;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  margin-left: 5%;
-  background-color: black;
+  font-size: 30px;
+  width: 33%;
+  background-color: #8e9eab;
+  font-family: fantasy;
   color: white;
   border-radius: 10px;
+  margin-bottom: 15%;
+  padding: 5%;
+}
+/* ADD FOOD BUTTON */
+#exButton {
+  font-size: 30px;
+  margin-left: 1%;
+  width: 33%;
+  float: left;
+  background-color: #C19A6B;
+  color: white;
+  border-radius: 10px;
+  font-family: fantasy;
+  margin-bottom: 15%;
+  padding: 5%;
 }
 /* ADD TASK BUTTON */
 #taskButton{
-  font-size: 75px;
-  padding: 2%;
-  width: 50%;
-  border-radius: 20px;
-  background-color: black;
+  font-size: 30px;
+  width: 33%;
+  float: right;
+  background-color: #800020;
   color: white;
   border-radius: 10px;
+  margin-bottom: 15%;
+  font-family: fantasy;
+  padding: 5%;
 }
-/* TASK BUTTON FULL DIV - */
-#taskButtonID{
-  text-align: center;
-  /* background-color: BLUE; */
-}
+
 
 /* SUBMIT/POST/DELETE BUTTONS */
 #pButton1{
@@ -328,6 +347,20 @@ li:hover{
 #filler1{
   text-align: center;
 }
+/* SIGNED OUT TITLE */
+#signedOut{
+  margin-top: 10%;
+  margin-bottom: 3%;
+  text-align: center;
+  font-size: 40px;
+}
+/* SIGNED OUT DESCRIPTION */
+#signedOut1{
+  text-align: center;
+  font-weight: 200;
+  margin-left: 10%;
+  margin-right: 10%;
+}
 /* FORM TITLE/TEXT ELEMENTS  */
 .exClass1{
     font-size: 40px;
@@ -340,7 +373,6 @@ li:hover{
 /*                               PREV/NEXT MONTH BUTTONS                                            */
 /* ************************************************************************* */
 /* ************************************************************************* */
-
 
 /* PREV MONTH BUTTON */
 #prev { 
@@ -381,21 +413,43 @@ li:hover{
 /* ************************************************************************* */
 /* ************************************************************************* */
 
-#hamburger{
-  position:absolute; 
-  justify-content: left; 
-  border-radius: 200px; 
-  box-shadow: 3px 3px 6px 1px #505050;
-}
-
-/* Style the navigation menu */
+/* STYLE TOP NAV DIV */
 .topnav {
   overflow: hidden;
   background-color: #800020;
   position:relative;
+  height: auto;
   border-radius: 12px; 
-  padding: 3%;
   border: 1px solid black;
+}
+
+/* STYLE HIDDEN LINK ELEMENTS */
+.topnav a {
+  width: auto;
+  font-size: 40px;
+  padding: 14px 16px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 300;
+  color: lightgray;
+  padding: 14px 16px;
+  display: block;
+}
+
+/* STYLE THE NAV BAR HEADER */
+#navHeader{
+  font-weight: 900;
+padding: 14px 16px;
+border-radius: 0px; 
+text-decoration: none;
+display: block;
+text-align: center;
+  text-align: center; 
+  pointer-events: none; 
+  font-family: fantasy ;
+  font-size: 60px;
+  padding: 50px;
+  color: #bbbfd3;
   text-shadow: 0 .5px 0 #ccc,
   0 2px 0 #c9c9c9,
   0 3px 0 #bbb,
@@ -410,29 +464,18 @@ li:hover{
   0 20px 20px rgba(0,0,0,.15);
 }
 
-/* Hide the links inside the navigation menu (except for logo/home) */
-.topnav #myLinks {
-  display: none;
-  width: auto;
-  right: 0%;
-}
-
-/* Style navigation menu links */
-.topnav a {
+/* STYLE HAMBURGER 'ICON CLASS' */
+.topnav li.icon {
   color: white;
-  padding: 14px 16px;
+  padding: 2%;
+  border-radius: 0px; 
   text-decoration: none;
-  font-size: 70px;
   display: block;
   text-align: center;
-}
-
-/* Style the hamburger menu */
-.topnav a.icon {
-  background-image: black;
+  background-color: unset;
   display: block;
   position: absolute;
-  height: 100%;
+  font-size: 75px;
   width: auto;
   height: auto;
   right: 0;
@@ -451,22 +494,20 @@ li:hover{
   0 20px 20px rgba(0,0,0,.15);
 }
 
-/* Add a grey background color on mouse-over */
+/* HOVER FOR HIDDEN LINKS */
 .topnav a:hover {
-  /* background: lightgray; */
   color: gray;
   width: auto;
   right: 0;
   padding-right: 3%;
-  
 }
-.topnav .fa:hover {
-  /* background: lightgray; */
+
+/* HOVER FOR HAMBURGER MENU */
+.topnav li:hover {
   color: gray;
   width: auto;
   right: 0;
   padding-right: 5%;
-  
 }
 
 

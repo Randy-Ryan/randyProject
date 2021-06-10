@@ -52,29 +52,31 @@
     <script type="text/javascript" src="./tracking.js"></script>
 </head>
 <br>
-	<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<!-- Top Navigation Menu -->
+<!-- LOAD HAMBURGER ICON -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- TOP NAVIGATION MENU-->
 <div class="topnav">
-    <div id = "hamburger"></div>
-    <a style="text-align: center; pointer-events: none; color: white;">TRACKING PAGE</a><br>
-    <!-- Navigation links (hidden by default) -->
-    <div id="myLinks">
-        <br>
-        <a href="./myAccount.html">MY ACCOUNT</a>
-        <a href="./myFavorites.html">ADD FAVORITES</a>
-    </div>
-    <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <!-- THIS PAGE TITLE/HEADER -->
+    <label id="navHeader">TRACKING PAGE</label><br>
+    <!-- HAMBURGER MENU -->
+    <li href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
-    </a>
+    </li>
+    <!-- HIDDEN LINKS (TOGGLED BY HAMBURGER MENU) -->
+    <div id="myLinks" style="display: none;">
+        <br>
+        <a id="accLink" href="./myAccount.html">MY ACCOUNT</a>
+        <a id="favLink" href="./myFavorites.html">ADD FAVORITES</a>
+        <a id="logLink" style="display: none;" href="../LoginPage/login.html">LOGIN</a>
+        <a id="regLink" style="display: none;" href="../RegisterPage/register.html">REGISTER</a>
+    </div>
 </div>
+
 <body>
     <!-- USERNAME TITLE -->
     <div id="usernameHeader">
         <h2 id="userHead"></h2>
-    </div>
+    </div><br><br>
     <!-- CALENDER DIV -->
     <div id="calendar">
         <div class="month">
@@ -527,37 +529,63 @@
 
         </ul>
     </div>
-    <!-- CURRENT DATE TITLE ELEMENT -->
-    <h2 id="todaysDate"></h2>
+    <!-- SIGNED OUT USER DISPLAY TITLE-->
+    <h2 id="signedOut" style="display: none;">Please sign in to use my tracking platform. 
+        The login & register page links are located in the menu at the top right</h2>
     <!-- EMPTY DATE TITLE ELEMENT -->
     <h2 id="filler1">Choose a date to view/add exercise and diet tracking</h2>
+    <!-- CURRENT DATE TITLE ELEMENT -->
+    <h2 id="todaysDate"></h2><br>
+    <!-- SIGNED OUT USER DISPLAY DESCRIPTION-->
+    <h2 id="signedOut1" style="display: none;">This task manager offers the ability to
+        create tasks/exercises/diet entries and more! This is currently in the works and constantly receiving new
+        improvements.
+        Feel free to make an account and use the platform for any of your tracking needs!
+        <br><br><br>
+        I built this as a side project because I needed to start tracking my diet and
+        exercise and I did not want to spend the money on an app!
+    </h2>
     <br><br>
-    <!-- ADD TASK BUTTON -->
-    <div id="taskButtonID">
-        <button id="taskButton" onclick="newTask()" style="display:none;">Add task</button>
-    </div>
-    <br>
-    <br>
+        <!-- ADD FOOD BUTTON -->
+    <button id="foodButton" onclick="newFoodAndWater()" style="display: none;">Add food/bev</button>
+        <!-- ADD TASK BUTTON -->
+    <button id="taskButton" onclick="newTask()" style="display:none;">Add task</button>
+
     <!-- ADD EXERCISE BUTTON -->
     <button id="exButton" onclick="newExercise()" style="display:none;">Add exercise</button>
-    <!-- ADD FOOD BUTTON -->
-    <button id="foodButton" onclick="newFoodAndWater()" style="display: none;">Add food/bev</button>
-    <!-- GENERAL FEED INITIALIZATION -->
+
+       <!-- GENERAL FEED INITIALIZATION -->
     <div id="feed">
         <div id="exerciseID" style="display: none; align-items: center; text-align: center;"></div><br><br><br>
         <div id="foodID" style="display: none; align-items: center; text-align: center; "></div>
         <div id="activeDay"></div>
     </div>
-      <!-- TASK FEED INITIALIZATION -->
-      <div id="taskFeed" style="text-align: center;">
-    </div>
-    <!-- EXERCISE FEED INITIALIZATION -->
-    <div id="exFeed">
-
+         <!-- TASK FEED TITLE INITIALIZATION -->
+         <h2 id="taskFeedTitle" style="display: none; top: 0;">
+            TASK FEED
+         </h2>
+           <!-- FOOD FEED TITLE INITIALIZATION -->
+           <h2 id="foodFeedTitle" style="display: none; top: 0;">
+            FOOD FEED
+           </h2>
+              <!-- EXERCISE FEED TITLE INITIALIZATION -->
+    <h2 id="exFeedTitle" style="display: none; top: 0;">
+        EXERCISE FEED
+    </h2>
+    <!-- TASK FEED INITIALIZATION -->
+    <div id="taskFeed">
+    
     </div>
     <!-- FOOD FEED INITIALIZATION -->
     <div id="foodFeed">
-
+        <br>
+       
+    <br>
+    </div>
+    <!-- EXERCISE FEED INITIALIZATION -->
+    <div id="exFeed"><br>
+    
+    <br>
     </div>
 
     <!-- <br><br><br><br><br><br><br><br><br> -->

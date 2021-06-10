@@ -41,14 +41,6 @@ window.onload = function () {
     userID = getURLParameter("userID");
     username = getURLParameter("username");
 
-    //TODO//
-    // unsure if this is needed (security purposes here?)
-    // check if userID is null (initialized from url param), routes back to home page
-    if (userID == "null") {
-        alert("Error: no userID");
-        window.location.href = "../index.html"
-    }
-
     // statements to set month var
     if (month == '01') {
         month = "January";
@@ -111,11 +103,51 @@ window.onload = function () {
     // style date title respectivly
     document.getElementById("todaysDate").innerHTML = currMonth + " / " + currDate;
 
+
+   
+    // check if user is signed in - call function to style
+    if (userID == "null" ) {
+        userSignedOut();
+        // alert("Error: no userID");
+        // window.location.href = "../index.html"
+    }
+
     // clear the feed
     clearChildren();
 
     // load the feed
     loadFeed(day, month);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- USER IS NOT LOGGED IN -----------------////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+// STYLE PAGE RESPECTIVELY
+function userSignedOut() {
+    // clear the feed
+    clearChildren();
+
+    // load vars for when user is signed out and show register
+
+    // hide links to pages when user is logged in
+    document.getElementById('accLink').style.display = 'none';
+    document.getElementById('favLink').style.display = 'none';
+    document.getElementById('usernameHeader').style.display = 'none';
+    document.getElementById('feed').style.display = 'none';
+    document.getElementById('taskFeed').style.display = 'none';
+    document.getElementById('exFeed').style.display = 'none';
+    document.getElementById('foodFeed').style.display = 'none';
+    document.getElementById('taskButton').style.display = 'none';
+    document.getElementById('exButton').style.display = 'none';
+    document.getElementById('foodButton').style.display = 'none';
+
+
+    // show links to pages when user is logged out
+    document.getElementById('logLink').style.display = '';
+    document.getElementById('regLink').style.display = '';
+    document.getElementById('signedOut').style.display = '';
+    document.getElementById('signedOut1').style.display = '';
+
 }
 
 
@@ -301,6 +333,10 @@ function clearChildren() {
     document.getElementById('exFeed').innerHTML = '';
     document.getElementById('foodFeed').textContent = '';
     document.getElementById('foodFeed').innerHTML = '';
+
+    document.getElementById("exFeedTitle").style.display = "none";
+    document.getElementById("taskFeedTitle").style.display = "none";
+    document.getElementById("foodFeedTitle").style.display = "none";
 
     // remove child nodes of feed
     var el = document.getElementById('feed');
@@ -491,12 +527,6 @@ function createNewFood(f, w, t, m, id) {
     //TODO//
     // needs a hover attribute
 
-    // set variables from function
-    var food = f;
-    var water = w;
-    var time = t;
-    var message = m;
-
     //format a string to set element html
     var fullString = "<br>";
     if (f != "") {
@@ -648,6 +678,7 @@ function newFoodAndWater() {
     // clear the feed
     clearChildren();
 
+
     // initialize div elements
     var food = document.createElement('div');
     var water = document.createElement('div');
@@ -730,6 +761,12 @@ function openDay(date, month) {
 
     // hide empty feed title element (filler1 = empty feed title)
     document.getElementById("filler1").style.display = "none";
+      // check if user is signed in - call function to style
+      if (userID == "null" ) {
+        userSignedOut();
+        // alert("Error: no userID");
+        // window.location.href = "../index.html"
+    }
 }
 
 
@@ -967,7 +1004,7 @@ function addExercise() {
 
 
 /////////////////////////////////////////////////////////////////////////////////////
-/////////------------------- LOAD THE 'FEED' ----------------------------////////////
+/////////------------------- LOAD THE FEED ----------------------------//////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // FORMAT DATE, LOAD EXERCISE, FOODANDWATER, TASK FEEDS
 function loadFeed(date, month) {
@@ -980,21 +1017,43 @@ function loadFeed(date, month) {
     // load the exercise feed
     db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            createNewExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id)
+            createNewExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id);
+            // show this feed title
+            if (doc.exists){
+            document.getElementById("exFeedTitle").style.display = '';
+            }
         });
     });
     // load the food/water feed
     db.collection("users").doc(userID).collection("foodAndWater").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             createNewFood(doc.data().food, doc.data().water, doc.data().time, doc.data().message, doc.id)
+       // show this feed title
+       if (doc.exists){
+       document.getElementById("foodFeedTitle").style.display = '';
+       }
         });
     });
     // load the task feed
     db.collection("users").doc(userID).collection("tasks").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             createNewTask(doc.data().title, doc.data().description, doc.data().time, doc.id)
+        // show this feed title
+        if (doc.exists){
+        document.getElementById("taskFeedTitle").style.display = '';
+        }
         });
     });
+}
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- LOAD THIS ACCOUNT -------------------/////////////
+///////////////////////////////////////////////////////////////////////////////////// 
+// LOAD THE CURRENT USERS ACCOUNT PAGE FOR EDITING PURPOSES
+function loadAccount() {
+    //TODO//
+    // user userID to display this users info
+    //
+    // make an edit account form - profile pic, change username, etc
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1411,8 +1470,8 @@ function makeClean(inputDiv) {
 function myFunction() {
     var x = document.getElementById("myLinks");
     if (x.style.display === "block") {
-      x.style.display = "none";
+        x.style.display = "none";
     } else {
-      x.style.display = "block";
+        x.style.display = "block";
     }
-  }
+}
