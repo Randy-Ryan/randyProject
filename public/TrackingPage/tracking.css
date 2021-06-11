@@ -151,30 +151,28 @@ h2 {
 
 /* EXERCISE FEED TITLE */
 #exFeedTitle{
-  float:right;
-  width: 50%;
+  width: 100%;
   text-align: center;
   margin: 0;
-  margin-bottom: 2%;
-  font-size: 50px;
+  margin-top: 10%;
+  margin-bottom: 5%;
+  font-size: 75px;
 }
 /* FOOD FEED TITLE */
 #foodFeedTitle{
-  float:left;
-  width: 50%;
+  width: 100%;
   text-align: center;
   margin: 0;
   margin-bottom: 2%;
-  font-size: 50px;
+  font-size: 75px;
 }
 /* EXERCISE DISPLAY FEED */
 #exFeed {
-  float:left;
-  width: 45%;
+  width: 80%;
   height: 50%;
   margin-top: 5%;
   margin-bottom: 5%;
-  margin-left: 4%;
+  margin-left: 10%;
   border: 10px solid black;
   overflow-y:auto;
   background-color: white;
@@ -182,12 +180,11 @@ h2 {
 }
 /* FOOD DISPLAY FEED */
 #foodFeed{
-  float:left;
-  width: 45%;
+  width: 80%;
   height: 50%;
   margin-top: 5%;
   margin-bottom: 5%;
-  margin-left: 1%;
+  margin-left: 10%;
   border: 10px solid black;
   overflow-y:auto;
   background-color: white;
@@ -196,12 +193,11 @@ h2 {
 /* TASK DISPLAY FEED */
 #taskFeed{
   /* overflow: auto; */
+  width: 80%;
   height: 50%;
-  padding:50px;
   margin-top: 5%;
   margin-bottom: 5%;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 10%;
   border: 10px solid black;
   overflow-y:auto;
   background-color: white;
@@ -212,12 +208,11 @@ h2 {
 /* TASK DISPLAY FEED */
 #favFeed{
   /* overflow: auto; */
+  width: 80%;
   height: 50%;
-  padding:50px;
   margin-top: 5%;
   margin-bottom: 5%;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 10%;
   border: 10px solid black;
   overflow-y:auto;
   background-color: white;
@@ -320,39 +315,45 @@ li:hover{
 
 /* ADD EXERCISE BUTTON */
 #foodButton {
-  font-size: 30px;
-  width: 33%;
+  font-size: 50px;
+  width: 80%;
   background-color: #FE6E00;
   font-family: fantasy;
   color: black;
   border-radius: 10px;
   margin-bottom: 10%;
-  padding: 3%;
+  margin-left: 10%;
+  padding: 5%;
+  text-align: center;
 }
 /* ADD FOOD BUTTON */
 #exButton {
-  font-size: 30px;
+  font-size: 50px;
   margin-left: 1%;
-  width: 33%;
-  float: left;
+  width: 80%;
   background-color: #FFAF42;
   color: black;
   border-radius: 10px;
   font-family: fantasy;
   margin-bottom: 10%;
-  padding: 3%;
+  margin-left: 10%;
+  padding: 5%;
+  text-align: center;
+
 }
 /* ADD TASK BUTTON */
 #taskButton{
-  font-size: 30px;
-  width: 33%;
-  float: right;
+  font-size: 50px;
+  width: 80%;
   background-image: linear-gradient(#FFAF42, #FE6E00);
   color: black;
   border-radius: 10px;
   margin-bottom: 10%;
   font-family: fantasy;
-  padding: 3%;
+  margin-left: 10%;
+  padding: 5%;
+  /* text-align: center; */
+
 }
 
 
@@ -432,6 +433,8 @@ li:hover{
   padding: 3%;
   text-align: unset;
   font-size: 40px;
+  margin-left: 10%;
+  margin-right: 10%;
   border-radius: 100px;
   background-color: green;
   color: white;

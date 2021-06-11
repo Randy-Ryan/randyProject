@@ -560,14 +560,6 @@
 </div>
 
     <br>
-    <!-- ADD FOOD BUTTON -->
-    <button id="foodButton" onclick="newFoodAndWater()" style="display: none;">Add food</button>
-    <!-- ADD TASK BUTTON -->
-    <button id="taskButton" onclick="newTask()" style="display:none;">Add task</button>
-
-    <!-- ADD EXERCISE BUTTON -->
-    <button id="exButton" onclick="newExercise()" style="display:none;">Add exercise</button>
-
     <!-- GENERAL FEED INITIALIZATION -->
     <div id="feed">
         <div id="exerciseID" style="display: none; align-items: center; text-align: center;"></div><br><br><br>
@@ -584,22 +576,29 @@
     <!-- TASK FEED TITLE INITIALIZATION -->
     <h2 id="taskFeedTitle" style="display: none;">
     </h2>
-    <br>
+        <!-- ADD TASK BUTTON -->
+        <button id="taskButton" onclick="newTask()" style="display:none;">Add task</button>
     <div id="taskFeed">
     </div>
     <br><br>
     <!-- FOOD FEED TITLE INITIALIZATION -->
     <h2 id="foodFeedTitle" style="display: none;">
     </h2>
+     <!-- ADD FOOD BUTTON -->
+     <button id="foodButton" onclick="newFoodAndWater()" style="display: none;">Add food</button>
+     <br>
+      <!-- FOOD FEED INITIALIZATION -->
+    <div id="foodFeed">    
+    </div>
     <!-- EXERCISE FEED TITLE INITIALIZATION -->
     <h2 id="exFeedTitle" style="display: none;">
     </h2>
+        <!-- ADD EXERCISE BUTTON -->
+        <button id="exButton" onclick="newExercise()" style="display:none;">Add exercise</button>
+
     <div id = "allFeeds" style="width: 100%">
     <!-- TASK FEED INITIALIZATION -->
-    <!-- FOOD FEED INITIALIZATION -->
-    <div id="foodFeed">
-        
-    </div>
+   
     <!-- EXERCISE FEED INITIALIZATION -->
     <div id="exFeed"><br>
         
