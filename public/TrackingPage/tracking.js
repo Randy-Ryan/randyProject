@@ -202,7 +202,7 @@ function nextMonth(currMonth) {
     document.getElementById("exButton").style.display = "none";
     document.getElementById("taskButton").style.display = "none";
     document.getElementById("foodButton").style.display = "none";
-    document.getElementById("favoritesDivID").style.display = "none";
+    // document.getElementById("favoritesDivID").style.display = "none";
 
 
     // clear the current active date on calendar
@@ -294,7 +294,7 @@ function prevMonth(currMonth) {
     document.getElementById("exButton").style.display = "none";
     document.getElementById("taskButton").style.display = "none";
     document.getElementById("foodButton").style.display = "none";
-    document.getElementById("favoritesDivID").style.display = "none";
+    // document.getElementById("favoritesDivID").style.display = "none";
 
 
     // clear the current active date on calendar
