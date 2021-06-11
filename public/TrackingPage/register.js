@@ -71,7 +71,7 @@ window.onload = function () {
         var error = false;
         var error2 = false;
         // initialize inputs variable from all inputs with class "required"
-        var requiredInputs = document.querySelectorAll(".required");
+        var requiredInputs = document.querySelectorAll(".required5");
         for (var i = 0; i < requiredInputs.length; i++) {
             error = false;
             console.log(requiredInputs.length);
