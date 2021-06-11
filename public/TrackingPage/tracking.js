@@ -1106,9 +1106,9 @@ function loadFeed(date, month) {
     document.getElementById("exFeed").style.display = '';
     document.getElementById("foodFeed").style.display = '';
     document.getElementById("taskFeed").style.display = '';
-    document.getElementById("exFeedTitle").innerHTML = 'EXERCISE FEED';
-    document.getElementById("foodFeedTitle").innerHTML = 'FOOD FEED';
-    document.getElementById("taskFeedTitle").innerHTML = 'TASK FEED';
+    document.getElementById("exFeedTitle").innerHTML = 'EXERCISE';
+    document.getElementById("foodFeedTitle").innerHTML = 'FOOD';
+    document.getElementById("taskFeedTitle").innerHTML = 'TASKS';
 
     // load the exercise feed
     db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
@@ -1116,7 +1116,7 @@ function loadFeed(date, month) {
             createNewExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id);
             // show this feed title
             if (doc.exists) {
-                document.getElementById("exFeedTitle").innerHTML = 'EXERCISE FEED';
+                document.getElementById("exFeedTitle").innerHTML = 'EXERCISE';
             }
         });
     });
@@ -1126,7 +1126,7 @@ function loadFeed(date, month) {
             createNewFood(doc.data().food, doc.data().water, doc.data().time, doc.data().message, doc.id)
             // show this feed title
             if (doc.exists) {
-                document.getElementById("foodFeedTitle").innerHTML = 'FOOD FEED';
+                document.getElementById("foodFeedTitle").innerHTML = 'FOOD';
             }
         });
     });
@@ -1136,7 +1136,7 @@ function loadFeed(date, month) {
             createNewTask(doc.data().title, doc.data().description, doc.data().time, doc.id)
             // show this feed title
             if (doc.exists) {
-                document.getElementById("taskFeedTitle").innerHTML = 'TASK FEED';
+                document.getElementById("taskFeedTitle").innerHTML = 'TASKS';
             }
         });
     });
