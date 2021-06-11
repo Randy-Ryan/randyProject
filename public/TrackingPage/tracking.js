@@ -2731,6 +2731,8 @@ function userSignedOut() {
     document.getElementById('todaysDate').style.display = 'none';
     document.getElementById('accountIcon').style.display = 'none';
     document.getElementById('favoritesDivID').style.display = 'none';
+    document.getElementById('currentDateDisplay').style.display = 'none';
+
     document.getElementById('filler1').style.display = 'none';
 
     document.getElementById('topnav1').style.display = '';
