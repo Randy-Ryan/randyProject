@@ -1479,7 +1479,7 @@ function addTask() {
         loadFeed(date, month);
     })
         .catch((error) => {
-            alert("ERROR submitting post! " + error);
+            // alert("ERROR submitting post! " + error);
         });;
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1554,7 +1554,7 @@ function addFavTask() {
         loadFeed(date, month);
     })
         .catch((error) => {
-            alert("ERROR submitting post! " + error);
+            // alert("ERROR submitting post! " + error);
         });;
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1631,7 +1631,7 @@ function addFoodAndWater() {
         loadFeed(date, month);
     })
         .catch((error) => {
-            alert("ERROR submitting post! " + error);
+            // alert("ERROR submitting post! " + error);
         });;
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1705,7 +1705,7 @@ function addFavFoodAndWater() {
         loadFeed(currDate, currMonth);
     })
         .catch((error) => {
-            alert("ERROR submitting post! " + error);
+            // alert("ERROR submitting post! " + error);
         });
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1771,7 +1771,7 @@ function addFavFoodToDB(f) {
         loadFeed(currDate, currMonth);
     })
         .catch((error) => {
-            alert("ERROR submitting post! " + error);
+            // alert("ERROR submitting post! " + error);
         });;
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1830,7 +1830,7 @@ function addFavTaskToDB(f) {
         loadFeed(currDate, currMonth);
     })
         .catch((error) => {
-            alert("ERROR submitting post! " + error);
+            // alert("ERROR submitting post! " + error);
         });;
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1902,7 +1902,7 @@ function addFavExerciseToDB(f) {
         loadFeed(currDate, currMonth);
     })
         .catch((error) => {
-            alert("ERROR submitting post! " + error);
+            // alert("ERROR submitting post! " + error);
         });;
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1980,7 +1980,7 @@ function addExercise() {
         loadFeed(date, month);
     })
         .catch((error) => {
-            alert("ERROR submitting post! " + error);
+            // alert("ERROR submitting post! " + error);
         });;
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -2055,7 +2055,7 @@ function addFavExercise() {
         loadFeed(currDate, currMonth);
     })
         .catch((error) => {
-            alert("ERROR submitting post! " + error);
+            // alert("ERROR submitting post! " + error);
         });;
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -2311,7 +2311,7 @@ function updateTaskEntry(docId) {
         loadFeed(date, month);
     })
         .catch((error) => {
-            alert("ERROR submitting post!" + error);
+            // alert("ERROR submitting post!" + error);
         });;
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -2376,7 +2376,7 @@ function updateFavTaskEntry(docId) {
         loadFeed(date, month);
     })
         .catch((error) => {
-            alert("ERROR submitting post!" + error);
+            // alert("ERROR submitting post!" + error);
         });;
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -2461,7 +2461,7 @@ function updateExerciseEntry(docId) {
         loadFeed(date, month);
     })
         .catch((error) => {
-            alert("ERROR submitting post!" + error);
+            // alert("ERROR submitting post!" + error);
         });;
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -2545,7 +2545,7 @@ function updateFavExerciseEntry(docId) {
         loadFeed(date, month);
     })
         .catch((error) => {
-            alert("ERROR submitting post!" + error);
+            // alert("ERROR submitting post!" + error);
         });;
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -2621,7 +2621,7 @@ function updateFoodEntry(docId) {
         loadFeed(date, month);
     })
         .catch((error) => {
-            alert("ERROR submitting post! " + error);
+            // alert("ERROR submitting post! " + error);
         });;
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -2698,7 +2698,7 @@ function updateFavFoodEntry(docId) {
         loadFeed(date, month);
     })
         .catch((error) => {
-            alert("ERROR submitting post! " + error);
+            // alert("ERROR submitting post! " + error);
         });;
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -2760,7 +2760,7 @@ function updateAccount() {
 
     })
         .catch((error) => {
-            alert("ERROR submitting post!" + error);
+            // alert("ERROR submitting post!" + error);
         });;
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -2773,7 +2773,7 @@ function signOutAccount() {
         window.location.href = "../TrackingPage/tracking.html";
     }).catch((error) => {
         // An error happened.
-        alert("Error signing out:" + error);
+        // alert("Error signing out:" + error);
     });
 }
 
