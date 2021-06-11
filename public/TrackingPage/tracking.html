@@ -52,11 +52,14 @@
     <script type="text/javascript" src="./tracking.js"></script>
 </head>
 <br>
+<a id="logLink" style="display: none;" href="../LoginPage/login.html">LOGIN</a>
+<a id="regLink" style="display: none;" href="../RegisterPage/register.html">REGISTER</a>
+<br>
 <!-- LOAD HAMBURGER ICON -->
 <!-- UNCOMMENT THE FOLLOWING LINE OF CODE TO LOAD THE HAMBURGER ICON - CURRENTLY OUT -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- TOP NAVIGATION MENU-->
-<div class="topnav">
+<div class="topnav" id = "topnav1">
     <!-- THIS PAGE TITLE/HEADER -->
     <label id="navHeader">TRACKING PAGE</label><br>
     <!-- HAMBURGER MENU -->
@@ -67,11 +70,13 @@
     <div id="myLinks" style="display: none;">
         <br>
         <a id="favLink" onclick="favoriteButtonClick()">ADD FAVORITES</a>
-        <a id="logLink" style="display: none;" href="../LoginPage/login.html">LOGIN</a>
-        <a id="regLink" style="display: none;" href="../RegisterPage/register.html">REGISTER</a>
+       
     </div>
 </div>
-
+  <!-- ACCOUNT ICON -->
+  <div id="accountDivID" style="text-align: center;">
+    <img id = "accountIcon" onclick="loadMyAccount()" src="./contact.png" alt="accountIcon">
+</div>
 <body>
     <!-- USERNAME TITLE -->
     <div id="usernameHeader">
@@ -546,15 +551,13 @@
         exercise and I did not want to spend the money on an app!
     </h2>
     <br>
-    <!-- ACCOUNT ICON -->
-    <div id="accountDivID">
-        <img id = "accountIcon" onclick="loadMyAccount()" src="./contact.png" alt="accountIcon">
-    </div>
     <!-- FAVORITES ICON -->
-    
-    <!-- <div id="favorites DivID">
-        <img id = "favoritesIcon" onclick="favoriteButtonClick()" src="../favicon_io/apple-touch-icon.png" alt="favoritesIcon">
-    </div> -->
+
+<div id="favoritesDivID" style="text-align: center;">
+    <img id = "favoritesIcon" onclick="favoriteButtonClick()" src="./icons8-plus-144.png" alt="favoritesIcon">
+    <label id = "favLabel">ADD NEW FAVORITE POST</label>
+</div>
+
     <br>
     <!-- ADD FOOD BUTTON -->
     <button id="foodButton" onclick="newFoodAndWater()" style="display: none;">Add food/bev</button>
@@ -587,11 +590,11 @@
     <!-- TASK FEED INITIALIZATION -->
     <!-- FOOD FEED INITIALIZATION -->
     <div id="foodFeed">
-        <br>
+        
     </div>
     <!-- EXERCISE FEED INITIALIZATION -->
     <div id="exFeed"><br>
-        <br>
+        
     </div>
     <div id="accountFeed"><br>
         <br>

@@ -15,10 +15,6 @@ ul {
   list-style-type: none;
 }
 
-body {
-  /* font-family: Verdana, sans-serif; */
-}
-
 h2 {
     margin: 2%;
 }
@@ -415,7 +411,6 @@ li:hover{
 #usernameHeader{
   font-size: 60px;
   text-align: center;
-  margin-top: 5%;
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -458,12 +453,17 @@ li:hover{
 
 /* STYLE TOP NAV DIV */
 .topnav {
+  display: none;
   overflow: hidden;
   background-color: #800020;
   position:relative;
   height: auto;
   border-radius: 12px; 
   border: 1px solid black;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  
 }
 
 /* STYLE HIDDEN LINK ELEMENTS */
@@ -554,14 +554,6 @@ text-align: center;
 }
 
 
-
-/* sample test hover set for class name testtt */
-.testtt:hover{
-  /* color: gray;   */
-  /* background-color: black; */
-}
-
-
 /* ************************************************************************* */
 /* ************************************************************************* */
 /*                               IMAGES/ICONS                                            */
@@ -575,10 +567,15 @@ text-align: center;
 } */
 
 /* ACCOUNT ICON IMG ELEMENT*/
+#accountUsername{
+  font-size: 75px;
+  margin: 0;
+  
+  }
+
+/* ACCOUNT ICON IMG ELEMENT*/
 #accountIcon{
-position: absolute;
-top:8%;
-left: 5%;
+position: relative;
 height: 125px;
 width: 125px;
 margin-bottom: 5%;
@@ -586,15 +583,41 @@ border-radius: 75px;
 
 }
 
-/* ACCOUNT ICON IMG ELEMENT*/
+/* FAVORITES ICON IMG ELEMENT*/
 #favoritesIcon{
-  position: absolute;
-  float: right;
+  position: relative;
   /* top: 135%; */
-  top:8%;
-  right: 5%;
   height: 125px;
   width: 125px;
+  border-radius: 75px;
+  }
+
+
+/* FAVORITES ICON IMG ELEMENT*/
+#favLabel{
+  display:block;
+  font-size: 35px;
   margin-bottom: 5%;
-  
+  }
+
+  /* LOGIN STYLE*/
+#regLink{
+  display:block;
+  float: left;
+  text-align: center;
+
+  width: 50%;
+  font-size: 50px;
+  color: black;
+
+  }
+
+    /* REGISTER STYLE*/
+#logLink{
+  float: left;
+  text-align: center;
+  display:block;
+  width: 50%;
+  font-size: 50px;
+  color: black;
   }

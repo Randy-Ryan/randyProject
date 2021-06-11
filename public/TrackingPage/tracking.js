@@ -104,12 +104,12 @@ window.onload = function () {
     // clear the feed
     clearChildren();
 
-        // check if user is signed in - call function to style
-        if (userID == "null") {
-            userSignedOut();
-            // alert("Error: no userID");
-            // window.location.href = "../index.html"
-    
+    // check if user is signed in - call function to style
+    if (userID == "null") {
+        userSignedOut();
+        // alert("Error: no userID");
+        // window.location.href = "../index.html"
+
         // hide feed
         document.getElementById("exButton").style.display = "none";
         document.getElementById("foodButton").style.display = "none";
@@ -121,7 +121,7 @@ window.onload = function () {
         document.getElementById("foodFeedTitle").style.display = "none";
         document.getElementById("taskFeedTitle").style.display = "none";
         return;
-        }
+    }
 
     // load the feed
     loadFeed(day, month);
@@ -151,6 +151,9 @@ function userSignedOut() {
     document.getElementById('foodButton').style.display = 'none';
     document.getElementById('todaysDate').style.display = 'none';
     document.getElementById('accountIcon').style.display = 'none';
+    document.getElementById('favoritesDivID').style.display = 'none';
+    document.getElementById('topnav1').style.display = '';
+
 
 
     // show links to pages when user is logged out
@@ -1064,16 +1067,16 @@ function addExercise() {
 function loadFeed(date, month) {
     // format day var 
     var day = "" + date;
-        // hide post buttons
-        document.getElementById("exButton").style.display = "";
-        document.getElementById("foodButton").style.display = "";
-        document.getElementById("taskButton").style.display = "";
-        document.getElementById("exFeed").style.display = "";
-        document.getElementById("foodFeed").style.display = "";
-        document.getElementById("taskFeed").style.display = "";
-        document.getElementById("exFeedTitle").style.display = "";
-        document.getElementById("foodFeedTitle").style.display = "";
-        document.getElementById("taskFeedTitle").style.display = "";
+    // hide post buttons
+    document.getElementById("exButton").style.display = "";
+    document.getElementById("foodButton").style.display = "";
+    document.getElementById("taskButton").style.display = "";
+    document.getElementById("exFeed").style.display = "";
+    document.getElementById("foodFeed").style.display = "";
+    document.getElementById("taskFeed").style.display = "";
+    document.getElementById("exFeedTitle").style.display = "";
+    document.getElementById("foodFeedTitle").style.display = "";
+    document.getElementById("taskFeedTitle").style.display = "";
     if (day.length < 2) {
         day = "0" + day;
     }
@@ -1104,7 +1107,7 @@ function loadFeed(date, month) {
             // show this feed title
             if (doc.exists) {
                 document.getElementById("foodFeedTitle").innerHTML = 'FOOD FEED';
-                        }
+            }
         });
     });
     // load the task feed
@@ -1560,6 +1563,7 @@ function loadMyAccount() {
     document.getElementById('exButton').style.display = 'none';
     document.getElementById('foodButton').style.display = 'none';
     document.getElementById('taskButton').style.display = 'none';
+    document.getElementById('favoritesDivID').style.display = 'none';
 
     // get username var
 
@@ -1576,8 +1580,8 @@ function loadMyAccount() {
     editButton.id = "editAccountID";
     signOutButton.id = "editAccountID";
 
-    username.innerHTML = "<br><br><br><label class = 'accountUsername'>" + getURLParameter("username") + "'s account page <br><br></label>";
-    editButton.innerHTML = "<input onclick = 'editAccount()' type='submit' id = 'cancelButton1' value = 'EDIT'/>"
+    username.innerHTML = "<br><br><br><label id = 'accountUsername'>" + getURLParameter("username") + "'s account page <br><br></label>";
+    editButton.innerHTML = "<input onclick = 'editAccount()' type='submit' id = 'cancelButton1' value = 'EDIT MY ACCOUNT'/>"
     signOutButton.innerHTML = "<input onclick = 'signOutAccount()' type='submit' id = 'signOutButton1' value = 'SIGN OUT'/>"
 
 
@@ -1617,7 +1621,7 @@ function editAccount() {
     cancelButton.innerHTML = "<input onclick = 'loadMyAccount()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
     username1.innerHTML = "<br><br><br><label class = 'exClass1'>Username: <br><br></label><input type='text' class = 'required' value = '" + username + "'><br><br><br>";
     //  edit2.innerHTML = "<br><br><br><label class = 'exClass1'>Edit 2 <br><br></label><input type='text' class = 'required' value = '" + userID + "'><br><br><br>";
-    postButton.innerHTML = "<input onclick = 'updateAccount()' type='submit' id = 'cancelButton1' value = 'EDIT'/>"
+    postButton.innerHTML = "<input onclick = 'updateAccount()' type='submit' id = 'cancelButton1' value = 'UPDATE'/>"
 
     // load the edit form on the feed
     document.getElementById("feed")
@@ -1663,6 +1667,19 @@ function updateAccount() {
         }
     }
 
+
+    const user = firebase.auth().currentUser;
+
+    // update firebase account display name
+    user.updateProfile({
+        displayName: usernameEdit,
+        // photoURL: "https://example.com/jane-q-user/profile.jpg"
+    }).then(() => {
+        console.log("updated this display name");
+    }).catch((error) => {
+        console.log(error);
+    });
+
     // update these vars in database
     db.collection("users").doc(userID).set({
         username: usernameEdit,
@@ -1677,7 +1694,6 @@ function updateAccount() {
         });;
 }
 
-
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- SIGN OUT OF ACCOUNT-------------------///////////////
 ///////////////////////////////////////////////////////////////////////////////////// 
@@ -1686,10 +1702,10 @@ function signOutAccount() {
     firebase.auth().signOut().then(() => {
         // Sign-out successful.
         window.location.href = "../TrackingPage/tracking.html";
-      }).catch((error) => {
+    }).catch((error) => {
         // An error happened.
         alert("Error signing out:" + error);
-      });
+    });
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1697,5 +1713,6 @@ function signOutAccount() {
 ///////////////////////////////////////////////////////////////////////////////////// 
 // LOAD A FAVORITE BUTTON FORM
 function favoriteButtonClick() {
-    console.log("test");
+    //   TODO IMPLEMENTATION FOR FAVORITE BUTTON
+    console.log("hi");
 }
