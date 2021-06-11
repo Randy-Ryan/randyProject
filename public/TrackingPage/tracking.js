@@ -44,6 +44,10 @@ window.onload = function () {
     username = getURLParameter("username");
     email = getURLParameter("username");
 
+    // document.getElementById("ex56").innerHTML = "EX";
+    // document.getElementById("food56").innerHTML= "FOOD";
+    // document.getElementById("task56").innerHTML = "TASK";
+
     document.getElementById("currentDateDisplay").innerHTML = "Today<br>" + month + "/" + day + "";
 
     // statements to set month var
@@ -100,12 +104,13 @@ window.onload = function () {
     currDate = day;
     currMonth = month;
 
+
+
     // style date title respectivly
     document.getElementById("todaysDate").innerHTML = currMonth + " / " + currDate;
 
     // clear the feed
     clearChildren();
-
     // check if user is signed in - call function to style
     if (userID == "null") {
         userSignedOut();
@@ -123,7 +128,11 @@ window.onload = function () {
         document.getElementById("exFeedTitle").style.display = "none";
         document.getElementById("foodFeedTitle").style.display = "none";
         document.getElementById("taskFeedTitle").style.display = "none";
-        document.getElementById("favFeedTitle").style.display = "none";
+
+
+        document.getElementById("ex56").style.display = "";
+        document.getElementById("food56").style.display = "";
+        document.getElementById("task56").style.display = "";
 
         return;
     }
@@ -171,6 +180,7 @@ function openDay(date, month) {
     document.getElementById("taskButton").style.display = "";
     document.getElementById("exButton").style.display = "";
     document.getElementById("foodButton").style.display = "";
+    
 
     // hide empty feed title element (filler1 = empty feed title)
     document.getElementById("filler1").style.display = "none";
@@ -378,9 +388,6 @@ function clearChildren() {
     document.getElementById('exFeed').innerHTML = '';
     document.getElementById('foodFeed').textContent = '';
     document.getElementById('foodFeed').innerHTML = '';
-    document.getElementById("favFeedTitle").style.display = "none";
-    document.getElementById("fullFavFeed").style.display = "none";
-    document.getElementById("favFeedTitle").style.display = "none";
 
 
 
@@ -412,15 +419,15 @@ function clearChildren() {
     var el2 = document.getElementById('taskFeed');
     while (el2.firstChild) el2.innerHTML = '';
 
-    // remove child nodes of task feed
-    var el2 = document.getElementById('okFullFoodID');
+    var el2 = document.getElementById('feedTest1');
     while (el2.firstChild) el2.innerHTML = '';
-       // remove child nodes of task feed
-       var el2 = document.getElementById('okFullExerciseID');
-       while (el2.firstChild) el2.innerHTML = '';
-          // remove child nodes of task feed
-    var el2 = document.getElementById('okFullTaskID');
+
+    var el2 = document.getElementById('feedTest2');
     while (el2.firstChild) el2.innerHTML = '';
+
+    var el2 = document.getElementById('feedTest3');
+    while (el2.firstChild) el2.innerHTML = '';
+
 
     //   // remove child nodes of task feed
     //   var el2 = document.getElementById('fullFavFeed');
@@ -2089,6 +2096,8 @@ function loadFeed(date, month) {
     document.getElementById("foodFeedTitle").innerHTML = 'FOOD';
     document.getElementById("taskFeedTitle").innerHTML = 'TASKS';
     document.getElementById("favFeedTitle").innerHTML = 'FAVORITES';
+
+    
     // load the exercise feed
     db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -2129,9 +2138,24 @@ function loadFeed(date, month) {
         });
     });
 
-        document.getElementById("okFullFoodID").innerHTML = 'FOOD FAVORITES';
-    document.getElementById("okFullTaskID").innerHTML = 'TASK FAVORITES';
-    document.getElementById("okFullExerciseID").innerHTML = 'EXERCISE FAVORITES';
+    console.log(document.getElementsByClassName("favLab"));
+    document.getElementById("ex56").style.display = '';
+    document.getElementById("food56").style.display = '';
+    document.getElementById("task56").style.display = '';
+
+    document.getElementById("ex56").innerHTML = 'EX';
+    document.getElementById("food56").innerHTML = 'FOOD';
+    document.getElementById("task56").innerHTML = 'TASK';
+
+    document.getElementById("okFullExerciseID").style.display = '';
+    document.getElementById("okFullFoodID").style.display = '';
+    document.getElementById("okFullTaskID").style.display = '';
+
+    document.getElementById("okFullExerciseID").innerHTML = 'EX';
+    document.getElementById("okFullFoodID").innerHTML = 'FOOD';
+    document.getElementById("okFullTaskID").innerHTML = 'TASK';
+
+
 
 }
 /////////////////////////////////////////////////////////////////////////////////////
