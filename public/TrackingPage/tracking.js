@@ -133,7 +133,7 @@ function userSignedOut() {
     // load vars for when user is signed out and show register
 
     // hide links to pages when user is logged in
-    document.getElementById('accLink').style.display = 'none';
+    // document.getElementById('accLink').style.display = 'none';
     document.getElementById('favLink').style.display = 'none';
     document.getElementById('usernameHeader').style.display = 'none';
     document.getElementById('feed').style.display = 'none';
@@ -1680,5 +1680,6 @@ function signOutAccount() {
 /////////------------------- FAVORITE BUTTON CLICK-------------------///////////////
 ///////////////////////////////////////////////////////////////////////////////////// 
 // LOAD A FAVORITE BUTTON FORM
-function signOutAccount() {
+function favoriteButtonClick() {
+    console.log("test");
 }
