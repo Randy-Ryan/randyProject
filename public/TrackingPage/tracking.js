@@ -17,6 +17,7 @@ var currDate;
 var currMonth;
 var userID;
 var username;
+var email;
 
 
 /********************************************************************/
@@ -40,6 +41,7 @@ window.onload = function () {
     // set 'global' vars
     userID = getURLParameter("userID");
     username = getURLParameter("username");
+    email = getURLParameter("username");
 
     // statements to set month var
     if (month == '01') {
@@ -83,11 +85,6 @@ window.onload = function () {
     document.getElementById("monthTitle").innerHTML = "" + month;
     // style username display title
     document.getElementById("userHead").innerHTML = username + "'s Tracking Calendar";
-    // show post buttons
-    document.getElementById("exButton").style.display = "";
-    document.getElementById("foodButton").style.display = "";
-    document.getElementById("taskButton").style.display = "";
-
 
     // hide empty feed title
     document.getElementById("filler1").style.display = "none";
@@ -104,9 +101,9 @@ window.onload = function () {
     document.getElementById("todaysDate").innerHTML = currMonth + " / " + currDate;
 
 
-   
+
     // check if user is signed in - call function to style
-    if (userID == "null" ) {
+    if (userID == "null") {
         userSignedOut();
         // alert("Error: no userID");
         // window.location.href = "../index.html"
@@ -117,10 +114,16 @@ window.onload = function () {
 
     // load the feed
     loadFeed(day, month);
+
+    // show post buttons
+    document.getElementById("exButton").style.display = "";
+    document.getElementById("foodButton").style.display = "";
+    document.getElementById("taskButton").style.display = "";
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
-/////////------------------- USER IS NOT LOGGED IN -----------------////////////////
+/////////------------------- USER IS NOT LOGGED IN -----------------/////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // STYLE PAGE RESPECTIVELY
 function userSignedOut() {
@@ -141,6 +144,7 @@ function userSignedOut() {
     document.getElementById('exButton').style.display = 'none';
     document.getElementById('foodButton').style.display = 'none';
     document.getElementById('todaysDate').style.display = 'none';
+    document.getElementById('accountIcon').style.display = 'none';
 
 
     // show links to pages when user is logged out
@@ -149,6 +153,18 @@ function userSignedOut() {
     document.getElementById('signedOut').style.display = '';
     document.getElementById('signedOut1').style.display = '';
 
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- RELOAD THE FEED -----------------/////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+// CLEAR FEED AND THEN LOAD FEED
+function reload() {
+    // reload the page
+    // clear the feed
+    clearChildren();
+    // load the feed
+    loadFeed(currDate, currMonth);
 }
 
 
@@ -338,6 +354,9 @@ function clearChildren() {
     document.getElementById("exFeedTitle").style.display = "none";
     document.getElementById("taskFeedTitle").style.display = "none";
     document.getElementById("foodFeedTitle").style.display = "none";
+    document.getElementById("exFeed").style.display = "none";
+    document.getElementById("taskFeed").style.display = "none";
+    document.getElementById("foodFeed").style.display = "none";
 
     // remove child nodes of feed
     var el = document.getElementById('feed');
@@ -362,7 +381,7 @@ function clearChildren() {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
-/////////------------------- CREATE/LOAD NEW TASK DIV -----------////////////////
+/////////------------------- CREATE/LOAD A NEW TASK ELEMENT -----------//////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // SET VARS FOR NEW EXERCISE, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO EX FEED
 function createNewTask(ttl, desc, t, id) {
@@ -399,6 +418,7 @@ function createNewTask(ttl, desc, t, id) {
         clearChildren();
 
         // initialize div elements
+        var cancelButton = document.createElement('div');
         var title = document.createElement('div');
         var description = document.createElement('div');
         var time = document.createElement('div');
@@ -406,6 +426,7 @@ function createNewTask(ttl, desc, t, id) {
         var deleteButton = document.createElement('div');
 
         // set the ids
+        cancelButton.id = "cancelButtonNewEdit";
         title.id = "titleNewEdit";
         description.id = "descriptionNewEdit";
         time.id = "timeExNewEdit";
@@ -413,6 +434,7 @@ function createNewTask(ttl, desc, t, id) {
         deleteButton.id = "deleteButtonExNewEdit";
 
         // create the edit form by setting the HTML content of each div
+        cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
         title.innerHTML = "<br><br><br><label class = 'exClass1'>Title: <br><br></label><input type='text' class = 'required' id='12345' value = '" + ttl + "'><br><br><br>";
         description.innerHTML = "<label class = 'exClass1'>Description: <br><br></label> <input type='text' id='repsInput' class = 'required' value = '" + desc + "'><br><br><br>";
         time.innerHTML = "<label class = 'exClass1'>Time: <br><br></label><input type='text' id='timeInput' class = 'required' value = '" + t + "'><br><br><br>";
@@ -423,6 +445,7 @@ function createNewTask(ttl, desc, t, id) {
 
         // load the edit form on the feed
         document.getElementById("feed")
+            .appendChild(cancelButton)
             .appendChild(title)
             .appendChild(description)
             .appendChild(time)
@@ -434,7 +457,7 @@ function createNewTask(ttl, desc, t, id) {
     document.getElementById("taskFeed").appendChild(newTask);
 }
 /////////////////////////////////////////////////////////////////////////////////////
-/////////------------------- CREATE/LOAD NEW EXERCISE DIV -----------////////////////
+/////////------------------- CREATE/LOAD A NEW EXERCISE ELEMENT -----------//////////
 /////////////////////////////////////////////////////////////////////////////////////
 // SET VARS FOR NEW EXERCISE, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO EX FEED
 function createNewExercise(r, s, w, t, m, id) {
@@ -449,7 +472,7 @@ function createNewExercise(r, s, w, t, m, id) {
     //format a string to set element html
     var fullString = "<br>";
     if (m != "") {
-        fullString = fullString + "Title:<br>" + m + "<br><br>";
+        fullString = fullString + "Workout:<br>" + m + "<br><br>";
     }
     if (r != "") {
         fullString = fullString + "Reps:<br>" + r + "<br><br>";
@@ -478,6 +501,7 @@ function createNewExercise(r, s, w, t, m, id) {
         clearChildren();
 
         // initialize div elements
+        var cancelButton = document.createElement('div');
         var message = document.createElement('div');
         var reps = document.createElement('div');
         var sets = document.createElement('div');
@@ -487,6 +511,7 @@ function createNewExercise(r, s, w, t, m, id) {
         var deleteButton = document.createElement('div');
 
         // set the ids
+        cancelButton.id = "cancelNewEdit";
         message.id = "messageNewEdit";
         reps.id = "repsNewEdit";
         sets.id = "setsNewEdit";
@@ -496,6 +521,7 @@ function createNewExercise(r, s, w, t, m, id) {
         deleteButton.id = "deleteButtonExNewEdit";
 
         // create the edit form by setting the HTML content of each div
+        cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
         message.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: DB Bench Press. Difficult) <br><br></label><input type='text' class = 'required' id='12345' value = '" + m + "'><br><br><br>";
         reps.innerHTML = "<label class = 'exClass1'>Reps (ex: 8) <br><br></label> <input type='text' id='repsInput' class = 'required' value = '" + r + "'><br><br><br>";
         sets.innerHTML = "<label class = 'exClass1'>Sets (ex: 3)<br><br></label><input type='text' id='setsInput' class = 'required' value = '" + s + "'><br><br><br>";
@@ -508,6 +534,7 @@ function createNewExercise(r, s, w, t, m, id) {
 
         // load the edit form on the feed
         document.getElementById("feed")
+            .appendChild(cancelButton)
             .appendChild(message)
             .appendChild(reps)
             .appendChild(sets)
@@ -521,7 +548,7 @@ function createNewExercise(r, s, w, t, m, id) {
     document.getElementById("exFeed").appendChild(newExercise);
 }
 /////////////////////////////////////////////////////////////////////////////////////
-/////////------------------- CREATE/LOAD NEW FOOD DIV ---------------////////////////
+/////////------------------- CREATE/LOAD A NEW FOOD ELEMENT ---------------//////////
 /////////////////////////////////////////////////////////////////////////////////////
 // SET VARS FOR NEW FOOD, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO FOOD FEED
 function createNewFood(f, w, t, m, id) {
@@ -557,6 +584,7 @@ function createNewFood(f, w, t, m, id) {
         // clear the feed
         clearChildren();
         // initialize div elements
+        var cancelButton = document.createElement('div');
         var food = document.createElement('div');
         var water = document.createElement('div');
         var time = document.createElement('div');
@@ -565,6 +593,7 @@ function createNewFood(f, w, t, m, id) {
         var deleteButton = document.createElement('div');
 
         // set the ids
+        cancelButton.id = "cancelNewEdit";
         food.id = "foodNewEdit";
         water.id = "waterNewEdit";
         time.id = "timeFoodNewEdit";
@@ -573,6 +602,7 @@ function createNewFood(f, w, t, m, id) {
         deleteButton.id = "deleteButtonExNewEdit";
 
         // create the edit form by setting the HTML content of each div
+        cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
         food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: PB&J plus a banana)<br><br> </label> <input type='text' id='foodInput' class = 'required' value = '" + f + "'><br><br><br>  ";
         water.innerHTML = "<label class = 'exClass1'>Water/Beverages (ex: Water, Protein Shake)<br> <br> </label><input type='text' class = 'required' id='waterInput' value = '" + w + "'><br><br><br>  ";
         time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br>  </label><input type='text' id='timeFoodInput' class = 'required' value = '" + t + "'><br><br> <br> ";
@@ -584,6 +614,7 @@ function createNewFood(f, w, t, m, id) {
 
         // load the food form on the feed
         document.getElementById("feed")
+            .appendChild(cancelButton)
             .appendChild(food)
             .appendChild(water)
             .appendChild(message)
@@ -597,6 +628,8 @@ function createNewFood(f, w, t, m, id) {
 }
 
 
+
+
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- LOAD TASK FORM -------------------------////////////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -606,24 +639,28 @@ function newTask() {
     clearChildren();
 
     // initialize div elements
+    var cancelButton = document.createElement('div');
     var title = document.createElement('div');
     var description = document.createElement('div');
     var time = document.createElement('div');
     var postButton = document.createElement('div');
 
     // set ids
+    cancelButton.id = "cancelNew"
     title.id = "titleNew";
     description.id = "descriptionNew";
     time.id = "timeNew";
     postButton.id = "postButton";
 
     // then add the HTML content of the element
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
     title.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: Chemistry, Dentist, Birthday, etc.) <br><br></label><input id='taskReq1' onclick = '" + 'makeClean(document.getElementById("taskReq1"))' + "' type='text' class = 'required'><br><br><br>";
     description.innerHTML = "<label class = 'exClass1'>Description (ex: Due at 11:59pm, buy a gift, etc.) <br><br></label> <input type='text' id='taskReq2' onclick = '" + 'makeClean(document.getElementById("taskReq2"))' + "' class = 'required'><br><br><br>";
     time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br></label><input type='text' id='taskReq3' onclick = '" + 'makeClean(document.getElementById("taskReq3"))' + "' class = 'required'><br><br><br>";
     postButton.innerHTML = "<input onclick = 'addTask()' type='submit' id = 'pButton1' value = 'POST'/>"
 
     document.getElementById("feed")
+        .appendChild(cancelButton)
         .appendChild(title)
         .appendChild(description)
         .appendChild(time)
@@ -638,6 +675,7 @@ function newExercise() {
     clearChildren();
 
     // initialize div elements
+    var cancelButton = document.createElement('div');
     var reps = document.createElement('div');
     var sets = document.createElement('div');
     var weight = document.createElement('div');
@@ -646,6 +684,7 @@ function newExercise() {
     var postButton = document.createElement('div');
 
     // set ids
+    cancelButton.id = "cancelNew";
     reps.id = "repsNew";
     sets.id = "setsNew";
     weight.id = "weightNew";
@@ -655,7 +694,8 @@ function newExercise() {
 
     // then add the HTML content of the element
     // title and time are required for inputs
-    message.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: DB Bench Press. Difficult) <br><br></label><input id='exReq1' onclick = '" + 'makeClean(document.getElementById("exReq1"))' + "' type='text' class = 'required' ><br><br><br>";
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+    message.innerHTML = "<br><br><br><label class = 'exClass1'>Workout (ex: DB Bench Press. Difficult) <br><br></label><input id='exReq1' onclick = '" + 'makeClean(document.getElementById("exReq1"))' + "' type='text' class = 'required' ><br><br><br>";
     reps.innerHTML = "<label class = 'exClass1'>Reps (ex: 8) <br><br></label> <input type='text' id='exReq2' onclick = '" + 'makeClean(document.getElementById("exReq2"))' + "' class = 'required' ><br><br><br>";
     sets.innerHTML = "<label class = 'exClass1'>Sets (ex: 3)<br><br></label><input type='text' id='exReq3' onclick = '" + 'makeClean(document.getElementById("exReq3"))' + "' class = 'required'><br><br><br>";
     weight.innerHTML = "<label class = 'exClass1'>Weight (ex: 100 lbs)<br><br></label><input type='text' id='exReq4' onclick = '" + 'makeClean(document.getElementById("exReq4"))' + "' class = 'required'><br><br><br>";
@@ -664,6 +704,7 @@ function newExercise() {
 
     // this could be created as appending one div instead for better styling
     document.getElementById("feed")
+        .appendChild(cancelButton)
         .appendChild(message)
         .appendChild(reps)
         .appendChild(sets)
@@ -681,6 +722,7 @@ function newFoodAndWater() {
 
 
     // initialize div elements
+    var cancelButton = document.createElement('div');
     var food = document.createElement('div');
     var water = document.createElement('div');
     var time = document.createElement('div');
@@ -688,6 +730,7 @@ function newFoodAndWater() {
     var postButton = document.createElement('div');
 
     // set ids
+    cancelButton.id = "cancelButtonFoodNew";
     food.id = "foodNew";
     water.id = "waterNew";
     time.id = "timeFoodNew";
@@ -695,6 +738,7 @@ function newFoodAndWater() {
     postButton.id = "postButtonFoodNew";
 
     // then add the HTML content of the element
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
     food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: PB&J plus a banana)<br><br> </label> <input type='text' id='foodReq1' onclick = '" + 'makeClean(document.getElementById("foodReq1"))' + "' class = 'required'><br><br><br>";
     water.innerHTML = "<label class = 'exClass1'>Water/Beverages (ex: Water, Protein Shake)<br> <br> </label><input type='text' id='foodReq2' onclick = '" + 'makeClean(document.getElementById("foodReq2"))' + "' class = 'required'><br><br><br>";
     message.innerHTML = "<label class = 'exClass1'>Note (ex: 400 calories)<br><br> </label><input type='text' id='foodReq3' onclick = '" + 'makeClean(document.getElementById("foodReq3"))' + "' class = 'required'><br><br><br>";
@@ -703,12 +747,15 @@ function newFoodAndWater() {
 
     // this could be created as appending one div instead for better styling
     document.getElementById("feed")
+        .appendChild(cancelButton)
         .appendChild(food)
         .appendChild(water)
         .appendChild(message)
         .appendChild(time)
         .appendChild(postButton)
 }
+
+
 
 
 /********************************************************************/
@@ -762,8 +809,8 @@ function openDay(date, month) {
 
     // hide empty feed title element (filler1 = empty feed title)
     document.getElementById("filler1").style.display = "none";
-      // check if user is signed in - call function to style
-      if (userID == "null" ) {
+    // check if user is signed in - call function to style
+    if (userID == "null") {
         userSignedOut();
         // alert("Error: no userID");
         // window.location.href = "../index.html"
@@ -1014,14 +1061,23 @@ function loadFeed(date, month) {
     if (day.length < 2) {
         day = "0" + day;
     }
+    document.getElementById("exFeedTitle").style.display = '';
+    document.getElementById("foodFeedTitle").style.display = '';
+    document.getElementById("taskFeedTitle").style.display = '';
+    document.getElementById("exFeed").style.display = '';
+    document.getElementById("foodFeed").style.display = '';
+    document.getElementById("taskFeed").style.display = '';
+    document.getElementById("exFeedTitle").innerHTML = 'EXERCISE FEED';
+    document.getElementById("foodFeedTitle").innerHTML = 'FOOD FEED';
+    document.getElementById("taskFeedTitle").innerHTML = 'TASK FEED';
 
     // load the exercise feed
     db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             createNewExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id);
             // show this feed title
-            if (doc.exists){
-            document.getElementById("exFeedTitle").style.display = '';
+            if (doc.exists) {
+                document.getElementById("exFeedTitle").innerHTML = 'EXERCISE FEED';
             }
         });
     });
@@ -1029,25 +1085,25 @@ function loadFeed(date, month) {
     db.collection("users").doc(userID).collection("foodAndWater").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             createNewFood(doc.data().food, doc.data().water, doc.data().time, doc.data().message, doc.id)
-       // show this feed title
-       if (doc.exists){
-       document.getElementById("foodFeedTitle").style.display = '';
-       }
+            // show this feed title
+            if (doc.exists) {
+                document.getElementById("foodFeedTitle").innerHTML = 'FOOD FEED';
+                        }
         });
     });
     // load the task feed
     db.collection("users").doc(userID).collection("tasks").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             createNewTask(doc.data().title, doc.data().description, doc.data().time, doc.id)
-        // show this feed title
-        if (doc.exists){
-        document.getElementById("taskFeedTitle").style.display = '';
-        }
+            // show this feed title
+            if (doc.exists) {
+                document.getElementById("taskFeedTitle").innerHTML = 'TASK FEED';
+            }
         });
     });
 }
 /////////////////////////////////////////////////////////////////////////////////////
-/////////------------------- LOAD THIS ACCOUNT -------------------/////////////
+/////////------------------- LOAD THIS ACCOUNT -------------------///////////////////
 ///////////////////////////////////////////////////////////////////////////////////// 
 // LOAD THE CURRENT USERS ACCOUNT PAGE FOR EDITING PURPOSES
 function loadAccount() {
@@ -1058,7 +1114,7 @@ function loadAccount() {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
-/////////------------------- DELETE TASK POST FROM DB ---------------////////////
+/////////------------------- DELETE TASK POST FROM DB ---------------////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // DELETE THIS 'ID' TASK ENTRY, CLEAR FEED, LOAD FEED
 function deleteTask(id) {
@@ -1104,7 +1160,7 @@ function deleteFood(id) {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
-/////////------------------- UPDATE TASK POST ----------------------/////////////
+/////////------------------- UPDATE TASK POST ----------------------/////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // INITIALIZE & SET EDIT VARS RESPECTIVELY, UPDATE TASK DB POST, RELOAD FEED
 function updateTaskEntry(docId) {
@@ -1465,7 +1521,7 @@ function makeClean(inputDiv) {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
-/////////------------------- TOGGLE HAMBURGER MENU -------------------/////////////
+/////////------------------- TOGGLE HAMBURGER MENU -------------------///////////////
 ///////////////////////////////////////////////////////////////////////////////////// 
 // TOGGLE BETWEEN HIDDEN/SHOWN STATE
 function myFunction() {
@@ -1475,4 +1531,154 @@ function myFunction() {
     } else {
         x.style.display = "block";
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- LOAD MY ACCOUNT VARS -------------------///////////////
+///////////////////////////////////////////////////////////////////////////////////// 
+// TOGGLE BETWEEN HIDDEN/SHOWN STATE
+function loadMyAccount() {
+    // clear the feed 
+    clearChildren();
+    // hide the buttons
+    document.getElementById('exButton').style.display = 'none';
+    document.getElementById('foodButton').style.display = 'none';
+    document.getElementById('taskButton').style.display = 'none';
+
+    // get username var
+
+    // load the account feed
+
+    // initialize div elements
+    var username = document.createElement('div');
+    var editButton = document.createElement('div');
+    var signOutButton = document.createElement('div');
+
+    //set ids
+
+    username.id = "usernameAccountID";
+    editButton.id = "editAccountID";
+    signOutButton.id = "editAccountID";
+
+    username.innerHTML = "<br><br><br><label class = 'accountUsername'>" + getURLParameter("username") + "'s account page <br><br></label>";
+    editButton.innerHTML = "<input onclick = 'editAccount()' type='submit' id = 'cancelButton1' value = 'EDIT'/>"
+    signOutButton.innerHTML = "<input onclick = 'signOutAccount()' type='submit' id = 'signOutButton1' value = 'SIGN OUT'/>"
+
+
+    // load the edit form on the feed
+    document.getElementById("feed")
+        .appendChild(username)
+        .appendChild(editButton)
+        .appendChild(signOutButton)
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- LOAD THE EDIT ACCOUNT FORM -------------------///////////////
+///////////////////////////////////////////////////////////////////////////////////// 
+// LOAD EDIT ACCOUNT FORM
+function editAccount() {
+    // clear the feed 
+    clearChildren();
+    // hide the buttons
+    document.getElementById('exButton').style.display = 'none';
+    document.getElementById('foodButton').style.display = 'none';
+    document.getElementById('taskButton').style.display = 'none';
+
+    //load form to edit my account
+    // initialize div elements
+    var cancelButton = document.createElement('div');
+    var username1 = document.createElement('div');
+    //  var edit2 = document.createElement('div');
+    var postButton = document.createElement('div');
+
+    cancelButton.id = "cancelAccountID";
+    username1.id = "usernameAccountID";
+    //  edit2.id = "editAccountID";
+    postButton.id = "postAccountID";
+
+
+    //set vars to pre load the edit form
+    cancelButton.innerHTML = "<input onclick = 'loadMyAccount()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+    username1.innerHTML = "<br><br><br><label class = 'exClass1'>Username: <br><br></label><input type='text' class = 'required' value = '" + username + "'><br><br><br>";
+    //  edit2.innerHTML = "<br><br><br><label class = 'exClass1'>Edit 2 <br><br></label><input type='text' class = 'required' value = '" + userID + "'><br><br><br>";
+    postButton.innerHTML = "<input onclick = 'updateAccount()' type='submit' id = 'cancelButton1' value = 'EDIT'/>"
+
+    // load the edit form on the feed
+    document.getElementById("feed")
+        .appendChild(cancelButton)
+        .appendChild(username1)
+        //  .appendChild(edit2)
+        .appendChild(postButton)
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- UPDATE ACCOUNT IN DB-------------------///////////////
+///////////////////////////////////////////////////////////////////////////////////// 
+// UPDATE ACCOUNT USERNAME
+function updateAccount() {
+    // TODO - UPDATE ACTUAL ACCOUNT USERNAME
+    // initialize vars
+    date = "" + currDate;
+    month = "" + currMonth;
+    var usernameEdit = username;
+    // var edit2, edit3;
+    var requiredInputs = document.querySelectorAll(".required");
+
+    // set edit vars respectively (none if empty)
+    for (var i = 0; i < requiredInputs.length; i++) {
+        if (requiredInputs[i] != "undefined" && requiredInputs[i] != "null") {
+            if (i == 0) {
+                // username
+                usernameEdit = requiredInputs[i].value;
+            }
+            // else if (i == 1) {
+            //     // edit2
+            //     edit2 = requiredInputs[i].value;
+            // }
+            // else if (i == 2) {
+            //     // edit3
+            //     edit3 = requiredInputs[i].value;
+            // }
+        }
+        else {
+            //empty input
+            //cant do empy input (this would mean setting to no username)
+            alert("Error empty username!")
+        }
+    }
+
+    // update these vars in database
+    db.collection("users").doc(userID).set({
+        username: usernameEdit,
+        userID: userID,
+        email: email
+    }).then(() => {
+        window.location.href = "../TrackingPage/tracking.html?userID=" + userID + "&username=" + usernameEdit + "&email=" + email;
+
+    })
+        .catch((error) => {
+            alert("ERROR submitting post!" + error);
+        });;
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- SIGN OUT OF ACCOUNT-------------------///////////////
+///////////////////////////////////////////////////////////////////////////////////// 
+// UPDATE ACCOUNT USERNAME
+function signOutAccount() {
+    firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+        window.location.href = "../TrackingPage/tracking.html";
+      }).catch((error) => {
+        // An error happened.
+        alert("Error signing out:" + error);
+      });
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- FAVORITE BUTTON CLICK-------------------///////////////
+///////////////////////////////////////////////////////////////////////////////////// 
+// LOAD A FAVORITE BUTTON FORM
+function signOutAccount() {
 }

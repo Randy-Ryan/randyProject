@@ -23,6 +23,19 @@ h2 {
     margin: 2%;
 }
 
+
+
+/* INPUT FIELDS ON FORMS */
+/* REQUIRED CLASS NAME STYLING */
+.required{
+  width: 85%;
+  height: 10%;
+  font-size: 50px;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+}
+
 /* ************************************************************************* */
 /* ************************************************************************* */
 /*                                FEED ELEMENT STYLING                                           */
@@ -33,11 +46,16 @@ h2 {
 #exerciseId {
   font-size: 250%;
   color: black;
-  background-color: #C19A6B;
+  background-color: #FFAF42;
+  
   text-align: center;
   border-radius: 20px;
   margin-bottom: 10%;
   border: 1px solid black;
+  display:block;
+  margin: 10%;
+
+
   /* text-shadow: 0 1px 0 #ccc,
   0 2px 0 #c9c9c9,
   0 3px 0 #bbb,
@@ -57,10 +75,13 @@ h2 {
   text-align: center;
   font-size: 250%;
   color: black;
-  background-color: #8e9eab;
+  background-color: #FE6E00;
   margin-bottom: 10%;
   border-radius: 20px;
   border: 1px solid black;
+  display:block;
+  margin: 10%;
+
   /* text-shadow: 0 1px 0 #ccc,
   0 2px 0 #c9c9c9,
   0 3px 0 #bbb,
@@ -79,11 +100,16 @@ h2 {
 #taskId{
   text-align: center;
   font-size: 250%;
-  color: white;
-  background-color: #800020;
+  color: black;
+  width: auto;
+  position: relative;
+  background-image: linear-gradient(#FFAF42, #FE6E00);
   margin-bottom: 10%;
   border-radius: 20px;
   border: 1px solid black;
+  background-color: red;
+  margin:10px;
+  display:block;
   /* text-shadow: 0 1px 0 #ccc,
   0 2px 0 #c9c9c9,
   0 3px 0 #bbb,
@@ -97,9 +123,6 @@ h2 {
   0 10px 10px rgba(0,0,0,.2),
   0 20px 20px rgba(0,0,0,.15); */
 }
-
-
-
 
 
 /* ************************************************************************* */
@@ -117,58 +140,69 @@ h2 {
 
 /* TASK FEED TITLE */
 #taskFeedTitle{
-  float:right;
-  width: 33%;
   margin: 0;
   margin-bottom: 0%;
   text-align: center;
   margin-bottom: 2%;
-
+  font-size: 75px;
 }
+
 /* EXERCISE FEED TITLE */
 #exFeedTitle{
-  float:left;
-  width: 33%;
-  margin: 0;
-  margin-left: 1%;
+  float:right;
+  width: 50%;
   text-align: center;
-  margin-bottom: 2%;
-}
-
-/* EXERCISE ELEMENTS DISPLAY FEED */
-#exFeed {
-  float:left;
-  width: 33%;
   margin: 0;
-  margin-left: 1%;
-
-
+  margin-bottom: 2%;
+  font-size: 50px;
 }
 /* FOOD FEED TITLE */
 #foodFeedTitle{
-  width: 33%;
-  margin: 0;
-  float: right;
-  margin-bottom: 0%;
+  float:left;
+  width: 50%;
   text-align: center;
+  margin: 0;
   margin-bottom: 2%;
+  font-size: 50px;
 }
-/* FOOD ELEMENTS DISPLAY FEED */
+
+/* EXERCISE DISPLAY FEED */
+#exFeed {
+  float:left;
+  width: 45%;
+  height: 100%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 4%;
+  border: 10px solid black;
+  overflow-y:auto;
+}
+/* FOOD DISPLAY FEED */
 #foodFeed{
-  width: 33%;
-  margin: 0;
-  float: right;
-  margin-bottom: 0%;
-
+  float:left;
+  width: 45%;
+  height: 100%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 1%;
+  border: 10px solid black;
+  overflow-y:auto;
 }
-/* TASK ELEMENTS DISPLAY FEED */
+/* TASK DISPLAY FEED */
 #taskFeed{
-  float:right;
-  width: 33%;
-  margin: 0;
-  margin-bottom: 0%;
+  /* overflow: auto; */
+  height: 75%;
+  padding:50px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 15%;
+  margin-right: 15%;
+  border: 10px solid black;
+  overflow-y:auto;
+   /* overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap; */
 }
-
 /* ************************************************************************* */
 /* ************************************************************************* */
 /*                                CALENDAR STYLING                                            */
@@ -266,12 +300,12 @@ li:hover{
 #foodButton {
   font-size: 30px;
   width: 33%;
-  background-color: #8e9eab;
+  background-color: #FE6E00;
   font-family: fantasy;
-  color: white;
+  color: black;
   border-radius: 10px;
-  margin-bottom: 15%;
-  padding: 5%;
+  margin-bottom: 10%;
+  padding: 3%;
 }
 /* ADD FOOD BUTTON */
 #exButton {
@@ -279,24 +313,24 @@ li:hover{
   margin-left: 1%;
   width: 33%;
   float: left;
-  background-color: #C19A6B;
-  color: white;
+  background-color: #FFAF42;
+  color: black;
   border-radius: 10px;
   font-family: fantasy;
-  margin-bottom: 15%;
-  padding: 5%;
+  margin-bottom: 10%;
+  padding: 3%;
 }
 /* ADD TASK BUTTON */
 #taskButton{
   font-size: 30px;
   width: 33%;
   float: right;
-  background-color: #800020;
-  color: white;
+  background-image: linear-gradient(#FFAF42, #FE6E00);
+  color: black;
   border-radius: 10px;
-  margin-bottom: 15%;
+  margin-bottom: 10%;
   font-family: fantasy;
-  padding: 5%;
+  padding: 3%;
 }
 
 
@@ -312,16 +346,64 @@ li:hover{
     border: 1px solid white;
 }
 
-/* INPUT FIELDS ON FORMS */
-/* REQUIRED CLASS NAME STYLING */
-.required{
-  width: 85%;
-  height: 10%;
-  font-size: 50px;
-  border-radius: 10px;
-  background-color: white;
-  color: black;
+/* CANCEL BUTTONS */
+#cancelButton1{
+  width: auto;
+  height: auto;
+  padding: 3%;
+  text-align: unset;
+  font-size: 40px;
+  border-radius: 100px;
+  background-color: gray;
+  color: white;
+  border: 1px solid black;
 }
+
+/* SIGNOUT BUTTONS */
+#signOutButton1{
+  width: auto;
+  height: auto;
+  padding: 3%;
+  text-align: unset;
+  font-size: 40px;
+  border-radius: 100px;
+  background-color: gray;
+  color: white;
+  border: 1px solid black;
+  margin-top: 10%;
+}
+
+/* PREV MONTH BUTTON */
+#prev { 
+  float: left;
+  padding-top: 10px;
+  margin-left: 15%;
+    font-size: 25px;
+    padding: 1%;
+    border-radius: 35px;
+    position: absolute; left: 2%;
+    background-color: white;
+    border: 3px solid black;
+}
+/* NEXT MONTH BUTTON ID */
+#next{
+  float: right;
+  padding-top: 10px;
+  margin-right: 15%;
+    font-size: 25px;
+    padding: 1%;
+    border-radius: 35px;
+    position: absolute; right: 2%;
+    background-color: white;
+    border: 3px solid black;
+}
+
+/* PREV AND NEXT BUTTON HOVER */
+.prev li:hover, .next li:hover{
+  background-color: black;
+  color: white;
+}
+
 
 /* ************************************************************************* */
 /* ************************************************************************* */
@@ -367,45 +449,6 @@ li:hover{
     align-items: center;
     padding: 5%;
 }
-
-/* ************************************************************************* */
-/* ************************************************************************* */
-/*                               PREV/NEXT MONTH BUTTONS                                            */
-/* ************************************************************************* */
-/* ************************************************************************* */
-
-/* PREV MONTH BUTTON */
-#prev { 
-  float: left;
-  padding-top: 10px;
-  margin-left: 15%;
-    font-size: 25px;
-    padding: 1%;
-    border-radius: 35px;
-    position: absolute; left: 2%;
-    background-color: white;
-    border: 3px solid black;
-}
-/* NEXT MONTH BUTTON ID */
-#next{
-  float: right;
-  padding-top: 10px;
-  margin-right: 15%;
-    font-size: 25px;
-    padding: 1%;
-    border-radius: 35px;
-    position: absolute; right: 2%;
-    background-color: white;
-    border: 3px solid black;
-}
-
-/* PREV AND NEXT BUTTON HOVER */
-.prev li:hover, .next li:hover{
-  background-color: black;
-  color: white;
-}
-
-
 
 /* ************************************************************************* */
 /* ************************************************************************* */
@@ -517,3 +560,41 @@ text-align: center;
   /* color: gray;   */
   /* background-color: black; */
 }
+
+
+/* ************************************************************************* */
+/* ************************************************************************* */
+/*                               IMAGES/ICONS                                            */
+/* ************************************************************************* */
+/* ************************************************************************* */
+
+
+/* DIV FOR ACCOUNT ICON */
+/* #accountDivID{
+ top:0;
+} */
+
+/* ACCOUNT ICON IMG ELEMENT*/
+#accountIcon{
+position: absolute;
+top:8%;
+left: 5%;
+height: 125px;
+width: 125px;
+margin-bottom: 5%;
+border-radius: 75px;
+
+}
+
+/* ACCOUNT ICON IMG ELEMENT*/
+#favoritesIcon{
+  position: absolute;
+  float: right;
+  /* top: 135%; */
+  top:8%;
+  right: 5%;
+  height: 125px;
+  width: 125px;
+  margin-bottom: 5%;
+  
+  }

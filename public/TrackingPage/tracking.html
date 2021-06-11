@@ -53,6 +53,7 @@
 </head>
 <br>
 <!-- LOAD HAMBURGER ICON -->
+<!-- UNCOMMENT THE FOLLOWING LINE OF CODE TO LOAD THE HAMBURGER ICON - CURRENTLY OUT -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- TOP NAVIGATION MENU-->
 <div class="topnav">
@@ -65,8 +66,7 @@
     <!-- HIDDEN LINKS (TOGGLED BY HAMBURGER MENU) -->
     <div id="myLinks" style="display: none;">
         <br>
-        <a id="accLink" href="./myAccount.html">MY ACCOUNT</a>
-        <a id="favLink" href="./myFavorites.html">ADD FAVORITES</a>
+        <a id="favLink" onclick="favoriteButtonClick()">ADD FAVORITES</a>
         <a id="logLink" style="display: none;" href="../LoginPage/login.html">LOGIN</a>
         <a id="regLink" style="display: none;" href="../RegisterPage/register.html">REGISTER</a>
     </div>
@@ -530,7 +530,7 @@
         </ul>
     </div>
     <!-- SIGNED OUT USER DISPLAY TITLE-->
-    <h2 id="signedOut" style="display: none;">Please sign in to use my tracking platform. 
+    <h2 id="signedOut" style="display: none;">Please sign in to use my tracking platform.
         The login & register page links are located in the menu at the top right</h2>
     <!-- EMPTY DATE TITLE ELEMENT -->
     <h2 id="filler1">Choose a date to view/add exercise and diet tracking</h2>
@@ -545,48 +545,59 @@
         I built this as a side project because I needed to start tracking my diet and
         exercise and I did not want to spend the money on an app!
     </h2>
-    <br><br>
-        <!-- ADD FOOD BUTTON -->
+    <br>
+    <!-- ACCOUNT ICON -->
+    <div id="accountDivID">
+        <img id = "accountIcon" onclick="loadMyAccount()" src="./contact.png" alt="accountIcon">
+    </div>
+    <!-- FAVORITES ICON -->
+    
+    <!-- <div id="favorites DivID">
+        <img id = "favoritesIcon" onclick="favoriteButtonClick()" src="../favicon_io/apple-touch-icon.png" alt="favoritesIcon">
+    </div> -->
+    <br>
+    <!-- ADD FOOD BUTTON -->
     <button id="foodButton" onclick="newFoodAndWater()" style="display: none;">Add food/bev</button>
-        <!-- ADD TASK BUTTON -->
+    <!-- ADD TASK BUTTON -->
     <button id="taskButton" onclick="newTask()" style="display:none;">Add task</button>
 
     <!-- ADD EXERCISE BUTTON -->
     <button id="exButton" onclick="newExercise()" style="display:none;">Add exercise</button>
 
-       <!-- GENERAL FEED INITIALIZATION -->
+    <!-- GENERAL FEED INITIALIZATION -->
     <div id="feed">
         <div id="exerciseID" style="display: none; align-items: center; text-align: center;"></div><br><br><br>
         <div id="foodID" style="display: none; align-items: center; text-align: center; "></div>
         <div id="activeDay"></div>
     </div>
-         <!-- TASK FEED TITLE INITIALIZATION -->
-         <h2 id="taskFeedTitle" style="display: none; top: 0;">
-            TASK FEED
-         </h2>
-           <!-- FOOD FEED TITLE INITIALIZATION -->
-           <h2 id="foodFeedTitle" style="display: none; top: 0;">
-            FOOD FEED
-           </h2>
-              <!-- EXERCISE FEED TITLE INITIALIZATION -->
-    <h2 id="exFeedTitle" style="display: none; top: 0;">
-        EXERCISE FEED
+    <!-- TASK FEED TITLE INITIALIZATION -->
+    <h2 id="taskFeedTitle" style="display: none;">
     </h2>
-    <!-- TASK FEED INITIALIZATION -->
+    <br>
     <div id="taskFeed">
-    
     </div>
+    <br><br>
+    <!-- FOOD FEED TITLE INITIALIZATION -->
+    <h2 id="foodFeedTitle" style="display: none;">
+    </h2>
+    <!-- EXERCISE FEED TITLE INITIALIZATION -->
+    <h2 id="exFeedTitle" style="display: none;">
+    </h2>
+    <div id = "allFeeds" style="width: 100%">
+    <!-- TASK FEED INITIALIZATION -->
     <!-- FOOD FEED INITIALIZATION -->
     <div id="foodFeed">
         <br>
-       
-    <br>
     </div>
     <!-- EXERCISE FEED INITIALIZATION -->
     <div id="exFeed"><br>
-    
-    <br>
+        <br>
     </div>
+    <div id="accountFeed"><br>
+        <br>
+    </div>
+    
+</div>
 
     <!-- <br><br><br><br><br><br><br><br><br> -->
 

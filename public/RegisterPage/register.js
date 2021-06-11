@@ -116,7 +116,7 @@ window.onload = function () {
                                 userID: userId,
                             }).then(function () {
                                 alert('Account successfully created and added to database! Welcome ' + username);
-                            window.location.href = "../TrackingPage/tracking.html?userID=" + userId + "&username=" + username;
+                            window.location.href = "../TrackingPage/tracking.html?userID=" + userId + "&username=" + username + "&email=" + email;
                             }).catch(function (error) {
                                 // An error happened.
                                 alert(error);
