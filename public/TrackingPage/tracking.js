@@ -1242,7 +1242,7 @@ function favoriteButtonClick() {
     task.id = "taskFavoriteID";
 
 
-    cancelButton.innerHTML = "<input type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+    cancelButton.innerHTML = "<input type='submit' onclick = 'reload()'id = 'cancelButton1' value = 'CANCEL'/>"
     food.innerHTML = "<br><br><br><button onclick = 'newFavFood()' class = 'favButton'>ADD FAVORITE FOOD</button>";
     exercise.innerHTML = "<br><br><br><button onclick = 'newFavExercise()'class = 'favButton'>ADD FAVORITE EXERCISE</button>";
     task.innerHTML = "<br><br><br><button onclick = 'newFavTask()'class = 'favButton'>ADD FAVORITE TASK</button>";
