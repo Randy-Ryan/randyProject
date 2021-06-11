@@ -1305,7 +1305,7 @@ function loadMyAccount() {
     document.getElementById('exButton').style.display = 'none';
     document.getElementById('foodButton').style.display = 'none';
     document.getElementById('taskButton').style.display = 'none';
-    document.getElementById('favoritesDivID').style.display = 'none';
+    document.getElementById('favoritesDivID').style.display = '';
 
     // get username var
 
