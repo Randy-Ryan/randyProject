@@ -369,6 +369,7 @@ function prevMonth(currMonth) {
 /////////------------------- CLEAR THE CURRENT FEED -----------------////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // REMOVE ALL CHILD NODES FROM ALL FEEDS (FEED, EXERCISE, FOOD)
+//TO DO SPLIT THIS INTO STYLING/SHOWING INSTEAD OF CLEARING CHILDREN
 function clearChildren() {
     // clear HTML/TEXT content of all feeds
     document.getElementById('feed').textContent = '';
@@ -378,6 +379,10 @@ function clearChildren() {
     document.getElementById('foodFeed').textContent = '';
     document.getElementById('foodFeed').innerHTML = '';
     document.getElementById("favFeedTitle").style.display = "none";
+    document.getElementById("fullFavFeed").style.display = "none";
+    document.getElementById("favFeedTitle").style.display = "none";
+
+
 
     document.getElementById("exFeedTitle").style.display = "none";
     document.getElementById("taskFeedTitle").style.display = "none";
@@ -408,8 +413,19 @@ function clearChildren() {
     while (el2.firstChild) el2.innerHTML = '';
 
     // remove child nodes of task feed
-    var el2 = document.getElementById('favFeed');
+    var el2 = document.getElementById('okFullFoodID');
     while (el2.firstChild) el2.innerHTML = '';
+       // remove child nodes of task feed
+       var el2 = document.getElementById('okFullExerciseID');
+       while (el2.firstChild) el2.innerHTML = '';
+          // remove child nodes of task feed
+    var el2 = document.getElementById('okFullTaskID');
+    while (el2.firstChild) el2.innerHTML = '';
+
+    //   // remove child nodes of task feed
+    //   var el2 = document.getElementById('fullFavFeed');
+    //   while (el2.firstChild) el2.innerHTML = '';
+  
 
 
     //TODO//
@@ -509,25 +525,34 @@ function createNewFavTask(ttl, desc, t, id) {
 
     addEditElement.id = "editID"
     addFavoriteElement.id = "favoriteID"
-    newTask.id = "taskID";
+    newTask.id = "favID";
     newTask.className = "testtt";
 
     //TODO//
     // furthis this style implementation
 
     //format a string to set element html
-    var fullString = "<br>";
+    var fullString = "";
     if (ttl != "") {
         fullString = fullString + "Title:<br>" + ttl + "<br><br>";
+    }
+    else{
+        fullString = fullString + "<br><br><br>";
     }
     if (desc != "") {
         fullString = fullString + "Description:<br>" + desc + "<br><br>";
     }
+    else{
+        fullString = fullString + "<br><br><br>";
+    }
     if (t != "") {
         fullString = fullString + "Time:<br>" + t + "<br><br>";
     }
+    else{
+        fullString = fullString + "<br><br><br>";
+    }
 
-    fullString = fullString + "</label>";
+    fullString = fullString + "<br><br><br></label>";
 
     // create the new task div and set HTML content w/ respective vars
     newTask.innerHTML = fullString;
@@ -577,7 +602,7 @@ function createNewFavTask(ttl, desc, t, id) {
     // }
 
     // load new exercise div into the exercise feed
-    document.getElementById("favFeed").appendChild(newTask)
+    document.getElementById("feedTest3").appendChild(newTask)
         .appendChild(addFavoriteElement)
         .appendChild(addEditElement)
         ;
@@ -685,27 +710,41 @@ function createNewFavExercise(r, s, w, t, m, id) {
     var newExercise = document.createElement('div');
     var addEditElement = document.createElement('div');
     var addFavoriteElement = document.createElement('div');
-    newExercise.id = "exerciseID";
+    newExercise.id = "favID";
     newExercise.className = "testtt";
 
     //format a string to set element html
-    var fullString = "<br>";
+    var fullString = "";
     if (m != "") {
         fullString = fullString + "Workout:<br>" + m + "<br><br>";
+    }
+    else{
+        fullString = fullString + "<br><br><br>";
     }
     if (r != "") {
         fullString = fullString + "Reps:<br>" + r + "<br><br>";
     }
+    else{
+        fullString = fullString + "<br><br><br>";
+    }
     if (s != "") {
         fullString = fullString + "Sets:<br>" + s + "<br><br>";
+    }
+    else{
+        fullString = fullString + "<br><br><br>";
     }
     if (w != "") {
         fullString = fullString + "Weight:<br>" + w + "<br><br>";
     }
+    else{
+        fullString = fullString + "<br><br><br>";
+    }
     if (t != "") {
         fullString = fullString + "Time:<br>" + t + "<br><br>";
     }
-
+    else{
+        fullString = fullString + "<br><br><br>";
+    }
     fullString = fullString + "</label>";
 
     //TODO//
@@ -767,7 +806,7 @@ function createNewFavExercise(r, s, w, t, m, id) {
     // }
 
     // load new exercise div into the exercise feed
-    document.getElementById("favFeed")
+    document.getElementById("feedTest2")
         .appendChild(newExercise)
         .appendChild(addFavoriteElement)
         .appendChild(addEditElement)
@@ -861,27 +900,39 @@ function createNewFavFood(f, w, t, m, id) {
     // needs a hover attribute
 
     //format a string to set element html
-    var fullString = "<br>";
+    var fullString = "";
     if (f != "") {
         fullString = fullString + "Food:<br>" + f + "<br><br>";
+    }
+    else{
+        fullString = fullString + "<br><br><br>";
     }
     if (w != "") {
         fullString = fullString + "Beverage:<br>" + w + "<br><br>";
     }
+    else{
+        fullString = fullString + "<br><br><br>";
+    }
     if (m != "") {
         fullString = fullString + "Note:<br>" + m + "<br><br>";
+    }
+    else{
+        fullString = fullString + "<br><br><br>";
     }
     if (t != "") {
         fullString = fullString + "Time:<br>" + t + "<br><br>";
     }
-    fullString = fullString + "</label>";
+    else{
+        fullString = fullString + "<br><br><br>";
+    }
+    fullString = fullString + "<br><br><br></label>";
 
     // initialize new food div: set id & class name
     var newFood = document.createElement('div');
     var addFavoriteElement = document.createElement('div');
     var addEditElement = document.createElement('div');
 
-    newFood.id = "foodID";
+    newFood.id = "favID";
     addFavoriteElement.id = "addFavoriteElement"
     addEditElement.id = "addEditElement"
 
@@ -941,7 +992,7 @@ function createNewFavFood(f, w, t, m, id) {
     // }
 
     // load new food div into the food feed
-    document.getElementById("favFeed").appendChild(newFood).appendChild(addFavoriteElement).appendChild(addEditElement);
+    document.getElementById("feedTest1").appendChild(newFood).appendChild(addFavoriteElement).appendChild(addEditElement);
 }
 
 
@@ -1017,7 +1068,7 @@ function newFavTask() {
     postButton.id = "postButton";
 
     // then add the HTML content of the element
-    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
     head.innerHTML = "<br><br><br><label class = 'exClass1'>FAVORITE TASK<br>";
     title.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: Chemistry, Dentist, Birthday, etc.) <br><br></label><input id='taskReq1' onclick = '" + 'makeClean(document.getElementById("taskReq1"))' + "' type='text' class = 'required'><br><br><br>";
     description.innerHTML = "<label class = 'exClass1'>Description (ex: Due at 11:59pm, buy a gift, etc.) <br><br></label> <input type='text' id='taskReq2' onclick = '" + 'makeClean(document.getElementById("taskReq2"))' + "' class = 'required'><br><br><br>";
@@ -1061,7 +1112,7 @@ function newExercise() {
 
     // then add the HTML content of the element
     // title and time are required for inputs
-    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
     message.innerHTML = "<br><br><br><label class = 'exClass1'>Workout (ex: DB Bench Press. Difficult) <br><br></label><input id='exReq1' onclick = '" + 'makeClean(document.getElementById("exReq1"))' + "' type='text' class = 'required' ><br><br><br>";
     reps.innerHTML = "<label class = 'exClass1'>Reps (ex: 8) <br><br></label> <input type='text' id='exReq2' onclick = '" + 'makeClean(document.getElementById("exReq2"))' + "' class = 'required' ><br><br><br>";
     sets.innerHTML = "<label class = 'exClass1'>Sets (ex: 3)<br><br></label><input type='text' id='exReq3' onclick = '" + 'makeClean(document.getElementById("exReq3"))' + "' class = 'required'><br><br><br>";
@@ -1109,7 +1160,7 @@ function newFavExercise() {
 
     // then add the HTML content of the element
     // title and time are required for inputs
-    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
     title.innerHTML = "<br><br><br><label class = 'exClass1'>FAVORITE EXERCISE<br>";
     message.innerHTML = "<br><br><br><label class = 'exClass1'>Workout (ex: DB Bench Press. Difficult) <br><br></label><input id='exReq1' onclick = '" + 'makeClean(document.getElementById("exReq1"))' + "' type='text' class = 'required' ><br><br><br>";
     reps.innerHTML = "<label class = 'exClass1'>Reps (ex: 8) <br><br></label> <input type='text' id='exReq2' onclick = '" + 'makeClean(document.getElementById("exReq2"))' + "' class = 'required' ><br><br><br>";
@@ -1155,7 +1206,7 @@ function newFoodAndWater() {
     postButton.id = "postButtonFoodNew";
 
     // then add the HTML content of the element
-    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
     food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: PB&J plus a banana)<br><br> </label> <input type='text' id='foodReq1' onclick = '" + 'makeClean(document.getElementById("foodReq1"))' + "' class = 'required'><br><br><br>";
     water.innerHTML = "<label class = 'exClass1'>Water/Beverages (ex: Water, Protein Shake)<br> <br> </label><input type='text' id='foodReq2' onclick = '" + 'makeClean(document.getElementById("foodReq2"))' + "' class = 'required'><br><br><br>";
     message.innerHTML = "<label class = 'exClass1'>Note (ex: 400 calories)<br><br> </label><input type='text' id='foodReq3' onclick = '" + 'makeClean(document.getElementById("foodReq3"))' + "' class = 'required'><br><br><br>";
@@ -1198,7 +1249,7 @@ function newFavFood() {
     postButton.id = "postButtonFoodNew";
 
     // then add the HTML content of the element
-    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
     title.innerHTML = "<br><br><br><label class = 'exClass1'>FAVORITE FOOD<br>";
     food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: PB&J plus a banana)<br><br> </label> <input type='text' id='foodReq1' onclick = '" + 'makeClean(document.getElementById("foodReq1"))' + "' class = 'required'><br><br><br>";
     water.innerHTML = "<label class = 'exClass1'>Water/Beverages (ex: Water, Protein Shake)<br> <br> </label><input type='text' id='foodReq2' onclick = '" + 'makeClean(document.getElementById("foodReq2"))' + "' class = 'required'><br><br><br>";
@@ -1245,7 +1296,7 @@ function favoriteButtonClick() {
     task.id = "taskFavoriteID";
 
 
-    cancelButton.innerHTML = "<input type='submit' onclick = 'reload()'id = 'cancelButton1' value = 'CANCEL'/>"
+    cancelButton.innerHTML = "<input type='submit' onclick = 'reload()'id = 'cancelButton1' value = 'CANCEL'/><br>"
     food.innerHTML = "<br><br><br><button onclick = 'newFavFood()' id = 'favFoodBut' class = 'favButton'>ADD FAVORITE FOOD</button>";
     exercise.innerHTML = "<br><br><br><button onclick = 'newFavExercise()' id = 'favExBut' class = 'favButton'>ADD FAVORITE EXERCISE</button>";
     task.innerHTML = "<br><br><br><button onclick = 'newFavTask()' id = 'favTaskBut' class = 'favButton'>ADD FAVORITE TASK</button>";
@@ -1285,7 +1336,7 @@ function editAccount() {
 
 
     //set vars to pre load the edit form
-    cancelButton.innerHTML = "<input onclick = 'loadMyAccount()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+    cancelButton.innerHTML = "<input onclick = 'loadMyAccount()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
     username1.innerHTML = "<br><br><br><label class = 'exClass1'>Username: <br><br></label><input type='text' class = 'required' value = '" + username + "'><br><br><br>";
     //  edit2.innerHTML = "<br><br><br><label class = 'exClass1'>Edit 2 <br><br></label><input type='text' class = 'required' value = '" + userID + "'><br><br><br>";
     postButton.innerHTML = "<input onclick = 'updateAccount()' type='submit' id = 'cancelButton1' value = 'UPDATE'/>"
@@ -2018,6 +2069,8 @@ function loadFeed(date, month) {
     document.getElementById("foodFeedTitle").style.display = "";
     document.getElementById("taskFeedTitle").style.display = "";
     document.getElementById("favoritesDivID").style.display = "";
+    document.getElementById("fullFavFeed").style.display = "";
+    document.getElementById("favFeedTitle").style.display = "";
 
     if (day.length < 2) {
         day = "0" + day;
@@ -2036,8 +2089,6 @@ function loadFeed(date, month) {
     document.getElementById("foodFeedTitle").innerHTML = 'FOOD';
     document.getElementById("taskFeedTitle").innerHTML = 'TASKS';
     document.getElementById("favFeedTitle").innerHTML = 'FAVORITES';
-
-
     // load the exercise feed
     db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -2077,6 +2128,11 @@ function loadFeed(date, month) {
             createNewFavTask(doc.data().title, doc.data().description, doc.data().time, doc.id)
         });
     });
+
+        document.getElementById("okFullFoodID").innerHTML = 'FOOD FAVORITES';
+    document.getElementById("okFullTaskID").innerHTML = 'TASK FAVORITES';
+    document.getElementById("okFullExerciseID").innerHTML = 'EXERCISE FAVORITES';
+
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- DELETE TASK POST FROM DB ---------------////////////////
@@ -2857,8 +2913,13 @@ function userSignedOut() {
     document.getElementById('foodButton').style.display = 'none';
     document.getElementById('todaysDate').style.display = 'none';
     document.getElementById('accountIcon').style.display = 'none';
-    document.getElementById('favoritesDivID').style.display = 'none';
+    document.getElementById('favoritesIcon').style.display = 'none';
+    document.getElementById('favLabel').style.display = 'none';
+
+    // document.getElementById('favoritesDivID').style.display = 'none';
     document.getElementById('currentDateDisplay').style.display = 'none';
+    document.getElementById("fullFavFeed").style.display = "none";
+    document.getElementById("favFeedTitle").style.display = "none";
 
     document.getElementById('filler1').style.display = 'none';
 
@@ -2953,9 +3014,9 @@ function editThisFoodFav(f) {
     time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br>  </label><input type='text' id='timeFoodInput' class = 'required' value = '" + t + "'><br><br> <br> ";
     message.innerHTML = "<label class = 'exClass1'>Note (ex: 400 calories)<br><br> </label><input type='text' id='messageFoodInput'class = 'required' value = '" + m + "'><br><br><br>";
     // update button
-    postButton.innerHTML = "<input onclick = 'updateFavFoodEntry(" + id + ");' type='submit' id = 'pButton1' value = 'UPDATE'/>";
+    postButton.innerHTML = "<input onclick = 'updateFavFoodEntry(" + id + ")' type='submit' id = 'pButton1' value = 'UPDATE'/>";
     // delete button
-    deleteButton.innerHTML = "<input onclick = 'deleteFavFood(" + id + ");' type='submit' id = 'pButton1' value = 'DELETE'/>";
+    deleteButton.innerHTML = "<input onclick = 'deleteFavFood(" + id + ")' type='submit' id = 'pButton1' value = 'DELETE'/>";
 
     // load the food form on the feed
     document.getElementById("feed")

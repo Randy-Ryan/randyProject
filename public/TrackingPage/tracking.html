@@ -55,12 +55,12 @@
 <a id="logLink" style="display: none;" href="./login.html">LOGIN</a>
 <a id="regLink" style="display: none;" href="./register.html">REGISTER</a>
 <br>
-<label id = "currentDateDisplay"></label>
+<label id="currentDateDisplay"></label>
 <!-- LOAD HAMBURGER ICON -->
 <!-- UNCOMMENT THE FOLLOWING LINE OF CODE TO LOAD THE HAMBURGER ICON - CURRENTLY OUT -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- TOP NAVIGATION MENU-->
-<div class="topnav" id = "topnav1">
+<div class="topnav" id="topnav1">
     <!-- THIS PAGE TITLE/HEADER -->
     <label id="navHeader">TRACKING PAGE</label><br>
     <!-- HAMBURGER MENU -->
@@ -71,13 +71,14 @@
     <div id="myLinks" style="display: none;">
         <br>
         <a id="favLink" onclick="favoriteButtonClick()">ADD FAVORITES</a>
-       
+
     </div>
 </div>
-  <!-- ACCOUNT ICON -->
-  <div id="accountDivID" style="text-align: center;">
-    <img id = "accountIcon" onclick="loadMyAccount()" src="./contact.png" alt="accountIcon">
+<!-- ACCOUNT ICON -->
+<div id="accountDivID" style="text-align: center;">
+    <img id="accountIcon" onclick="loadMyAccount()" src="./contact.png" alt="accountIcon">
 </div>
+
 <body>
     <!-- USERNAME TITLE -->
     <div id="usernameHeader">
@@ -554,12 +555,10 @@
     <br>
     <!-- FAVORITES ICON -->
 
-<div id="favoritesDivID" style="text-align: center;">
-    <img id = "favoritesIcon" onclick="favoriteButtonClick()" src="./icons8-plus-144.png" alt="favoritesIcon">
-    <label id = "favLabel">NEW FAVORITE</label>
-</div>
-
-    <br>
+    <div id="favoritesDivID" style="text-align: center;">
+        <img id="favoritesIcon" onclick="favoriteButtonClick()" src="./icons8-plus-144.png" alt="favoritesIcon">
+        <label id="favLabel">NEW FAVORITE</label>
+    </div>
     <!-- GENERAL FEED INITIALIZATION -->
     <div id="feed">
         <div id="exerciseID" style="display: none; align-items: center; text-align: center;"></div><br><br><br>
@@ -569,47 +568,76 @@
     <!-- FAV FEED TITLE INITIALIZATION -->
     <h2 id="favFeedTitle" style="display: none;">
     </h2>
-    <br>
-    <div id="favFeed">
-    </div>
-    <br><br>
-    <!-- TASK FEED TITLE INITIALIZATION -->
-    <h2 id="taskFeedTitle" style="display: none;">
-    </h2>
-        <!-- ADD TASK BUTTON -->
-        <button id="taskButton" onclick="newTask()" style="display:none;">Add task</button>
-    <div id="taskFeed">
-    </div>
-    <br><br>
-    <!-- FOOD FEED TITLE INITIALIZATION -->
-    <h2 id="foodFeedTitle" style="display: none;">
-    </h2>
-     <!-- ADD FOOD BUTTON -->
-     <button id="foodButton" onclick="newFoodAndWater()" style="display: none;">Add food</button>
-     <br>
-      <!-- FOOD FEED INITIALIZATION -->
-    <div id="foodFeed">    
-    </div>
-    <!-- EXERCISE FEED TITLE INITIALIZATION -->
-    <h2 id="exFeedTitle" style="display: none;">
-    </h2>
-        <!-- ADD EXERCISE BUTTON -->
-        <button id="exButton" onclick="newExercise()" style="display:none;">Add exercise</button>
 
-    <div id = "allFeeds" style="width: 100%">
-    <!-- TASK FEED INITIALIZATION -->
-   
-    <!-- EXERCISE FEED INITIALIZATION -->
-    <div id="exFeed"><br>
-        
-    </div>
-    <div id="accountFeed"><br>
+    <div id="fullFavFeed">
+        <div id="feedTest1">
+            <div id="favFeedFood1">
+                <div id="okFullFoodID">
+                    <label id="food56" class="favLab">FOOD</label>
+                </div>
+            </div>
+        </div>
+        <div id="feedTest2">
+            <div id="favFeedExercise1">
+                <div id="okFullExerciseID">
+                    <label id="ex56" class="favLab">EXERCISE</label>
+                </div>
+            </div>
+        </div>
+        <div id="feedTest3">
+            <div id="favFeedTask1">
+                <div id="okFullTaskID">
+                    <label id="task56" class="favLab">TASK</label>
+                </div>
+            </div>
+        </div>
         <br>
     </div>
-    
-</div>
+    <div id="favFeed">
+        <!-- FEED DIV INSIDE FAV FEED -->
 
-    <!-- <br><br><br><br><br><br><br><br><br> -->
+    </div>
+
+
+
+    <!-- ADD TASK BUTTON -->
+    <button id="taskButton" onclick="newTask()" style="display:none;">Add task</button>
+    <!-- ADD FOOD BUTTON -->
+    <button id="foodButton" onclick="newFoodAndWater()" style="display: none;">Add food</button>
+    <!-- ADD EXERCISE BUTTON -->
+    <button id="exButton" onclick="newExercise()" style="display:none;">Add exercise</button>
+    <br>
+
+    <div id="titleDiv">
+        <!-- TASK FEED TITLE INITIALIZATION -->
+        <h2 id="taskFeedTitle" style="display: none;">
+        </h2>
+        <!-- EXERCISE FEED TITLE INITIALIZATION -->
+        <h2 id="exFeedTitle" style="display: none;">
+        </h2>
+        <!-- FOOD FEED TITLE INITIALIZATION -->
+        <h2 id="foodFeedTitle" style="display: none;">
+        </h2>
+        <!-- TASK FEED INITIALIZATION -->
+        <div id="taskFeed">
+        </div>
+        <!-- EXERCISE FEED INITIALIZATION -->
+        <div id="exFeed"><br>
+        </div>
+        <!-- FOOD FEED INITIALIZATION -->
+        <div id="foodFeed">
+        </div>
+
+        <!-- <div id="allFeeds" style="width: 100%">
+            </div> -->
+
+        <div id="accountFeed"><br>
+            <br>
+        </div>
+
+
+
+        <!-- <br><br><br><br><br><br><br><br><br> -->
 
 </html>
 <br><br><br><br><br><br><br><br><br><br><br><br><br>

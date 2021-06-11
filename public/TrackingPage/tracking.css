@@ -18,6 +18,9 @@ ul {
 h2 {
     margin: 2%;
 }
+body{
+  height: auto;
+}
 
 
 
@@ -122,6 +125,130 @@ h2 {
 }
 
 
+
+#favLab{
+  position: relative;
+  padding: 5%;
+  width: auto;
+
+}
+/* EDIT THE FEED TITLE ELEMENTS */
+
+#feedTest1{
+  font-size: 30px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  margin-right: 50%;
+
+}
+#feedTest2{
+  font-size: 30px;
+  width: auto;
+  margin-left: 0;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  margin-right: 50%;
+
+}
+#feedTest3{
+  font-size: 30px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  margin-right: 50%;
+
+}
+
+#food56, #ex56, #task56{
+  width: 50%;
+  /* top: 50%; */
+}
+
+
+
+/* EDIT THE FEED ELEMENTS */
+#favFeedFood1{
+  position: relative;
+  font-size: 50px;
+  float: left;
+  width: 500px;
+  margin-right: 20%;
+   margin-top: 50%;
+
+}
+#favFeedExercise1{
+  position: relative;
+  font-size: 50px;
+  float: left;
+  width: 500px;
+  margin-right: 20%;
+  margin-top: 50%;
+
+}
+#favFeedTask1{
+  position: relative;
+  font-size: 50px;
+  float: left;
+  width: 500px;
+  margin-right: 20%;
+  margin-top: 50%;
+
+}
+
+#okFullExerciseID{
+  width: auto;
+  margin: 0;
+  padding-right:100%;
+
+}
+#okFullFoodID{
+  width: auto;
+  margin: 0;
+  padding-right: fill;
+
+
+}
+#okFullTaskID{
+  width: auto;
+  margin: 0;
+  padding-right: fill;
+
+}
+
+
+/* FAV POST ELEMENT */
+#favId{
+  text-align:justify;
+  font-size: 30px;
+  color: black;
+  background-color: white;
+  border: 5px solid black;
+  margin: 10%;
+  padding: 10%;
+  position: relative;
+  width: 500px;
+  height: auto;
+  display:inline-block;
+  box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+  text-shadow: 0 1px 0 #ccc,
+  0 2px 0 #c9c9c9,
+  0 3px 0 #bbb,
+  0 4px 0 #b9b9b9,
+  0 5px 0 #aaa,
+  0 6px 1px rgba(0,0,0,.1),
+  0 0 5px rgba(0,0,0,.1),
+  0 1px 3px rgba(0,0,0,.3),
+  0 3px 5px rgba(0,0,0,.2),
+  0 5px 10px rgba(0,0,0,.25),
+  0 10px 10px rgba(0,0,0,.2),
+  0 20px 20px rgba(0,0,0,.15);
+}
+
+
 /* ************************************************************************* */
 /* ************************************************************************* */
 /*                                FEED STYLING & TITLES                              */
@@ -133,48 +260,72 @@ h2 {
 #feed{
   text-align: center;
 }
-/* TASK FEED TITLE */
-#taskFeedTitle{
-  margin: 0;
-  margin-bottom: 0%;
-  text-align: center;
-  margin-bottom: 2%;
-  font-size: 75px;
-}
+
 /* TASK FEED TITLE */
 #favFeedTitle{
   margin: 0;
   margin-bottom: 0%;
   text-align: center;
   margin-bottom: 2%;
+  font-family: monospace;
   font-size: 75px;
+}
+/* TASK FEED TITLE */
+#taskFeedTitle{
+  width: 33%;
+  float: right;
+  text-align: center;
+  font-family: monospace;
+  margin: 0;
+  margin-bottom: 2%;
+  font-size: 50px;
 }
 
+#titleDiv{
+  width: 100%;
+  height: auto;
+  /* border: 1px solid black; */
+
+}
+
+#feedDiv{
+  width: 100%;
+  /* border: 1px solid black; */
+}
 /* EXERCISE FEED TITLE */
 #exFeedTitle{
-  width: 100%;
-  text-align: center;
-  margin: 0;
-  margin-top: 10%;
-  margin-bottom: 5%;
-  font-size: 75px;
-}
-/* FOOD FEED TITLE */
-#foodFeedTitle{
-  width: 100%;
+  width: 31%;
+  float: left;
   text-align: center;
   margin: 0;
   margin-bottom: 2%;
-  font-size: 75px;
+  font-family: monospace;
+  font-size: 50px;
+}
+/* FOOD FEED TITLE */
+#foodFeedTitle{
+  width: 30%;
+  float: left;
+  text-align: center;
+  margin: 0;
+  margin-left: 5%;
+  font-family: monospace;
+
+  margin-bottom: 2%;
+  font-size: 50px;
 }
 /* EXERCISE DISPLAY FEED */
 #exFeed {
-  width: 80%;
+  width: 32%;
   height: 50%;
-  margin-top: 5%;
+  margin: 0;
+  margin-top: 0%;
   margin-bottom: 5%;
-  margin-left: 10%;
-  border: 10px solid black;
+  margin-left: 1%;
+  float: left;
+  border-radius: 10px;
+  margin-top: 5%;
+  padding: 0;
   overflow-y:auto;
   background-color: #efecec;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
@@ -183,28 +334,32 @@ h2 {
 }
 /* FOOD DISPLAY FEED */
 #foodFeed{
-  width: 80%;
+  width: 32%;
   height: 50%;
+  float: left;
+  margin: 0;
+  padding: 0;
+  margin-left: 1%;
   margin-top: 5%;
+  border-radius: 10px;
   margin-bottom: 5%;
-  margin-left: 10%;
-  border: 10px solid black;
   overflow-y:auto;
   background-color: #f5d020;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
-
-
 }
 /* TASK DISPLAY FEED */
 #taskFeed{
   /* overflow: auto; */
-  width: 80%;
+  width: 32%;
   height: 50%;
+  margin: 0;
+  border-radius: 10px;
   margin-top: 5%;
   margin-bottom: 5%;
-  margin-left: 10%;
-  border: 10px solid black;
-  overflow-y:auto;
+  margin-right: 1%;
+ padding: 0;
+ float: right;
+ overflow-y:auto;
   background-color: #772f1a;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
 
@@ -212,16 +367,36 @@ h2 {
   overflow-y: hidden;
   white-space: nowrap; */
 }
-/* TASK DISPLAY FEED */
-#favFeed{
+
+#okFullFoodID{
+  margin: 10%;
+  /* background-color: black; */
+
+}
+#okFullExerciseID{
+  margin: 10%;
+  /* background-color: black; */
+
+}
+#okFullTaskID{
+  margin: 10%;
+  /* background-color: black; */
+
+}
+
+/* FAV DISPLAY FEED */
+#fullFavFeed{
   /* overflow: auto; */
-  width: 80%;
-  height: 50%;
+  width: 90%;
+  height: auto;
   margin-top: 5%;
   margin-bottom: 5%;
-  margin-left: 10%;
+  margin-left: 5%;
+
   border: 10px solid black;
-  overflow-y:auto;
+  overflow-x:auto;
+  white-space: nowrap;
+
   background-color: #772f1a;
   background-image: linear-gradient(to right, #f6d285, #bbf0f3);
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
@@ -327,46 +502,53 @@ li:hover{
 
 /* ADD EXERCISE BUTTON */
 #foodButton {
-  font-size: 50px;
-  width: 80%;
+  font-size: 35px;
+  width: 33%;
+  float: left;
   background-color: #f53803;
   font-family: fantasy;
   color: black;
   border-radius: 10px;
+  margin: 0%;
   margin-bottom: 10%;
-  margin-left: 10%;
-  padding: 5%;
+  padding-top: 1%;
+  padding-bottom: 1%;
   text-align: center;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
 
 }
 /* ADD FOOD BUTTON */
 #exButton {
-  font-size: 50px;
+  font-size: 35px;
   margin-left: 1%;
-  width: 80%;
+  width: 33%;
+  float: left;
+  margin: 0%;
+  padding-top: 1%;
+  padding-bottom: 1%;
   background-color: #f9aba4;
   color: black;
   border-radius: 10px;
   font-family: fantasy;
   margin-bottom: 10%;
-  margin-left: 10%;
-  padding: 5%;
   text-align: center;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
 
 }
 /* ADD TASK BUTTON */
 #taskButton{
-  font-size: 50px;
-  width: 80%;
+  font-size: 35px;
+  width: 33%;
+  float: left;
   background-color: #f2a65a;
   color: black;
+  margin: 0%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin-left: 1%;
   border-radius: 10px;
   margin-bottom: 10%;
   font-family: fantasy;
-  margin-left: 10%;
-  padding: 5%;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
 
   /* text-align: center; */
