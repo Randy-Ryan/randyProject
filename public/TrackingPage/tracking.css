@@ -391,14 +391,13 @@ li:hover{
 
 /* CANCEL BUTTONS */
 #cancelButton1{
-float: left;  
+/* float: left;   */
 width: auto;
 height: auto;
   padding: 3%;
   text-align: unset;
   font-size: 40px;
   border-radius: 100px;
-  margin-left: 5%;
   margin-bottom: 10%;
   background-color: gray;
   color: white;
