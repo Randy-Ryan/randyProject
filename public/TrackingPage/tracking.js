@@ -20,13 +20,13 @@ var username;
 var email;
 
 
-        /********************************************************************/
+/********************************************************************/
 
-        /********************************************************************/
-        /*********************** LOAD FEED FUNCTIONS ************************/
-        /********************************************************************/
+/********************************************************************/
+/*********************** LOAD FEED FUNCTIONS ************************/
+/********************************************************************/
 
-        /********************************************************************/
+/********************************************************************/
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ window.onload = function () {
     username = getURLParameter("username");
     email = getURLParameter("username");
 
-    document.getElementById("currentDateDisplay").innerHTML = "Today<br>" + month + "/" + day+"";
+    document.getElementById("currentDateDisplay").innerHTML = "Today<br>" + month + "/" + day + "";
 
     // statements to set month var
     if (month == '01') {
@@ -404,9 +404,9 @@ function clearChildren() {
     var el2 = document.getElementById('taskFeed');
     while (el2.firstChild) el2.innerHTML = '';
 
- // remove child nodes of task feed
- var el2 = document.getElementById('favFeed');
- while (el2.firstChild) el2.innerHTML = '';
+    // remove child nodes of task feed
+    var el2 = document.getElementById('favFeed');
+    while (el2.firstChild) el2.innerHTML = '';
 
 
     //TODO//
@@ -528,9 +528,9 @@ function createNewFavTask(ttl, desc, t, id) {
 
     // create the new task div and set HTML content w/ respective vars
     newTask.innerHTML = fullString;
-    addEditElement.innerHTML = "<br><br><br><button onclick = 'editThisFav('TASK')' class = 'taskButtonEdit'>EDIT</button>";
+    addEditElement.innerHTML = "<br><button onclick = '" + 'editThisTaskFav("' + ttl + "," + desc + "," + t + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
 
-    addFavoriteElement.innerHTML = "<br><br><br><button onclick = 'addFavoriteElementToFeed('TASK')' class = 'favButton'>ADD</button>";
+    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavTaskToDB("' + ttl + "," + desc + "," + t + '")' + "' class = 'favButtonAdd'>ADD</button>";
 
     // // set on-click to edit/load this task div
     // newTask.onclick = function () {
@@ -575,9 +575,9 @@ function createNewFavTask(ttl, desc, t, id) {
 
     // load new exercise div into the exercise feed
     document.getElementById("favFeed").appendChild(newTask)
-    // .appendChild(addFavoriteElement)
-    // .appendChild(addEditElement)
-    ;
+        .appendChild(addFavoriteElement)
+        .appendChild(addEditElement)
+        ;
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- CREATE/LOAD A NEW EXERCISE ELEMENT -----------//////////
@@ -710,8 +710,8 @@ function createNewFavExercise(r, s, w, t, m, id) {
 
     // create the new exercise div and set HTML content w/ respective vars
     newExercise.innerHTML = fullString;
-    addEditElement.innerHTML = "<br><br><br><button onclick = 'editThisFav('EXERCISE')' class = 'favButtonEdit'>EDIT</button>";
-    addFavoriteElement.innerHTML = "<br><br><br><button onclick = 'addFavoriteElementToFeed('EXERCISE')' class = 'favButtonAdd'>ADD</button>";
+    addEditElement.innerHTML = "<br><button onclick = '" + 'editThisExerciseFav("' + m + "," + r + "," + s + "," + w + "," + t + "," + + id + '")' + "'  class = 'favButtonEdit'>EDIT</button>";
+    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavExerciseToDB("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "'  class = 'favButtonAdd'>ADD</button>";
 
 
     // // set on-click to edit/load this exercise div
@@ -765,10 +765,10 @@ function createNewFavExercise(r, s, w, t, m, id) {
 
     // load new exercise div into the exercise feed
     document.getElementById("favFeed")
-    .appendChild(newExercise)
-    // .appendChild(addFavoriteElement)
-    // .appendChild(addEditElement)
-    ;
+        .appendChild(newExercise)
+        .appendChild(addFavoriteElement)
+        .appendChild(addEditElement)
+        ;
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- CREATE/LOAD A NEW FOOD ELEMENT ---------------//////////
@@ -888,12 +888,9 @@ function createNewFavFood(f, w, t, m, id) {
 
     // create the new food div and set HTML content w/ respective vars
     newFood.innerHTML = fullString;
-    addEditElement.innerHTML = "<br><br><br><button onclick = '" + 'editThisFav("' + f + "," + w + "," + t +"," +  m + "," + id +'")' + "' class = 'favButtonEdit'>EDIT</button>";
+    addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + t + "," + m + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
 
-    addFavoriteElement.innerHTML = "<button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
-
-
-    ;
+    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
 
 
     // // set on-click to edit/load this food div
@@ -945,13 +942,13 @@ function createNewFavFood(f, w, t, m, id) {
 }
 
 
-        /********************************************************************/
+/********************************************************************/
 
-        /********************************************************************/
-        /*********************** LOAD FORMS *********************************/
-        /********************************************************************/
+/********************************************************************/
+/*********************** LOAD FORMS *********************************/
+/********************************************************************/
 
-        /********************************************************************/
+/********************************************************************/
 
 
 
@@ -1238,28 +1235,24 @@ function favoriteButtonClick() {
     var food = document.createElement('div');
     var exercise = document.createElement('div');
     var task = document.createElement('div');
-    // var postButton = document.createElement('div');
 
     cancelButton.id = "cancelFavoriteID";
     food.id = "foodFavoriteID";
     exercise.id = "exerciseFavoriteID";
     task.id = "taskFavoriteID";
-    // postButton.id = "postAccountID";
 
 
     cancelButton.innerHTML = "<input type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
     food.innerHTML = "<br><br><br><button onclick = 'newFavFood()' class = 'favButton'>ADD FAVORITE FOOD</button>";
-    exercise.innerHTML = "<br><br><br><button onclick = 'newFavExercise()'class = 'favButton'>Exercise</button>";
-    task.innerHTML = "<br><br><br><button onclick = 'newFavTask()'class = 'favButton'>Task</button>";
-    // postButton.innerHTML = "<input onclick = 'updateAccount()' type='submit' id = 'cancelButton1' value = 'UPDATE'/>"
+    exercise.innerHTML = "<br><br><br><button onclick = 'newFavExercise()'class = 'favButton'>ADD FAVORITE EXERCISE</button>";
+    task.innerHTML = "<br><br><br><button onclick = 'newFavTask()'class = 'favButton'>ADD FAVORITE TASK</button>";
 
     // load the edit form on the feed
     document.getElementById("feed")
         .appendChild(cancelButton)
         .appendChild(food)
-        // .appendChild(exercise)
-        // .appendChild(task)
-        // .appendChild(postButton)
+    .appendChild(exercise)
+    .appendChild(task)
 
 
 }
@@ -1343,13 +1336,13 @@ function loadMyAccount() {
 
 
 
-        /********************************************************************/
+/********************************************************************/
 
-        /********************************************************************/
-        /*********************** DATABASE FUNCTIONS *************************/
-        /********************************************************************/
+/********************************************************************/
+/*********************** DATABASE FUNCTIONS *************************/
+/********************************************************************/
 
-        /********************************************************************/
+/********************************************************************/
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1639,7 +1632,7 @@ function addFavFoodAndWater() {
         water: water,
         time: time,
         message: message,
-        foodID:"true"
+        foodID: "true"
     }).then(() => {
         // clear the feed
         clearChildren();
@@ -1660,7 +1653,7 @@ function addFavFoodAndWater() {
 // FORM SUBMIT LOGIC, SET FORM VARS FOR POST, CREATE FOOD DOC IN DB W/ RANDOM ID
 function addFavFoodToDB(f) {
     // initialize and set vars
- 
+
     console.log(f)
     var strings = f.split(',');
     console.log(strings)
@@ -1670,32 +1663,32 @@ function addFavFoodToDB(f) {
     //TODO//
     // change the random number implementation?
 
-    if (strings[0] == null){
+    if (strings[0] == null) {
         f1 = "";
     }
-    else{
+    else {
         f1 = strings[0];
     }
-    if (strings[1] == null ){
+    if (strings[1] == null) {
         w = "";
     }
-    else{
+    else {
         w = strings[1];
     }
-    if (strings[2] == null){
+    if (strings[2] == null) {
         t = "";
     }
-    else{
+    else {
         t = strings[2];
     }
-    if (strings[3] == null){
+    if (strings[3] == null) {
         m = "";
     }
-    else{
+    else {
         m = strings[3];
     }
 
-   // get a random number for the doc ID 
+    // get a random number for the doc ID 
     var fill = "" + generateRandomNumber(1, 1000000);
 
     // create a new food document with random number id
@@ -1704,8 +1697,139 @@ function addFavFoodToDB(f) {
         water: w,
         time: t,
         message: m,
-        date:currDate,
-        month:currMonth
+        date: currDate,
+        month: currMonth
+    }).then(() => {
+        // clear the feed
+        clearChildren();
+
+        //TODO//
+        // implement post successful alert
+
+        // load the feed
+        loadFeed(currDate, currMonth);
+    })
+        .catch((error) => {
+            alert("ERROR submitting post! " + error);
+        });;
+}
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- ADD FAV TASK POST IN DATABASE FROM FAV FEED -----------------/////////////
+/////////////////////////////////////////////////////////////////////////////////////
+// FORM SUBMIT LOGIC, SET FORM VARS FOR POST, CREATE FOOD DOC IN DB W/ RANDOM ID
+function addFavTaskToDB(f) {
+    // initialize and set vars
+
+    var strings = f.split(',');
+
+   
+    var ttl, desc, t;
+
+    //TODO//
+    // change the random number implementation?
+
+    if (strings[0] == null) {
+        ttl = "";
+    }
+    else {
+        ttl = strings[0];
+    }
+    if (strings[1] == null) {
+        desc = "";
+    }
+    else {
+        desc = strings[1];
+    }
+    if (strings[2] == null) {
+        t = "";
+    }
+    else {
+        t = strings[2];
+    }
+
+
+    // get a random number for the doc ID 
+    var fill = "" + generateRandomNumber(1, 1000000);
+
+    // create a new food document with random number id
+    db.collection("users").doc(userID).collection("tasks").doc(fill).set({
+        title: ttl,
+        description: desc,
+        time: t,
+        date: currDate,
+        month: currMonth
+    }).then(() => {
+        // clear the feed
+        clearChildren();
+
+        //TODO//
+        // implement post successful alert
+
+        // load the feed
+        loadFeed(currDate, currMonth);
+    })
+        .catch((error) => {
+            alert("ERROR submitting post! " + error);
+        });;
+}
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- ADD FAV EXERCISE POST IN DATABASE FROM FAV FEED -----------------/////////////
+/////////////////////////////////////////////////////////////////////////////////////
+// FORM SUBMIT LOGIC, SET FORM VARS FOR POST, CREATE FOOD DOC IN DB W/ RANDOM ID
+function addFavExerciseToDB(f) {
+    // initialize and set vars
+
+    var strings = f.split(',');
+
+   
+    var m, r, s, w, t;
+
+    //TODO//
+    // change the random number implementation?
+
+    if (strings[0] == null) {
+        m = "";
+    }
+    else {
+        m = strings[0];
+    }
+    if (strings[1] == null) {
+        r = "";
+    }
+    else {
+        r = strings[1];
+    }
+    if (strings[2] == null) {
+        s = "";
+    }
+    else {
+        s = strings[2];
+    }
+    if (strings[3] == null) {
+        w = "";
+    }
+    else {
+        w = strings[3];
+    }
+    if (strings[4] == null) {
+        t = "";
+    }
+    else {
+        t = strings[4];
+    }
+
+    // get a random number for the doc ID 
+    var fill = "" + generateRandomNumber(1, 1000000);
+
+    // create a new food document with random number id
+    db.collection("users").doc(userID).collection("exercises").doc(fill).set({
+        message: m,
+        reps: r,
+        sets: s,
+        weight: w,
+        time: t,
+        date: currDate,
+        month: currMonth
     }).then(() => {
         // clear the feed
         clearChildren();
@@ -1858,7 +1982,7 @@ function addFavExercise() {
         weight: weight,
         time: time,
         message: message,
-        exerciseID:"true"
+        exerciseID: "true"
     }).then(() => {
         // clear the feed
         clearChildren();
@@ -1926,28 +2050,28 @@ function loadFeed(date, month) {
     // load the task feed
     db.collection("users").doc(userID).collection("tasks").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            createNewTask(doc.data().title, doc.data().description, doc.data().time, doc.id)           
+            createNewTask(doc.data().title, doc.data().description, doc.data().time, doc.id)
         });
     });
-     // load the fav feed for food elements
-     db.collection("users").doc(userID).collection("favorites").where("foodID", "==", "true").get().then((querySnapshot) => {
+    // load the fav feed for food elements
+    db.collection("users").doc(userID).collection("favorites").where("foodID", "==", "true").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             //CREATE NEW FAV FOOD?
             createNewFavFood(doc.data().food, doc.data().water, doc.data().time, doc.data().message, doc.id)
         });
     });
-     // load the fav feed for exercise elements
-     db.collection("users").doc(userID).collection("favorites").where("exerciseID", "==", "true").get().then((querySnapshot) => {
+    // load the fav feed for exercise elements
+    db.collection("users").doc(userID).collection("favorites").where("exerciseID", "==", "true").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             //CREATE NEW FAV FOOD?
             createNewFavExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id);
         });
     });
-     // load the fav feed for task elements
-     db.collection("users").doc(userID).collection("favorites").where("taskID", "==", "true").get().then((querySnapshot) => {
+    // load the fav feed for task elements
+    db.collection("users").doc(userID).collection("favorites").where("taskID", "==", "true").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             //CREATE NEW FAV FOOD?
-            createNewFavTask(doc.data().title, doc.data().description, doc.data().time, doc.id)           
+            createNewFavTask(doc.data().title, doc.data().description, doc.data().time, doc.id)
         });
     });
 }
@@ -2157,7 +2281,7 @@ function updateFavTaskEntry(docId) {
         title: titleEdit,
         description: descriptionEdit,
         time: timeEdit,
-        taskID:"true"
+        taskID: "true"
     }).then(() => {
         // clear the feed
         clearChildren();
@@ -2326,7 +2450,7 @@ function updateFavExerciseEntry(docId) {
         weight: weightEdit,
         time: timeEdit,
         message: messageEdit,
-        exerciseID:"true"
+        exerciseID: "true"
     }).then(() => {
         // clear the feed
         clearChildren();
@@ -2479,7 +2603,7 @@ function updateFavFoodEntry(docId) {
         message: messageEdit,
         date: date,
         month: month,
-        foodID:"true"
+        foodID: "true"
     }).then(() => {
         // clear the feed
         clearChildren();
@@ -2758,41 +2882,39 @@ function reload() {
     loadFeed(currDate, currMonth);
 }
 /////EDIT FOOOD FAV
-function editThisFav(f) {
+function editThisFoodFav(f) {
     // reload the page
 
     clearChildren();
-    console.log(f);
     var strings = f.split(',');
-    console.log(strings);
 
-    var f1, w, t, m,id;
+    var f1, w, t, m, id;
 
     //TODO//
     // change the random number implementation?
 
-    if (strings[0] == null){
+    if (strings[0] == null) {
         f1 = "";
     }
-    else{
+    else {
         f1 = strings[0];
     }
-    if (strings[1] == null ){
+    if (strings[1] == null) {
         w = "";
     }
-    else{
+    else {
         w = strings[1];
     }
-    if (strings[2] == null){
+    if (strings[2] == null) {
         t = "";
     }
-    else{
+    else {
         t = strings[2];
     }
-    if (strings[3] == null){
+    if (strings[3] == null) {
         m = "";
     }
-    else{
+    else {
         m = strings[3];
     }
 
@@ -2803,7 +2925,7 @@ function editThisFav(f) {
     //DO CHECKS AND ADD THIS AN ELEMENT
 
     // console.log("hey edit, " + f,w,t,m)
-    
+
     var cancelButton = document.createElement('div');
     var food = document.createElement('div');
     var water = document.createElement('div');
@@ -2843,6 +2965,185 @@ function editThisFav(f) {
         .appendChild(deleteButton);
 
 
+
+
+    // // clear the feed
+    // clearChildren();
+    // // load the feed
+    // loadFeed(currDate, currMonth);
+}
+
+/////EDIT TASK FAV
+function editThisTaskFav(f) {
+    // reload the page
+
+    clearChildren();
+    var strings = f.split(',');
+
+    var ttl, desc, t;
+
+    //TODO//
+    // change the random number implementation?
+
+    if (strings[0] == null) {
+        ttl = "";
+    }
+    else {
+        ttl = strings[0];
+    }
+    if (strings[1] == null) {
+        desc = "";
+    }
+    else {
+        desc = strings[1];
+    }
+    if (strings[2] == null) {
+        t = "";
+    }
+    else {
+        t = strings[2];
+    }
+
+    id = strings[3];
+
+    // id.substring(1);
+    //DO CHECKS AND ADD THIS AN ELEMENT
+
+    // console.log("hey edit, " + f,w,t,m)
+
+    // initialize div elements
+    var cancelButton = document.createElement('div');
+    var title = document.createElement('div');
+    var description = document.createElement('div');
+    var time = document.createElement('div');
+    var postButton = document.createElement('div');
+    var deleteButton = document.createElement('div');
+
+    // set the ids
+    cancelButton.id = "cancelButtonNewEdit";
+    title.id = "titleNewEdit";
+    description.id = "descriptionNewEdit";
+    time.id = "timeExNewEdit";
+    postButton.id = "postButtonExNewEdit";
+    deleteButton.id = "deleteButtonExNewEdit";
+
+    // create the edit form by setting the HTML content of each div
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+    title.innerHTML = "<br><br><br><label class = 'exClass1'>Title: <br><br></label><input type='text' class = 'required' id='12345' value = '" + ttl + "'><br><br><br>";
+    description.innerHTML = "<label class = 'exClass1'>Description: <br><br></label> <input type='text' id='repsInput' class = 'required' value = '" + desc + "'><br><br><br>";
+    time.innerHTML = "<label class = 'exClass1'>Time: <br><br></label><input type='text' id='timeInput' class = 'required' value = '" + t + "'><br><br><br>";
+    // update button
+    postButton.innerHTML = "<input onclick = 'updateFavTaskEntry(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'UPDATE'/>"
+    // delete button
+    deleteButton.innerHTML = "<input onclick = 'deleteFavTask(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'DELETE'/>"
+
+    // load the edit form on the feed
+    document.getElementById("feed")
+        .appendChild(cancelButton)
+        .appendChild(title)
+        .appendChild(description)
+        .appendChild(time)
+        .appendChild(postButton)
+        .appendChild(deleteButton);
+
+
+
+    // // clear the feed
+    // clearChildren();
+    // // load the feed
+    // loadFeed(currDate, currMonth);
+}
+
+/////EDIT EXERCISE FAV
+function editThisExerciseFav(f) {
+    // reload the page
+
+    clearChildren();
+    var strings = f.split(',');
+
+    var m, r, s, w, t;
+
+    //TODO//
+    // change the random number implementation?
+
+    if (strings[0] == null) {
+        m = "";
+    }
+    else {
+        m = strings[0];
+    }
+    if (strings[1] == null) {
+        r = "";
+    }
+    else {
+        r = strings[1];
+    }
+    if (strings[2] == null) {
+        s = "";
+    }
+    else {
+        s = strings[2];
+    }
+    if (strings[3] == null) {
+        w = "";
+    }
+    else {
+        w = strings[3];
+    }
+    if (strings[4] == null) {
+        t = "";
+    }
+    else {
+        t = strings[4];
+    }
+
+    id = strings[5];
+
+    // id.substring(1);
+    //DO CHECKS AND ADD THIS AN ELEMENT
+
+    // initialize div elements
+    var cancelButton = document.createElement('div');
+    var message = document.createElement('div');
+    var reps = document.createElement('div');
+    var sets = document.createElement('div');
+    var weight = document.createElement('div');
+    var time = document.createElement('div');
+    var postButton = document.createElement('div');
+    var deleteButton = document.createElement('div');
+
+    // set the ids
+    cancelButton.id = "cancelNewEdit";
+    message.id = "messageNewEdit";
+    reps.id = "repsNewEdit";
+    sets.id = "setsNewEdit";
+    weight.id = "weightNewEdit";
+    time.id = "timeExNewEdit";
+    postButton.id = "postButtonExNewEdit";
+    deleteButton.id = "deleteButtonExNewEdit";
+
+    // create the edit form by setting the HTML content of each div
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+    message.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: DB Bench Press. Difficult) <br><br></label><input type='text' class = 'required' id='12345' value = '" + m + "'><br><br><br>";
+    reps.innerHTML = "<label class = 'exClass1'>Reps (ex: 8) <br><br></label> <input type='text' id='repsInput' class = 'required' value = '" + r + "'><br><br><br>";
+    sets.innerHTML = "<label class = 'exClass1'>Sets (ex: 3)<br><br></label><input type='text' id='setsInput' class = 'required' value = '" + s + "'><br><br><br>";
+    weight.innerHTML = "<label class = 'exClass1'>Weight (ex: 100 lbs)<br><br></label><input type='text' id='weightInput' class = 'required' value = '" + w + "'><br><br><br>";
+    time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm) <br><br></label><input type='text' id='timeInput' class = 'required' value = '" + t + "'><br><br><br>";
+    // update button
+    postButton.innerHTML = "<input onclick = 'updateFavExerciseEntry(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'UPDATE'/>"
+    // delete button
+    deleteButton.innerHTML = "<input onclick = 'deleteFavExercise(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'DELETE'/>"
+
+    // load the edit form on the feed
+    document.getElementById("feed")
+        .appendChild(cancelButton)
+        .appendChild(message)
+        .appendChild(reps)
+        .appendChild(sets)
+        .appendChild(weight)
+        .appendChild(time)
+        .appendChild(postButton)
+        .appendChild(deleteButton);
 
 
     // // clear the feed
