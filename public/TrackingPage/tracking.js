@@ -43,6 +43,7 @@ window.onload = function () {
     username = getURLParameter("username");
     email = getURLParameter("username");
 
+
     // statements to set month var
     if (month == '01') {
         month = "January";
@@ -100,25 +101,31 @@ window.onload = function () {
     // style date title respectivly
     document.getElementById("todaysDate").innerHTML = currMonth + " / " + currDate;
 
-
-
-    // check if user is signed in - call function to style
-    if (userID == "null") {
-        userSignedOut();
-        // alert("Error: no userID");
-        // window.location.href = "../index.html"
-    }
-
     // clear the feed
     clearChildren();
+
+        // check if user is signed in - call function to style
+        if (userID == "null") {
+            userSignedOut();
+            // alert("Error: no userID");
+            // window.location.href = "../index.html"
+    
+        // hide feed
+        document.getElementById("exButton").style.display = "none";
+        document.getElementById("foodButton").style.display = "none";
+        document.getElementById("taskButton").style.display = "none";
+        document.getElementById("exFeed").style.display = "none";
+        document.getElementById("foodFeed").style.display = "none";
+        document.getElementById("taskFeed").style.display = "none";
+        document.getElementById("exFeedTitle").style.display = "none";
+        document.getElementById("foodFeedTitle").style.display = "none";
+        document.getElementById("taskFeedTitle").style.display = "none";
+        return;
+        }
 
     // load the feed
     loadFeed(day, month);
 
-    // show post buttons
-    document.getElementById("exButton").style.display = "";
-    document.getElementById("foodButton").style.display = "";
-    document.getElementById("taskButton").style.display = "";
 
 }
 
@@ -129,7 +136,6 @@ window.onload = function () {
 function userSignedOut() {
     // clear the feed
     clearChildren();
-
     // load vars for when user is signed out and show register
 
     // hide links to pages when user is logged in
@@ -1058,6 +1064,16 @@ function addExercise() {
 function loadFeed(date, month) {
     // format day var 
     var day = "" + date;
+        // hide post buttons
+        document.getElementById("exButton").style.display = "";
+        document.getElementById("foodButton").style.display = "";
+        document.getElementById("taskButton").style.display = "";
+        document.getElementById("exFeed").style.display = "";
+        document.getElementById("foodFeed").style.display = "";
+        document.getElementById("taskFeed").style.display = "";
+        document.getElementById("exFeedTitle").style.display = "";
+        document.getElementById("foodFeedTitle").style.display = "";
+        document.getElementById("taskFeedTitle").style.display = "";
     if (day.length < 2) {
         day = "0" + day;
     }
