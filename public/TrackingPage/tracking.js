@@ -978,7 +978,7 @@ function newTask() {
     postButton.id = "postButton";
 
     // then add the HTML content of the element
-    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
     title.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: Chemistry, Dentist, Birthday, etc.) <br><br></label><input id='taskReq1' onclick = '" + 'makeClean(document.getElementById("taskReq1"))' + "' type='text' class = 'required'><br><br><br>";
     description.innerHTML = "<label class = 'exClass1'>Description (ex: Due at 11:59pm, buy a gift, etc.) <br><br></label> <input type='text' id='taskReq2' onclick = '" + 'makeClean(document.getElementById("taskReq2"))' + "' class = 'required'><br><br><br>";
     time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br></label><input type='text' id='taskReq3' onclick = '" + 'makeClean(document.getElementById("taskReq3"))' + "' class = 'required'><br><br><br>";
@@ -1246,9 +1246,9 @@ function favoriteButtonClick() {
 
 
     cancelButton.innerHTML = "<input type='submit' onclick = 'reload()'id = 'cancelButton1' value = 'CANCEL'/>"
-    food.innerHTML = "<br><br><br><button onclick = 'newFavFood()' class = 'favButton'>ADD FAVORITE FOOD</button>";
-    exercise.innerHTML = "<br><br><br><button onclick = 'newFavExercise()'class = 'favButton'>ADD FAVORITE EXERCISE</button>";
-    task.innerHTML = "<br><br><br><button onclick = 'newFavTask()'class = 'favButton'>ADD FAVORITE TASK</button>";
+    food.innerHTML = "<br><br><br><button onclick = 'newFavFood()' id = 'favFoodBut' class = 'favButton'>ADD FAVORITE FOOD</button>";
+    exercise.innerHTML = "<br><br><br><button onclick = 'newFavExercise()' id = 'favExBut' class = 'favButton'>ADD FAVORITE EXERCISE</button>";
+    task.innerHTML = "<br><br><br><button onclick = 'newFavTask()' id = 'favTaskBut' class = 'favButton'>ADD FAVORITE TASK</button>";
 
     // load the edit form on the feed
     document.getElementById("feed")
