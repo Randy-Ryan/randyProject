@@ -386,6 +386,9 @@ function clearChildren() {
     document.getElementById("taskFeed").style.display = "none";
     document.getElementById("foodFeed").style.display = "none";
     document.getElementById("favFeed").style.display = "none";
+    document.getElementById("exButton").style.display = "none";
+    document.getElementById("taskButton").style.display = "none";
+    document.getElementById("foodButton").style.display = "none";
 
 
     // remove child nodes of feed
