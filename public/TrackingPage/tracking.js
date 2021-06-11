@@ -152,6 +152,8 @@ function userSignedOut() {
     document.getElementById('todaysDate').style.display = 'none';
     document.getElementById('accountIcon').style.display = 'none';
     document.getElementById('favoritesDivID').style.display = 'none';
+    document.getElementById('filler1').style.display = 'none';
+
     document.getElementById('topnav1').style.display = '';
 
 
@@ -187,11 +189,19 @@ function nextMonth(currMonth) {
 
     // show empty feed title 
     document.getElementById("filler1").style.display = "";
+
+    if (userID == "null") {
+        userSignedOut();
+        // alert("Error: no userID");
+        // window.location.href = "../index.html"
+    }
     // hide date title, add post buttons
     document.getElementById("todaysDate").style.display = "none";
     document.getElementById("exButton").style.display = "none";
     document.getElementById("taskButton").style.display = "none";
     document.getElementById("foodButton").style.display = "none";
+    document.getElementById("favoritesDivID").style.display = "none";
+
 
     // clear the current active date on calendar
     var active = document.getElementsByClassName("active");
@@ -271,11 +281,19 @@ function prevMonth(currMonth) {
 
     // show empty feed title 
     document.getElementById("filler1").style.display = "";
+
+    if (userID == "null") {
+        userSignedOut();
+        // alert("Error: no userID");
+        // window.location.href = "../index.html"
+    }
     // hide date title, add post buttons
     document.getElementById("todaysDate").style.display = "none";
     document.getElementById("exButton").style.display = "none";
     document.getElementById("taskButton").style.display = "none";
     document.getElementById("foodButton").style.display = "none";
+    document.getElementById("favoritesDivID").style.display = "none";
+
 
     // clear the current active date on calendar
     var active = document.getElementsByClassName("active");
@@ -1077,6 +1095,8 @@ function loadFeed(date, month) {
     document.getElementById("exFeedTitle").style.display = "";
     document.getElementById("foodFeedTitle").style.display = "";
     document.getElementById("taskFeedTitle").style.display = "";
+    document.getElementById("favoritesDivID").style.display = "";
+
     if (day.length < 2) {
         day = "0" + day;
     }
