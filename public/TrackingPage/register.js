@@ -121,13 +121,11 @@ window.onload = function () {
                                 // An error happened.
                                 alert(error);
                             });
-                            
-                        }).catch(function (error) {
-                            // An error happened.
-                            alert(error);
-                        });
-
-                });
+                        })
+                }).catch(function (error) {
+                    // An error happened.
+                    alert(error);
+                });;
         }
 
 
