@@ -43,6 +43,8 @@ window.onload = function () {
     userID = getURLParameter("userID");
     username = getURLParameter("username");
     email = getURLParameter("username");
+    
+    const user = firebase.auth().currentUser;
 
     // document.getElementById("ex56").innerHTML = "EX";
     // document.getElementById("food56").innerHTML= "FOOD";
@@ -130,15 +132,22 @@ window.onload = function () {
         document.getElementById("taskFeedTitle").style.display = "none";
 
 
-        document.getElementById("ex56").style.display = "";
-        document.getElementById("food56").style.display = "";
-        document.getElementById("task56").style.display = "";
+
 
         return;
     }
-
+    document.getElementById("feedTest1").style.display = '';
+    document.getElementById("feedTest1").innerHTML = 'FOOD';
+    document.getElementById("feedTest2").style.display = '';
+    document.getElementById("feedTest2").innerHTML = 'EXERCISE';
+    document.getElementById("feedTest3").style.display = '';
+    document.getElementById("feedTest3").innerHTML = 'TASKS';
+    
     // load the feed
     loadFeed(day, month);
+    document.getElementById("historyFeed").style.display = "none";
+    document.getElementById("historyTitle").style.display = "none";
+
 
 
 }
@@ -401,6 +410,9 @@ function clearChildren() {
     document.getElementById("exButton").style.display = "none";
     document.getElementById("taskButton").style.display = "none";
     document.getElementById("foodButton").style.display = "none";
+    document.getElementById("fullFavFeed").style.display = "none";
+    document.getElementById("favFeedTitle").style.display = "none";
+
 
 
     // remove child nodes of feed
@@ -419,13 +431,17 @@ function clearChildren() {
     var el2 = document.getElementById('taskFeed');
     while (el2.firstChild) el2.innerHTML = '';
 
-    var el2 = document.getElementById('feedTest1');
+    var el2 = document.getElementById('feedTestFood');
     while (el2.firstChild) el2.innerHTML = '';
 
-    var el2 = document.getElementById('feedTest2');
+    var el2 = document.getElementById('feedTestExercise');
     while (el2.firstChild) el2.innerHTML = '';
 
-    var el2 = document.getElementById('feedTest3');
+    var el2 = document.getElementById('feedTestTask');
+    while (el2.firstChild) el2.innerHTML = '';
+
+
+    var el2 = document.getElementById('historyFeed1');
     while (el2.firstChild) el2.innerHTML = '';
 
 
@@ -539,80 +555,28 @@ function createNewFavTask(ttl, desc, t, id) {
     // furthis this style implementation
 
     //format a string to set element html
-    var fullString = "";
     if (ttl != "") {
-        fullString = fullString + "Title:<br>" + ttl + "<br><br>";
-    }
-    else{
-        fullString = fullString + "<br><br><br>";
+        newTask.innerHTML += "Title:<br>" + ttl + "<br><br>";
     }
     if (desc != "") {
-        fullString = fullString + "Description:<br>" + desc + "<br><br>";
-    }
-    else{
-        fullString = fullString + "<br><br><br>";
+        newTask.innerHTML += "Description:<br>" + desc  + "<br><br>";
+
     }
     if (t != "") {
-        fullString = fullString + "Time:<br>" + t + "<br><br>";
-    }
-    else{
-        fullString = fullString + "<br><br><br>";
+        newTask.innerHTML += "Time:<br>" + t  + "<br><br>";
     }
 
-    fullString = fullString + "<br><br><br></label>";
 
     // create the new task div and set HTML content w/ respective vars
-    newTask.innerHTML = fullString;
     addEditElement.innerHTML = "<br><button onclick = '" + 'editThisTaskFav("' + ttl + "," + desc + "," + t + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
 
     addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavTaskToDB("' + ttl + "," + desc + "," + t + '")' + "' class = 'favButtonAdd'>ADD</button>";
-
-    // // set on-click to edit/load this task div
-    // newTask.onclick = function () {
-    //     // clear the feed
-    //     clearChildren();
-
-    //     // initialize div elements
-    //     var cancelButton = document.createElement('div');
-    //     var title = document.createElement('div');
-    //     var description = document.createElement('div');
-    //     var time = document.createElement('div');
-    //     var postButton = document.createElement('div');
-    //     var deleteButton = document.createElement('div');
-
-    //     // set the ids
-    //     cancelButton.id = "cancelButtonNewEdit";
-    //     title.id = "titleNewEdit";
-    //     description.id = "descriptionNewEdit";
-    //     time.id = "timeExNewEdit";
-    //     postButton.id = "postButtonExNewEdit";
-    //     deleteButton.id = "deleteButtonExNewEdit";
-
-    //     // create the edit form by setting the HTML content of each div
-    //     cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
-    //     title.innerHTML = "<br><br><br><label class = 'exClass1'>Title: <br><br></label><input type='text' class = 'required' id='12345' value = '" + ttl + "'><br><br><br>";
-    //     description.innerHTML = "<label class = 'exClass1'>Description: <br><br></label> <input type='text' id='repsInput' class = 'required' value = '" + desc + "'><br><br><br>";
-    //     time.innerHTML = "<label class = 'exClass1'>Time: <br><br></label><input type='text' id='timeInput' class = 'required' value = '" + t + "'><br><br><br>";
-    //     // update button
-    //     postButton.innerHTML = "<input onclick = 'updateFavTaskEntry(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'UPDATE'/>"
-    //     // delete button
-    //     deleteButton.innerHTML = "<input onclick = 'deleteFavTask(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'DELETE'/>"
-
-    //     // load the edit form on the feed
-    //     document.getElementById("feed")
-    //         .appendChild(cancelButton)
-    //         .appendChild(title)
-    //         .appendChild(description)
-    //         .appendChild(time)
-    //         .appendChild(postButton)
-    //         .appendChild(deleteButton);
-    // }
+    newTask .appendChild(addFavoriteElement).appendChild(addEditElement);
 
     // load new exercise div into the exercise feed
-    document.getElementById("feedTest3").appendChild(newTask)
-        .appendChild(addFavoriteElement)
-        .appendChild(addEditElement)
-        ;
+    document.getElementById("feedTestTask").appendChild(newTask)
+       
+
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- CREATE/LOAD A NEW EXERCISE ELEMENT -----------//////////
@@ -721,103 +685,32 @@ function createNewFavExercise(r, s, w, t, m, id) {
     newExercise.className = "testtt";
 
     //format a string to set element html
-    var fullString = "";
+    // var fullString = "";
     if (m != "") {
-        fullString = fullString + "Workout:<br>" + m + "<br><br>";
-    }
-    else{
-        fullString = fullString + "<br><br><br>";
+        newExercise.innerHTML += "Workout:<br>" + m  + "<br><br>";
     }
     if (r != "") {
-        fullString = fullString + "Reps:<br>" + r + "<br><br>";
-    }
-    else{
-        fullString = fullString + "<br><br><br>";
+        newExercise.innerHTML += "Reps:<br>" + r  + "<br><br>";
     }
     if (s != "") {
-        fullString = fullString + "Sets:<br>" + s + "<br><br>";
-    }
-    else{
-        fullString = fullString + "<br><br><br>";
+        newExercise.innerHTML += "Sets:<br>" + s  + "<br><br>";
     }
     if (w != "") {
-        fullString = fullString + "Weight:<br>" + w + "<br><br>";
-    }
-    else{
-        fullString = fullString + "<br><br><br>";
+        newExercise.innerHTML += "Weight:<br>" + w  + "<br><br>";
     }
     if (t != "") {
-        fullString = fullString + "Time:<br>" + t + "<br><br>";
+        newExercise.innerHTML += "Time:<br>" + t  + "<br><br>";
     }
-    else{
-        fullString = fullString + "<br><br><br>";
-    }
-    fullString = fullString + "</label>";
-
     //TODO//
     // add a check for empty params and setting the following HTML
 
     // create the new exercise div and set HTML content w/ respective vars
-    newExercise.innerHTML = fullString;
     addEditElement.innerHTML = "<br><button onclick = '" + 'editThisExerciseFav("' + m + "," + r + "," + s + "," + w + "," + t + "," + + id + '")' + "'  class = 'favButtonEdit'>EDIT</button>";
     addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavExerciseToDB("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "'  class = 'favButtonAdd'>ADD</button>";
-
-
-    // // set on-click to edit/load this exercise div
-    // newExercise.onclick = function () {
-    //     // clear the feed
-    //     clearChildren();
-
-    //     // initialize div elements
-    //     var cancelButton = document.createElement('div');
-    //     var message = document.createElement('div');
-    //     var reps = document.createElement('div');
-    //     var sets = document.createElement('div');
-    //     var weight = document.createElement('div');
-    //     var time = document.createElement('div');
-    //     var postButton = document.createElement('div');
-    //     var deleteButton = document.createElement('div');
-
-    //     // set the ids
-    //     cancelButton.id = "cancelNewEdit";
-    //     message.id = "messageNewEdit";
-    //     reps.id = "repsNewEdit";
-    //     sets.id = "setsNewEdit";
-    //     weight.id = "weightNewEdit";
-    //     time.id = "timeExNewEdit";
-    //     postButton.id = "postButtonExNewEdit";
-    //     deleteButton.id = "deleteButtonExNewEdit";
-
-    //     // create the edit form by setting the HTML content of each div
-    //     cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
-    //     message.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: DB Bench Press. Difficult) <br><br></label><input type='text' class = 'required' id='12345' value = '" + m + "'><br><br><br>";
-    //     reps.innerHTML = "<label class = 'exClass1'>Reps (ex: 8) <br><br></label> <input type='text' id='repsInput' class = 'required' value = '" + r + "'><br><br><br>";
-    //     sets.innerHTML = "<label class = 'exClass1'>Sets (ex: 3)<br><br></label><input type='text' id='setsInput' class = 'required' value = '" + s + "'><br><br><br>";
-    //     weight.innerHTML = "<label class = 'exClass1'>Weight (ex: 100 lbs)<br><br></label><input type='text' id='weightInput' class = 'required' value = '" + w + "'><br><br><br>";
-    //     time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm) <br><br></label><input type='text' id='timeInput' class = 'required' value = '" + t + "'><br><br><br>";
-    //     // update button
-    //     postButton.innerHTML = "<input onclick = 'updateFavExerciseEntry(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'UPDATE'/>"
-    //     // delete button
-    //     deleteButton.innerHTML = "<input onclick = 'deleteFavExercise(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'DELETE'/>"
-
-    //     // load the edit form on the feed
-    //     document.getElementById("feed")
-    //         .appendChild(cancelButton)
-    //         .appendChild(message)
-    //         .appendChild(reps)
-    //         .appendChild(sets)
-    //         .appendChild(weight)
-    //         .appendChild(time)
-    //         .appendChild(postButton)
-    //         .appendChild(deleteButton);
-    // }
-
     // load new exercise div into the exercise feed
-    document.getElementById("feedTest2")
-        .appendChild(newExercise)
-        .appendChild(addFavoriteElement)
-        .appendChild(addEditElement)
-        ;
+    newExercise.appendChild(addFavoriteElement).appendChild(addEditElement);
+    
+    document.getElementById("feedTestExercise").appendChild(newExercise)
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- CREATE/LOAD A NEW FOOD ELEMENT ---------------//////////
@@ -827,29 +720,42 @@ function createNewFood(f, w, t, m, id) {
     //TODO//
     // needs a hover attribute
 
-    //format a string to set element html
-    var fullString = "<br>";
-    if (f != "") {
-        fullString = fullString + "Food:<br>" + f + "<br><br>";
-    }
-    if (w != "") {
-        fullString = fullString + "Beverage:<br>" + w + "<br><br>";
-    }
-    if (m != "") {
-        fullString = fullString + "Note:<br>" + m + "<br><br>";
-    }
-    if (t != "") {
-        fullString = fullString + "Time:<br>" + t + "<br><br>";
-    }
-    fullString = fullString + "</label>";
+    var newFood = document.createElement('div');
+
+     //format a string to set element html
+     var fullString = "<br>";
+     if (f != "") {
+         fullString = fullString + "Food:<br>" + f + "<br><br>";
+     }
+     if (w != "") {
+         fullString = fullString + "Beverage:<br>" + w + "<br><br>";
+     }
+     if (m != "") {
+         fullString = fullString + "Note:<br>" + m + "<br><br>";
+     }
+     if (t != "") {
+         fullString = fullString + "Time:<br>" + t + "<br><br>";
+     }
+ 
+     fullString = fullString + "</label>";
+ 
+     //TODO//
+     // add a check for empty params and setting the following HTML
+ 
+     // create the new exercise div and set HTML content w/ respective vars
+
+     newFood.innerHTML = fullString;
+
+   
+    // fullString = fullString + "</label>";
 
     // initialize new food div: set id & class name
-    var newFood = document.createElement('div');
+
     newFood.id = "foodID";
     newFood.className = "testtt";
 
     // create the new food div and set HTML content w/ respective vars
-    newFood.innerHTML = fullString;
+    // newFood.innerHTML = fullString;
 
     // set on-click to edit/load this food div
     newFood.onclick = function () {
@@ -906,36 +812,31 @@ function createNewFavFood(f, w, t, m, id) {
     //TODO//
     // needs a hover attribute
 
-    //format a string to set element html
-    var fullString = "";
+    var newFood = document.createElement('div');
+
+    // var fullString = "";
     if (f != "") {
-        fullString = fullString + "Food:<br>" + f + "<br><br>";
-    }
-    else{
-        fullString = fullString + "<br><br><br>";
+        // var food1 = document.createElement('div');
+        newFood.innerHTML += "Food:<br>" + f  + "<br><br>";
+        // newFood.appendChild(food1)
     }
     if (w != "") {
-        fullString = fullString + "Beverage:<br>" + w + "<br><br>";
-    }
-    else{
-        fullString = fullString + "<br><br><br>";
-    }
+        // var water1 = document.createElement('div');
+        newFood.innerHTML += "Beverage:<br>" + w  + "<br><br>";
+        // newFood.appendChild(water1);
+          }
     if (m != "") {
-        fullString = fullString + "Note:<br>" + m + "<br><br>";
-    }
-    else{
-        fullString = fullString + "<br><br><br>";
+        // var note1 = document.createElement('div');
+        newFood.innerHTML += "Note:<br>" + m  + "<br><br>";
+        // newFood.appendChild(note1);      
     }
     if (t != "") {
-        fullString = fullString + "Time:<br>" + t + "<br><br>";
+        // var time1 = document.createElement('div');
+        newFood.innerHTML += "Time:<br>" + t  + "<br><br>";
+        // newFood.appendChild(tim1);    
     }
-    else{
-        fullString = fullString + "<br><br><br>";
-    }
-    fullString = fullString + "<br><br><br></label>";
 
     // initialize new food div: set id & class name
-    var newFood = document.createElement('div');
     var addFavoriteElement = document.createElement('div');
     var addEditElement = document.createElement('div');
 
@@ -945,62 +846,148 @@ function createNewFavFood(f, w, t, m, id) {
 
     newFood.className = "testtt";
 
+
     // console.log(f,w,t,)
 
     // create the new food div and set HTML content w/ respective vars
-    newFood.innerHTML = fullString;
     addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + t + "," + m + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
 
     addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
+    newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
 
 
-    // // set on-click to edit/load this food div
-    // newFood.onclick = function () {
-    //     // clear the feed
-    //     clearChildren();
-    //     // initialize div elements
-    //     var cancelButton = document.createElement('div');
-    //     var food = document.createElement('div');
-    //     var water = document.createElement('div');
-    //     var time = document.createElement('div');
-    //     var message = document.createElement('div');
-    //     var postButton = document.createElement('div');
-    //     var deleteButton = document.createElement('div');
+    console.log(f, w , t, m)
+    // load new food div into the food feed
+    document.getElementById("feedTestFood").appendChild(newFood);
+}
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- CREATE/LOAD A NEW FAV EXERCISE ELEMENT -----------//////////
+/////////////////////////////////////////////////////////////////////////////////////
+// SET VARS FOR NEW EXERCISE, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO EX FEED
+function createNewHistoryEx(r, s, w, t, m, id) {
+    //TODO//
+    // needs a hover attribute
 
-    //     // set the ids
-    //     cancelButton.id = "cancelNewEdit";
-    //     food.id = "foodNewEdit";
-    //     water.id = "waterNewEdit";
-    //     time.id = "timeFoodNewEdit";
-    //     message.id = "messageFoodNewEdit";
-    //     postButton.id = "postButtonFoodNewEdit";
-    //     deleteButton.id = "deleteButtonExNewEdit";
+    // initialize new exercise div: set id & class name
+    var newExercise = document.createElement('div');
+    var addEditElement = document.createElement('div');
+    var addFavoriteElement = document.createElement('div');
+    newExercise.id = "favID";
+    newExercise.className = "testtt";
 
-    //     // create the edit form by setting the HTML content of each div
-    //     cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
-    //     food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: PB&J plus a banana)<br><br> </label> <input type='text' id='foodInput' class = 'required' value = '" + f + "'><br><br><br>  ";
-    //     water.innerHTML = "<label class = 'exClass1'>Water/Beverages (ex: Water, Protein Shake)<br> <br> </label><input type='text' class = 'required' id='waterInput' value = '" + w + "'><br><br><br>  ";
-    //     time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br>  </label><input type='text' id='timeFoodInput' class = 'required' value = '" + t + "'><br><br> <br> ";
-    //     message.innerHTML = "<label class = 'exClass1'>Note (ex: 400 calories)<br><br> </label><input type='text' id='messageFoodInput'class = 'required' value = '" + m + "'><br><br><br>";
-    //     // update button
-    //     postButton.innerHTML = "<input onclick = 'updateFavFoodEntry(" + id + ");' type='submit' id = 'pButton1' value = 'UPDATE'/>";
-    //     // delete button
-    //     deleteButton.innerHTML = "<input onclick = 'deleteFavFood(" + id + ");' type='submit' id = 'pButton1' value = 'DELETE'/>";
+    //format a string to set element html
+    // var fullString = "";
+    if (m != "") {
+        newExercise.innerHTML += "Workout:<br>" + m  + "<br><br>";
+    }
+    if (r != "") {
+        newExercise.innerHTML += "Reps:<br>" + r  + "<br><br>";
+    }
+    if (s != "") {
+        newExercise.innerHTML += "Sets:<br>" + s  + "<br><br>";
+    }
+    if (w != "") {
+        newExercise.innerHTML += "Weight:<br>" + w  + "<br><br>";
+    }
+    if (t != "") {
+        newExercise.innerHTML += "Time:<br>" + t  + "<br><br>";
+    }
+    //TODO//
+    // add a check for empty params and setting the following HTML
 
-    //     // load the food form on the feed
-    //     document.getElementById("feed")
-    //         .appendChild(cancelButton)
-    //         .appendChild(food)
-    //         .appendChild(water)
-    //         .appendChild(message)
-    //         .appendChild(time)
-    //         .appendChild(postButton)
-    //         .appendChild(deleteButton);
-    // }
+    // create the new exercise div and set HTML content w/ respective vars
+    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavExerciseToDB("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "'  class = 'favButtonAdd'>ADD</button>";
+    // load new exercise div into the exercise feed
+    newExercise.appendChild(addFavoriteElement);
+    console.log("hey");
+    document.getElementById("historyFeed1").appendChild(newExercise)
+}
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- CREATE/LOAD A NEW FOOD ELEMENT ---------------//////////
+/////////////////////////////////////////////////////////////////////////////////////
+// SET VARS FOR NEW FOOD, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO FOOD FEED
+function createNewHistoryFood(f, w, t, m, id) {
+    //TODO//
+    // needs a hover attribute
+
+    var newFood = document.createElement('div');
+
+     //format a string to set element html
+     var fullString = "<br>";
+     if (f != "") {
+         fullString = fullString + "Food:<br>" + f + "<br><br>";
+     }
+     if (w != "") {
+         fullString = fullString + "Beverage:<br>" + w + "<br><br>";
+     }
+     if (m != "") {
+         fullString = fullString + "Note:<br>" + m + "<br><br>";
+     }
+     if (t != "") {
+         fullString = fullString + "Time:<br>" + t + "<br><br>";
+     }
+ 
+     fullString = fullString + "</label>";
+ 
+     //TODO//
+     // add a check for empty params and setting the following HTML
+ 
+     // create the new exercise div and set HTML content w/ respective vars
+     var addFavoriteElement = document.createElement('div');
+
+     newFood.innerHTML = fullString;
+    newFood.id = "favID";
+    newFood.className = "testtt";
+
+      // create the new food div and set HTML content w/ respective vars
+      addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
+      newFood.appendChild(addFavoriteElement);
 
     // load new food div into the food feed
-    document.getElementById("feedTest1").appendChild(newFood).appendChild(addFavoriteElement).appendChild(addEditElement);
+    document.getElementById("historyFeed1").appendChild(newFood);
 }
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- CREATE/LOAD A NEW TASK ELEMENT -----------//////////////
+/////////////////////////////////////////////////////////////////////////////////////
+// SET VARS FOR NEW EXERCISE, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO EX FEED
+function createNewHistoryTask(ttl, desc, t, id) {
+    //TODO//
+    // needs a hover attribute
+
+    // initialize new task div: set id & class name
+    var newTask = document.createElement('div');
+    var addFavoriteElement = document.createElement('div');
+
+    newTask.id = "favID";
+    newTask.className = "testtt";
+
+    //TODO//
+    // furthis this style implementation
+
+    //format a string to set element html
+    var fullString = "<br>";
+    if (ttl != "") {
+        fullString = fullString + "Title:<br>" + ttl + "<br><br>";
+    }
+    if (desc != "") {
+        fullString = fullString + "Description:<br>" + desc + "<br><br>";
+    }
+    if (t != "") {
+        fullString = fullString + "Time:<br>" + t + "<br><br>";
+    }
+
+    fullString = fullString + "</label>";
+    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavTaskToDB("' + ttl + "," + desc + "," + t + '")' + "' class = 'favButtonAdd'>ADD</button>";
+
+    // create the new task div and set HTML content w/ respective vars
+    newTask.innerHTML = fullString;
+
+    newTask.appendChild(addFavoriteElement);
+    // load new exercise div into the exercise feed
+    document.getElementById("historyFeed1").appendChild(newTask);
+}
+
 
 
 /********************************************************************/
@@ -1020,6 +1007,7 @@ function createNewFavFood(f, w, t, m, id) {
 function newTask() {
     // clear the feed
     clearChildren();
+    loadTaskHistoryFeed();
 
     // initialize div elements
     var cancelButton = document.createElement('div');
@@ -1075,7 +1063,7 @@ function newFavTask() {
     postButton.id = "postButton";
 
     // then add the HTML content of the element
-    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
+    cancelButton.innerHTML = "<input onclick = 'favoriteButtonClick()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
     head.innerHTML = "<br><br><br><label class = 'exClass1'>FAVORITE TASK<br>";
     title.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: Chemistry, Dentist, Birthday, etc.) <br><br></label><input id='taskReq1' onclick = '" + 'makeClean(document.getElementById("taskReq1"))' + "' type='text' class = 'required'><br><br><br>";
     description.innerHTML = "<label class = 'exClass1'>Description (ex: Due at 11:59pm, buy a gift, etc.) <br><br></label> <input type='text' id='taskReq2' onclick = '" + 'makeClean(document.getElementById("taskReq2"))' + "' class = 'required'><br><br><br>";
@@ -1098,7 +1086,9 @@ function newFavTask() {
 function newExercise() {
     // clear the feed
     clearChildren();
-
+    document.getElementById("historyFeed").style.display = "";
+    document.getElementById("historyTitle").style.display = "";
+    loadExHistoryFeed();
     // initialize div elements
     var cancelButton = document.createElement('div');
     var reps = document.createElement('div');
@@ -1167,7 +1157,7 @@ function newFavExercise() {
 
     // then add the HTML content of the element
     // title and time are required for inputs
-    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
+    cancelButton.innerHTML = "<input onclick = 'favoriteButtonClick()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
     title.innerHTML = "<br><br><br><label class = 'exClass1'>FAVORITE EXERCISE<br>";
     message.innerHTML = "<br><br><br><label class = 'exClass1'>Workout (ex: DB Bench Press. Difficult) <br><br></label><input id='exReq1' onclick = '" + 'makeClean(document.getElementById("exReq1"))' + "' type='text' class = 'required' ><br><br><br>";
     reps.innerHTML = "<label class = 'exClass1'>Reps (ex: 8) <br><br></label> <input type='text' id='exReq2' onclick = '" + 'makeClean(document.getElementById("exReq2"))' + "' class = 'required' ><br><br><br>";
@@ -1195,6 +1185,7 @@ function newFoodAndWater() {
     // clear the feed
     clearChildren();
 
+    loadFoodHistoryFeed();
 
     // initialize div elements
     var cancelButton = document.createElement('div');
@@ -1256,7 +1247,7 @@ function newFavFood() {
     postButton.id = "postButtonFoodNew";
 
     // then add the HTML content of the element
-    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
+    cancelButton.innerHTML = "<input onclick = 'favoriteButtonClick()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
     title.innerHTML = "<br><br><br><label class = 'exClass1'>FAVORITE FOOD<br>";
     food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: PB&J plus a banana)<br><br> </label> <input type='text' id='foodReq1' onclick = '" + 'makeClean(document.getElementById("foodReq1"))' + "' class = 'required'><br><br><br>";
     water.innerHTML = "<label class = 'exClass1'>Water/Beverages (ex: Water, Protein Shake)<br> <br> </label><input type='text' id='foodReq2' onclick = '" + 'makeClean(document.getElementById("foodReq2"))' + "' class = 'required'><br><br><br>";
@@ -1289,7 +1280,8 @@ function favoriteButtonClick() {
     document.getElementById("exButton").style.display = "none";
     document.getElementById("foodButton").style.display = "none";
     document.getElementById("taskButton").style.display = "none";
-
+    document.getElementById("historyTitle").style.display = "none";
+    document.getElementById("historyFeed").style.display = "none";
 
     // initialize div elements
     var cancelButton = document.createElement('div');
@@ -1367,6 +1359,8 @@ function loadMyAccount() {
     document.getElementById('foodButton').style.display = 'none';
     document.getElementById('taskButton').style.display = 'none';
     document.getElementById('favoritesDivID').style.display = '';
+    document.getElementById("historyTitle").style.display = "none";
+    document.getElementById("historyFeed").style.display = "none";
 
     // get username var
 
@@ -1382,8 +1376,10 @@ function loadMyAccount() {
     username.id = "usernameAccountID";
     editButton.id = "editAccountID";
     signOutButton.id = "editAccountID";
+    
+    const user = firebase.auth().currentUser;
 
-    username.innerHTML = "<br><br><br><label id = 'accountUsername'>" + getURLParameter("username") + "'s account page <br><br></label>";
+    username.innerHTML = "<br><br><br><label id = 'accountUsername'>" + user.displayName + "'s account page <br><br></label>";
     editButton.innerHTML = "<input onclick = 'editAccount()' type='submit' id = 'cancelButton1' value = 'EDIT MY ACCOUNT'/>"
     signOutButton.innerHTML = "<input onclick = 'signOutAccount()' type='submit' id = 'signOutButton1' value = 'SIGN OUT'/>"
 
@@ -1460,7 +1456,27 @@ function addTask() {
 
     // get a random number for the doc ID 
     var fill = "" + generateRandomNumber(1, 1000000);
+  // create a new task document in history db
+  db.collection("users").doc(userID).collection("history").doc(fill).set({
+    title: title,
+    description: description,
+    time: time,
+    date: date,
+    month: month,
+    taskID:"true"
+}).then(() => {
+    // clear the feed
+    // clearChildren();
 
+    // //TODO//
+    // // implement post successful alert
+
+    // // load the feed
+    // loadFeed(date, month);
+})
+    .catch((error) => {
+        // alert("ERROR submitting post! " + error);
+    });;
     // create a new food document with random number id
     db.collection("users").doc(userID).collection("tasks").doc(fill).set({
         title: title,
@@ -1611,6 +1627,25 @@ function addFoodAndWater() {
 
     // get a random number for the doc ID 
     var fill = "" + generateRandomNumber(1, 1000000);
+
+
+     // add to history db
+     db.collection("users").doc(userID).collection("history").doc(fill).set({
+        food: food,
+        water: water,
+        time: time,
+        message: message,
+        date: date,
+        month: month,
+        foodID:"true"
+    }).then(() => {
+     
+    })
+        .catch((error) => {
+            // alert("ERROR submitting post! " + error);
+        });;
+
+
 
     // create a new food document with random number id
     db.collection("users").doc(userID).collection("foodAndWater").doc(fill).set({
@@ -1960,6 +1995,29 @@ function addExercise() {
     // get a random number for the doc ID 
     var fill = "" + generateRandomNumber(1, 100000);
 
+      // create a new exercise document in history db
+      db.collection("users").doc(userID).collection("history").doc(fill).set({
+        reps: reps,
+        sets: sets,
+        weight: weight,
+        time: time,
+        message: message,
+        date: date,
+        month: month,
+        exerciseID:"true"
+    }).then(() => {
+        // clear the feed
+        // clearChildren();
+
+        // //TODO//
+        // // implement post successful alert
+
+        // // load the feed
+        // loadFeed(date, month);
+    })
+        .catch((error) => {
+            // alert("ERROR submitting post! " + error);
+        });;
     // create a new exercise document with random number id
     db.collection("users").doc(userID).collection("exercises").doc(fill).set({
         reps: reps,
@@ -2064,6 +2122,7 @@ function addFavExercise() {
 // FORMAT DATE, LOAD EXERCISE, FOODANDWATER, TASK FEEDS
 function loadFeed(date, month) {
     // format day var 
+
     var day = "" + date;
     // hide post buttons
     document.getElementById("exButton").style.display = "";
@@ -2086,6 +2145,10 @@ function loadFeed(date, month) {
     document.getElementById("foodFeedTitle").style.display = '';
     document.getElementById("taskFeedTitle").style.display = '';
     document.getElementById("favFeedTitle").style.display = '';
+    document.getElementById("historyTitle").style.display = 'none';
+    document.getElementById("historyFeed").style.display = 'none';
+
+
 
     document.getElementById("exFeed").style.display = '';
     document.getElementById("foodFeed").style.display = '';
@@ -2096,6 +2159,13 @@ function loadFeed(date, month) {
     document.getElementById("foodFeedTitle").innerHTML = 'FOOD';
     document.getElementById("taskFeedTitle").innerHTML = 'TASKS';
     document.getElementById("favFeedTitle").innerHTML = 'FAVORITES';
+    document.getElementById("historyTitle").innerHTML = 'HISTORY';
+
+
+
+    console.log(document.getElementsByClassName("favLab"));
+
+
 
     
     // load the exercise feed
@@ -2137,23 +2207,6 @@ function loadFeed(date, month) {
             createNewFavTask(doc.data().title, doc.data().description, doc.data().time, doc.id)
         });
     });
-
-    console.log(document.getElementsByClassName("favLab"));
-    document.getElementById("ex56").style.display = '';
-    document.getElementById("food56").style.display = '';
-    document.getElementById("task56").style.display = '';
-
-    document.getElementById("ex56").innerHTML = 'EX';
-    document.getElementById("food56").innerHTML = 'FOOD';
-    document.getElementById("task56").innerHTML = 'TASK';
-
-    document.getElementById("okFullExerciseID").style.display = '';
-    document.getElementById("okFullFoodID").style.display = '';
-    document.getElementById("okFullTaskID").style.display = '';
-
-    document.getElementById("okFullExerciseID").innerHTML = 'EX';
-    document.getElementById("okFullFoodID").innerHTML = 'FOOD';
-    document.getElementById("okFullTaskID").innerHTML = 'TASK';
 
 
 
@@ -2757,7 +2810,7 @@ function updateAccount() {
         email: email
     }).then(() => {
         window.location.href = "../TrackingPage/tracking.html?userID=" + userID + "&username=" + usernameEdit + "&email=" + email;
-
+        // loadMyAccount();
     })
         .catch((error) => {
             // alert("ERROR submitting post!" + error);
@@ -2939,6 +2992,8 @@ function userSignedOut() {
     document.getElementById('accountIcon').style.display = 'none';
     document.getElementById('favoritesIcon').style.display = 'none';
     document.getElementById('favLabel').style.display = 'none';
+    document.getElementById("historyTitle").style.display = "none";
+    document.getElementById("historyFeed").style.display = "none";
 
     // document.getElementById('favoritesDivID').style.display = 'none';
     document.getElementById('currentDateDisplay').style.display = 'none';
@@ -3238,4 +3293,57 @@ function editThisExerciseFav(f) {
     // clearChildren();
     // // load the feed
     // loadFeed(currDate, currMonth);
+}
+
+/////EDIT EXERCISE FAV
+function loadExHistoryFeed() {
+    // reload the page
+    document.getElementById("historyTitle").style.display = '';
+
+    document.getElementById("historyFeed").style.display = '';
+    clearChildren();
+
+    // load the exercise feed
+    db.collection("users").doc(userID).collection("history").where("exerciseID", "==", "true").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            createNewHistoryEx(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id);
+        });
+    });
+}
+/////EDIT EXERCISE FAV
+function loadFoodHistoryFeed() {
+    // reload the page
+    document.getElementById("historyTitle").style.display = '';
+
+    document.getElementById("historyFeed").style.display = '';
+    clearChildren();
+
+    // load the exercise feed
+    db.collection("users").doc(userID).collection("history").where("foodID", "==", "true").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            createNewHistoryFood(doc.data().food, doc.data().water, doc.data().time, doc.data().message, doc.id);
+        });
+    });
+
+
+
+}
+
+/////EDIT EXERCISE FAV
+function loadTaskHistoryFeed() {
+    // reload the page
+    document.getElementById("historyTitle").style.display = '';
+
+    document.getElementById("historyFeed").style.display = '';
+
+    clearChildren();
+    // load the exercise feed
+    db.collection("users").doc(userID).collection("history").where("taskID", "==", "true").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            createNewHistoryTask(doc.data().title, doc.data().description, doc.data().time, doc.id);
+        });
+    });
+
+
+
 }

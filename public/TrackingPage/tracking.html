@@ -555,6 +555,14 @@
     <br>
     <!-- FAVORITES ICON -->
 
+    <h2 id="historyTitle" style="display: none;">
+    </h2>
+    <div id="historyFeed">
+        <div id="historyFeed1">
+        </div>
+
+    </div>
+
     <div id="favoritesDivID" style="text-align: center;">
         <img id="favoritesIcon" onclick="favoriteButtonClick()" src="./icons8-plus-144.png" alt="favoritesIcon">
         <label id="favLabel">NEW FAVORITE</label>
@@ -566,32 +574,22 @@
         <div id="activeDay"></div>
     </div>
     <!-- FAV FEED TITLE INITIALIZATION -->
+
     <h2 id="favFeedTitle" style="display: none;">
     </h2>
-
     <div id="fullFavFeed">
         <div id="feedTest1">
-            <div id="favFeedFood1">
-                <div id="okFullFoodID">
-                    <label id="food56" class="favLab">FOOD</label>
-                </div>
-            </div>
         </div>
-        <div id="feedTest2">
-            <div id="favFeedExercise1">
-                <div id="okFullExerciseID">
-                    <label id="ex56" class="favLab">EXERCISE</label>
-                </div>
-            </div>
-        </div>
-        <div id="feedTest3">
-            <div id="favFeedTask1">
-                <div id="okFullTaskID">
-                    <label id="task56" class="favLab">TASK</label>
-                </div>
-            </div>
-        </div>
+        <div id = "feedTestFood"></div>
         <br>
+        <div id="feedTest2">
+        </div>
+        <div id = "feedTestExercise"></div>
+        <br>
+
+        <div id="feedTest3">
+        </div>
+        <div id = "feedTestTask"></div>
     </div>
     <div id="favFeed">
         <!-- FEED DIV INSIDE FAV FEED -->
@@ -602,10 +600,11 @@
 
     <!-- ADD TASK BUTTON -->
     <button id="taskButton" onclick="newTask()" style="display:none;">Add task</button>
+        <!-- ADD EXERCISE BUTTON -->
+        <button id="exButton" onclick="newExercise()" style="display:none;">Add exercise</button>
     <!-- ADD FOOD BUTTON -->
     <button id="foodButton" onclick="newFoodAndWater()" style="display: none;">Add food</button>
-    <!-- ADD EXERCISE BUTTON -->
-    <button id="exButton" onclick="newExercise()" style="display:none;">Add exercise</button>
+
     <br>
 
     <div id="titleDiv">
