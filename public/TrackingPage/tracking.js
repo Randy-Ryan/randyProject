@@ -19,6 +19,7 @@ var userID;
 var username;
 var email;
 
+var proteinTotal = 0;
 var root = document.documentElement;
 const lists = document.querySelectorAll('.hs');
 
@@ -396,6 +397,7 @@ function clearChildren() {
     document.getElementById('foodFeed').textContent = '';
     document.getElementById('foodFeed').innerHTML = '';
 
+    proteinTotal = 0;
 
 
     document.getElementById("exFeedTitle").style.display = "none";
@@ -2351,8 +2353,9 @@ function loadFeed(date, month) {
 
 
     getMyFoods();
-    loadReccomendedFeed();
     loadNutritionFeed();
+
+
 
     // load the exercise feed
     db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
@@ -3575,7 +3578,6 @@ function getMyFoods() {
         });
     }).then(() => {
         var foodStrings = myFoods.split(',');
-
         for (var i = 0; i < foodStrings.length; i++) {
             if (foodStrings[i] != "") {
                 // console.log(foodStrings[i]);
@@ -3604,6 +3606,11 @@ function getMyFoods() {
                         // console.log(res.foods[0].foodNutrients[i].nutrientName + ": " + res.foods[0].foodNutrients[i].value + " " + res.foods[0].foodNutrients[i].unitName);
                         if (res.foods[0].foodNutrients[i].value != "0"){
                             s += res.foods[0].foodNutrients[i].nutrientName +": " + res.foods[0].foodNutrients[i].value + res.foods[0].foodNutrients[i].unitName + "<br>"
+                         
+                           if(res.foods[0].foodNutrients[i].nutrientName == "Protein") {
+                            addTotalProtein(res.foods[0].foodNutrients[i].value);
+                           }
+
                         // createNewNutrition(res.foods[0].foodNutrients[i].nutrientName, res.foods[0].foodNutrients[i].value, res.foods[0].foodNutrients[i].unitName );
                         //now build a graph to show these nutrients
                     }
@@ -3611,19 +3618,28 @@ function getMyFoods() {
                 createNewNutrition(res.foods[0].description, s, "");
                 // console.log(res.foods[0].foodNutrients[1].nutrientName + ": " + res.foods[0].foodNutrients[1].value + " " + res.foods[0].foodNutrients[1].unitName);
                 });
+
             }
+            // loadReccomendedFeed();
+
         }
+
     })
         .catch((error) => {
             // alert("ERROR submitting post! " + error);
         });
+
 }
 
 
 /////EDIT EXERCISE FAV
 function loadReccomendedFeed() {
-    createNewReccomendedFood("API implementation", "", "", "");
-    createNewReccomendedFood("Here TODO", "", "", "");
+
+    var el2 = document.getElementById('reccomendedFoodsFeed');
+    while (el2.firstChild) el2.innerHTML = '';
+
+    createNewReccomendedFood("MY TOTAL PROTEIN THIS WEEK: <br>" + proteinTotal + " g", "", "", "");
+    // createNewReccomendedFood("Here TODO", "", "", "");
 
 }
 
@@ -3631,5 +3647,17 @@ function loadReccomendedFeed() {
 function loadNutritionFeed() {
     // createNewNutrition("Nutrition Calculator", "", "", "");
     // createNewNutrition("implementation here", "", "", "");
+
+}
+
+/////EDIT EXERCISE FAV
+function addTotalProtein(proteinVal) {
+    // createNewNutrition("Nutrition Calculator", "", "", "");
+    // createNewNutrition("implementation here", "", "", "");
+
+    proteinTotal += proteinVal;
+    console.log("total protein: " + proteinTotal + " g");
+    loadReccomendedFeed();
+
 
 }
