@@ -136,7 +136,7 @@ window.onload = function () {
         document.getElementById("exFeed").style.display = "none";
         document.getElementById("foodFeed").style.display = "none";
         document.getElementById("taskFeed").style.display = "none";
-        document.getElementById("favFeed").style.display = "none";
+        // document.getElementById("favFeed").style.display = "none";
         document.getElementById("exFeedTitle").style.display = "none";
         document.getElementById("foodFeedTitle").style.display = "none";
         document.getElementById("taskFeedTitle").style.display = "none";
@@ -3014,7 +3014,7 @@ function userSignedOut() {
     // document.getElementById('favoritesDivID').style.display = 'none';
     document.getElementById('currentDateDisplay').style.display = 'none';
     document.getElementById("fullFavFeed").style.display = "none";
-    document.getElementById("favFeedTitle").style.display = "none";
+    // document.getElementById("favFeedTitle").style.display = "none";
 
     document.getElementById('filler1').style.display = 'none';
 
