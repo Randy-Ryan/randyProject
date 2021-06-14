@@ -1122,11 +1122,13 @@ function createNewReccomendedFood(f, w, t, m, id) {
 /////////------------------- CREATE/LOAD A NEW FAV FOOD ELEMENT ---------------//////////
 /////////////////////////////////////////////////////////////////////////////////////
 // SET VARS FOR NEW FOOD, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO FOOD FEED
-function createNewNutrition(f, w, t, m, id) {
+function createNewNutrition(d, v, u) {
     //TODO//
     // needs a hover attribute
 
-    var newFood = document.createElement('li');
+    //description, value , units
+
+    var newNutrient = document.createElement('li');
     // initialize new food div: set id & class name
     // var addFavoriteElement = document.createElement('div');
     // var addEditElement = document.createElement('div');
@@ -1140,39 +1142,29 @@ function createNewNutrition(f, w, t, m, id) {
 
 
     // var fullString = "";
-    if (f != "") {
+    if (d != "") {
         // var food1 = document.createElement('div');
-        newFood.innerHTML += "Food:<br>" + f + "<br><br>";
+        newNutrient.innerHTML += "Description:<br>" + d + "<br><br>";
         // newFood.appendChild(food1)
     }
-    if (w != "") {
+    if (v != "") {
         // var water1 = document.createElement('div');
-        newFood.innerHTML += "Beverage:<br>" + w + "<br><br>";
+        newNutrient.innerHTML += "Value:<br>" + v + " " + u;
         // newFood.appendChild(water1);
     }
-    if (m != "") {
-        // var note1 = document.createElement('div');
-        newFood.innerHTML += "Note:<br>" + m + "<br><br>";
-        // newFood.appendChild(note1);      
-    }
-    if (t != "") {
-        // var time1 = document.createElement('div');
-        newFood.innerHTML += "Time:<br>" + t + "<br><br>";
-        // newFood.appendChild(tim1);    
-    }
 
-    newFood.id = "favID";
+    newNutrient.id = "favID";
     // addFavoriteElement.id = "addFavoriteElement";
     // addEditElement.id = "addEditElement";
 
-    newFood.className = "testtt";
+    newNutrient.className = "testtt";
 
 
     // console.log(f,w,t,)
 
     // console.log(f, w , t, m)
     // load new food div into the food feed
-    document.getElementById("nutritionValuesFeed").appendChild(newFood);
+    document.getElementById("nutritionValuesFeed").appendChild(newNutrient);
 }
 /********************************************************************/
 
@@ -3556,12 +3548,12 @@ function getMyFoods() {
             // console.log(doc.data().food);
             // console.log(doc.data().water);
 
-            console.log(doc.data().date, doc.data().month);
+            // console.log(doc.data().date, doc.data().month);
             var dayInt = parseInt(doc.data().date);
-            console.log(dayInt);
+            // console.log(dayInt);
 
             var todaysDayInt = parseInt(currDate);
-            console.log(todaysDayInt);
+            // console.log(todaysDayInt);
             if (dayInt >= 7 && dayInt <= todaysDayInt) {
                 // load the feed for past 7 days
 
@@ -3586,32 +3578,39 @@ function getMyFoods() {
 
         for (var i = 0; i < foodStrings.length; i++) {
             if (foodStrings[i] != "") {
-                console.log(foodStrings[i]);
+                // console.log(foodStrings[i]);
                 //NOW WE HAVE AN ARRAY OF THE LAST 7 DAYS OF FOOD INPUTS
                 //USE THESE STRINGS WITH AN NUTRITION API/CALCULATOR
 
                 // const Http = new XMLHttpRequest();
-                
+
                 //demo key = 3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf
                 //full food list url = https://api.nal.usda.gov/fdc/v1/foods/list?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf
 
 
                 // change the query in this url for an api search
-                const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&query=Banana';
+                const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&query=' + foodStrings[i];
                 // Http.open("GET", url);
                 // Http.send();
 
                 fetch(url).then(data => {
                     return data.json()
                 }).then(res => {
-                    console.log(res.foods[3].foodNutrients);
+                    // console.log(res)
+                    console.log(res);
+                    var s = ""
+
+                    for (var i = 0; i < res.foods[0].foodNutrients.length; i++) {
+                        // console.log(res.foods[0].foodNutrients[i].nutrientName + ": " + res.foods[0].foodNutrients[i].value + " " + res.foods[0].foodNutrients[i].unitName);
+                        if (res.foods[0].foodNutrients[i].value != "0"){
+                            s += res.foods[0].foodNutrients[i].nutrientName +": " + res.foods[0].foodNutrients[i].value + res.foods[0].foodNutrients[i].unitName + "<br>"
+                        // createNewNutrition(res.foods[0].foodNutrients[i].nutrientName, res.foods[0].foodNutrients[i].value, res.foods[0].foodNutrients[i].unitName );
+                        //now build a graph to show these nutrients
+                    }
+                }// console.log(res.foods[0]);
+                createNewNutrition(res.foods[0].description, s, "");
+                // console.log(res.foods[0].foodNutrients[1].nutrientName + ": " + res.foods[0].foodNutrients[1].value + " " + res.foods[0].foodNutrients[1].unitName);
                 });
-
-                // Http.onreadystatechange = (e) => {
-
-
-                //     console.log(Http.responseText)
-                // }
             }
         }
     })
@@ -3623,14 +3622,14 @@ function getMyFoods() {
 
 /////EDIT EXERCISE FAV
 function loadReccomendedFeed() {
-            createNewReccomendedFood("API implementation", "", "", "");
-            createNewReccomendedFood("Here TODO", "", "", "");
+    createNewReccomendedFood("API implementation", "", "", "");
+    createNewReccomendedFood("Here TODO", "", "", "");
 
 }
 
 /////EDIT EXERCISE FAV
 function loadNutritionFeed() {
-    createNewNutrition("Nutrition Calculator", "", "", "");
-    createNewNutrition("implementation here", "", "", "");
+    // createNewNutrition("Nutrition Calculator", "", "", "");
+    // createNewNutrition("implementation here", "", "", "");
 
 }
