@@ -1088,7 +1088,7 @@ function createNewReccomendedFood(f, w, t, m, id) {
     // var fullString = "";
     if (f != "") {
         // var food1 = document.createElement('div');
-        newFood.innerHTML += "Food:<br>" + f + "<br><br>";
+        newFood.innerHTML += "<br>" + f + "<br><br>";
         // newFood.appendChild(food1)
     }
     if (w != "") {
