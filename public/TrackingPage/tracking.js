@@ -46,6 +46,25 @@ lists.forEach(el => {
 // GET/SET TODAYS DATE, STYLE CALENDAR/FEED, SET GLOBAL VARS, CLEAR/LOAD FEED 
 window.onload = function () {
     // initialize and set vars
+
+    firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    var uid = user.uid;
+    console.log("heyyy");
+    console.log(user);
+    // user.phoneNumber
+    // user.photoURL
+    // user.emailVerified
+    // user.email
+    // ...
+  } else {
+    // User is signed out
+    // ...
+    userSignedOut();
+  }
+});
     var s = getDateAndMonth();
     var day = s.substring(0, 2);
     var month = s.substring(3, 5);
@@ -3550,7 +3569,6 @@ function getMyFoods() {
         querySnapshot.forEach((doc) => {
             // console.log(doc.data().food);
             // console.log(doc.data().water);
-
             // console.log(doc.data().date, doc.data().month);
             var dayInt = parseInt(doc.data().date);
             // console.log(dayInt);
@@ -3559,10 +3577,7 @@ function getMyFoods() {
             // console.log(todaysDayInt);
             if (dayInt >= 7 && dayInt <= todaysDayInt) {
                 // load the feed for past 7 days
-
                 createNewRecentFood(doc.data().food, doc.data().water, doc.data().time, doc.data().message, doc.id);
-
-
                 //load the past seven days
                 if (dayInt >= todaysDayInt - 7) {
                     myFoods += doc.data().food + "," + doc.data().water + ",";
@@ -3572,9 +3587,6 @@ function getMyFoods() {
                 // change the month and stuff to get the last 7 days
             }
             //only add these elements for the past 7 days
-
-
-
         });
     }).then(() => {
         var foodStrings = myFoods.split(',');
@@ -3600,7 +3612,7 @@ function getMyFoods() {
                 }).then(res => {
                     // console.log(res)
                     console.log(res);
-                    var s = ""
+                    var s = "";
 
                     for (var i = 0; i < res.foods[0].foodNutrients.length; i++) {
                         // console.log(res.foods[0].foodNutrients[i].nutrientName + ": " + res.foods[0].foodNutrients[i].value + " " + res.foods[0].foodNutrients[i].unitName);
