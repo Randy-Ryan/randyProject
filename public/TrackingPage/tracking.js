@@ -19,6 +19,16 @@ var userID;
 var username;
 var email;
 
+var root = document.documentElement;
+const lists = document.querySelectorAll('.hs'); 
+
+lists.forEach(el => {
+  const listItems = el.querySelectorAll('li');
+  const n = el.children.length;
+  el.style.setProperty('--total', n);
+});
+
+
 
 /********************************************************************/
 
@@ -136,12 +146,12 @@ window.onload = function () {
 
         return;
     }
-    document.getElementById("feedTest1").style.display = '';
-    document.getElementById("feedTest1").innerHTML = 'FOOD';
-    document.getElementById("feedTest2").style.display = '';
-    document.getElementById("feedTest2").innerHTML = 'EXERCISE';
-    document.getElementById("feedTest3").style.display = '';
-    document.getElementById("feedTest3").innerHTML = 'TASKS';
+    // document.getElementById("feedTest1").style.display = '';
+    // document.getElementById("feedTest1").innerHTML = 'FOOD';
+    // document.getElementById("feedTest2").style.display = '';
+    // document.getElementById("feedTest2").innerHTML = 'EXERCISE';
+    // document.getElementById("feedTest3").style.display = '';
+    // document.getElementById("feedTest3").innerHTML = 'TASKS';
     
     // load the feed
     loadFeed(day, month);
@@ -406,12 +416,12 @@ function clearChildren() {
     document.getElementById("exFeed").style.display = "none";
     document.getElementById("taskFeed").style.display = "none";
     document.getElementById("foodFeed").style.display = "none";
-    document.getElementById("favFeed").style.display = "none";
+    // document.getElementById("favFeed").style.display = "none";
     document.getElementById("exButton").style.display = "none";
     document.getElementById("taskButton").style.display = "none";
     document.getElementById("foodButton").style.display = "none";
     document.getElementById("fullFavFeed").style.display = "none";
-    document.getElementById("favFeedTitle").style.display = "none";
+    // document.getElementById("favFeedTitle").style.display = "none";
 
 
 
@@ -431,13 +441,13 @@ function clearChildren() {
     var el2 = document.getElementById('taskFeed');
     while (el2.firstChild) el2.innerHTML = '';
 
-    var el2 = document.getElementById('feedTestFood');
+    var el2 = document.getElementById('foodGridFeed');
     while (el2.firstChild) el2.innerHTML = '';
 
-    var el2 = document.getElementById('feedTestExercise');
+    var el2 = document.getElementById('exerciseGridFeed');
     while (el2.firstChild) el2.innerHTML = '';
 
-    var el2 = document.getElementById('feedTestTask');
+    var el2 = document.getElementById('taskGridFeed');
     while (el2.firstChild) el2.innerHTML = '';
 
 
@@ -544,8 +554,14 @@ function createNewFavTask(ttl, desc, t, id) {
     var addEditElement = document.createElement('div');
     var addFavoriteElement = document.createElement('div');
 
-    var newTask = document.createElement('div');
+    var newTask = document.createElement('li');
 
+
+    // create the new task div and set HTML content w/ respective vars
+    addEditElement.innerHTML = "<br><button onclick = '" + 'editThisTaskFav("' + ttl + "," + desc + "," + t + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
+
+    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavTaskToDB("' + ttl + "," + desc + "," + t + '")' + "' class = 'favButtonAdd'>ADD</button>";
+    newTask .appendChild(addFavoriteElement).appendChild(addEditElement);
     addEditElement.id = "editID"
     addFavoriteElement.id = "favoriteID"
     newTask.id = "favID";
@@ -566,15 +582,8 @@ function createNewFavTask(ttl, desc, t, id) {
         newTask.innerHTML += "Time:<br>" + t  + "<br><br>";
     }
 
-
-    // create the new task div and set HTML content w/ respective vars
-    addEditElement.innerHTML = "<br><button onclick = '" + 'editThisTaskFav("' + ttl + "," + desc + "," + t + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
-
-    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavTaskToDB("' + ttl + "," + desc + "," + t + '")' + "' class = 'favButtonAdd'>ADD</button>";
-    newTask .appendChild(addFavoriteElement).appendChild(addEditElement);
-
     // load new exercise div into the exercise feed
-    document.getElementById("feedTestTask").appendChild(newTask)
+    document.getElementById("taskGridFeed").appendChild(newTask)
        
 
 }
@@ -678,12 +687,16 @@ function createNewFavExercise(r, s, w, t, m, id) {
     // needs a hover attribute
 
     // initialize new exercise div: set id & class name
-    var newExercise = document.createElement('div');
+    var newExercise = document.createElement('li');
     var addEditElement = document.createElement('div');
     var addFavoriteElement = document.createElement('div');
     newExercise.id = "favID";
     newExercise.className = "testtt";
-
+  // create the new exercise div and set HTML content w/ respective vars
+  addEditElement.innerHTML = "<br><button onclick = '" + 'editThisExerciseFav("' + m + "," + r + "," + s + "," + w + "," + t + "," + + id + '")' + "'  class = 'favButtonEdit'>EDIT</button>";
+  addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavExerciseToDB("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "'  class = 'favButtonAdd'>ADD</button>";
+  // load new exercise div into the exercise feed
+  newExercise.appendChild(addFavoriteElement).appendChild(addEditElement);
     //format a string to set element html
     // var fullString = "";
     if (m != "") {
@@ -704,13 +717,9 @@ function createNewFavExercise(r, s, w, t, m, id) {
     //TODO//
     // add a check for empty params and setting the following HTML
 
-    // create the new exercise div and set HTML content w/ respective vars
-    addEditElement.innerHTML = "<br><button onclick = '" + 'editThisExerciseFav("' + m + "," + r + "," + s + "," + w + "," + t + "," + + id + '")' + "'  class = 'favButtonEdit'>EDIT</button>";
-    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavExerciseToDB("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "'  class = 'favButtonAdd'>ADD</button>";
-    // load new exercise div into the exercise feed
-    newExercise.appendChild(addFavoriteElement).appendChild(addEditElement);
+  
     
-    document.getElementById("feedTestExercise").appendChild(newExercise)
+    document.getElementById("exerciseGridFeed").appendChild(newExercise)
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- CREATE/LOAD A NEW FOOD ELEMENT ---------------//////////
@@ -812,7 +821,18 @@ function createNewFavFood(f, w, t, m, id) {
     //TODO//
     // needs a hover attribute
 
-    var newFood = document.createElement('div');
+    var newFood = document.createElement('li');
+   // initialize new food div: set id & class name
+   var addFavoriteElement = document.createElement('div');
+   var addEditElement = document.createElement('div');
+
+    // create the new food div and set HTML content w/ respective vars
+    addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + t + "," + m + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
+
+    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
+    newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
+
+
 
     // var fullString = "";
     if (f != "") {
@@ -836,29 +856,20 @@ function createNewFavFood(f, w, t, m, id) {
         // newFood.appendChild(tim1);    
     }
 
-    // initialize new food div: set id & class name
-    var addFavoriteElement = document.createElement('div');
-    var addEditElement = document.createElement('div');
+ 
 
     newFood.id = "favID";
-    addFavoriteElement.id = "addFavoriteElement"
-    addEditElement.id = "addEditElement"
+    addFavoriteElement.id = "addFavoriteElement";
+    addEditElement.id = "addEditElement";
 
     newFood.className = "testtt";
 
 
     // console.log(f,w,t,)
 
-    // create the new food div and set HTML content w/ respective vars
-    addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + t + "," + m + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
-
-    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
-    newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
-
-
     console.log(f, w , t, m)
     // load new food div into the food feed
-    document.getElementById("feedTestFood").appendChild(newFood);
+    document.getElementById("foodGridFeed").appendChild(newFood);
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- CREATE/LOAD A NEW FAV EXERCISE ELEMENT -----------//////////
@@ -869,11 +880,15 @@ function createNewHistoryEx(r, s, w, t, m, id) {
     // needs a hover attribute
 
     // initialize new exercise div: set id & class name
-    var newExercise = document.createElement('div');
-    var addEditElement = document.createElement('div');
+    var newExercise = document.createElement('li');
+    // var addEditElement = document.createElement('div');
     var addFavoriteElement = document.createElement('div');
     newExercise.id = "favID";
     newExercise.className = "testtt";
+     // create the new exercise div and set HTML content w/ respective vars
+     addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavExerciseToDB("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "' id = 'historyAdd' class = 'favButtonAdd'>ADD</button>";
+     // load new exercise div into the exercise feed
+     newExercise.appendChild(addFavoriteElement);
 
     //format a string to set element html
     // var fullString = "";
@@ -895,11 +910,8 @@ function createNewHistoryEx(r, s, w, t, m, id) {
     //TODO//
     // add a check for empty params and setting the following HTML
 
-    // create the new exercise div and set HTML content w/ respective vars
-    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavExerciseToDB("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "'  class = 'favButtonAdd'>ADD</button>";
-    // load new exercise div into the exercise feed
-    newExercise.appendChild(addFavoriteElement);
-    console.log("hey");
+   
+    // console.log("hey");
     document.getElementById("historyFeed1").appendChild(newExercise)
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -910,8 +922,14 @@ function createNewHistoryFood(f, w, t, m, id) {
     //TODO//
     // needs a hover attribute
 
-    var newFood = document.createElement('div');
+    var newFood = document.createElement('li');
+     // create the new exercise div and set HTML content w/ respective vars
+     var addFavoriteElement = document.createElement('div');
 
+
+       // create the new food div and set HTML content w/ respective vars
+       addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' id = 'historyAdd' class = 'favButtonAdd'>ADD</button>";
+       newFood.appendChild(addFavoriteElement);
      //format a string to set element html
      var fullString = "<br>";
      if (f != "") {
@@ -932,16 +950,12 @@ function createNewHistoryFood(f, w, t, m, id) {
      //TODO//
      // add a check for empty params and setting the following HTML
  
-     // create the new exercise div and set HTML content w/ respective vars
-     var addFavoriteElement = document.createElement('div');
 
-     newFood.innerHTML = fullString;
+     newFood.innerHTML += fullString;
     newFood.id = "favID";
     newFood.className = "testtt";
 
-      // create the new food div and set HTML content w/ respective vars
-      addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
-      newFood.appendChild(addFavoriteElement);
+   
 
     // load new food div into the food feed
     document.getElementById("historyFeed1").appendChild(newFood);
@@ -956,11 +970,13 @@ function createNewHistoryTask(ttl, desc, t, id) {
     // needs a hover attribute
 
     // initialize new task div: set id & class name
-    var newTask = document.createElement('div');
+    var newTask = document.createElement('li');
     var addFavoriteElement = document.createElement('div');
 
     newTask.id = "favID";
     newTask.className = "testtt";
+    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavTaskToDB("' + ttl + "," + desc + "," + t + '")' + "' id = 'historyAdd' class = 'favButtonAdd'>ADD</button>";
+    newTask.appendChild(addFavoriteElement);
 
     //TODO//
     // furthis this style implementation
@@ -978,12 +994,10 @@ function createNewHistoryTask(ttl, desc, t, id) {
     }
 
     fullString = fullString + "</label>";
-    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavTaskToDB("' + ttl + "," + desc + "," + t + '")' + "' class = 'favButtonAdd'>ADD</button>";
 
     // create the new task div and set HTML content w/ respective vars
-    newTask.innerHTML = fullString;
+    newTask.innerHTML += fullString;
 
-    newTask.appendChild(addFavoriteElement);
     // load new exercise div into the exercise feed
     document.getElementById("historyFeed1").appendChild(newTask);
 }
@@ -2136,7 +2150,9 @@ function loadFeed(date, month) {
     document.getElementById("taskFeedTitle").style.display = "";
     document.getElementById("favoritesDivID").style.display = "";
     document.getElementById("fullFavFeed").style.display = "";
-    document.getElementById("favFeedTitle").style.display = "";
+
+    // document.getElementById("fullFavFeed").style.display = "";
+    // document.getElementById("favFeedTitle").style.display = "";
 
     if (day.length < 2) {
         day = "0" + day;
@@ -2144,7 +2160,7 @@ function loadFeed(date, month) {
     document.getElementById("exFeedTitle").style.display = '';
     document.getElementById("foodFeedTitle").style.display = '';
     document.getElementById("taskFeedTitle").style.display = '';
-    document.getElementById("favFeedTitle").style.display = '';
+    // document.getElementById("favFeedTitle").style.display = '';
     document.getElementById("historyTitle").style.display = 'none';
     document.getElementById("historyFeed").style.display = 'none';
 
@@ -2153,17 +2169,17 @@ function loadFeed(date, month) {
     document.getElementById("exFeed").style.display = '';
     document.getElementById("foodFeed").style.display = '';
     document.getElementById("taskFeed").style.display = '';
-    document.getElementById("favFeed").style.display = '';
+    // document.getElementById("favFeed").style.display = '';
 
     document.getElementById("exFeedTitle").innerHTML = 'EXERCISE';
     document.getElementById("foodFeedTitle").innerHTML = 'FOOD';
     document.getElementById("taskFeedTitle").innerHTML = 'TASKS';
-    document.getElementById("favFeedTitle").innerHTML = 'FAVORITES';
+    // document.getElementById("favFeedTitle").innerHTML = 'FAVORITES';
     document.getElementById("historyTitle").innerHTML = 'HISTORY';
 
 
 
-    console.log(document.getElementsByClassName("favLab"));
+    // console.log(document.getElementsByClassName("favLab"));
 
 
 

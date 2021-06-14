@@ -135,47 +135,49 @@ body{
 /* EDIT THE FEED TITLE ELEMENTS */
 
 #feedTest1{
-  position: relative;
+  /* position: relative;
   font-size: 30px;
-  width: 40%;
-  margin: 3%;
-  padding: 0;
+  width: max-content; */
+  /* margin: 3%; */
+  /* padding: 0;
   top: 0;
   text-align: center;
-  display: block;
+  display: inline-block; */
   /* border: 5px solid black; */
-  float: left;
-  height: 700px;
+  /* float: left; */
+  /* height: 1000px; */
 
 
 }
 #feedTest2{
-  position: relative;
+  /* position: relative; */
   /* border: 5px solid black; */
-  font-size: 30px;
-  width: 40%;
-  margin: 3%;
-  padding: 0;
+  /* font-size: 30px;
+  width: max-content; */
+  /* margin: 3%; */
+  /* padding: 0;
   top: 0;
-  display: block;
-  float: left;
-  height: 700px;
+  display: inline-block; */
+  /* float: left; */
+  /* height: auto; */
 
 
-  text-align: center;
+  /* text-align: center; */
 
 }
 #feedTest3{
-  position: relative;
+  /* position: relative;
   font-size: 30px;
-  width: 40%;
+  width: max-content;
   padding: 0;
   top: 0;
   text-align: center;
-  float: left;
+  display: inline-block; */
+
+  /* float: left; */
   /* display: block; */
-  height: 700px;
-  margin: 3%;
+  /* height: auto; */
+  /* margin: 3%; */
 
 
 
@@ -186,38 +188,39 @@ body{
 
 #feedTestFood{
   /* border: 5px solid black; */
-  width: 40%;
+  /* width: 400px;
   float: right;
-  height: 700px;
-  margin: 3%;
+  height: auto; */
+  /* margin: 3%; */
+  /* font-size: 30px;
+  white-space: nowrap; */
 
-
-  font-size: 30px;
 
 }
 #feedTestExercise{
   /* border: 5px solid black; */
-  width: 40%;
+  /* width: 400px;
   float: right;
   font-size: 30px;
-  height: 700px;
-  margin: 3%;
+  height: auto; */
+  /* margin: 3%; */
+  /* white-space: nowrap; */
 
   /* float: left; */
 }
 
 #feedTestTask{
   /* border: 5px solid black; */
-  width: 40%;
+  /* width: 400px;
   float: right;
-  height: 700px;
-  margin: 3%;
+  */
+  /* margin: 3%; */
 
-  font-size: 30px;
+  /* font-size: 30px;
+  white-space: nowrap; */
 
 
   /* float: left; */
-
 }
 
 
@@ -229,12 +232,14 @@ body{
 }
 
 .testtt{
-  height: auto;
+  /* height: auto;
   width: auto;
-  position: relative;
+  position: relative; */
   /* float: left; */
-padding: 5%;
+/* padding: 5%; */
 /* float: right; */
+/* margin-bottom: 3%; */
+
 }
 
 
@@ -290,17 +295,124 @@ padding: 5%;
 
 /* FAV POST ELEMENT */
 #favId{
-  text-align:justify;
-  font-size: 25px;
+  /* text-align:justify; */
+  /* font-size: 25px;
   color: black;
+  width: 100%;
+  height: 100%;
   background-color: white;
   border: 5px solid black;
-  position: relative;
-  display:inline-block;
+  display:inline-block; */
   /* height: 400px; */
+
+/* float: left;
   margin: 5%;
-margin-top: 0;
+  margin-top: 0;
+  box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8); */
+  /* display:inline-block; */ 
+}
+
+:root {
+  --gutter: 30px;
+}
+
+.app {
+  padding: var(--gutter) 0;
+  display: grid;
+  grid-gap: var(--gutter) 0;
+  grid-template-columns: var(--gutter) 1fr var(--gutter);
+  align-content: start;
+}
+
+.app > * {
+  grid-column: 2 / -2;
+
+}
+
+.app > .full {
+  grid-column: 1 / -1;
+}
+
+.hs {
+  display: grid;
+  grid-gap: calc(var(--gutter) / 2);
+  grid-template-columns: 10px;
+  grid-template-rows: minmax(150px, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: calc(50% - var(--gutter) * 2);
+  height: max-content;
+  overflow-x: scroll;
+  scroll-snap-type: x proximity;
+  padding-bottom: calc(.75 * var(--gutter));
+  margin-bottom: calc(-.25 * var(--gutter));
+}
+
+.hs:before,
+.hs:after {
+  content: '';
+  width: 10px;
+}
+
+
+/* Demo styles */
+
+html,
+body {
+  /* height: 100%; */
+}
+
+body {
+  /* display: grid;
+  place-items: center; */
+  /* background: #456173; */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  /* height: 100%; */
+  margin-bottom: 5%;
+
+}
+
+/* h1,
+h2,
+h3 {
+  margin: 0;
+} */
+
+.app {
+height: 50%;  
+background: #DBD0BC;
+  overflow-y: scroll;
+  margin-left: 10%;
+  margin-right: 10%;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+  border-radius: 20px;
+  margin-bottom: 5%;
+}
+
+.hs > li,
+.item {
+  scroll-snap-align: center;
+  padding: calc(var(--gutter) / 2 * 1.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 8px;
+  height: max-content;
+  text-align: center;
+  font-size: 20px;
+  box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+  width: auto;
+  margin-top: 3%;
+  white-space: pre-wrap;      
+  white-space: -moz-pre-wrap; 
+  white-space: -pre-wrap;      
+  white-space: -o-pre-wrap;    
+  word-wrap: break-word; 
 }
 
 
@@ -380,7 +492,7 @@ margin-top: 0;
 }
 
 #historyFeed{
-  width: 90%;
+  /* width: 90%;
   height: auto;
   margin-top: 5%;
   margin-bottom: 5%;
@@ -388,11 +500,10 @@ margin-top: 0;
   border: 10px solid black;
   overflow-x:auto;
   overflow-y: hidden;
-  white-space: nowrap;
-
+  white-space: nowrap; */
   /* background-color: #772f1a; */
-  background-color: black;
-  box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+  /* background-color: black;
+  box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8); */
 
 }
 
@@ -485,7 +596,7 @@ margin-top: 0;
 /* FAV DISPLAY FEED */
 #fullFavFeed{
   /* overflow: auto; */
-  width: 90%;
+  /* width: 90%;
   height: 60%;
   margin-top: 5%;
   margin-bottom: 10%;
@@ -493,11 +604,11 @@ margin-top: 0;
 
   border: 10px solid black;
   overflow-x:auto;
-  white-space: nowrap;
+  white-space: nowrap; */
 
   /* background-color: #772f1a; */
-  background-image: linear-gradient(to right, #f6d285, #bbf0f3);
-  box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+  /* background-image: linear-gradient(to right, #f6d285, #bbf0f3);
+  box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8); */
 
    /* overflow-x: auto;
   overflow-y: hidden;
@@ -568,7 +679,7 @@ li:hover{
 #calendar {
   margin-left: 10%;
   margin-right: 10%;
-  margin-top: 10%;
+  margin-top: 0%;
   border: 2px solid black;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
 
@@ -598,7 +709,10 @@ li:hover{
 /* ************************************************************************* */
 /* ************************************************************************* */
 
-
+#gridTitle{
+  background-color: black;
+  color: white;
+}
 /* ADD EXERCISE BUTTON */
 #foodButton {
   font-size: 35px;
@@ -676,7 +790,7 @@ height: auto;
   text-align: unset;
   font-size: 40px;
   border-radius: 100px;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
   background-color: gray;
   color: white;
   border: 1px solid black;
@@ -696,6 +810,7 @@ height: auto;
   text-align: unset;
   font-size: 40px;
   border-radius: 100px;
+  margin-top: 25%;
   background-color: black;
   color: white;
   border: 1px solid black;
@@ -764,24 +879,34 @@ height: auto;
 
 
 .favButtonAdd{
-  width: 100%;
+  width: 200px;
   height: auto;
   padding: 5%;
-  text-align: unset;
-  font-size: 40px;
+  font-size: 20px;
   background-color: green;
   color: white;
-  border: 1px solid black;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 0%;
+}
+#historyAdd{
+  margin-bottom: 10%;
 }
 .favButtonEdit{
-  width: 100%;
+  width: 200px;
+  margin: 0%;
+
   height: auto;
-  padding: 3%;
-  text-align: unset;
-  font-size: 40px;
+  padding: 5%;
+  font-size: 20px;
+  border-radius: 10px;
+
   background-color: gray;
   color: white;
-  border: 1px solid black;
+  border: 2px solid black;
+  margin-bottom: 10%;
+
+
 }
 /* ************************************************************************* */
 /* ************************************************************************* */
@@ -801,6 +926,7 @@ height: auto;
   text-align: center;
   font-size: 75px;
   color: black;
+  margin-bottom: 5%;
 }
 /* EMPTY DATE TITLE */
 #filler1{

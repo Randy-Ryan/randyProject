@@ -51,6 +51,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="./tracking.js"></script>
 </head>
+
 <br>
 <a id="logLink" style="display: none;" href="./login.html">LOGIN</a>
 <a id="regLink" style="display: none;" href="./register.html">REGISTER</a>
@@ -80,6 +81,8 @@
 </div>
 
 <body>
+
+   
     <!-- USERNAME TITLE -->
     <div id="usernameHeader">
         <h2 id="userHead"></h2>
@@ -557,8 +560,9 @@
 
     <h2 id="historyTitle" style="display: none;">
     </h2>
-    <div id="historyFeed">
-        <div id="historyFeed1">
+    <div id="historyFeed" class="app">
+        <li id = "gridTitle" class="item">PAST ENTRIES</li>
+        <div id="historyFeed1" class="hs full" style="height: 100%; margin-top: 0%;">
         </div>
 
     </div>
@@ -575,28 +579,20 @@
     </div>
     <!-- FAV FEED TITLE INITIALIZATION -->
 
-    <h2 id="favFeedTitle" style="display: none;">
     </h2>
-    <div id="fullFavFeed">
-        <div id="feedTest1">
-        </div>
-        <div id = "feedTestFood"></div>
-        <br>
-        <div id="feedTest2">
-        </div>
-        <div id = "feedTestExercise"></div>
-        <br>
-
-        <div id="feedTest3">
-        </div>
-        <div id = "feedTestTask"></div>
-    </div>
-    <div id="favFeed">
-        <!-- FEED DIV INSIDE FAV FEED -->
-
-    </div>
-
-
+    <div id = "fullFavFeed" class="app">
+        <!-- <h1 style="text-align: center;">FAVORITES</h1> -->
+        <li id = "gridTitle" class="item">FAVORITE FOODS</li>
+        <ul id = "foodGridFeed" class="hs full">
+        </ul>
+        <li id = "gridTitle" class="item">FAVORITE EXERCISES</li>
+        <ul id = "exerciseGridFeed" class="hs full">
+        </ul>
+        <li id = "gridTitle" class="item">FAVORITE TASKS</li>
+        <ul id = "taskGridFeed" class="hs full">
+          </ul>
+      </div>
+  <br>
 
     <!-- ADD TASK BUTTON -->
     <button id="taskButton" onclick="newTask()" style="display:none;">Add task</button>
