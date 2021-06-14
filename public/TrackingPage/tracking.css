@@ -4,7 +4,8 @@
 /* ************************************************************************* */
 /* ************************************************************************* */
 html{
-  background-color: #CCCCB2;
+  /* background-image: linear-gradient( #FDFCFB, #E2D1C3 ); */
+  background-color: #B1A296;
   width: 100%;
   font-family: 'Times New Roman', Times, serif;
 
@@ -45,14 +46,14 @@ body{
 #exerciseId {
   font-size: 250%;
   color: black;
-  background-color: #f9aba4;
-  
+  background-color: #f78888;
   text-align: center;
   margin-bottom: 10%;
-  border: 5px solid black;
+  border: 2px solid black;
   display:block;
   margin: 10%;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+  border-radius: 20px;
 
 
   /* text-shadow: 0 1px 0 #ccc,
@@ -74,12 +75,13 @@ body{
   text-align: center;
   font-size: 250%;
   color: black;
-  background-color: #f53803;
+  background-color: #f3d250;
   margin-bottom: 10%;
-  border: 5px solid black;
+  border: 2px solid black;
   display:block;
   margin: 10%;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+  border-radius: 20px;
 
   /* text-shadow: 0 1px 0 #ccc,
   0 2px 0 #c9c9c9,
@@ -102,9 +104,10 @@ body{
   color: black;
   width: auto;
   position: relative;
-  background-color: #f2a65a;
+  background-color: #ECECEC;
+  border-radius: 20px;
   margin-bottom: 10%;
-  border: 5px solid black;
+  border: 2px solid black;
   margin: 10%;
   display:block;
 
@@ -383,7 +386,8 @@ h3 {
 
 .app {
 height: 50%;  
-background: #DBD0BC;
+background-image: linear-gradient(to right, #868F96, #596164);
+/* background: #DBD0BC; */
   overflow-y: scroll;
   margin-left: 10%;
   margin-right: 10%;
@@ -535,7 +539,7 @@ background: #DBD0BC;
 
   padding: 0;
   overflow-y:auto;
-  background-color: #efecec;
+  background-color: #7395AE;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
 
 
@@ -551,7 +555,7 @@ background: #DBD0BC;
   border-radius: 10px;
   margin-bottom: 5%;
   overflow-y:auto;
-  background-color: #f5d020;
+  background-color: #557A95;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
 }
 /* TASK DISPLAY FEED */
@@ -569,7 +573,7 @@ background: #DBD0BC;
  padding: 0;
  float: left;
  overflow-y:auto;
-  background-color: #772f1a;
+  background-color: #379683;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
 
    /* overflow-x: auto;
@@ -662,7 +666,7 @@ background: #DBD0BC;
 }
 
 /* LIST ITEM HOVER (EACH DATE ON CALENDAR) */
-li:hover{
+#calendar li:hover{
   background-color: black;
   color: white;
 }
@@ -718,7 +722,7 @@ li:hover{
   font-size: 35px;
   width: 33%;
   float: left;
-  background-color: #f53803;
+  background-color: #F3D250;
   font-family: fantasy;
   color: black;
   border-radius: 10px;
@@ -739,7 +743,7 @@ li:hover{
   margin: 0%;
   padding-top: 1%;
   padding-bottom: 1%;
-  background-color: #f9aba4;
+  background-color: #F78888;
   color: black;
   border-radius: 10px;
   font-family: fantasy;
@@ -753,7 +757,7 @@ li:hover{
   font-size: 35px;
   width: 33%;
   float: left;
-  background-color: #f2a65a;
+  background-color: #ECECEC;
   color: black;
   margin: 0%;
   padding-top: 1%;
@@ -864,15 +868,15 @@ height: auto;
 }
 
 #favFoodBut{
-  background-color: #f53803;
+  background-color: #F3D250;
   color: black;
 }
 #favExBut{
-  background-color: #f9aba4;
+  background-color: #F78888;
   color: black;
 }
 #favTaskBut{
-  background-color: #f2a65a;
+  background-color: #ECECEC;
   color: black;
   
 }
@@ -931,7 +935,10 @@ height: auto;
 /* EMPTY DATE TITLE */
 #filler1{
   text-align: center;
+  margin-top: 5%;
+  font-size: 50px;
 }
+
 /* SIGNED OUT TITLE */
 #signedOut{
   margin-top: 10%;

@@ -126,32 +126,19 @@ window.onload = function () {
     // check if user is signed in - call function to style
     if (userID == "null") {
         userSignedOut();
-        // alert("Error: no userID");
-        // window.location.href = "../index.html"
-
-        // hide feed
+     
         document.getElementById("exButton").style.display = "none";
         document.getElementById("foodButton").style.display = "none";
         document.getElementById("taskButton").style.display = "none";
         document.getElementById("exFeed").style.display = "none";
         document.getElementById("foodFeed").style.display = "none";
         document.getElementById("taskFeed").style.display = "none";
-        // document.getElementById("favFeed").style.display = "none";
         document.getElementById("exFeedTitle").style.display = "none";
         document.getElementById("foodFeedTitle").style.display = "none";
         document.getElementById("taskFeedTitle").style.display = "none";
 
-
-
-
         return;
     }
-    // document.getElementById("feedTest1").style.display = '';
-    // document.getElementById("feedTest1").innerHTML = 'FOOD';
-    // document.getElementById("feedTest2").style.display = '';
-    // document.getElementById("feedTest2").innerHTML = 'EXERCISE';
-    // document.getElementById("feedTest3").style.display = '';
-    // document.getElementById("feedTest3").innerHTML = 'TASKS';
     
     // load the feed
     loadFeed(day, month);
@@ -3018,7 +3005,7 @@ function userSignedOut() {
 
     document.getElementById('filler1').style.display = 'none';
 
-    document.getElementById('topnav1').style.display = '';
+    // document.getElementById('topnav1').style.display = '';
 
 
 
