@@ -2006,17 +2006,18 @@ function addFavFoodToDB(f) {
     else {
         w = strings[1];
     }
+    
     if (strings[2] == null) {
-        t = "";
-    }
-    else {
-        t = strings[2];
-    }
-    if (strings[3] == null) {
         m = "";
     }
     else {
-        m = strings[3];
+        m = strings[2];
+    }
+    if (strings[3] == null) {
+        t = "";
+    }
+    else {
+        t = strings[3];
     }
 
     // get a random number for the doc ID 
