@@ -30,7 +30,6 @@ lists.forEach(el => {
 });
 
 
-
 /********************************************************************/
 
 /********************************************************************/
@@ -52,7 +51,6 @@ window.onload = function () {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/firebase.User
     var uid = user.uid;
-    console.log("heyyy");
     console.log(user);
     // user.phoneNumber
     // user.photoURL
@@ -138,8 +136,6 @@ window.onload = function () {
     currDate = day;
     currMonth = month;
 
-
-
     // style date title respectivly
     document.getElementById("todaysDate").innerHTML = currMonth + " / " + currDate;
 
@@ -165,9 +161,6 @@ window.onload = function () {
     loadFeed(day, month);
     document.getElementById("historyFeed").style.display = "none";
     document.getElementById("historyTitle").style.display = "none";
-
-
-
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- ON CALENDAR DAY CLICK ------------------////////////////
@@ -1024,8 +1017,6 @@ function createNewHistoryTask(ttl, desc, t, id) {
     // load new exercise div into the exercise feed
     document.getElementById("historyFeed1").appendChild(newTask);
 }
-
-
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- CREATE/LOAD A NEW FAV FOOD ELEMENT ---------------//////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1082,7 +1073,6 @@ function createNewRecentFood(f, w, t, m, id) {
     // load new food div into the food feed
     document.getElementById("recentFoodsFeed").appendChild(newFood);
 }
-
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- CREATE/LOAD A NEW FAV FOOD ELEMENT ---------------//////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1143,6 +1133,7 @@ function createNewReccomendedFood(f, w, t, m, id) {
 /////////------------------- CREATE/LOAD A NEW FAV FOOD ELEMENT ---------------//////////
 /////////////////////////////////////////////////////////////////////////////////////
 // SET VARS FOR NEW FOOD, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO FOOD FEED
+//PROTEIN
 function createNewNutrition(d, v, u) {
     //TODO//
     // needs a hover attribute
@@ -1187,6 +1178,53 @@ function createNewNutrition(d, v, u) {
     // load new food div into the food feed
     document.getElementById("nutritionValuesFeed").appendChild(newNutrient);
 }
+//PROTEIN
+function createNewNutrition(d, v, u) {
+    //TODO//
+    // needs a hover attribute
+
+    //description, value , units
+
+    var newNutrient = document.createElement('li');
+    // initialize new food div: set id & class name
+    // var addFavoriteElement = document.createElement('div');
+    // var addEditElement = document.createElement('div');
+
+    // create the new food div and set HTML content w/ respective vars
+    // addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + t + "," + m + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
+
+    // addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
+    // newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
+
+
+
+    // var fullString = "";
+    if (d != "") {
+        // var food1 = document.createElement('div');
+        newNutrient.innerHTML += "Description:<br>" + d + "<br><br>";
+        // newFood.appendChild(food1)
+    }
+    if (v != "") {
+        // var water1 = document.createElement('div');
+        newNutrient.innerHTML += "Value:<br>" + v + " " + u;
+        // newFood.appendChild(water1);
+    }
+
+    newNutrient.id = "favID";
+    // addFavoriteElement.id = "addFavoriteElement";
+    // addEditElement.id = "addEditElement";
+
+    newNutrient.className = "testtt";
+
+
+    // console.log(f,w,t,)
+
+    // console.log(f, w , t, m)
+    // load new food div into the food feed
+    document.getElementById("nutritionValuesFeed").appendChild(newNutrient);
+}
+
+
 /********************************************************************/
 
 /********************************************************************/
@@ -1901,7 +1939,6 @@ function addFavFoodAndWater() {
     //     if (error == false) {
     //         makeClean(requiredInputs[i]);
     //     }
-
     // }
 
     // IF ALL REQUIRED INPUTS ARE FILLED: CONTINUE
@@ -1910,8 +1947,9 @@ function addFavFoodAndWater() {
     // initialize and set var params
     var food = requiredInputs[0].value;
     var water = requiredInputs[1].value;
-    var time = requiredInputs[2].value;
-    var message = requiredInputs[3].value;
+    var message = requiredInputs[2].value;
+    var time = requiredInputs[3].value;
+
 
     //TODO//
     // change the random number implementation?
@@ -2379,6 +2417,7 @@ function loadFeed(date, month) {
     // load the exercise feed
     db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
+            
             createNewExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id);
         });
     });
