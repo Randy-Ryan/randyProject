@@ -2437,7 +2437,7 @@ function loadFeed(date, month) {
     db.collection("users").doc(userID).collection("favorites").where("foodID", "==", "true").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             //CREATE NEW FAV FOOD?
-            createNewFavFood(doc.data().food, doc.data().water, doc.data().time, doc.data().message, doc.id)
+            createNewFavFood(doc.data().food, doc.data().water, doc.data().message,doc.data().time, doc.id)
         });
     });
     // load the fav feed for exercise elements
