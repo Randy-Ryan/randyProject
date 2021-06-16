@@ -340,6 +340,11 @@ function openDay(date, month) {
           console.log("signed Out");
 
           userSignedOut();
+          var active = document.getElementsByClassName("active");
+          if (active[0] != null) {
+              active[0].className = "";
+          }
+      
        
         }
       });
