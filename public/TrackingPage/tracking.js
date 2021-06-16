@@ -160,8 +160,9 @@ mainForm1.onsubmit = function (e) {
     if (error2 == false) {
         // no input errors, should then create an account through firebase
         // set variables from front end user input values
-        username = requiredInputs[0].value;
+        var uName = requiredInputs[0].value;
         email = requiredInputs[1].value;
+        console.log(uName);
 
         // create firebase account with email/password
         // this logic may be a little buggy and route to account page before creating the document in the firestore database
@@ -174,12 +175,12 @@ mainForm1.onsubmit = function (e) {
                
                 // update this users display name with the inputted username
                 user.updateProfile({
-                    displayName: username,
+                    displayName: uName,
                 })
                     .then(function () {
                         // route to home page and set the url params respectivly
                         db.collection("users").doc(userId).set({
-                            username: username,
+                            username: user.displayName,
                             email: email,
                             userID: userId,
                         }).then(function () {
