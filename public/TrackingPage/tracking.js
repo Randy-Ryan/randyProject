@@ -253,7 +253,6 @@ mainForm.onsubmit = function (e) {
     // document.getElementById("food56").innerHTML= "FOOD";
     // document.getElementById("task56").innerHTML = "TASK";
 
-    document.getElementById("currentDateDisplay").innerHTML =  month + " " + day + "";
 
     // set month title and todays date on load
     document.getElementById("monthTitle").innerHTML = "" + month;
@@ -3475,7 +3474,6 @@ function userSignedOut() {
 
 
     // document.getElementById('favoritesDivID').style.display = 'none';
-    document.getElementById('currentDateDisplay').style.display = 'none';
     document.getElementById("fullFavFeed").style.display = "none";
     // document.getElementById("favFeedTitle").style.display = "none";
 
