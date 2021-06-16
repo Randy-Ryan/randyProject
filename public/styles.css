@@ -308,6 +308,7 @@ desc{
   padding-left: 125px;
   padding-right: 125px;
   outline: none;
+  width: auto;
   border-radius: 30px;
   text-shadow: 0 1px 0 #ccc,
   0 2px 0 #c9c9c9,
