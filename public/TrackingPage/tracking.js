@@ -20,6 +20,11 @@ var username;
 var email;
 
 var proteinTotal = 0;
+var carbTotal = 0;
+var vitaminTotal = 0;
+var energyTotal = 0;
+var waterTotal = 0;
+
 var root = document.documentElement;
 const lists = document.querySelectorAll('.hs');
 
@@ -1321,6 +1326,246 @@ function createNewProtein(f, w, t, m, id) {
 /////////------------------- CREATE/LOAD A NEW FAV FOOD ELEMENT ---------------//////////
 /////////////////////////////////////////////////////////////////////////////////////
 // SET VARS FOR NEW FOOD, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO FOOD FEED
+function createNewCarb(f, w, t, m, id) {
+    //TODO//
+    // needs a hover attribute
+
+    var newFood = document.createElement('li');
+    // initialize new food div: set id & class name
+    // var addFavoriteElement = document.createElement('div');
+    // var addEditElement = document.createElement('div');
+
+    // create the new food div and set HTML content w/ respective vars
+    // addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + t + "," + m + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
+
+    // addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
+    // newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
+
+
+
+    // var fullString = "";
+    if (f != "") {
+        // var food1 = document.createElement('div');
+        newFood.innerHTML += "<br>" + f + "<br><br>";
+        // newFood.appendChild(food1)
+    }
+    if (w != "") {
+        // var water1 = document.createElement('div');
+        newFood.innerHTML += "Beverage:<br>" + w + "<br><br>";
+        // newFood.appendChild(water1);
+    }
+    if (m != "") {
+        // var note1 = document.createElement('div');
+        newFood.innerHTML += "Note:<br>" + m + "<br><br>";
+        // newFood.appendChild(note1);      
+    }
+    if (t != "") {
+        // var time1 = document.createElement('div');
+        newFood.innerHTML += "Time:<br>" + t + "<br><br>";
+        // newFood.appendChild(tim1);    
+    }
+
+    newFood.id = "favID";
+    // addFavoriteElement.id = "addFavoriteElement";
+    // addEditElement.id = "addEditElement";
+
+    newFood.className = "testtt";
+
+
+    // console.log(f,w,t,)
+
+    var el2 = document.getElementById('nutritionValuesFeedCarbs');
+    while (el2.firstChild) el2.innerHTML = '';
+
+
+    // console.log(f, w , t, m)
+    // load new food div into the food feed
+    document.getElementById("nutritionValuesFeedCarbs").appendChild(newFood);
+}
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- CREATE/LOAD A NEW FAV FOOD ELEMENT ---------------//////////
+/////////////////////////////////////////////////////////////////////////////////////
+// SET VARS FOR NEW FOOD, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO FOOD FEED
+function createNewVitamin(f, w, t, m, id) {
+    //TODO//
+    // needs a hover attribute
+
+    var newFood = document.createElement('li');
+    // initialize new food div: set id & class name
+    // var addFavoriteElement = document.createElement('div');
+    // var addEditElement = document.createElement('div');
+
+    // create the new food div and set HTML content w/ respective vars
+    // addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + t + "," + m + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
+
+    // addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
+    // newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
+
+
+
+    // var fullString = "";
+    if (f != "") {
+        // var food1 = document.createElement('div');
+        newFood.innerHTML += "<br>" + f + "<br><br>";
+        // newFood.appendChild(food1)
+    }
+    if (w != "") {
+        // var water1 = document.createElement('div');
+        newFood.innerHTML += "Beverage:<br>" + w + "<br><br>";
+        // newFood.appendChild(water1);
+    }
+    if (m != "") {
+        // var note1 = document.createElement('div');
+        newFood.innerHTML += "Note:<br>" + m + "<br><br>";
+        // newFood.appendChild(note1);      
+    }
+    if (t != "") {
+        // var time1 = document.createElement('div');
+        newFood.innerHTML += "Time:<br>" + t + "<br><br>";
+        // newFood.appendChild(tim1);    
+    }
+
+    newFood.id = "favID";
+    // addFavoriteElement.id = "addFavoriteElement";
+    // addEditElement.id = "addEditElement";
+
+    newFood.className = "testtt";
+
+
+    // console.log(f,w,t,)
+
+    var el2 = document.getElementById('nutritionValuesFeedVitamins');
+    while (el2.firstChild) el2.innerHTML = '';
+
+
+    // console.log(f, w , t, m)
+    // load new food div into the food feed
+    document.getElementById("nutritionValuesFeedVitamins").appendChild(newFood);
+}
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- CREATE/LOAD A NEW FAV FOOD ELEMENT ---------------//////////
+/////////////////////////////////////////////////////////////////////////////////////
+// SET VARS FOR NEW FOOD, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO FOOD FEED
+function createNewEnergy(f, w, t, m, id) {
+    //TODO//
+    // needs a hover attribute
+
+    var newFood = document.createElement('li');
+    // initialize new food div: set id & class name
+    // var addFavoriteElement = document.createElement('div');
+    // var addEditElement = document.createElement('div');
+
+    // create the new food div and set HTML content w/ respective vars
+    // addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + t + "," + m + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
+
+    // addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
+    // newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
+
+
+
+    // var fullString = "";
+    if (f != "") {
+        // var food1 = document.createElement('div');
+        newFood.innerHTML += "<br>" + f + "<br><br>";
+        // newFood.appendChild(food1)
+    }
+    if (w != "") {
+        // var water1 = document.createElement('div');
+        newFood.innerHTML += "Beverage:<br>" + w + "<br><br>";
+        // newFood.appendChild(water1);
+    }
+    if (m != "") {
+        // var note1 = document.createElement('div');
+        newFood.innerHTML += "Note:<br>" + m + "<br><br>";
+        // newFood.appendChild(note1);      
+    }
+    if (t != "") {
+        // var time1 = document.createElement('div');
+        newFood.innerHTML += "Time:<br>" + t + "<br><br>";
+        // newFood.appendChild(tim1);    
+    }
+
+    newFood.id = "favID";
+    // addFavoriteElement.id = "addFavoriteElement";
+    // addEditElement.id = "addEditElement";
+
+    newFood.className = "testtt";
+
+
+    // console.log(f,w,t,)
+
+    var el2 = document.getElementById('nutritionValuesFeedEnergy');
+    while (el2.firstChild) el2.innerHTML = '';
+
+
+    // console.log(f, w , t, m)
+    // load new food div into the food feed
+    document.getElementById("nutritionValuesFeedEnergy").appendChild(newFood);
+}
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- CREATE/LOAD A NEW FAV FOOD ELEMENT ---------------//////////
+/////////////////////////////////////////////////////////////////////////////////////
+// SET VARS FOR NEW FOOD, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO FOOD FEED
+function createNewWater(f, w, t, m, id) {
+    //TODO//
+    // needs a hover attribute
+
+    var newFood = document.createElement('li');
+    // initialize new food div: set id & class name
+    // var addFavoriteElement = document.createElement('div');
+    // var addEditElement = document.createElement('div');
+
+    // create the new food div and set HTML content w/ respective vars
+    // addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + t + "," + m + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
+
+    // addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
+    // newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
+
+
+
+    // var fullString = "";
+    if (f != "") {
+        // var food1 = document.createElement('div');
+        newFood.innerHTML += "<br>" + f + "<br><br>";
+        // newFood.appendChild(food1)
+    }
+    if (w != "") {
+        // var water1 = document.createElement('div');
+        newFood.innerHTML += "Beverage:<br>" + w + "<br><br>";
+        // newFood.appendChild(water1);
+    }
+    if (m != "") {
+        // var note1 = document.createElement('div');
+        newFood.innerHTML += "Note:<br>" + m + "<br><br>";
+        // newFood.appendChild(note1);      
+    }
+    if (t != "") {
+        // var time1 = document.createElement('div');
+        newFood.innerHTML += "Time:<br>" + t + "<br><br>";
+        // newFood.appendChild(tim1);    
+    }
+
+    newFood.id = "favID";
+    // addFavoriteElement.id = "addFavoriteElement";
+    // addEditElement.id = "addEditElement";
+
+    newFood.className = "testtt";
+
+
+    // console.log(f,w,t,)
+
+    var el2 = document.getElementById('nutritionValuesFeedWater');
+    while (el2.firstChild) el2.innerHTML = '';
+
+
+    // console.log(f, w , t, m)
+    // load new food div into the food feed
+    document.getElementById("nutritionValuesFeedWater").appendChild(newFood);
+}
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- CREATE/LOAD A NEW FAV FOOD ELEMENT ---------------//////////
+/////////////////////////////////////////////////////////////////////////////////////
+// SET VARS FOR NEW FOOD, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO FOOD FEED
 //PROTEIN
 function createNewNutrition(d, v, u) {
     //TODO//
@@ -1366,8 +1611,7 @@ function createNewNutrition(d, v, u) {
     // load new food div into the food feed
     document.getElementById("nutritionValuesFeed").appendChild(newNutrient);
 }
-//PROTEIN
-function createNewNutrition(d, v, u) {
+function createNewReccomended(w, e, v, c, p) {
     //TODO//
     // needs a hover attribute
 
@@ -1387,16 +1631,10 @@ function createNewNutrition(d, v, u) {
 
 
     // var fullString = "";
-    if (d != "") {
         // var food1 = document.createElement('div');
-        newNutrient.innerHTML += "Description:<br>" + d + "<br><br>";
+        newNutrient.innerHTML =  w + "<br><br>" + e+ "<br><br>"  + v+ "<br><br>"  + c+ "<br><br>"  + p;
         // newFood.appendChild(food1)
-    }
-    if (v != "") {
-        // var water1 = document.createElement('div');
-        newNutrient.innerHTML += "Value:<br>" + v + " " + u;
-        // newFood.appendChild(water1);
-    }
+    
 
     newNutrient.id = "favID";
     // addFavoriteElement.id = "addFavoriteElement";
@@ -1409,9 +1647,8 @@ function createNewNutrition(d, v, u) {
 
     // console.log(f, w , t, m)
     // load new food div into the food feed
-    document.getElementById("nutritionValuesFeed").appendChild(newNutrient);
+    document.getElementById("reccomendedFeed").appendChild(newNutrient);
 }
-
 
 /********************************************************************/
 
@@ -3959,19 +4196,35 @@ function getMyFoods() {
                            if(res.foods[0].foodNutrients[i].nutrientName == "Protein") {
                             addTotalProtein(res.foods[0].foodNutrients[i].value);
                            }
+                           if(res.foods[0].foodNutrients[i].nutrientName == "Carbohydrate, by difference") {
+                            addTotalCarbs(res.foods[0].foodNutrients[i].value);
+                           }
+                           if(res.foods[0].foodNutrients[i].nutrientName == "Energy") {
+                            addTotalEnergy(res.foods[0].foodNutrients[i].value);
+                           }
+                           if(res.foods[0].foodNutrients[i].nutrientName == "Vitamin C, total ascorbic acid") {
+                            addTotalVitamin(res.foods[0].foodNutrients[i].value);
+                           }
+                           if(res.foods[0].foodNutrients[i].nutrientName == "Water") {
+                            addTotalWater(res.foods[0].foodNutrients[i].value);
+                           }
+                           
 
                         // createNewNutrition(res.foods[0].foodNutrients[i].nutrientName, res.foods[0].foodNutrients[i].value, res.foods[0].foodNutrients[i].unitName );
                         //now build a graph to show these nutrients
                     }
+                    loadReccomendedFeed();
+
                 }// console.log(res.foods[0]);
-                createNewNutrition(res.foods[0].description, s, "");
+                createNewNutrition(res.foods[0].description, s, res.foods[0].allHighlightFields);
                 // console.log(res.foods[0].foodNutrients[1].nutrientName + ": " + res.foods[0].foodNutrients[1].value + " " + res.foods[0].foodNutrients[1].unitName);
                 });
 
+
             }
-            // loadReccomendedFeed();
 
         }
+
 
     })
         .catch((error) => {
@@ -3984,13 +4237,63 @@ function getMyFoods() {
 /////EDIT EXERCISE FAV
 function loadProteinFeed() {
 
-    var el2 = document.getElementById('reccomendedFoodsFeed');
+    var el2 = document.getElementById('nutritionValuesFeedProtein');
     while (el2.firstChild) el2.innerHTML = '';
 
-    createNewProtein("MY TOTAL PROTEIN THIS WEEK: <br>" + proteinTotal + " g", "", "", "");
+    createNewProtein("MY TOTAL PROTEIN THIS WEEK: <br>" + (Math.round(proteinTotal * 100) / 100).toFixed(2) + " G", "", "", "");
     // createNewReccomendedFood("Here TODO", "", "", "");
 
 }
+
+/////EDIT EXERCISE FAV
+function loadCarbFeed() {
+
+    var el2 = document.getElementById('nutritionValuesFeedCarbs');
+    while (el2.firstChild) el2.innerHTML = '';
+    createNewCarb("MY TOTAL CARBS THIS WEEK: <br>" + (Math.round(carbTotal * 100) / 100).toFixed(2) + " G", "", "", "");
+    // createNewReccomendedFood("Here TODO", "", "", "");
+
+}
+
+/////EDIT EXERCISE FAV
+function loadVitaminFeed() {
+
+    var el2 = document.getElementById('nutritionValuesFeedVitamins');
+    while (el2.firstChild) el2.innerHTML = '';
+    createNewVitamin("MY TOTAL VITAMIN C (ASCORBIC ACID) THIS WEEK: <br>" + (Math.round(vitaminTotal * 100) / 100).toFixed(2) + " MG", "", "", "");
+    // createNewReccomendedFood("Here TODO", "", "", "");
+
+}
+
+/////EDIT EXERCISE FAV
+function loadEnergyFeed() {
+
+    var el2 = document.getElementById('nutritionValuesFeedEnergy');
+    while (el2.firstChild) el2.innerHTML = '';
+    createNewEnergy("MY TOTAL ENERGY THIS WEEK: <br>" + (Math.round(energyTotal * 100) / 100).toFixed(2) + " KCAL", "", "", "");
+    // createNewReccomendedFood("Here TODO", "", "", "");
+
+}
+
+/////EDIT EXERCISE FAV
+function loadWaterFeed() {
+
+    var el2 = document.getElementById('nutritionValuesFeedWater');
+    while (el2.firstChild) el2.innerHTML = '';
+    createNewWater("MY TOTAL WATER THIS WEEK: <br>" + (Math.round(waterTotal * 100) / 100).toFixed(2) + " G", "", "", "");
+    // createNewReccomendedFood("Here TODO", "", "", "");
+
+}
+
+/////EDIT EXERCISE FAV
+function loadReccomendedFeed() {
+    var el2 = document.getElementById('reccomendedFeed');
+    while (el2.firstChild) el2.innerHTML = '';
+    createNewReccomended("TOTAL WATER: <br>" + (Math.round(waterTotal * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotal * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotal * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotal * 100) / 100).toFixed(2) + " G", "MY TOTAL PROTEIN THIS WEEK: <br>" + (Math.round(proteinTotal * 100) / 100).toFixed(2) + " G");
+    // createNewReccomendedFood("Here TODO", "", "", "");
+
+}
+
 
 /////EDIT EXERCISE FAV
 function loadNutritionFeed() {
@@ -4010,7 +4313,47 @@ function addTotalProtein(proteinVal) {
 
 
 }
+/////EDIT EXERCISE FAV
+function addTotalCarbs(carbVal) {
+    // createNewNutrition("Nutrition Calculator", "", "", "");
+    // createNewNutrition("implementation here", "", "", "");
 
+    carbTotal += carbVal;
+    console.log("total carbs: " + carbTotal + " g");
+    loadCarbFeed();
+
+
+}
+function addTotalVitamin(vitaminVal) {
+    // createNewNutrition("Nutrition Calculator", "", "", "");
+    // createNewNutrition("implementation here", "", "", "");
+
+    vitaminTotal += vitaminVal;
+    console.log("total vitamins: " + vitaminTotal + " g");
+    loadVitaminFeed();
+
+
+}
+function addTotalEnergy(energyVal) {
+    // createNewNutrition("Nutrition Calculator", "", "", "");
+    // createNewNutrition("implementation here", "", "", "");
+
+    energyTotal += energyVal;
+    console.log("total energy: " + energyTotal + " kcal");
+    loadEnergyFeed();
+
+
+}
+function addTotalWater(waterVal) {
+    // createNewNutrition("Nutrition Calculator", "", "", "");
+    // createNewNutrition("implementation here", "", "", "");
+
+    waterTotal += waterVal;
+    console.log("total water: " + waterTotal + " g");
+    loadWaterFeed();
+
+
+}
 /////EDIT EXERCISE FAV
 function loadLoginPage() {
     document.getElementById("loginPage").style.display = "";
