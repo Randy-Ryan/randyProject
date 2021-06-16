@@ -10,96 +10,441 @@
   <meta charset="utf-8">
   <link rel="icon" href="./favicon_io/favicon.ico" />
   <title>Randy Ryan</title>
-  <link rel="stylesheet" href="./home.css">
-  <script type="text/javascript">
-    var images = new Array()
-    function preload() {
-      for (i = 0; i < preload.arguments.length; i++) {
-        images[i] = new Image()
-        images[i].src = preload.arguments[i]
-      }
-    }
-    window.onload = function () {
-      preload(
-        "./Images/liam1.png",
-        "./Images/liam2.JPG",
-        "./Images/livyliam.JPG",
-        "./Images/wyattmaddie.jpeg",
-        "https://www.youtube.com/embed/olz4c-x_jvc",
-        "https://www.youtube.com/embed/wae5ZGp-v3w",
-        "https://www.youtube.com/embed/npn1Jncglu8",
-        "./Images/busyquizzy.png",
-        "./Images/headshot.jpeg",
-        "./Images/codersplatform.png",
-        "./Images/resum.png"
-      );
-    }
-  </script>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="text/javascript" src="./index.js"></script>
 </head>
+<!-- <div id = "topnav"> -->
+ <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+ <!-- Top Navigation Menu -->
+ <div id = "topNav" class="topnav" style="display: none;">
+   <div style="position:absolute; justify-content: left; border-radius: 200px; box-shadow: 3px 3px 6px 1px #505050;">
+     <img src="./favicon_io/apple-touch-icon.png" loading="eager" alt="home" height=100px width=100px
+       style="border-radius: 200px;">
+   </div>
+   <a href="./AboutPage/about.html" style="text-align: center; pointer-events: none; color: white;">RANDALL STONE</a><br>
+   <!-- Navigation links (hidden by default) -->
+   <div id="myLinks">
+     <br>
+     <a onclick = "loadHomePage();myFunction()">HOME</a>
+     <a onclick = "loadAboutPage();myFunction()">ABOUT ME</a>
+     <a onclick = "loadResumePage();myFunction()">MY RESUME</a>
+     <a onclick = "loadProjectPage();myFunction()">MY PROJECTS</a>
+     <a onclick = "loadLaxPage();myFunction()">LACROSSE PAGE</a>
+     <a onclick = "loadContactPage();myFunction()">CONTACT ME</a>
 
-<body>
-  <p>
+   </div>
+   <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+     <i class="fa fa-bars"></i>
+   </a>
+ </div>
+<!-- </div> -->
 
-  <p id="welcome">Randall Stone Ryan</p><br>
-
+<div id = "homePage">
+<body style="text-align: center;">
+  <label id="welcome">Randall Stone Ryan</label><br>
   <br>
-  <p id="welcomeText">Welcome to my website! Click a link below to learn more about me.</p><br>
+  <label id="welcomeText">Welcome to my website! Click a link below to learn more about me.</label><br>
   <hr style="width: 85%;">
   <br><br><br>
   <div class="wrapper tabled">
     <div class="stage" id="page1">
       <div class="holder">
-
         <body>
           <div class="backgroundImage"></div>
           <div class="transparentText">
             <div class="middled">
               <div class="link-1">
-                <a href="./AboutPage/about.html">
+                <li onclick = "loadAboutPage()">
                   <span class="thin">About </span><span class="thick">Me</span>
-                </a>
-                <p>Read and learn about me</p>
+                </li>
+                <label>Read and learn about me</label>
 
               </div>
 
               <br><br>
               <div class="link-1">
-                <a href="./ResumePage/resume.html">
+                <li onclick = "loadResumePage()">
                   <span class="thin">My </span><span class="thick">Resume</span>
-                </a>
-                <p>View my Resume</p>
+                </li>
+                <label>View my Resume</label>
               </div>
               <br>
               <br>
               <div class="link-1">
-                <a href="./ProjectPage/project.html">
+                <li onclick = "loadProjectsPage()">
                   <span class="thin">My </span><span class="thick">Projects</span>
-                </a>
-                <p>View my projects</p>
+                </li>
+                <label>View my projects</label>
               </div>
               <br><br>
               <div class="link-1">
-                <a href="./VideosPage/videos.html">
+                <li onclick = "loadLaxPage()">
                   <span class="thin">Lacrosse </span><span class="thick">Page</span>
-                </a>
-                <p>Check out my stick skills</p>
+                </li>
+                <label>Check out my stick skills</label>
               </div>
               <br><br>
               <div class="link-1">
-                <a href="./ContactPage/contact.html">
+                <li onclick = "loadContactPage()">
                   <span class="thin">Contact </span><span class="thick">Me</span>
-                </a>
-                <p>Get in touch with me</p>
+                </li>
+                <label>Get in touch with me</label>
               </div>
             </div>
           </div>
           <br><br><br>
           <div style="display:flex; justify-content: center;">
-            <img onclick = "" src="./favicon_io/apple-touch-icon.png" loading="eager" alt="home" height=250px width=250px
+            <img onclick="" src="./favicon_io/apple-touch-icon.png" loading="eager" alt="home" height=250px width=250px
               style="border-radius: 200px;">
           </div>
           <br><br><br>
+
         </body>
+
+      </div>
+    </div>
+  </div>
+</body>
+</div>
+
+<div id="aboutPage" style="display: none;">
+  <h3 style="   margin-left: auto;
+    margin-right: auto;">
+  <br>
+  <desc class="shadow">
+    <h3 style="padding-left: 0%; padding-right: 0%;">
+      Hello, my name is Randy Ryan. I'm a senior at Wentworth Institute of Technology in
+      Boston, Massachusetts, majoring in Computer Science with a minor in the Applied Mathematics field.
+    </h3>
+    <br>
+    <img src="./Images/headshot.jpeg" loading="eager" alt="home" height=500px width=500px
+      style="border-radius: 12px; border: 1px solid black; padding: 0px; margin-right: 2%;">
+    <br><br>
+    <h3 style="font-size: 125%;padding-left: 0%; padding-right: 0%;">(c) 908-864-3147 (e) Randy.stone.ryan@gmail.com
+      <br><br>
+
+      <a href="https://linkedin.com/in/randyryan5656" id="linkedIn" style="font-size: 175%;">LinkedIn</a>
+      <br><br>
+    </h3>
+    <h3 style="padding-left: 0%; padding-right: 0%;">
+      I'll be graduating towards the end of August 2021 and I'm currently on the search for
+      my first job after college! Please feel free to email me and get in touch
+      directly through the form on the contact page. <br>
+    </h3>
+  </desc>
+  <br><br>
+
+</h3>
+<h3>
+  <p class="shadow" style="margin-left: 10%; margin-right: 10%;">
+
+    Before starting high school, I gained a passion for computers. I grew up jailbreaking phones
+    for my friends and finding out other ways to "hack" games. I used to host my own
+    Minecraft server from home around the age of 12 and actually made some money from player donations! I was
+    playing around with writing code in Java without even knowing it. This part of my life was essentially
+    the "push" for me in deciding that I wanted to study computer science in college.
+    <br><br><br>
+
+    On another note, I'm a big family guy! I have 3 siblings and I'm an uncle to four niblings (neices and nephews);
+    Wyatt/Maddie, and Liam/Olivia.
+  </p>
+</h3>
+<br>
+<h3>
+  <img loading="eager" id="image1" class="shadow" src="./Images/livyliam.JPG" alt="livyliam" height=350px width=260px
+    style="border-radius: 12px; border: 1px solid black;margin-right: 2%;">
+  <img loading="eager" id="image2" class="shadow" src="./Images/wyattmaddie.jpeg" alt="wyattmaddie" height=350px
+    width=260px style="border-radius: 12px; border: 1px solid black;margin-left: 2%;">
+  <br>
+  <h4 style="color: black;">Olivia/Liam || Wyatt/Maddie</h4>
+</h3>
+<h3>
+  <p class="shadow" style="margin-left: 10%; margin-right: 10%;">
+    Liam is my oldest nephew and I am closer in age with him than I am with my brother, his father. A few years ago, he
+    was diagnosed and has been
+    battling with a rare auto-immune disease called Juvenile Dermatomyositis (JDM). His website is <a
+      href="https://curejm4liam.com/" id="curejm">linked here</a>, along with the
+    <a href="https://www.curejm.org" id="curejm">Cure JM</a> website. These websites are very informative on what this
+    disease is all about. <br><br><br>
+
+    Liam also has a new childrens book out called "Monstah Potion." This book was a family project with Liam as creator,
+    his father as publisher,
+    his grandmother as writer, and my father, his grandfather as illustrator. Copies of the book are currently sold out,
+    but will be
+    available for purchase soon.
+  </p>
+</h3>
+<br>
+<h3>
+  <img loading="eager" id="image3" class="shadow" src="./Images/liam1.png" alt="liam1" height=350px width=260px
+    style="border-radius: 20px; border: 1px solid black;margin-right: 2%;">
+  <img loading="eager" id="image4" class="shadow" src="./Images/liam2.JPG" alt="liam2" height=350px width=260px
+    style="border-radius: 20px; border: 1px solid black; margin-left: 2%;">
+  <br><br>
+</h3>
+<hr style="width: 85%;"><br>
+<header>
+  <br><br>
+  <h1 style="font-size: 25px; color: black;">Randall S. Ryan (c) 908-864-3147 (e) Randy.stone.ryan@gmail.com </h1>
+  <br><br>
+</header>
+<br><br>
+
+</div>
+<div id="contactPage" style="display: none;">
+  <br><br>
+<body>
+  <div id="emailForm" class="shadow">
+      <h2>
+          <form id="contact-form">
+              <br>
+              <label>Your Name</label><br>
+              <input type="text" id="name" onclick="makeClean(document.getElementById('name'))" name="user_name"
+                  class="required" style="width: 50%; height: 35px; border: 1px solid black; margin-top: 2%;"><br><br>
+              <label>Your Email</label><br>
+              <input type="email" id="email" onclick="makeClean(document.getElementById('email'))" name="user_email"
+                  class="required" style="width: 50%; height: 35px; border: 1px solid black;margin-top: 2%;"><br><br>
+              <label>Your Message</label><br>
+              <textarea name="message" id="message" onclick="makeClean(document.getElementById('message'))"
+                  class="required"
+                  style="width: 75%;  height: 12%; border: 1px solid black;margin-top: 2%;"></textarea><br><br><br>
+              <input class="sendButton" type="submit" value="SEND">
+          </form>
+      </h2>
+  </div>
+</body>
+
+<div class="container">
+  <div class="carousel">
+      <div class="carousel__face"><span></span></div>
+      <div class="carousel__face"><span></span></div>
+      <div class="carousel__face"><span></span></div>
+      <div class="carousel__face"><span></span></div>
+      <div class="carousel__face"><span></span></div>
+      <div class="carousel__face"><span></span></div>
+      <div class="carousel__face"><span></span></div>
+      <div class="carousel__face"><span></span></div>
+      <div class="carousel__face"><span></span></div>
+  </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br>
+<hr style="width: 85%;">
+<br>
+<header>
+  <br><br>
+  <h1 style="font-size: 25px; color: black; ">
+      Randall S. Ryan (c) 908-864-3147 (e) Randy.stone.ryan@gmail.com </h1>
+  <br><br>
+</header>
+<br><br>
+</div>
+<div id="projectPage" style="display: none;">
+  <br><br>
+	<desc style="width: 600px;" class="shadow"><br><br>
+		<nav class="navigationProjects">
+			<div class="section">
+
+				<div class="section__item">
+					<div class="section__box">
+						<a href="https://github.com/Randy-Ryan" class="r-link ai-element ai-element_type1 ai-element1">
+							<span class="ai-element__label" style="font-size: 50px;">GitHub</span>
+						</a>
+					</div>
+					<br>
+					<div class="section__box">
+						<a href="./TrackingPage/tracking.html"
+							class="r-link ai-element ai-element_type1 ai-element1">
+							<span class="ai-element__label" style="font-size: 50px;">My Tracker</span>
+						</a>
+					</div>
+					<br>
+					<div class="section__box">
+						<a href="https://webdevo-ddf37.web.app/index.html"
+							class="r-link ai-element ai-element_type1 ai-element1">
+							<span class="ai-element__label" style="font-size: 50px;">BusyQuizzy</span>
+						</a>
+					</div>
+					<br>
+					<div class="section__box">
+						<a href="https://play.google.com/store/apps/details?id=com.swiftDevelopers.codersPlatform"
+							class="r-link ai-element ai-element_type1 ai-element1">
+							<span class="ai-element__label" style="font-size: 50px;">Coders Platform</span>
+						</a>
+					</div>
+					<br><br>
+				</div>
+			</div>
+		</nav>
+	</desc>
+	<br><br>
+	<h3 style="padding-left: 0%; padding-right: 0%;">
+		<div id="busy">
+			<h2>BusyQuizzy</h2>
+			<hr style="width: 85%;">
+
+			<img class="shadow" id="img1" loading="eager" src="./Images/busyquizzy.png" alt="home" height=350px
+				width=400px style="border-radius: 50px; border: 1px solid black;"><br>
+			<br>
+			<p id="project1" class="shadow" style="align-items: center; font-size: 85%;">
+				BusyQuizzy is a quiz hosting website, with the purpose of being a newly found source of fun and
+				entertainment. This project was developed
+				using HTML/CSS/JavaScript. The goal behind the project was to create an engaging website for users to
+				create and take quizzes. All quizzes are
+				multiple choice questions with four or less possible answers, one of these answers being the correct
+				one. BusyQuizzy offers a user functionality
+				for someone to sign up and create an account.
+				<br><br><br>
+				Users are able to earn points by answering questions correctly. Points are used to purchase Quiz
+				Helpers, which are used to assist in choosing
+				the correct answer by removing one wrong answer. Users must have an account to view their balance and
+				make any sort of purchases.
+				<br>
+			</p>
+		</div>
+
+		<div id="coders">
+			<h2>Coders Platform</h2>
+			<hr style="width: 85%;">
+
+			<img class="shadow" id="img1" loading="eager" src="./Images/codersplatform.png" alt="home" height=350px
+				width=400px style="border-radius: 50px; border: 1px solid black;"><br>
+			<br>
+			<p id="project2" class="shadow" style="align-items: center; font-size: 85%;">
+				Plenty of individuals come up with ideas every day for an app, a project, a device, etc.
+				The purpose of this app is to provide a social media platform that connects creative minds
+				with interested, freelancing, developers. Coders Platform was developed in Android Studio
+				using Java for back end purposes and XML for front end purposes. The app is currently
+				available for download on the google playstore!
+				<br><br><br>
+				Users are able to create a profile where they can register with a profile picture,
+				username, and email. With the creation of an account, users can log in and begin to create
+				posts that are shown in the public feed. Users can also search for other accounts within the
+				system and view that account and their posts. All account pages, including "my account," display
+				all posts from that users account. <br>
+			</p>
+		</div>
+		</h2>
+		<hr style="width: 85%;">
+		<br>
+
+		<p class="shadow"
+			style="align-items: center; margin-left: 20%;margin-right: 20%; background-color: #f5f7fa; border-radius: 300px; border: 1px solid black; padding: 100px;">
+
+			I'm currently working on a senior group project, a personal project, and further developing this website.
+			<!-- I created this website from scratch using HTML/CSS and a little bit of JavaScript and I am using Firebase
+			for hosting services. -->
+			<br><br><br>
+			My personal project that I began on 06/09/2021 is creating a "fitness pal" entirely designed 
+			to track diet and daily exercise, and more. I'm building this project from scratch using
+			HTML, CSS, and JavaScript - Check out the "My Tracker" link above!
+			<br><br><br>
+			The senior group project that I'm working on is a shoe trading platform for the skate community.
+			This will be a project in HTML, CSS, and JavaScript as well.
+		</p>
+
+		<br>
+		<hr style="width: 85%;"><br>
+		<header style="bottom: 0%;">
+			<br><br>
+			<h1 style="font-size: 25px; color: black;">Randy S. Ryan (c) 908-864-3147 (e) Randy.stone.ryan@gmail.com
+			</h1>
+			<br><br>
+		</header>
+		<br><br>
+
+
+</div>
+<div id="resumePage" style="display: none;">
+  <br><br>
+  <img src="./Images/resum.png" loading="eager" alt="resume" class="shadow" height=800px width=700px style="border-radius: 20px; border: 1px solid black; align-items: center;display: block; margin-left: auto; margin-right: auto; padding: 30px;
+      background-image: linear-gradient(#f5f7fa,lightgray,#b8c6db);">
+  <br>
+  <h2>
+    Download my resume <a href="./Images/RandallRyanResume.docx" id="resumeLink">here</a> (.docx)
+    or view it <a href="./Images/RandallRyanResume.pdf" id="resumeLink">here</a> (.pdf).
+  </h2 style="color:white">
+  <br>
+  <hr style="width: 85%;">
+  <h3 style="padding-left: 0%; padding-right: 0%;">
+    <p class="shadow" style="margin-left: 15%; margin-right: 15%;">
+      I've worked a handful of jobs in the past, gaining the following range of job titles: Full Stack Developer,
+      IT Help Desk Technician, Bouncer, Concrete Design Specialist, and, my favorite of them all, Ice Cream Scooper.
+      In my most recent work experience, I spent a semester abroad interning as a full stack developer for
+      a startup company, GoWith, and lived in Jerusalem from Sept. 2020 - Dec. 2020.
+      <br><br><br>
+      I am looking to officially begin a career in the field of back end development. My ideal position would be a
+      full stack developer, however, I am mainly looking to gain additional experience for the back end side of a
+      project.
+  
+    </p>
+  </h3>
+  <br>
+  <hr style="width: 85%;">
+  <br>
+  <header style="bottom: 0%;">
+    <br><br>
+    <h1 style="font-size: 25px; color:black;">Randy S. Ryan (c) 908-864-3147 (e) Randy.stone.ryan@gmail.com</h1>
+    <br><br>
+  </header>
+  <br><br>
+</div>
+<div id="laxPage" style="display: none;">
+
+  <h2>
+    Check out my interview for CCC Person of the Week <a
+      href="https://www.cccathletics.com/sports/general/2020-21/PersonoftheWeek/20201123RRyan" id="cccLink">here</a>.
+  </h2>
+  <h2>
+    <div id="laxVid4" style="background-color: none;">
+      <br>
+      <iframe style="border-radius: 100px;" id="video1" width="700" height="450" loading="eager"
+        src="https://www.youtube.com/embed/olz4c-x_jvc" frameborder="0"></iframe>
+      <br><br>
+    </div>
+  </h2>
+  <hr style="width: 85%;">
+  <h3 style="padding-left: 0%; padding-right: 0%;">
+    <p class="shadow" style="margin-left: 20%; margin-right: 20%;">
+      I've been playing lacrosse since first grade and I'm extra thankful to have had the opportunity
+      to compete in the NCAA throughout my college career. Aside from playing goalie, I enjoy practicing and
+      perfecting stick tricks in my free time. <br><br>
+  
+      Below are a couple videos that I posted on YouTube showing off a few of these stick tricks. I've also been
+      featured on big name lacrosse
+      Instagram pages like @lacrossenetwork, @laxallstars, and more!<br>
+    </p>
+  </h3>
+  
+  <hr style="width: 85%;">
+  
+  <div id="laxVid1" style="background-color: none; text-align: center;">
+    <br>
+    <iframe preload="auto" loading="eager" style="border-radius: 100px;" id="video1" width="500" height="350"
+      src="https://www.youtube.com/embed/wae5ZGp-v3w" frameborder="0" allowfullscreen></iframe>
+    <br><br>
+  </div>
+  <br>
+  <div id="laxVid2" style="background-color: none;text-align: center;">
+    <br>
+    <iframe preload="auto" loading="eager" style="border-radius: 100px;" id="video2" width="500" height="350"
+      src="https://www.youtube.com/embed/npn1Jncglu8" frameborder="0" allowfullscreen></iframe>
+    <br><br>
+  </div>
+  <hr style="width: 85%;">
+  <br>
+  
+  <header style="bottom: 0%;">
+    <br><br>
+    <h1 style="font-size: 25px; color: black; font-weight: bolder;">Randy S. Ryan (c) 908-864-3147 (e)
+      Randy.stone.ryan@gmail.com</h1>
+    <br><br>
+  </header>
+  <br><br>
+</div>
 
 </html>

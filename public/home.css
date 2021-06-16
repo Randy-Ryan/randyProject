@@ -1,9 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:100,300,900);
+/* @import url(https://fonts.googleapis.com/css?family=Lato:100,300,900); */
 
 html{
-  background-image: linear-gradient(#f5f7fa,#b8c6db);
+  /* background-image: linear-gradient(#f5f7fa,#b8c6db);
   font-family: Lato;
-  color: white;
+  color: white; */
 }
 
 #welcome{
@@ -32,14 +32,6 @@ html{
   font-weight: 400;
 }
 
-body {
-  margin: 5%;
-  font-family: Lato;
-  color: white;
-  filter:none;
-  
-}
-
 #page1 { 
   filter:none;
 }
@@ -49,10 +41,10 @@ body {
   margin: 0 auto;
 }
 
-.thin { font-weight: 300; }
-.thick { font-weight: 900; }
+.thin { font-weight: 300; font-size: 100px; }
+.thick { font-weight: 900; font-size: 100px;}
 
-a {
+li {
   text-transform: uppercase;
   font-size: 75px;
   color: white;
@@ -73,11 +65,13 @@ a {
   0 20px 20px rgba(0,0,0,.15);
 }
 
-p {
+label {
   font-weight: 400;
   font-size: 35px;
   margin: 1px;
   color: black;
+  border: unset;
+  background-color: unset;
 }
 
 [class^="link-"] {
