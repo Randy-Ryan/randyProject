@@ -253,7 +253,7 @@ mainForm.onsubmit = function (e) {
     // document.getElementById("food56").innerHTML= "FOOD";
     // document.getElementById("task56").innerHTML = "TASK";
 
-    document.getElementById("currentDateDisplay").innerHTML = "Today<br>" + month + "/" + day + "";
+    document.getElementById("currentDateDisplay").innerHTML =  month + " " + day + "";
 
     // set month title and todays date on load
     document.getElementById("monthTitle").innerHTML = "" + month;
@@ -317,9 +317,13 @@ function openDay(date, month) {
     document.getElementById("todaysDate").innerHTML = currMonth + " / " + currDate;
 
     // make add entry buttons visible
-    document.getElementById("taskButton").style.display = "";
-    document.getElementById("exButton").style.display = "";
-    document.getElementById("foodButton").style.display = "";
+    document.getElementById("taskIcon").style.display = "";
+    document.getElementById("taskIconLabel").style.display = "";
+    document.getElementById("exerciseIcon").style.display = "";
+    document.getElementById("exerciseIconLabel").style.display = "";
+    document.getElementById("foodIcon").style.display = "";
+    document.getElementById("foodIconLabel").style.display = "";
+
 
 
     // hide empty feed title element (filler1 = empty feed title)
@@ -349,9 +353,15 @@ function nextMonth(currMonth) {
     }
     // hide date title, add post buttons
     document.getElementById("todaysDate").style.display = "none";
-    document.getElementById("exButton").style.display = "none";
-    document.getElementById("taskButton").style.display = "none";
-    document.getElementById("foodButton").style.display = "none";
+
+
+    document.getElementById("taskIcon").style.display = "none";
+    document.getElementById("taskIconLabel").style.display = "none";
+    document.getElementById("exerciseIcon").style.display = "none";
+    document.getElementById("exerciseIconLabel").style.display = "none";
+    document.getElementById("foodIcon").style.display = "none";
+    document.getElementById("foodIconLabel").style.display = "none";
+
     // document.getElementById("favoritesDivID").style.display = "none";
 
 
@@ -441,9 +451,14 @@ function prevMonth(currMonth) {
     }
     // hide date title, add post buttons
     document.getElementById("todaysDate").style.display = "none";
-    document.getElementById("exButton").style.display = "none";
-    document.getElementById("taskButton").style.display = "none";
-    document.getElementById("foodButton").style.display = "none";
+
+      document.getElementById("taskIcon").style.display = "none";
+    document.getElementById("taskIconLabel").style.display = "none";
+    document.getElementById("exerciseIcon").style.display = "none";
+    document.getElementById("exerciseIconLabel").style.display = "none";
+    document.getElementById("foodIcon").style.display = "none";
+    document.getElementById("foodIconLabel").style.display = "none";
+
     // document.getElementById("favoritesDivID").style.display = "none";
 
 
@@ -539,14 +554,21 @@ function clearChildren() {
     document.getElementById("taskFeed").style.display = "none";
     document.getElementById("foodFeed").style.display = "none";
     // document.getElementById("favFeed").style.display = "none";
-    document.getElementById("exButton").style.display = "none";
-    document.getElementById("taskButton").style.display = "none";
-    document.getElementById("foodButton").style.display = "none";
+    document.getElementById("taskIcon").style.display = "none";
+    document.getElementById("taskIconLabel").style.display = "none";
+    document.getElementById("exerciseIcon").style.display = "none";
+    document.getElementById("exerciseIconLabel").style.display = "none";
+    document.getElementById("foodIcon").style.display = "none";
+    document.getElementById("foodIconLabel").style.display = "none";
+
+
     document.getElementById("fullFavFeed").style.display = "none";
 
     document.getElementById("recentFoods").style.display = "none";
     document.getElementById("reccomendedFoods").style.display = "none";
     document.getElementById("nutritionValues").style.display = "none";
+    document.getElementById("dailyNutritionValues").style.display = "none";
+
     // document.getElementById("favFeedTitle").style.display = "none";
 
 
@@ -581,9 +603,6 @@ function clearChildren() {
     while (el2.firstChild) el2.innerHTML = '';
 
     var el2 = document.getElementById('recentFoodsFeed');
-    while (el2.firstChild) el2.innerHTML = '';
-
-    var el2 = document.getElementById('reccomendedFoodsFeed');
     while (el2.firstChild) el2.innerHTML = '';
 
 
@@ -637,7 +656,11 @@ function createNewTask(ttl, desc, t, id) {
     newTask.onclick = function () {
         // clear the feed
         clearChildren();
-
+        document.getElementById("calendar").style.display = "none";
+        document.getElementById("usernameHeader").style.display = "none";
+        document.getElementById("accountIcon").style.display = "none";
+        document.getElementById("todaysDate").style.display = "none";
+    
         // initialize div elements
         var cancelButton = document.createElement('div');
         var title = document.createElement('div');
@@ -766,7 +789,11 @@ function createNewExercise(r, s, w, t, m, id) {
     newExercise.onclick = function () {
         // clear the feed
         clearChildren();
-
+        document.getElementById("calendar").style.display = "none";
+        document.getElementById("usernameHeader").style.display = "none";
+        document.getElementById("accountIcon").style.display = "none";
+        document.getElementById("todaysDate").style.display = "none";
+    
         // initialize div elements
         var cancelButton = document.createElement('div');
         var message = document.createElement('div');
@@ -906,6 +933,11 @@ function createNewFood(f, w, t, m, id) {
     newFood.onclick = function () {
         // clear the feed
         clearChildren();
+        document.getElementById("calendar").style.display = "none";
+        document.getElementById("usernameHeader").style.display = "none";
+        document.getElementById("accountIcon").style.display = "none";
+        document.getElementById("todaysDate").style.display = "none";
+    
         // initialize div elements
         var cancelButton = document.createElement('div');
         var food = document.createElement('div');
@@ -1189,6 +1221,8 @@ function createNewRecentFood(f, w, t, m, id) {
 
     // console.log(f,w,t,)
 
+    
+
     // console.log(f, w , t, m)
     // load new food div into the food feed
     document.getElementById("recentFoodsFeed").appendChild(newFood);
@@ -1197,7 +1231,7 @@ function createNewRecentFood(f, w, t, m, id) {
 /////////------------------- CREATE/LOAD A NEW FAV FOOD ELEMENT ---------------//////////
 /////////////////////////////////////////////////////////////////////////////////////
 // SET VARS FOR NEW FOOD, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO FOOD FEED
-function createNewReccomendedFood(f, w, t, m, id) {
+function createNewProtein(f, w, t, m, id) {
     //TODO//
     // needs a hover attribute
 
@@ -1245,9 +1279,13 @@ function createNewReccomendedFood(f, w, t, m, id) {
 
     // console.log(f,w,t,)
 
+    var el2 = document.getElementById('nutritionValuesFeedProtein');
+    while (el2.firstChild) el2.innerHTML = '';
+
+
     // console.log(f, w , t, m)
     // load new food div into the food feed
-    document.getElementById("reccomendedFoodsFeed").appendChild(newFood);
+    document.getElementById("nutritionValuesFeedProtein").appendChild(newFood);
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- CREATE/LOAD A NEW FAV FOOD ELEMENT ---------------//////////
@@ -1356,43 +1394,6 @@ function createNewNutrition(d, v, u) {
 
 
 /////////////////////////////////////////////////////////////////////////////////////
-/////////------------------- LOAD TASK FORM -------------------------////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-// INITIALIZE VAR DIVS, SET IDS, SET FORM HTML CONTENT 
-function newTask() {
-    // clear the feed
-    clearChildren();
-    loadTaskHistoryFeed();
-
-    // initialize div elements
-    var cancelButton = document.createElement('div');
-    var title = document.createElement('div');
-    var description = document.createElement('div');
-    var time = document.createElement('div');
-    var postButton = document.createElement('div');
-
-    // set ids
-    cancelButton.id = "cancelNew"
-    title.id = "titleNew";
-    description.id = "descriptionNew";
-    time.id = "timeNew";
-    postButton.id = "postButton";
-
-    // then add the HTML content of the element
-    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
-    title.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: Chemistry, Dentist, Birthday, etc.) <br><br></label><input id='taskReq1' onclick = '" + 'makeClean(document.getElementById("taskReq1"))' + "' type='text' class = 'required'><br><br><br>";
-    description.innerHTML = "<label class = 'exClass1'>Description (ex: Due at 11:59pm, buy a gift, etc.) <br><br></label> <input type='text' id='taskReq2' onclick = '" + 'makeClean(document.getElementById("taskReq2"))' + "' class = 'required'><br><br><br>";
-    time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br></label><input type='text' id='taskReq3' onclick = '" + 'makeClean(document.getElementById("taskReq3"))' + "' class = 'required'><br><br><br>";
-    postButton.innerHTML = "<input onclick = 'addTask()' type='submit' id = 'pButton1' value = 'POST'/>"
-
-    document.getElementById("feed")
-        .appendChild(cancelButton)
-        .appendChild(title)
-        .appendChild(description)
-        .appendChild(time)
-        .appendChild(postButton)
-}
-/////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- LOAD FAV TASK FORM -------------------------////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // INITIALIZE VAR DIVS, SET IDS, SET FORM HTML CONTENT 
@@ -1434,54 +1435,7 @@ function newFavTask() {
         .appendChild(time)
         .appendChild(postButton)
 }
-/////////////////////////////////////////////////////////////////////////////////////
-/////////------------------- LOAD EXERCISE FORM ---------------------////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-// INITIALIZE VAR DIVS, SET IDS, SET FORM HTML CONTENT 
-function newExercise() {
-    // clear the feed
-    clearChildren();
-    document.getElementById("historyFeed").style.display = "";
-    document.getElementById("historyTitle").style.display = "";
-    loadExHistoryFeed();
-    // initialize div elements
-    var cancelButton = document.createElement('div');
-    var reps = document.createElement('div');
-    var sets = document.createElement('div');
-    var weight = document.createElement('div');
-    var time = document.createElement('div');
-    var message = document.createElement('div');
-    var postButton = document.createElement('div');
 
-    // set ids
-    cancelButton.id = "cancelNew";
-    reps.id = "repsNew";
-    sets.id = "setsNew";
-    weight.id = "weightNew";
-    time.id = "timeNew";
-    message.id = "messageNew";
-    postButton.id = "postButton";
-
-    // then add the HTML content of the element
-    // title and time are required for inputs
-    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
-    message.innerHTML = "<br><br><br><label class = 'exClass1'>Workout (ex: DB Bench Press. Difficult) <br><br></label><input id='exReq1' onclick = '" + 'makeClean(document.getElementById("exReq1"))' + "' type='text' class = 'required' ><br><br><br>";
-    reps.innerHTML = "<label class = 'exClass1'>Reps (ex: 8) <br><br></label> <input type='text' id='exReq2' onclick = '" + 'makeClean(document.getElementById("exReq2"))' + "' class = 'required' ><br><br><br>";
-    sets.innerHTML = "<label class = 'exClass1'>Sets (ex: 3)<br><br></label><input type='text' id='exReq3' onclick = '" + 'makeClean(document.getElementById("exReq3"))' + "' class = 'required'><br><br><br>";
-    weight.innerHTML = "<label class = 'exClass1'>Weight (ex: 100 lbs)<br><br></label><input type='text' id='exReq4' onclick = '" + 'makeClean(document.getElementById("exReq4"))' + "' class = 'required'><br><br><br>";
-    time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm) <br><br></label><input id='exReq5' onclick = '" + 'makeClean(document.getElementById("exReq5"))' + "' type='text' class = 'required' ><br><br><br>";
-    postButton.innerHTML = "<input onclick = 'addExercise()'type='submit' form='mainForm' id = 'pButton1' value = 'POST'/>"
-
-    // this could be created as appending one div instead for better styling
-    document.getElementById("feed")
-        .appendChild(cancelButton)
-        .appendChild(message)
-        .appendChild(reps)
-        .appendChild(sets)
-        .appendChild(weight)
-        .appendChild(time)
-        .appendChild(postButton)
-}
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- LOAD FAV EXERCISE FORM ---------------------////////////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1532,49 +1486,7 @@ function newFavExercise() {
         .appendChild(time)
         .appendChild(postButton)
 }
-/////////////////////////////////////////////////////////////////////////////////////
-/////////------------------- LOAD FOOD/WATER FORM -------------------////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-// INITIALIZE VAR DIVS, SET IDS, SET FORM HTML CONTENT 
-function newFoodAndWater() {
-    // clear the feed
-    clearChildren();
 
-    loadFoodHistoryFeed();
-
-    // initialize div elements
-    var cancelButton = document.createElement('div');
-    var food = document.createElement('div');
-    var water = document.createElement('div');
-    var time = document.createElement('div');
-    var message = document.createElement('div');
-    var postButton = document.createElement('div');
-
-    // set ids
-    cancelButton.id = "cancelButtonFoodNew";
-    food.id = "foodNew";
-    water.id = "waterNew";
-    time.id = "timeFoodNew";
-    message.id = "messageFoodNew";
-    postButton.id = "postButtonFoodNew";
-
-    // then add the HTML content of the element
-    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
-    food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: PB&J plus a banana)<br><br> </label> <input type='text' id='foodReq1' onclick = '" + 'makeClean(document.getElementById("foodReq1"))' + "' class = 'required'><br><br><br>";
-    water.innerHTML = "<label class = 'exClass1'>Water/Beverages (ex: Water, Protein Shake)<br> <br> </label><input type='text' id='foodReq2' onclick = '" + 'makeClean(document.getElementById("foodReq2"))' + "' class = 'required'><br><br><br>";
-    message.innerHTML = "<label class = 'exClass1'>Note (ex: 400 calories)<br><br> </label><input type='text' id='foodReq3' onclick = '" + 'makeClean(document.getElementById("foodReq3"))' + "' class = 'required'><br><br><br>";
-    time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br>  </label><input type='text' id='foodReq4' onclick = '" + 'makeClean(document.getElementById("foodReq4"))' + "' class = 'required' ><br><br><br>";
-    postButton.innerHTML = "<input onclick = 'addFoodAndWater()'type='submit' id = 'pButton1' value = 'POST'/>"
-
-    // this could be created as appending one div instead for better styling
-    document.getElementById("feed")
-        .appendChild(cancelButton)
-        .appendChild(food)
-        .appendChild(water)
-        .appendChild(message)
-        .appendChild(time)
-        .appendChild(postButton)
-}
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- LOAD FAV FOOD/WATER FORM -------------------////////////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1629,12 +1541,20 @@ function favoriteButtonClick() {
 
     // clear the feed
     clearChildren();
+    document.getElementById("accountIcon").style.display = "none";
 
     //load the favorite button form
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("usernameHeader").style.display = "none";
+    document.getElementById("taskIcon").style.display = "none";
+    document.getElementById("taskIconLabel").style.display = "none";
+    document.getElementById("exerciseIcon").style.display = "none";
+    document.getElementById("exerciseIconLabel").style.display = "none";
+    document.getElementById("foodIcon").style.display = "none";
+    document.getElementById("foodIconLabel").style.display = "none";
+    document.getElementById("todaysDate").style.display = "none";
 
-    document.getElementById("exButton").style.display = "none";
-    document.getElementById("foodButton").style.display = "none";
-    document.getElementById("taskButton").style.display = "none";
+    
     document.getElementById("historyTitle").style.display = "none";
     document.getElementById("historyFeed").style.display = "none";
 
@@ -1664,6 +1584,159 @@ function favoriteButtonClick() {
 
 
 }
+function taskIconButtonClick() {
+// clear the feed
+clearChildren();
+loadTaskHistoryFeed();
+document.getElementById("accountIcon").style.display = "none";
+
+document.getElementById("calendar").style.display = "none";
+document.getElementById("exerciseIcon").style.display = "";
+document.getElementById("taskIcon").style.display = "";
+document.getElementById("foodIcon").style.display = "";
+document.getElementById("exerciseIconLabel").style.display = "";
+document.getElementById("taskIconLabel").style.display = "";
+document.getElementById("foodIconLabel").style.display = "";
+document.getElementById("usernameHeader").style.display = "none";
+document.getElementById("todaysDate").style.display = "";
+
+// initialize div elements
+var cancelButton = document.createElement('div');
+var title = document.createElement('div');
+var description = document.createElement('div');
+var time = document.createElement('div');
+var postButton = document.createElement('div');
+
+// set ids
+cancelButton.id = "cancelNew"
+title.id = "titleNew";
+description.id = "descriptionNew";
+time.id = "timeNew";
+postButton.id = "postButton";
+
+// then add the HTML content of the element
+cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
+title.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: Chemistry, Dentist, Birthday, etc.) <br><br></label><input id='taskReq1' onclick = '" + 'makeClean(document.getElementById("taskReq1"))' + "' type='text' class = 'required'><br><br><br>";
+description.innerHTML = "<label class = 'exClass1'>Description (ex: Due at 11:59pm, buy a gift, etc.) <br><br></label> <input type='text' id='taskReq2' onclick = '" + 'makeClean(document.getElementById("taskReq2"))' + "' class = 'required'><br><br><br>";
+time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br></label><input type='text' id='taskReq3' onclick = '" + 'makeClean(document.getElementById("taskReq3"))' + "' class = 'required'><br><br><br>";
+postButton.innerHTML = "<input onclick = 'addTask()' type='submit' id = 'pButton1' value = 'POST'/>"
+
+document.getElementById("feed")
+    .appendChild(cancelButton)
+    .appendChild(title)
+    .appendChild(description)
+    .appendChild(time)
+    .appendChild(postButton)
+}
+
+function foodIconButtonClick(){
+    // clear the feed
+    clearChildren();
+    document.getElementById("accountIcon").style.display = "none";
+    document.getElementById("todaysDate").style.display = "";
+
+    loadFoodHistoryFeed();
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("usernameHeader").style.display = "none";
+
+    document.getElementById("exerciseIcon").style.display = "";
+    document.getElementById("taskIcon").style.display = "";
+    document.getElementById("foodIcon").style.display = "";
+    document.getElementById("exerciseIconLabel").style.display = "";
+document.getElementById("taskIconLabel").style.display = "";
+document.getElementById("foodIconLabel").style.display = "";
+    // initialize div elements
+    var cancelButton = document.createElement('div');
+    var food = document.createElement('div');
+    var water = document.createElement('div');
+    var time = document.createElement('div');
+    var message = document.createElement('div');
+    var postButton = document.createElement('div');
+
+    // set ids
+    cancelButton.id = "cancelButtonFoodNew";
+    food.id = "foodNew";
+    water.id = "waterNew";
+    time.id = "timeFoodNew";
+    message.id = "messageFoodNew";
+    postButton.id = "postButtonFoodNew";
+
+    // then add the HTML content of the element
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
+    food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: PB&J plus a banana)<br><br> </label> <input type='text' id='foodReq1' onclick = '" + 'makeClean(document.getElementById("foodReq1"))' + "' class = 'required'><br><br><br>";
+    water.innerHTML = "<label class = 'exClass1'>Water/Beverages (ex: Water, Protein Shake)<br> <br> </label><input type='text' id='foodReq2' onclick = '" + 'makeClean(document.getElementById("foodReq2"))' + "' class = 'required'><br><br><br>";
+    message.innerHTML = "<label class = 'exClass1'>Note (ex: 400 calories)<br><br> </label><input type='text' id='foodReq3' onclick = '" + 'makeClean(document.getElementById("foodReq3"))' + "' class = 'required'><br><br><br>";
+    time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br>  </label><input type='text' id='foodReq4' onclick = '" + 'makeClean(document.getElementById("foodReq4"))' + "' class = 'required' ><br><br><br>";
+    postButton.innerHTML = "<input onclick = 'addFoodAndWater()'type='submit' id = 'pButton1' value = 'POST'/>"
+
+    // this could be created as appending one div instead for better styling
+    document.getElementById("feed")
+        .appendChild(cancelButton)
+        .appendChild(food)
+        .appendChild(water)
+        .appendChild(message)
+        .appendChild(time)
+        .appendChild(postButton)
+}
+
+function exerciseIconButtonClick(){
+    // clear the feed
+    // clearChildren();
+    document.getElementById("todaysDate").style.display = "";
+
+    document.getElementById("historyFeed").style.display = "";
+    document.getElementById("usernameHeader").style.display = "none";
+    document.getElementById("accountIcon").style.display = "none";
+
+    document.getElementById("historyTitle").style.display = "";
+    loadExHistoryFeed();
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("exerciseIcon").style.display = "";
+    document.getElementById("taskIcon").style.display = "";
+    document.getElementById("foodIcon").style.display = "";
+    document.getElementById("exerciseIconLabel").style.display = "";
+document.getElementById("taskIconLabel").style.display = "";
+document.getElementById("foodIconLabel").style.display = "";
+
+
+    // initialize div elements
+    var cancelButton = document.createElement('div');
+    var reps = document.createElement('div');
+    var sets = document.createElement('div');
+    var weight = document.createElement('div');
+    var time = document.createElement('div');
+    var message = document.createElement('div');
+    var postButton = document.createElement('div');
+
+    // set ids
+    cancelButton.id = "cancelNew";
+    reps.id = "repsNew";
+    sets.id = "setsNew";
+    weight.id = "weightNew";
+    time.id = "timeNew";
+    message.id = "messageNew";
+    postButton.id = "postButton";
+
+    // then add the HTML content of the element
+    // title and time are required for inputs
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
+    message.innerHTML = "<br><br><br><label class = 'exClass1'>Workout (ex: DB Bench Press. Difficult) <br><br></label><input id='exReq1' onclick = '" + 'makeClean(document.getElementById("exReq1"))' + "' type='text' class = 'required' ><br><br><br>";
+    reps.innerHTML = "<label class = 'exClass1'>Reps (ex: 8) <br><br></label> <input type='text' id='exReq2' onclick = '" + 'makeClean(document.getElementById("exReq2"))' + "' class = 'required' ><br><br><br>";
+    sets.innerHTML = "<label class = 'exClass1'>Sets (ex: 3)<br><br></label><input type='text' id='exReq3' onclick = '" + 'makeClean(document.getElementById("exReq3"))' + "' class = 'required'><br><br><br>";
+    weight.innerHTML = "<label class = 'exClass1'>Weight (ex: 100 lbs)<br><br></label><input type='text' id='exReq4' onclick = '" + 'makeClean(document.getElementById("exReq4"))' + "' class = 'required'><br><br><br>";
+    time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm) <br><br></label><input id='exReq5' onclick = '" + 'makeClean(document.getElementById("exReq5"))' + "' type='text' class = 'required' ><br><br><br>";
+    postButton.innerHTML = "<input onclick = 'addExercise()'type='submit' form='mainForm' id = 'pButton1' value = 'POST'/>"
+
+    // this could be created as appending one div instead for better styling
+    document.getElementById("feed")
+        .appendChild(cancelButton)
+        .appendChild(message)
+        .appendChild(reps)
+        .appendChild(sets)
+        .appendChild(weight)
+        .appendChild(time)
+        .appendChild(postButton)
+}
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- LOAD EDIT ACCOUNT FORM ------------------///////////////
 ///////////////////////////////////////////////////////////////////////////////////// 
@@ -1672,9 +1745,17 @@ function editAccount() {
     // clear the feed 
     clearChildren();
     // hide the buttons
-    document.getElementById('exButton').style.display = 'none';
-    document.getElementById('foodButton').style.display = 'none';
-    document.getElementById('taskButton').style.display = 'none';
+    document.getElementById("taskIcon").style.display = "none";
+    document.getElementById("taskIconLabel").style.display = "none";
+    document.getElementById("exerciseIcon").style.display = "none";
+    document.getElementById("exerciseIconLabel").style.display = "none";
+    document.getElementById("foodIcon").style.display = "none";
+    document.getElementById("foodIconLabel").style.display = "none";
+
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("usernameHeader").style.display = "none";
+    document.getElementById("filler1").style.display = "none";
+
 
     //load form to edit my account
     // initialize div elements
@@ -1710,9 +1791,22 @@ function loadMyAccount() {
     // clear the feed 
     clearChildren();
     // hide the buttons
-    document.getElementById('exButton').style.display = 'none';
-    document.getElementById('foodButton').style.display = 'none';
-    document.getElementById('taskButton').style.display = 'none';
+    document.getElementById("taskIcon").style.display = "none";
+    document.getElementById("taskIconLabel").style.display = "none";
+    document.getElementById("exerciseIcon").style.display = "none";
+    document.getElementById("exerciseIconLabel").style.display = "none";
+    document.getElementById("foodIcon").style.display = "none";
+    document.getElementById("foodIconLabel").style.display = "none";
+    document.getElementById("calendar").style.display = "";
+    document.getElementById("usernameHeader").style.display = "none";
+    document.getElementById("accountIcon").style.display = "none";
+    document.getElementById("filler1").style.display = "";
+
+
+    document.getElementById("todaysDate").style.display = "none";
+
+
+
     document.getElementById('favoritesDivID').style.display = '';
     document.getElementById("historyTitle").style.display = "none";
     document.getElementById("historyFeed").style.display = "none";
@@ -2481,9 +2575,16 @@ function loadFeed(date, month) {
 
     var day = "" + date;
     // hide post buttons
-    document.getElementById("exButton").style.display = "";
-    document.getElementById("foodButton").style.display = "";
-    document.getElementById("taskButton").style.display = "";
+    document.getElementById("usernameHeader").style.display = "";
+    document.getElementById("todaysDate").style.display = "";
+
+    document.getElementById("taskIcon").style.display = "";
+    document.getElementById("taskIconLabel").style.display = "";
+    document.getElementById("exerciseIcon").style.display = "";
+    document.getElementById("exerciseIconLabel").style.display = "";
+    document.getElementById("foodIcon").style.display = "";
+    document.getElementById("foodIconLabel").style.display = "";
+
     document.getElementById("exFeed").style.display = "";
     document.getElementById("foodFeed").style.display = "";
     document.getElementById("taskFeed").style.display = "";
@@ -2493,6 +2594,9 @@ function loadFeed(date, month) {
     document.getElementById("favoritesDivID").style.display = "";
     document.getElementById("fullFavFeed").style.display = "";
     document.getElementById("reccomendedFoods").style.display = "";
+    document.getElementById("calendar").style.display = "";
+    document.getElementById("accountIcon").style.display = "";
+
 
 
     document.getElementById("recentFoods").style.display = "";
@@ -2675,6 +2779,7 @@ function deleteFavFood(id) {
 // INITIALIZE & SET EDIT VARS RESPECTIVELY, UPDATE TASK DB POST, RELOAD FEED
 function updateTaskEntry(docId) {
     // initialize vars
+
     docId = "" + docId;
     date = "" + currDate;
     month = "" + currMonth;
@@ -3354,15 +3459,20 @@ function userSignedOut() {
     document.getElementById('taskFeed').style.display = 'none';
     document.getElementById('exFeed').style.display = 'none';
     document.getElementById('foodFeed').style.display = 'none';
-    document.getElementById('taskButton').style.display = 'none';
-    document.getElementById('exButton').style.display = 'none';
-    document.getElementById('foodButton').style.display = 'none';
+    document.getElementById("taskIcon").style.display = "none";
+    document.getElementById("taskIconLabel").style.display = "none";
+    document.getElementById("exerciseIcon").style.display = "none";
+    document.getElementById("exerciseIconLabel").style.display = "none";
+    document.getElementById("foodIcon").style.display = "none";
+    document.getElementById("foodIconLabel").style.display = "none";
     document.getElementById('todaysDate').style.display = 'none';
     document.getElementById('accountIcon').style.display = 'none';
     document.getElementById('favoritesIcon').style.display = 'none';
     document.getElementById('favLabel').style.display = 'none';
     document.getElementById("historyTitle").style.display = "none";
     document.getElementById("historyFeed").style.display = "none";
+    document.getElementById("dailyNutritionValues").style.display = "none";
+
 
     // document.getElementById('favoritesDivID').style.display = 'none';
     document.getElementById('currentDateDisplay').style.display = 'none';
@@ -3398,6 +3508,13 @@ function editThisFoodFav(f) {
     // reload the page
 
     clearChildren();
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("usernameHeader").style.display = "none";
+    document.getElementById("accountIcon").style.display = "none";
+    document.getElementById("todaysDate").style.display = "none";
+
+
+    // document.getElementById("filler1").style.display = "none";
     var strings = f.split(',');
 
     var f1, w, t, m, id;
@@ -3490,6 +3607,11 @@ function editThisTaskFav(f) {
     // reload the page
 
     clearChildren();
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("usernameHeader").style.display = "none";
+    document.getElementById("accountIcon").style.display = "none";
+    document.getElementById("todaysDate").style.display = "none";
+
     var strings = f.split(',');
 
     var ttl, desc, t;
@@ -3571,6 +3693,11 @@ function editThisExerciseFav(f) {
     // reload the page
 
     clearChildren();
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("usernameHeader").style.display = "none";
+    document.getElementById("accountIcon").style.display = "none";
+    document.getElementById("todaysDate").style.display = "none";
+
     var strings = f.split(',');
 
     var m, r, s, w, t;
@@ -3806,12 +3933,12 @@ function getMyFoods() {
 
 
 /////EDIT EXERCISE FAV
-function loadReccomendedFeed() {
+function loadProteinFeed() {
 
     var el2 = document.getElementById('reccomendedFoodsFeed');
     while (el2.firstChild) el2.innerHTML = '';
 
-    createNewReccomendedFood("MY TOTAL PROTEIN THIS WEEK: <br>" + proteinTotal + " g", "", "", "");
+    createNewProtein("MY TOTAL PROTEIN THIS WEEK: <br>" + proteinTotal + " g", "", "", "");
     // createNewReccomendedFood("Here TODO", "", "", "");
 
 }
@@ -3830,7 +3957,7 @@ function addTotalProtein(proteinVal) {
 
     proteinTotal += proteinVal;
     console.log("total protein: " + proteinTotal + " g");
-    loadReccomendedFeed();
+    loadProteinFeed();
 
 
 }

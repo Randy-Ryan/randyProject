@@ -348,6 +348,7 @@ body{
   scroll-snap-type: x proximity;
   padding-bottom: calc(.75 * var(--gutter));
   margin-bottom: calc(-.25 * var(--gutter));
+  
 }
 
 .hs:before,
@@ -435,6 +436,8 @@ background-image: linear-gradient(to right, #868F96, #596164);
 #historyTitle{
   margin: 0;
   margin-bottom: 0%;
+  margin-top: 2%;
+
   text-align: center;
   margin-bottom: 2%;
   font-family: monospace;
@@ -510,7 +513,14 @@ background-image: linear-gradient(to right, #868F96, #596164);
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8); */
 
 }
+#nutritionValues{
+  height: auto;
+}
+#nutritionValuesFeed{
+  overflow-y: scroll;
+  height: 50%;
 
+}
 #historyFeed1{
   text-align:justify;
   font-size: 25px;
@@ -683,7 +693,7 @@ background-image: linear-gradient(to right, #868F96, #596164);
 #calendar {
   margin-left: 10%;
   margin-right: 10%;
-  margin-top: 0%;
+  margin-top: 3%;
   border: 2px solid black;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
 
@@ -939,6 +949,9 @@ height: auto;
 /* ************************************************************************* */
 /* ************************************************************************* */
 
+#userHead{
+  margin: 0;
+}
 /* USERNAME TITLE */
 #usernameHeader{
   font-size: 60px;
@@ -988,6 +1001,7 @@ height: auto;
   left: 5%;
   position: absolute;
 }
+
 
 /* ************************************************************************* */
 /* ************************************************************************* */
@@ -1134,26 +1148,92 @@ border: 10px solid gray;
 /* FAVORITES ICON IMG ELEMENT*/
 #favoritesIcon{
   position: absolute;
-  top: 50px;
-  right: 100px;
+  top: 2%;
+  right: 2%;
   padding: 0;
   /* top: 135%; */
-  height: 75px;
-  width: 75px;
+  height: 40px;
+  width: 40px;
   border-radius: 75px;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
-  border: 10px solid gray;
+  border: 5px solid gray;
 
   }
 
+  #taskIcon{
+    position: absolute;
+    top: 10%;
+    right: 2%;
+    padding: 0;
+    /* top: 135%; */
+    height: 40px;
+    width: 40px;
+    border-radius: 75px;
+    box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+    border: 5px solid yellow;
+  }
+
+  #exerciseIcon{
+    position: absolute;
+    top: 18%;
+    right: 2%;
+    padding: 0;
+    /* top: 135%; */
+    height: 40px;
+    width: 40px;
+    border-radius: 75px;
+    box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+    border: 5px solid blue;
+  }
+
+  #foodIcon{
+    position: absolute;
+    top: 26%;
+    right: 2%;
+    padding: 0;
+    /* top: 135%; */
+    height: 40px;
+    width: 40px;
+    border-radius: 75px;
+    box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+    border: 5px solid red;
+  }
+
+  #taskIconLabel{
+    font-size: 27px;
+    margin-bottom: 5%;
+    position: absolute;
+    top: 12%;
+    right: 10%;
+    font-weight: 900;
+    color: black;
+  }
+  #exerciseIconLabel{
+    font-size: 27px;
+    margin-bottom: 5%;
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    font-weight: 900;
+    color: black;
+  }
+  #foodIconLabel{
+    font-size: 25px;
+    margin-bottom: 5%;
+    position: absolute;
+    top: 28%;
+    right: 10%;
+    font-weight: 900;
+    color: black;
+  }
 
 /* FAVORITES ICON IMG ELEMENT*/
 #favLabel{
-  font-size: 27px;
+  font-size: 25px;
   margin-bottom: 5%;
   position: absolute;
-  top: 160px;
-  right: 45px;
+  top: 4%;
+  right: 10%;
   font-weight: 900;
   color: black;
   }
