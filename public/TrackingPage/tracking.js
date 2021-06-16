@@ -355,17 +355,27 @@ function openDay(date, month) {
 /////////////////////////////////////////////////////////////////////////////////////
 // STYLE CALENDAR/FEED (NO DATE SELECTION) 
 function nextMonth(currMonth) {
+
+    
     // clear the feed
     clearChildren();
-
-    // show empty feed title 
-    document.getElementById("filler1").style.display = "";
-
-    if (userID == "null") {
-        userSignedOut();
-        // alert("Error: no userID");
-        // window.location.href = "../index.html"
+    var active = document.getElementsByClassName("active");
+    if (active[0] != null) {
+        active[0].className = "";
     }
+
+    firebase.auth().onAuthStateChanged((user) => {
+       
+        if (user) {
+             // show empty feed title 
+    document.getElementById("filler1").style.display = "";
+        } else {
+       
+          userSignedOut();
+         
+       
+        }
+      });
     // hide date title, add post buttons
     document.getElementById("todaysDate").style.display = "none";
 
@@ -378,13 +388,6 @@ function nextMonth(currMonth) {
     document.getElementById("foodIconLabel").style.display = "none";
 
     // document.getElementById("favoritesDivID").style.display = "none";
-
-
-    // clear the current active date on calendar
-    var active = document.getElementsByClassName("active");
-    if (active[0] != null) {
-        active[0].className = "";
-    }
 
     // statements to set & style the respective month displays on calendar
     if (currMonth == "December") {
@@ -459,11 +462,23 @@ function prevMonth(currMonth) {
     // show empty feed title 
     document.getElementById("filler1").style.display = "";
 
-    if (userID == "null") {
-        userSignedOut();
-        // alert("Error: no userID");
-        // window.location.href = "../index.html"
+    var active = document.getElementsByClassName("active");
+    if (active[0] != null) {
+        active[0].className = "";
     }
+
+    firebase.auth().onAuthStateChanged((user) => {
+       
+        if (user) {
+             // show empty feed title 
+    document.getElementById("filler1").style.display = "";
+        } else {
+       
+          userSignedOut();
+         
+       
+        }
+      });
     // hide date title, add post buttons
     document.getElementById("todaysDate").style.display = "none";
 
