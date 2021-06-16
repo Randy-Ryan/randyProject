@@ -126,6 +126,7 @@ window.onload = function () {
           console.log("signed Out");
 
           userSignedOut();
+          
 
         }
       });
@@ -185,7 +186,6 @@ mainForm1.onsubmit = function (e) {
                             userID: userId,
                         }).then(function () {
                             alert('Account successfully created and added to database! Welcome ' + user.displayName);
-                            // openDay(day,month);
                             window.location.href = './tracking.html';
                             // window.location.href = "../TrackingPage/tracking.html?userID=" + userId + "&username=" + username + "&email=" + email;
                         }).catch(function (error) {
@@ -233,7 +233,6 @@ mainForm.onsubmit = function (e) {
             var fuser = firebase.auth().currentUser;
             alert("Welcome " + fuser.displayName);
             //route to tracking page
-            // openDay(day,month);
             window.location.href = './tracking.html';
             // window.location.href = "../TrackingPage/tracking.html?userID=" + fuser.uid + "&username=" + fuser.displayName + "&email=" + email;
         }).catch(err => {
@@ -283,57 +282,68 @@ mainForm.onsubmit = function (e) {
 function openDay(date, month) {
     // properly reformat date var with leading 0
 
+   
+    firebase.auth().onAuthStateChanged((user) => {
+       
+        if (user) {
+            document.getElementById("notLoginRegister").style.display = "";
+            document.getElementById("loginPage").style.display = "none";
+            document.getElementById("registerPage").style.display = "none";
+            
+    
+            var d = "" + date;
+            if (d.length < 2) {
+                d = "0" + d;
+            }
+        
+            // set (reset) global date/month vars
+            currDate = d;
+            currMonth = setMonth(month);
+        
+            // clear the feed
+            clearChildren();
+        
+            // load this dates feed
+            loadFeed(date, month);
+        
+            // style calendar: 
+            // remove the current active class & set the new active date
+            var active = document.getElementsByClassName("active");
+            if (active[0] != null) {
+                active[0].className = "";
+            }
+            document.getElementById('id' + d + month).className = "active";
+        
+            // style feed: 
+            // make date title visible & set content
+            document.getElementById("todaysDate").style.display = "";
+            document.getElementById("todaysDate").innerHTML = currMonth + " / " + currDate;
+        
+            // make add entry buttons visible
+            document.getElementById("taskIcon").style.display = "";
+            document.getElementById("taskIconLabel").style.display = "";
+            document.getElementById("exerciseIcon").style.display = "";
+            document.getElementById("exerciseIconLabel").style.display = "";
+            document.getElementById("foodIcon").style.display = "";
+            document.getElementById("foodIconLabel").style.display = "";
+        
+        
+        
+            // hide empty feed title element (filler1 = empty feed title)
+            document.getElementById("filler1").style.display = "none";
+        } else {
+          // User is signed out
+          // ...
+        //   alert("No user is logged in")
+          document.getElementById("notLoginRegister").style.display = "";
 
-      
-    document.getElementById("notLoginRegister").style.display = "";
-    document.getElementById("loginPage").style.display = "none";
-    document.getElementById("registerPage").style.display = "none";
-    var d = "" + date;
-    if (d.length < 2) {
-        d = "0" + d;
-    }
+          console.log("signed Out");
 
-    // set (reset) global date/month vars
-    currDate = d;
-    currMonth = setMonth(month);
+          userSignedOut();
+       
+        }
+      });
 
-    // clear the feed
-    clearChildren();
-
-    // load this dates feed
-    loadFeed(date, month);
-
-    // style calendar: 
-    // remove the current active class & set the new active date
-    var active = document.getElementsByClassName("active");
-    if (active[0] != null) {
-        active[0].className = "";
-    }
-    document.getElementById('id' + d + month).className = "active";
-
-    // style feed: 
-    // make date title visible & set content
-    document.getElementById("todaysDate").style.display = "";
-    document.getElementById("todaysDate").innerHTML = currMonth + " / " + currDate;
-
-    // make add entry buttons visible
-    document.getElementById("taskIcon").style.display = "";
-    document.getElementById("taskIconLabel").style.display = "";
-    document.getElementById("exerciseIcon").style.display = "";
-    document.getElementById("exerciseIconLabel").style.display = "";
-    document.getElementById("foodIcon").style.display = "";
-    document.getElementById("foodIconLabel").style.display = "";
-
-
-
-    // hide empty feed title element (filler1 = empty feed title)
-    document.getElementById("filler1").style.display = "none";
-    // check if user is signed in - call function to style
-    if (userID == "null") {
-        userSignedOut();
-        // alert("Error: no userID");
-        // window.location.href = "../index.html"
-    }
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- NEXT MONTH CLICK FUNCTION -------------/////////////////
