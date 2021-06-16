@@ -1541,7 +1541,8 @@ function favoriteButtonClick() {
     // clear the feed
     clearChildren();
     document.getElementById("accountIcon").style.display = "none";
-
+    document.getElementById("favoritesIcon").style.display = "none";
+    document.getElementById("favLabel").style.display = "none";
     //load the favorite button form
     document.getElementById("calendar").style.display = "none";
     document.getElementById("usernameHeader").style.display = "none";
@@ -1552,6 +1553,7 @@ function favoriteButtonClick() {
     document.getElementById("foodIcon").style.display = "none";
     document.getElementById("foodIconLabel").style.display = "none";
     document.getElementById("todaysDate").style.display = "none";
+    document.getElementById("filler1").style.display = "none";
 
     
     document.getElementById("historyTitle").style.display = "none";
@@ -1588,14 +1590,18 @@ function taskIconButtonClick() {
 clearChildren();
 loadTaskHistoryFeed();
 document.getElementById("accountIcon").style.display = "none";
-
 document.getElementById("calendar").style.display = "none";
-document.getElementById("exerciseIcon").style.display = "";
-document.getElementById("taskIcon").style.display = "";
-document.getElementById("foodIcon").style.display = "";
-document.getElementById("exerciseIconLabel").style.display = "";
-document.getElementById("taskIconLabel").style.display = "";
-document.getElementById("foodIconLabel").style.display = "";
+
+document.getElementById("exerciseIcon").style.display = "none";
+document.getElementById("taskIcon").style.display = "none";
+document.getElementById("foodIcon").style.display = "none";
+document.getElementById("favoritesIcon").style.display = "none";
+document.getElementById("favLabel").style.display = "none";
+document.getElementById("exerciseIconLabel").style.display = "none";
+document.getElementById("taskIconLabel").style.display = "none";
+document.getElementById("foodIconLabel").style.display = "none";
+document.getElementById("filler1").style.display = "none";
+
 document.getElementById("usernameHeader").style.display = "none";
 document.getElementById("todaysDate").style.display = "";
 
@@ -1637,13 +1643,16 @@ function foodIconButtonClick(){
     loadFoodHistoryFeed();
     document.getElementById("calendar").style.display = "none";
     document.getElementById("usernameHeader").style.display = "none";
+    document.getElementById("filler1").style.display = "none";
 
-    document.getElementById("exerciseIcon").style.display = "";
-    document.getElementById("taskIcon").style.display = "";
-    document.getElementById("foodIcon").style.display = "";
-    document.getElementById("exerciseIconLabel").style.display = "";
-document.getElementById("taskIconLabel").style.display = "";
-document.getElementById("foodIconLabel").style.display = "";
+    document.getElementById("exerciseIcon").style.display = "none";
+    document.getElementById("taskIcon").style.display = "none";
+    document.getElementById("foodIcon").style.display = "none";
+    document.getElementById("favoritesIcon").style.display = "none";
+    document.getElementById("favLabel").style.display = "none";
+    document.getElementById("exerciseIconLabel").style.display = "none";
+document.getElementById("taskIconLabel").style.display = "none";
+document.getElementById("foodIconLabel").style.display = "none";
     // initialize div elements
     var cancelButton = document.createElement('div');
     var food = document.createElement('div');
@@ -1686,16 +1695,19 @@ function exerciseIconButtonClick(){
     document.getElementById("historyFeed").style.display = "";
     document.getElementById("usernameHeader").style.display = "none";
     document.getElementById("accountIcon").style.display = "none";
+    document.getElementById("filler1").style.display = "none";
 
     document.getElementById("historyTitle").style.display = "";
     loadExHistoryFeed();
     document.getElementById("calendar").style.display = "none";
-    document.getElementById("exerciseIcon").style.display = "";
-    document.getElementById("taskIcon").style.display = "";
-    document.getElementById("foodIcon").style.display = "";
-    document.getElementById("exerciseIconLabel").style.display = "";
-document.getElementById("taskIconLabel").style.display = "";
-document.getElementById("foodIconLabel").style.display = "";
+    document.getElementById("exerciseIcon").style.display = "none";
+    document.getElementById("taskIcon").style.display = "none";
+    document.getElementById("foodIcon").style.display = "none";
+    document.getElementById("favoritesIcon").style.display = "none";
+    document.getElementById("favLabel").style.display = "none";
+    document.getElementById("exerciseIconLabel").style.display = "none";
+document.getElementById("taskIconLabel").style.display = "none";
+document.getElementById("foodIconLabel").style.display = "none";
 
 
     // initialize div elements
@@ -1797,8 +1809,8 @@ function loadMyAccount() {
     document.getElementById("foodIcon").style.display = "none";
     document.getElementById("foodIconLabel").style.display = "none";
     document.getElementById("calendar").style.display = "";
-    document.getElementById("usernameHeader").style.display = "none";
-    document.getElementById("accountIcon").style.display = "none";
+    document.getElementById("usernameHeader").style.display = "";
+    document.getElementById("accountIcon").style.display = "";
     document.getElementById("filler1").style.display = "";
 
 
@@ -2576,7 +2588,8 @@ function loadFeed(date, month) {
     // hide post buttons
     document.getElementById("usernameHeader").style.display = "";
     document.getElementById("todaysDate").style.display = "";
-
+    document.getElementById("favoritesIcon").style.display = "";
+    document.getElementById("favLabel").style.display = "";
     document.getElementById("taskIcon").style.display = "";
     document.getElementById("taskIconLabel").style.display = "";
     document.getElementById("exerciseIcon").style.display = "";
