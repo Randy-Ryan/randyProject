@@ -1802,6 +1802,12 @@ function editAccount() {
 function loadMyAccount() {
     // clear the feed 
     clearChildren();
+     // style calendar: 
+    // remove the current active class & set the new active date
+    var active = document.getElementsByClassName("active");
+    if (active[0] != null) {
+        active[0].className = "";
+    }
     // hide the buttons
     document.getElementById("taskIcon").style.display = "none";
     document.getElementById("taskIconLabel").style.display = "none";
@@ -1814,6 +1820,7 @@ function loadMyAccount() {
     document.getElementById("accountIcon").style.display = "";
     document.getElementById("filler1").style.display = "";
 
+    document.getElementsByClassName("active").className = "";
 
     document.getElementById("todaysDate").style.display = "none";
 
