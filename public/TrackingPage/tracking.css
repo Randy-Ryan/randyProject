@@ -1199,7 +1199,7 @@ margin-top: 0%;
     font-weight: 600;
   }
 
-.required5 {
+.required5, .required6 {
    margin: 0;
    width: 90%; 
    height: 100px; 

@@ -44,43 +44,12 @@ lists.forEach(el => {
 ///////////////////////////////////////////////////////////////////////////////////// 
 // GET/SET TODAYS DATE, STYLE CALENDAR/FEED, SET GLOBAL VARS, CLEAR/LOAD FEED 
 window.onload = function () {
-    // initialize and set vars
 
-    firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    var uid = user.uid;
-    console.log(user);
-    // user.phoneNumber
-    // user.photoURL
-    // user.emailVerified
-    // user.email
-    // ...
-  } else {
-    // User is signed out
-    // ...
-    userSignedOut();
-  }
-});
+    
     var s = getDateAndMonth();
     var day = s.substring(0, 2);
     var month = s.substring(3, 5);
 
-    // document.getElementById("recentFoodsFeed").style.display = '';
-
-    // set 'global' vars
-    userID = getURLParameter("userID");
-    username = getURLParameter("username");
-    email = getURLParameter("username");
-
-    const user = firebase.auth().currentUser;
-
-    // document.getElementById("ex56").innerHTML = "EX";
-    // document.getElementById("food56").innerHTML= "FOOD";
-    // document.getElementById("task56").innerHTML = "TASK";
-
-    document.getElementById("currentDateDisplay").innerHTML = "Today<br>" + month + "/" + day + "";
 
     // statements to set month var
     if (month == '01') {
@@ -120,11 +89,174 @@ window.onload = function () {
         month = "December";
     }
 
+    firebase.auth().onAuthStateChanged((user) => {
+       
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+        userID = user.uid;
+        username = user.displayName;
+        email = user.email;
+
+         console.log("signed in: " + userID, username, email);
+          // user.phoneNumber
+          // user.photoURL
+          // user.emailVerified
+          // user.email
+          // ...
+           // initialize and set vars
+  // style username display title
+  document.getElementById("userHead").innerHTML = username + "'s Tracking Calendar";
+
+
+  document.getElementById("notLoginRegister").style.display = "";
+
+    // clear the feed
+    clearChildren();
+    // load the feed
+    loadFeed(day, month);
+
+    
+        } else {
+          // User is signed out
+          // ...
+          document.getElementById("notLoginRegister").style.display = "";
+
+          console.log("signed Out");
+
+          userSignedOut();
+
+        }
+      });
+
+   
+var mainForm1 = document.getElementById("register-form");
+mainForm1.onsubmit = function (e) {
+    // error2 var needed for when first submission is invalid
+    e.preventDefault();
+    // but second submission is correct
+    var error = false;
+    var error2 = false;
+    // initialize inputs variable from all inputs with class "required"
+    var requiredInputs = document.querySelectorAll(".required5");
+    for (var i = 0; i < requiredInputs.length; i++) {
+        error = false;
+        console.log(requiredInputs.length);
+        // if blank input, prevent form submission
+        // make input fields red and set error to true
+        if (isBlank(requiredInputs[i])) {
+            e.preventDefault();
+            makeRed(requiredInputs[i]);
+            error = true;
+            error2 = true;
+        }
+        // make input field normal if no error
+        // usage when first case is error, but second is not
+        if (error == false) {
+            makeClean(requiredInputs[i]);
+        }
+    }
+    if (error2 == false) {
+        // no input errors, should then create an account through firebase
+        // set variables from front end user input values
+        username = requiredInputs[0].value;
+        email = requiredInputs[1].value;
+
+        // create firebase account with email/password
+        // this logic may be a little buggy and route to account page before creating the document in the firestore database
+        firebase.auth().createUserWithEmailAndPassword(email, requiredInputs[2].value)
+            .then((res) => {
+                var user = firebase.auth().currentUser;
+                // set current user id 
+                userId = firebase.auth().currentUser.uid;
+                // create a new document in firestore database with the following fields
+               
+                // update this users display name with the inputted username
+                user.updateProfile({
+                    displayName: username,
+                })
+                    .then(function () {
+                        // route to home page and set the url params respectivly
+                        db.collection("users").doc(userId).set({
+                            username: username,
+                            email: email,
+                            userID: userId,
+                        }).then(function () {
+                            alert('Account successfully created and added to database! Welcome ' + user.displayName);
+                            // openDay(day,month);
+                            window.location.href = './tracking.html';
+                            // window.location.href = "../TrackingPage/tracking.html?userID=" + userId + "&username=" + username + "&email=" + email;
+                        }).catch(function (error) {
+                            // An error happened.
+                            alert(error);
+                        });
+                    })
+            }).catch(function (error) {
+                // An error happened.
+                alert(error);
+            });;
+    }
+}
+var mainForm = document.getElementById("login-form");
+mainForm.onsubmit = function (e) {
+    // error2 var needed for when first submission is invalid
+    e.preventDefault();
+    // but second submission is correct
+    var error = false;
+    var error2 = false;
+    // initialize inputs variable from all inputs with class "required"
+    var requiredInputs = document.querySelectorAll(".required6");
+    for (var i = 0; i < requiredInputs.length; i++) {
+        error = false;
+        // if blank input, prevent form submission
+        // make input fields red and set error to true
+        if (isBlank(requiredInputs[i])) {
+            e.preventDefault();
+            makeRed(requiredInputs[i]);
+            error = true;
+            error2 = true;
+        }
+        // make input field normal if no error
+        // usage when first case is error, but second is not
+        if (error == false) {
+            makeClean(requiredInputs[i]);
+        }
+    }
+    if (error2 == false) {
+        // no input errors, should then log into account through firebase
+        var email = requiredInputs[0].value;
+        var password = requiredInputs[1].value;
+        firebase.auth().signInWithEmailAndPassword(email, password).then(user => {
+            //get current user and display the username
+            var fuser = firebase.auth().currentUser;
+            alert("Welcome " + fuser.displayName);
+            //route to tracking page
+            // openDay(day,month);
+            window.location.href = './tracking.html';
+            // window.location.href = "../TrackingPage/tracking.html?userID=" + fuser.uid + "&username=" + fuser.displayName + "&email=" + email;
+        }).catch(err => {
+            alert(err.message);
+        });
+    }
+}
+    // document.getElementById("recentFoodsFeed").style.display = '';
+
+    // // set 'global' vars
+    // userID = getURLParameter("userID");
+    // username = getURLParameter("username");
+    // email = getURLParameter("username");
+
+    // const user = firebase.auth().currentUser;
+
+    // document.getElementById("ex56").innerHTML = "EX";
+    // document.getElementById("food56").innerHTML= "FOOD";
+    // document.getElementById("task56").innerHTML = "TASK";
+
+    document.getElementById("currentDateDisplay").innerHTML = "Today<br>" + month + "/" + day + "";
+
     // set month title and todays date on load
     document.getElementById("monthTitle").innerHTML = "" + month;
-    // style username display title
-    document.getElementById("userHead").innerHTML = username + "'s Tracking Calendar";
-
+  
     // hide empty feed title
     document.getElementById("filler1").style.display = "none";
 
@@ -139,26 +271,7 @@ window.onload = function () {
     // style date title respectivly
     document.getElementById("todaysDate").innerHTML = currMonth + " / " + currDate;
 
-    // clear the feed
-    clearChildren();
-    // check if user is signed in - call function to style
-    if (userID == "null") {
-        userSignedOut();
 
-        document.getElementById("exButton").style.display = "none";
-        document.getElementById("foodButton").style.display = "none";
-        document.getElementById("taskButton").style.display = "none";
-        document.getElementById("exFeed").style.display = "none";
-        document.getElementById("foodFeed").style.display = "none";
-        document.getElementById("taskFeed").style.display = "none";
-        document.getElementById("exFeedTitle").style.display = "none";
-        document.getElementById("foodFeedTitle").style.display = "none";
-        document.getElementById("taskFeedTitle").style.display = "none";
-
-        return;
-    }
-    // load the feed
-    loadFeed(day, month);
     document.getElementById("historyFeed").style.display = "none";
     document.getElementById("historyTitle").style.display = "none";
 }
@@ -168,6 +281,12 @@ window.onload = function () {
 // SET GLOBAL DATE/MONTH VARS, STYLE CALENDAR/FEED, LOAD THIS DATES FEED 
 function openDay(date, month) {
     // properly reformat date var with leading 0
+
+
+      
+    document.getElementById("notLoginRegister").style.display = "";
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("registerPage").style.display = "none";
     var d = "" + date;
     if (d.length < 2) {
         d = "0" + d;
@@ -1602,26 +1721,26 @@ function loadMyAccount() {
     // load the account feed
 
     // initialize div elements
-    var username = document.createElement('div');
+    var usernameEdit = document.createElement('div');
     var editButton = document.createElement('div');
     var signOutButton = document.createElement('div');
 
     //set ids
 
-    username.id = "usernameAccountID";
+    usernameEdit.id = "usernameAccountID";
     editButton.id = "editAccountID";
     signOutButton.id = "editAccountID";
 
-    const user = firebase.auth().currentUser;
+    // const user = firebase.auth().currentUser;
 
-    username.innerHTML = "<br><br><br><label id = 'accountUsername'>" + user.displayName + "'s account page <br><br></label>";
+    usernameEdit.innerHTML = "<br><br><br><label id = 'accountUsername'>" + username + "'s account page <br><br></label>";
     editButton.innerHTML = "<input onclick = 'editAccount()' type='submit' id = 'cancelButton1' value = 'EDIT MY ACCOUNT'/>"
     signOutButton.innerHTML = "<input onclick = 'signOutAccount()' type='submit' id = 'signOutButton1' value = 'SIGN OUT'/>"
 
 
     // load the edit form on the feed
     document.getElementById("feed")
-        .appendChild(username)
+        .appendChild(usernameEdit)
         .appendChild(editButton)
         .appendChild(signOutButton)
 }
@@ -3072,6 +3191,7 @@ function signOutAccount() {
     firebase.auth().signOut().then(() => {
         // Sign-out successful.
         window.location.href = "../TrackingPage/tracking.html";
+        // loadLoginPage();
     }).catch((error) => {
         // An error happened.
         // alert("Error signing out:" + error);
@@ -3711,5 +3831,20 @@ function addTotalProtein(proteinVal) {
     console.log("total protein: " + proteinTotal + " g");
     loadReccomendedFeed();
 
+
+}
+
+/////EDIT EXERCISE FAV
+function loadLoginPage() {
+    document.getElementById("loginPage").style.display = "";
+    document.getElementById("registerPage").style.display = "none";
+    document.getElementById("notLoginRegister").style.display = "none"
+
+}
+
+function loadRegisterPage(){
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("registerPage").style.display = "";
+    document.getElementById("notLoginRegister").style.display = "none"
 
 }
