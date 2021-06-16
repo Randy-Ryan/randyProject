@@ -518,7 +518,7 @@ background-image: linear-gradient(to right, #868F96, #596164);
 }
 #nutritionValuesFeed{
   overflow-y: scroll;
-  height: 25%;
+  height: 50%;
 
 }
 #historyFeed1{

@@ -25,6 +25,12 @@ var vitaminTotal = 0;
 var energyTotal = 0;
 var waterTotal = 0;
 
+var proteinTotalDaily = 0;
+var carbTotalDaily = 0;
+var vitaminTotalDaily = 0;
+var energyTotalDaily = 0;
+var waterTotalDaily = 0;
+
 var root = document.documentElement;
 const lists = document.querySelectorAll('.hs');
 
@@ -49,7 +55,16 @@ lists.forEach(el => {
 ///////////////////////////////////////////////////////////////////////////////////// 
 // GET/SET TODAYS DATE, STYLE CALENDAR/FEED, SET GLOBAL VARS, CLEAR/LOAD FEED 
 window.onload = function () {
-
+     proteinTotal = 0;
+     carbTotal = 0;
+     vitaminTotal = 0;
+     energyTotal = 0;
+     waterTotal = 0;
+     proteinTotalDaily = 0;
+     carbTotalDaily = 0;
+     vitaminTotalDaily = 0;
+     energyTotalDaily = 0;
+     waterTotalDaily = 0;
     
     var s = getDateAndMonth();
     var day = s.substring(0, 2);
@@ -1632,7 +1647,7 @@ function createNewReccomended(w, e, v, c, p) {
 
     // var fullString = "";
         // var food1 = document.createElement('div');
-        newNutrient.innerHTML =  w + "<br><br>" + e+ "<br><br>"  + v+ "<br><br>"  + c+ "<br><br>"  + p;
+        newNutrient.innerHTML =  p + "<br><br>" + e+ "<br><br>"  + v+ "<br><br>"  + c+ "<br><br>"  + w;
         // newFood.appendChild(food1)
     
 
@@ -2859,6 +2874,16 @@ function addFavExercise() {
 function loadFeed(date, month) {
     // format day var 
 
+    proteinTotal = 0;
+    carbTotal = 0;
+    vitaminTotal = 0;
+    energyTotal = 0;
+    waterTotal = 0;
+    proteinTotalDaily = 0;
+    carbTotalDaily = 0;
+    vitaminTotalDaily = 0;
+    energyTotalDaily = 0;
+    waterTotalDaily = 0;
     var day = "" + date;
     // hide post buttons
     document.getElementById("usernameHeader").style.display = "";
@@ -2923,6 +2948,7 @@ function loadFeed(date, month) {
 
     getMyFoods();
     loadNutritionFeed();
+    getMyFoodsToday();
 
 
 
@@ -4131,8 +4157,108 @@ function loadTaskHistoryFeed() {
 }
 
 //return a var of all foods logged in the past week
+function getMyFoodsToday(){
 
+  
+
+}
 function getMyFoods() {
+    var myFoods1 = "";
+
+    //add a check for the past week
+    //.where date is between today and 7 days ago
+    //implementation for the month
+    db.collection("users").doc(userID).collection("foodAndWater").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            // console.log(doc.data().food);
+            // console.log(doc.data().water);
+            // console.log(doc.data().date, doc.data().month);
+            var dayInt = parseInt(doc.data().date);
+            // console.log(dayInt);
+
+            var todaysDayInt = parseInt(currDate);
+            // console.log(todaysDayInt);
+            //and month check?
+            if (dayInt == todaysDayInt) {
+                // load the feed for past 7 days
+                // createNewRecentFood(doc.data().food, doc.data().water, doc.data().time, doc.data().message, doc.id);
+                //load the past seven days
+                    myFoods1 += doc.data().food + "," + doc.data().water + ",";
+            }
+        });
+    }).then(() => {
+        var foodStrings = myFoods1.split(',');
+        for (var i = 0; i < foodStrings.length; i++) {
+            if (foodStrings[i] != "") {
+                // console.log(foodStrings[i]);
+                //NOW WE HAVE AN ARRAY OF THE LAST 7 DAYS OF FOOD INPUTS
+                //USE THESE STRINGS WITH AN NUTRITION API/CALCULATOR
+
+                // const Http = new XMLHttpRequest();
+
+                //demo key = 3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf
+                //full food list url = https://api.nal.usda.gov/fdc/v1/foods/list?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf
+
+
+                // change the query in this url for an api search
+                const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&query=' + foodStrings[i];
+                // Http.open("GET", url);
+                // Http.send();
+
+                fetch(url).then(data => {
+                    return data.json()
+                }).then(res => {
+                    // console.log(res)
+                    console.log(res);
+                    var s = "";
+
+                    for (var i = 0; i < res.foods[0].foodNutrients.length; i++) {
+                        // console.log(res.foods[0].foodNutrients[i].nutrientName + ": " + res.foods[0].foodNutrients[i].value + " " + res.foods[0].foodNutrients[i].unitName);
+                        if (res.foods[0].foodNutrients[i].value != "0"){
+                            s += res.foods[0].foodNutrients[i].nutrientName +": " + res.foods[0].foodNutrients[i].value + res.foods[0].foodNutrients[i].unitName + "<br>"
+                         
+                           if(res.foods[0].foodNutrients[i].nutrientName == "Protein") {
+                            addTotalProteinDaily(res.foods[0].foodNutrients[i].value);
+                           }
+                           if(res.foods[0].foodNutrients[i].nutrientName == "Carbohydrate, by difference") {
+                            addTotalCarbsDaily(res.foods[0].foodNutrients[i].value);
+                           }
+                           if(res.foods[0].foodNutrients[i].nutrientName == "Energy") {
+                            addTotalEnergyDaily(res.foods[0].foodNutrients[i].value);
+                           }
+                           if(res.foods[0].foodNutrients[i].nutrientName == "Vitamin C, total ascorbic acid") {
+                            addTotalVitaminDaily(res.foods[0].foodNutrients[i].value);
+                           }
+                           if(res.foods[0].foodNutrients[i].nutrientName == "Water") {
+                            addTotalWaterDaily(res.foods[0].foodNutrients[i].value);
+                           }
+                           
+
+                        // createNewNutrition(res.foods[0].foodNutrients[i].nutrientName, res.foods[0].foodNutrients[i].value, res.foods[0].foodNutrients[i].unitName );
+                        //now build a graph to show these nutrients
+                    }
+
+                }
+                // console.log(res.foods[0]);
+                // createNewNutrition(res.foods[0].description, s, res.foods[0].allHighlightFields);
+                // console.log(res.foods[0].foodNutrients[1].nutrientName + ": " + res.foods[0].foodNutrients[1].value + " " + res.foods[0].foodNutrients[1].unitName);
+                }).then(() =>{
+                    // loadDailyFeed();
+                });
+
+
+            }
+
+        }
+
+
+
+
+    })
+        .catch((error) => {
+            // alert("ERROR submitting post! " + error);
+        });
+
 
     var myFoods = "";
 
@@ -4162,6 +4288,7 @@ function getMyFoods() {
             }
             //only add these elements for the past 7 days
         });
+
     }).then(() => {
         var foodStrings = myFoods.split(',');
         for (var i = 0; i < foodStrings.length; i++) {
@@ -4213,19 +4340,18 @@ function getMyFoods() {
                         // createNewNutrition(res.foods[0].foodNutrients[i].nutrientName, res.foods[0].foodNutrients[i].value, res.foods[0].foodNutrients[i].unitName );
                         //now build a graph to show these nutrients
                     }
-                    loadReccomendedFeed();
-
+                    
                 }// console.log(res.foods[0]);
+
                 createNewNutrition(res.foods[0].description, s, res.foods[0].allHighlightFields);
                 // console.log(res.foods[0].foodNutrients[1].nutrientName + ": " + res.foods[0].foodNutrients[1].value + " " + res.foods[0].foodNutrients[1].unitName);
-                });
-
-
+                }).then(() =>{
+                    loadReccomendedFeed();
+                }).then(() =>{
+                    loadDailyFeed();
+                })
             }
-
         }
-
-
     })
         .catch((error) => {
             // alert("ERROR submitting post! " + error);
@@ -4289,10 +4415,22 @@ function loadWaterFeed() {
 function loadReccomendedFeed() {
     var el2 = document.getElementById('reccomendedFeed');
     while (el2.firstChild) el2.innerHTML = '';
-    createNewReccomended("TOTAL WATER: <br>" + (Math.round(waterTotal * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotal * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotal * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotal * 100) / 100).toFixed(2) + " G", "MY TOTAL PROTEIN THIS WEEK: <br>" + (Math.round(proteinTotal * 100) / 100).toFixed(2) + " G");
+    createNewReccomended("TOTAL WATER: <br>" + (Math.round(waterTotal * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotal * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotal * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotal * 100) / 100).toFixed(2) + " G", "TOTAL NUTRIENTS (PAST 7 DAYS) <br><br><br>TOTAL PROTEIN: <br>" + (Math.round(proteinTotal * 100) / 100).toFixed(2) + " G");
+
     // createNewReccomendedFood("Here TODO", "", "", "");
 
 }
+
+/////EDIT EXERCISE FAV
+function loadDailyFeed() {
+    var el2 = document.getElementById('reccomendedFeed2');
+    // while (el2.firstChild) el2.innerHTML = '';
+    createNewReccomended("TOTAL WATER: <br>" + (Math.round(waterTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotalDaily * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotalDaily * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL NUTRIENTS (TODAY) <br><br><br>TOTAL PROTEIN: <br>" + (Math.round(proteinTotalDaily * 100) / 100).toFixed(2) + " G");
+
+    // createNewReccomendedFood("Here TODO", "", "", "");
+
+}
+
 
 
 /////EDIT EXERCISE FAV
@@ -4309,7 +4447,7 @@ function addTotalProtein(proteinVal) {
 
     proteinTotal += proteinVal;
     console.log("total protein: " + proteinTotal + " g");
-    loadProteinFeed();
+    // loadProteinFeed();
 
 
 }
@@ -4320,7 +4458,7 @@ function addTotalCarbs(carbVal) {
 
     carbTotal += carbVal;
     console.log("total carbs: " + carbTotal + " g");
-    loadCarbFeed();
+    // loadCarbFeed();
 
 
 }
@@ -4330,7 +4468,7 @@ function addTotalVitamin(vitaminVal) {
 
     vitaminTotal += vitaminVal;
     console.log("total vitamins: " + vitaminTotal + " g");
-    loadVitaminFeed();
+    // loadVitaminFeed();
 
 
 }
@@ -4340,7 +4478,7 @@ function addTotalEnergy(energyVal) {
 
     energyTotal += energyVal;
     console.log("total energy: " + energyTotal + " kcal");
-    loadEnergyFeed();
+    // loadEnergyFeed();
 
 
 }
@@ -4350,7 +4488,59 @@ function addTotalWater(waterVal) {
 
     waterTotal += waterVal;
     console.log("total water: " + waterTotal + " g");
-    loadWaterFeed();
+    // loadWaterFeed();
+
+
+}
+/////EDIT EXERCISE FAV
+function addTotalProteinDaily(proteinVal) {
+    // createNewNutrition("Nutrition Calculator", "", "", "");
+    // createNewNutrition("implementation here", "", "", "");
+
+    proteinTotalDaily += proteinVal;
+    console.log("total Daily protein: " + proteinTotalDaily + " g");
+    // loadProteinFeed();
+
+
+}
+/////EDIT EXERCISE FAV
+function addTotalCarbsDaily(carbVal) {
+    // createNewNutrition("Nutrition Calculator", "", "", "");
+    // createNewNutrition("implementation here", "", "", "");
+
+    carbTotalDaily += carbVal;
+    console.log("total Daily carbs: " + carbTotalDaily + " g");
+    // loadCarbFeed();
+
+
+}
+function addTotalVitaminDaily(vitaminVal) {
+    // createNewNutrition("Nutrition Calculator", "", "", "");
+    // createNewNutrition("implementation here", "", "", "");
+
+    vitaminTotalDaily += vitaminVal;
+    console.log("total Daily vitamins: " + vitaminTotalDaily + " g");
+    // loadVitaminFeed();
+
+
+}
+function addTotalEnergyDaily(energyVal) {
+    // createNewNutrition("Nutrition Calculator", "", "", "");
+    // createNewNutrition("implementation here", "", "", "");
+
+    energyTotalDaily += energyVal;
+    console.log("total Daily energy: " + energyTotalDaily + " kcal");
+    // loadEnergyFeed();
+
+
+}
+function addTotalWaterDaily(waterVal) {
+    // createNewNutrition("Nutrition Calculator", "", "", "");
+    // createNewNutrition("implementation here", "", "", "");
+
+    waterTotalDaily += waterVal;
+    console.log("total Daily water: " + waterTotalDaily + " g");
+    // loadWaterFeed();
 
 
 }
