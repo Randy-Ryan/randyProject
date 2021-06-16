@@ -120,6 +120,7 @@ window.onload = function () {
         } else {
           // User is signed out
           // ...
+        //   alert("No user is logged in")
           document.getElementById("notLoginRegister").style.display = "";
 
           console.log("signed Out");
