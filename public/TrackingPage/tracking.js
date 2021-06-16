@@ -985,7 +985,7 @@ function createNewFood(f, w, t, m, id) {
 /////////------------------- CREATE/LOAD A NEW FAV FOOD ELEMENT ---------------//////////
 /////////////////////////////////////////////////////////////////////////////////////
 // SET VARS FOR NEW FOOD, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO FOOD FEED
-function createNewFavFood(f, w, t, m, id) {
+function createNewFavFood(f, w, m, t, id) {
     //TODO//
     // needs a hover attribute
 
@@ -995,9 +995,9 @@ function createNewFavFood(f, w, t, m, id) {
     var addEditElement = document.createElement('div');
 
     // create the new food div and set HTML content w/ respective vars
-    addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + t + "," + m + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
+    addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + m + "," + t + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
 
-    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
+    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w +  "," + m + "," + t + '")' + "' class = 'favButtonAdd'>ADD</button>";
     newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
 
 
@@ -3547,16 +3547,16 @@ function editThisFoodFav(f) {
         w = strings[1];
     }
     if (strings[2] == null) {
-        t = "";
-    }
-    else {
-        t = strings[2];
-    }
-    if (strings[3] == null) {
         m = "";
     }
     else {
-        m = strings[3];
+        m = strings[2];
+    }
+    if (strings[3] == null) {
+        t = "";
+    }
+    else {
+        t = strings[3];
     }
 
     id = strings[4];
