@@ -615,7 +615,7 @@ function clearChildren() {
     document.getElementById("fullFavFeed").style.display = "none";
 
     document.getElementById("recentFoods").style.display = "none";
-    document.getElementById("reccomendedFoods").style.display = "none";
+    document.getElementById("totalFeed").style.display = "none";
     document.getElementById("nutritionValues").style.display = "none";
     document.getElementById("dailyNutritionValues").style.display = "none";
 
@@ -656,7 +656,14 @@ function clearChildren() {
     while (el2.firstChild) el2.innerHTML = '';
 
 
-    var el2 = document.getElementById('nutritionValuesFeed');
+    var el2 = document.getElementById('nutritionValuesFeedWeek');
+    while (el2.firstChild) el2.innerHTML = '';
+    var el2 = document.getElementById('nutritionValuesFeedDaily');
+    while (el2.firstChild) el2.innerHTML = '';
+
+    var el2 = document.getElementById('weekNutrientFeed');
+    while (el2.firstChild) el2.innerHTML = '';
+    var el2 = document.getElementById('todayNutrientFeed');
     while (el2.firstChild) el2.innerHTML = '';
 
 
@@ -1582,7 +1589,7 @@ function createNewWater(f, w, t, m, id) {
 /////////////////////////////////////////////////////////////////////////////////////
 // SET VARS FOR NEW FOOD, SET ONCLICK FOR 'EDIT' PURPOSE, LOAD INTO FOOD FEED
 //PROTEIN
-function createNewNutrition(d, v, u) {
+function createNewNutritionWeek(d, v, u) {
     //TODO//
     // needs a hover attribute
 
@@ -1624,9 +1631,53 @@ function createNewNutrition(d, v, u) {
 
     // console.log(f, w , t, m)
     // load new food div into the food feed
-    document.getElementById("nutritionValuesFeed").appendChild(newNutrient);
+    document.getElementById("nutritionValuesFeedWeek").appendChild(newNutrient);
 }
-function createNewReccomended(w, e, v, c, p) {
+function createNewNutritionDaily(d, v, u) {
+    //TODO//
+    // needs a hover attribute
+
+    //description, value , units
+
+    var newNutrient = document.createElement('li');
+    // initialize new food div: set id & class name
+    // var addFavoriteElement = document.createElement('div');
+    // var addEditElement = document.createElement('div');
+
+    // create the new food div and set HTML content w/ respective vars
+    // addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + t + "," + m + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
+
+    // addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
+    // newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
+
+
+
+    // var fullString = "";
+    if (d != "") {
+        // var food1 = document.createElement('div');
+        newNutrient.innerHTML += "Description:<br>" + d + "<br><br>";
+        // newFood.appendChild(food1)
+    }
+    if (v != "") {
+        // var water1 = document.createElement('div');
+        newNutrient.innerHTML += "Value:<br>" + v + " " + u;
+        // newFood.appendChild(water1);
+    }
+
+    newNutrient.id = "favID";
+    // addFavoriteElement.id = "addFavoriteElement";
+    // addEditElement.id = "addEditElement";
+
+    newNutrient.className = "testtt";
+
+
+    // console.log(f,w,t,)
+
+    // console.log(f, w , t, m)
+    // load new food div into the food feed
+    document.getElementById("nutritionValuesFeedDaily").appendChild(newNutrient);
+}
+function createNewTotalNutrientsDaily(w, e, v, c, p) {
     //TODO//
     // needs a hover attribute
 
@@ -1662,7 +1713,45 @@ function createNewReccomended(w, e, v, c, p) {
 
     // console.log(f, w , t, m)
     // load new food div into the food feed
-    document.getElementById("reccomendedFeed").appendChild(newNutrient);
+    document.getElementById("todayNutrientFeed").appendChild(newNutrient);
+}
+function createNewTotalNutrientsWeek(w, e, v, c, p) {
+    //TODO//
+    // needs a hover attribute
+
+    //description, value , units
+
+    var newNutrient = document.createElement('li');
+    // initialize new food div: set id & class name
+    // var addFavoriteElement = document.createElement('div');
+    // var addEditElement = document.createElement('div');
+
+    // create the new food div and set HTML content w/ respective vars
+    // addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + t + "," + m + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
+
+    // addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
+    // newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
+
+
+
+    // var fullString = "";
+        // var food1 = document.createElement('div');
+        newNutrient.innerHTML =  p + "<br><br>" + e+ "<br><br>"  + v+ "<br><br>"  + c+ "<br><br>"  + w;
+        // newFood.appendChild(food1)
+    
+
+    newNutrient.id = "favID";
+    // addFavoriteElement.id = "addFavoriteElement";
+    // addEditElement.id = "addEditElement";
+
+    newNutrient.className = "testtt";
+
+
+    // console.log(f,w,t,)
+
+    // console.log(f, w , t, m)
+    // load new food div into the food feed
+    document.getElementById("weekNutrientFeed").appendChild(newNutrient);
 }
 
 /********************************************************************/
@@ -2151,7 +2240,135 @@ function loadMyAccount() {
 
 /********************************************************************/
 
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- LOAD THE FEED ----------------------------//////////////
+/////////////////////////////////////////////////////////////////////////////////////
+// FORMAT DATE, LOAD EXERCISE, FOODANDWATER, TASK FEEDS
+function loadFeed(date, month) {
+    // format day var 
 
+    proteinTotal = 0;
+    carbTotal = 0;
+    vitaminTotal = 0;
+    energyTotal = 0;
+    waterTotal = 0;
+    proteinTotalDaily = 0;
+    carbTotalDaily = 0;
+    vitaminTotalDaily = 0;
+    energyTotalDaily = 0;
+    waterTotalDaily = 0;
+    var day = "" + date;
+    // hide post buttons
+    document.getElementById("usernameHeader").style.display = "";
+    document.getElementById("todaysDate").style.display = "";
+    document.getElementById("favoritesIcon").style.display = "";
+    document.getElementById("favLabel").style.display = "";
+    document.getElementById("taskIcon").style.display = "";
+    document.getElementById("taskIconLabel").style.display = "";
+    document.getElementById("exerciseIcon").style.display = "";
+    document.getElementById("exerciseIconLabel").style.display = "";
+    document.getElementById("foodIcon").style.display = "";
+    document.getElementById("foodIconLabel").style.display = "";
+
+    document.getElementById("exFeed").style.display = "";
+    document.getElementById("foodFeed").style.display = "";
+    document.getElementById("taskFeed").style.display = "";
+    document.getElementById("exFeedTitle").style.display = "";
+    document.getElementById("foodFeedTitle").style.display = "";
+    document.getElementById("taskFeedTitle").style.display = "";
+    document.getElementById("favoritesDivID").style.display = "";
+    document.getElementById("fullFavFeed").style.display = "";
+    document.getElementById("totalFeed").style.display = "";
+    document.getElementById("calendar").style.display = "";
+    document.getElementById("accountIcon").style.display = "";
+
+
+
+    document.getElementById("recentFoods").style.display = "";
+    // document.getElementById("reccomendedFoods").style.display = "";
+    document.getElementById("nutritionValues").style.display = "";
+    // document.getElementById("fullFavFeed").style.display = "";
+    // document.getElementById("favFeedTitle").style.display = "";
+
+    if (day.length < 2) {
+        day = "0" + day;
+    }
+    document.getElementById("exFeedTitle").style.display = '';
+    document.getElementById("foodFeedTitle").style.display = '';
+    document.getElementById("taskFeedTitle").style.display = '';
+    // document.getElementById("favFeedTitle").style.display = '';
+    document.getElementById("historyTitle").style.display = 'none';
+    document.getElementById("historyFeed").style.display = 'none';
+
+
+
+    document.getElementById("exFeed").style.display = '';
+    document.getElementById("foodFeed").style.display = '';
+    document.getElementById("taskFeed").style.display = '';
+    // document.getElementById("favFeed").style.display = '';
+
+    document.getElementById("exFeedTitle").innerHTML = 'EXERCISE';
+    document.getElementById("foodFeedTitle").innerHTML = 'FOOD';
+    document.getElementById("taskFeedTitle").innerHTML = 'TASKS';
+    // document.getElementById("favFeedTitle").innerHTML = 'FAVORITES';
+    document.getElementById("historyTitle").innerHTML = 'HISTORY';
+
+
+
+    // console.log(document.getElementsByClassName("favLab"));
+
+
+
+    getMyFoods();
+    loadNutritionFeed();
+    getMyFoodsToday();
+
+
+
+    // load the exercise feed
+    db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            
+            createNewExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id);
+        });
+    });
+    // load the food/water feed
+    db.collection("users").doc(userID).collection("foodAndWater").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            createNewFood(doc.data().food, doc.data().water, doc.data().time, doc.data().message, doc.id)
+        });
+    });
+    // load the task feed
+    db.collection("users").doc(userID).collection("tasks").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            createNewTask(doc.data().title, doc.data().description, doc.data().time, doc.id)
+        });
+    });
+    // load the fav feed for food elements
+    db.collection("users").doc(userID).collection("favorites").where("foodID", "==", "true").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            //CREATE NEW FAV FOOD?
+            createNewFavFood(doc.data().food, doc.data().water, doc.data().message,doc.data().time, doc.id)
+        });
+    });
+    // load the fav feed for exercise elements
+    db.collection("users").doc(userID).collection("favorites").where("exerciseID", "==", "true").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            //CREATE NEW FAV FOOD?
+            createNewFavExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id);
+        });
+    });
+    // load the fav feed for task elements
+    db.collection("users").doc(userID).collection("favorites").where("taskID", "==", "true").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            //CREATE NEW FAV FOOD?
+            createNewFavTask(doc.data().title, doc.data().description, doc.data().time, doc.id)
+        });
+    });
+
+
+
+}
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- ADD TASK POST IN DATABASE -----------------/////////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -2866,135 +3083,6 @@ function addFavExercise() {
         .catch((error) => {
             // alert("ERROR submitting post! " + error);
         });;
-}
-/////////////////////////////////////////////////////////////////////////////////////
-/////////------------------- LOAD THE FEED ----------------------------//////////////
-/////////////////////////////////////////////////////////////////////////////////////
-// FORMAT DATE, LOAD EXERCISE, FOODANDWATER, TASK FEEDS
-function loadFeed(date, month) {
-    // format day var 
-
-    proteinTotal = 0;
-    carbTotal = 0;
-    vitaminTotal = 0;
-    energyTotal = 0;
-    waterTotal = 0;
-    proteinTotalDaily = 0;
-    carbTotalDaily = 0;
-    vitaminTotalDaily = 0;
-    energyTotalDaily = 0;
-    waterTotalDaily = 0;
-    var day = "" + date;
-    // hide post buttons
-    document.getElementById("usernameHeader").style.display = "";
-    document.getElementById("todaysDate").style.display = "";
-    document.getElementById("favoritesIcon").style.display = "";
-    document.getElementById("favLabel").style.display = "";
-    document.getElementById("taskIcon").style.display = "";
-    document.getElementById("taskIconLabel").style.display = "";
-    document.getElementById("exerciseIcon").style.display = "";
-    document.getElementById("exerciseIconLabel").style.display = "";
-    document.getElementById("foodIcon").style.display = "";
-    document.getElementById("foodIconLabel").style.display = "";
-
-    document.getElementById("exFeed").style.display = "";
-    document.getElementById("foodFeed").style.display = "";
-    document.getElementById("taskFeed").style.display = "";
-    document.getElementById("exFeedTitle").style.display = "";
-    document.getElementById("foodFeedTitle").style.display = "";
-    document.getElementById("taskFeedTitle").style.display = "";
-    document.getElementById("favoritesDivID").style.display = "";
-    document.getElementById("fullFavFeed").style.display = "";
-    document.getElementById("reccomendedFoods").style.display = "";
-    document.getElementById("calendar").style.display = "";
-    document.getElementById("accountIcon").style.display = "";
-
-
-
-    document.getElementById("recentFoods").style.display = "";
-    document.getElementById("reccomendedFoods").style.display = "";
-    document.getElementById("nutritionValues").style.display = "";
-    // document.getElementById("fullFavFeed").style.display = "";
-    // document.getElementById("favFeedTitle").style.display = "";
-
-    if (day.length < 2) {
-        day = "0" + day;
-    }
-    document.getElementById("exFeedTitle").style.display = '';
-    document.getElementById("foodFeedTitle").style.display = '';
-    document.getElementById("taskFeedTitle").style.display = '';
-    // document.getElementById("favFeedTitle").style.display = '';
-    document.getElementById("historyTitle").style.display = 'none';
-    document.getElementById("historyFeed").style.display = 'none';
-
-
-
-    document.getElementById("exFeed").style.display = '';
-    document.getElementById("foodFeed").style.display = '';
-    document.getElementById("taskFeed").style.display = '';
-    // document.getElementById("favFeed").style.display = '';
-
-    document.getElementById("exFeedTitle").innerHTML = 'EXERCISE';
-    document.getElementById("foodFeedTitle").innerHTML = 'FOOD';
-    document.getElementById("taskFeedTitle").innerHTML = 'TASKS';
-    // document.getElementById("favFeedTitle").innerHTML = 'FAVORITES';
-    document.getElementById("historyTitle").innerHTML = 'HISTORY';
-
-
-
-    // console.log(document.getElementsByClassName("favLab"));
-
-
-
-    getMyFoods();
-    loadNutritionFeed();
-    getMyFoodsToday();
-
-
-
-    // load the exercise feed
-    db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            
-            createNewExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id);
-        });
-    });
-    // load the food/water feed
-    db.collection("users").doc(userID).collection("foodAndWater").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            createNewFood(doc.data().food, doc.data().water, doc.data().time, doc.data().message, doc.id)
-        });
-    });
-    // load the task feed
-    db.collection("users").doc(userID).collection("tasks").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            createNewTask(doc.data().title, doc.data().description, doc.data().time, doc.id)
-        });
-    });
-    // load the fav feed for food elements
-    db.collection("users").doc(userID).collection("favorites").where("foodID", "==", "true").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            //CREATE NEW FAV FOOD?
-            createNewFavFood(doc.data().food, doc.data().water, doc.data().message,doc.data().time, doc.id)
-        });
-    });
-    // load the fav feed for exercise elements
-    db.collection("users").doc(userID).collection("favorites").where("exerciseID", "==", "true").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            //CREATE NEW FAV FOOD?
-            createNewFavExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id);
-        });
-    });
-    // load the fav feed for task elements
-    db.collection("users").doc(userID).collection("favorites").where("taskID", "==", "true").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            //CREATE NEW FAV FOOD?
-            createNewFavTask(doc.data().title, doc.data().description, doc.data().time, doc.id)
-        });
-    });
-
-
-
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- DELETE TASK POST FROM DB ---------------////////////////
@@ -4216,7 +4304,6 @@ function getMyFoods() {
                         // console.log(res.foods[0].foodNutrients[i].nutrientName + ": " + res.foods[0].foodNutrients[i].value + " " + res.foods[0].foodNutrients[i].unitName);
                         if (res.foods[0].foodNutrients[i].value != "0"){
                             s += res.foods[0].foodNutrients[i].nutrientName +": " + res.foods[0].foodNutrients[i].value + res.foods[0].foodNutrients[i].unitName + "<br>"
-                         
                            if(res.foods[0].foodNutrients[i].nutrientName == "Protein") {
                             addTotalProteinDaily(res.foods[0].foodNutrients[i].value);
                            }
@@ -4234,16 +4321,18 @@ function getMyFoods() {
                            }
                            
 
-                        // createNewNutrition(res.foods[0].foodNutrients[i].nutrientName, res.foods[0].foodNutrients[i].value, res.foods[0].foodNutrients[i].unitName );
                         //now build a graph to show these nutrients
                     }
-
                 }
+                createNewNutritionDaily(res.foods[0].description, s, res.foods[0].allHighlightFields);
+
+
                 // console.log(res.foods[0]);
                 // createNewNutrition(res.foods[0].description, s, res.foods[0].allHighlightFields);
                 // console.log(res.foods[0].foodNutrients[1].nutrientName + ": " + res.foods[0].foodNutrients[1].value + " " + res.foods[0].foodNutrients[1].unitName);
                 }).then(() =>{
                     // loadDailyFeed();
+                    console.log("today food");
                 });
 
 
@@ -4286,6 +4375,8 @@ function getMyFoods() {
             else {
                 // change the month and stuff to get the last 7 days
             }
+
+            // createNewNutritionDaily(d, v, u)
             //only add these elements for the past 7 days
         });
 
@@ -4343,10 +4434,10 @@ function getMyFoods() {
                     
                 }// console.log(res.foods[0]);
 
-                createNewNutrition(res.foods[0].description, s, res.foods[0].allHighlightFields);
+                createNewNutritionWeek(res.foods[0].description, s, res.foods[0].allHighlightFields);
                 // console.log(res.foods[0].foodNutrients[1].nutrientName + ": " + res.foods[0].foodNutrients[1].value + " " + res.foods[0].foodNutrients[1].unitName);
                 }).then(() =>{
-                    loadReccomendedFeed();
+                    loadWeekFeed();
                 }).then(() =>{
                     loadDailyFeed();
                 })
@@ -4412,10 +4503,10 @@ function loadWaterFeed() {
 }
 
 /////EDIT EXERCISE FAV
-function loadReccomendedFeed() {
-    var el2 = document.getElementById('reccomendedFeed');
+function loadWeekFeed() {
+    var el2 = document.getElementById('weekNutrientFeed');
     while (el2.firstChild) el2.innerHTML = '';
-    createNewReccomended("TOTAL WATER: <br>" + (Math.round(waterTotal * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotal * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotal * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotal * 100) / 100).toFixed(2) + " G", "TOTAL NUTRIENTS (PAST 7 DAYS) <br><br><br>TOTAL PROTEIN: <br>" + (Math.round(proteinTotal * 100) / 100).toFixed(2) + " G");
+    createNewTotalNutrientsWeek("TOTAL WATER: <br>" + (Math.round(waterTotal * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotal * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotal * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotal * 100) / 100).toFixed(2) + " G", "TOTAL NUTRIENTS (PAST 7 DAYS) <br><br><br>TOTAL PROTEIN: <br>" + (Math.round(proteinTotal * 100) / 100).toFixed(2) + " G");
 
     // createNewReccomendedFood("Here TODO", "", "", "");
 
@@ -4423,9 +4514,9 @@ function loadReccomendedFeed() {
 
 /////EDIT EXERCISE FAV
 function loadDailyFeed() {
-    var el2 = document.getElementById('reccomendedFeed2');
-    // while (el2.firstChild) el2.innerHTML = '';
-    createNewReccomended("TOTAL WATER: <br>" + (Math.round(waterTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotalDaily * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotalDaily * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL NUTRIENTS (TODAY) <br><br><br>TOTAL PROTEIN: <br>" + (Math.round(proteinTotalDaily * 100) / 100).toFixed(2) + " G");
+    var el2 = document.getElementById('todayNutrientFeed');
+    while (el2.firstChild) el2.innerHTML = '';
+    createNewTotalNutrientsDaily("TOTAL WATER: <br>" + (Math.round(waterTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotalDaily * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotalDaily * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL NUTRIENTS (TODAY) <br><br><br>TOTAL PROTEIN: <br>" + (Math.round(proteinTotalDaily * 100) / 100).toFixed(2) + " G");
 
     // createNewReccomendedFood("Here TODO", "", "", "");
 

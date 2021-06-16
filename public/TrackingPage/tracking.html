@@ -675,14 +675,21 @@
             </div>
 
         
-            <div id="reccomendedFoods">
-                <li id="gridTitle" class="item" style="">TOTAL NUTRIENTS</li>
-                <ul id="reccomendedFeed" class="hs full">
+            <div id="totalFeed">
+                <li id="gridTitle" class="item" style="">TOTAL NUTRIENTS (TODAY)</li>
+                <ul id="todayNutrientFeed" class="hs full">
                 </ul>
+                <li id="gridTitle" class="item" style="">TOTAL NUTRIENTS (LAST 7 DAYS)</li>
+                <ul id="weekNutrientFeed" class="hs full">
             </div>
             <div id="nutritionValues">
-                <li id="gridTitle" class="item">MY TOTAL NUTRITION (LAST 7 DAYS): <br><br> RESULTS ARE MORE PRECISE WITH PROPER INPUTS. TRY TO SEPERATE FOOD ENTRIES WITH A COMMA (EX: INSTEAD OF SALAD, WRITE "LETTUCE, TOMATO, CARROTS"). EACH LISTING IS ONE SERVING SIZE AND IS TAKEN FROM THE FIRST SEARCH MATCH FROM THE USDA FOOD DATABASE API</li>
-                <ul id="nutritionValuesFeed" class="hs full">
+                <li id = "apiInfo" class="item">RESULTS ARE MORE PRECISE WITH PROPER/DETAILED INPUTS. TRY TO SEPERATE FOOD ENTRIES WITH A COMMA (EX: INSTEAD OF SALAD, WRITE "LETTUCE, TOMATO, CARROTS". INSTEAD OF "PITA," WRITE "PITA BREAD"). EACH LISTING IS ONE SERVING SIZE AND IS TAKEN FROM THE FIRST SEARCH MATCH FROM THE USDA FOOD DATABASE API</li>
+
+                <li id="gridTitle" class="item">FOOD NUTRITION (TODAY):</li>
+                <ul id="nutritionValuesFeedDaily" class="hs full">
+                </ul>
+                <li id="gridTitle" class="item">FOOD NUTRITION (LAST 7 DAYS):</li>
+                <ul id="nutritionValuesFeedWeek" class="hs full">
                 </ul>
                 <!-- <li id="gridTitle" class="item">MY PROTEIN (LAST 7 DAYS)</li>
                 <ul id="nutritionValuesFeedProtein" class="hs full">
