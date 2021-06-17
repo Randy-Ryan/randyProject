@@ -287,6 +287,7 @@ window.onload = function () {
 
     document.getElementById("historyFeed").style.display = "none";
     document.getElementById("historyTitle").style.display = "none";
+    
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- ON CALENDAR DAY CLICK ------------------////////////////
@@ -604,11 +605,14 @@ function clearChildren() {
     document.getElementById("foodIcon").style.display = "none";
     document.getElementById("foodIconLabel").style.display = "none";
 
+    document.getElementById("totalFeed").style.display = "none";
+    document.getElementById("reccomendedFeed").style.display = "none";
+    document.getElementById("idealNutritionValuesFeed").style.display = "none";
 
     document.getElementById("fullFavFeed").style.display = "none";
 
     // document.getElementById("recentFoods").style.display = "none";
-    document.getElementById("totalFeed").style.display = "none";
+    // document.getElementById("totalFeed").style.display = "none";
     document.getElementById("nutritionValues").style.display = "none";
     // document.getElementById("dailyNutritionValues").style.display = "none";
 
@@ -2194,6 +2198,10 @@ function loadMyAccount() {
     document.getElementById('favoritesDivID').style.display = '';
     document.getElementById("historyTitle").style.display = "none";
     document.getElementById("historyFeed").style.display = "none";
+    document.getElementById("totalFeed").style.display = "none";
+    document.getElementById("reccomendedFeed").style.display = "none";
+    document.getElementById("idealNutritionValuesFeed").style.display = "none";
+
 
     // get username var
 
@@ -2263,6 +2271,9 @@ function loadFeed(date, month) {
     document.getElementById("exerciseIconLabel").style.display = "";
     document.getElementById("foodIcon").style.display = "";
     document.getElementById("foodIconLabel").style.display = "";
+    document.getElementById("totalFeed").style.display = "";
+    document.getElementById("reccomendedFeed").style.display = "";
+    document.getElementById("idealNutritionValuesFeed").style.display = "";
 
     document.getElementById("exFeed").style.display = "";
     document.getElementById("foodFeed").style.display = "";
@@ -2311,6 +2322,7 @@ function loadFeed(date, month) {
 
     // console.log(document.getElementsByClassName("favLab"));
 
+    createNewTotalNutrientsDaily("TOTAL WATER: <br>" + (Math.round(waterTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotalDaily * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotalDaily * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL NUTRIENTS (TODAY) <br><br><br>TOTAL PROTEIN: <br>" + (Math.round(proteinTotalDaily * 100) / 100).toFixed(2) + " G");
 
 
     getMyFoods();
