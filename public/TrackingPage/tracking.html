@@ -654,36 +654,48 @@
                 <br>
             </div>
 
-            <div id="dailyNutritionValues">
-                <li id="gridTitle" class="item">MY TOTAL NUTRITION (TODAY)</li>
-                <ul id="dailyNutritionValue" class="hs full">
-                </ul>
-                <li id="gridTitle" class="item">MY PROTEIN (TODAY)</li>
-                <ul id="dailyNutritionValuesFeedProtein" class="hs full">
-                </ul>
-                <li id="gridTitle" class="item">MY CARBS (TODAY)</li>
-                <ul id="dailyNutritionValuesFeedCarbs" class="hs full">
-                </ul>
-                <li id="gridTitle" class="item">MY VITAMINS (TODAY)</li>
-                <ul id="dailyNutritionValuesFeedVitamins" class="hs full">
-                </ul>
-                <li id="gridTitle" class="item">MY MINERALS (TODAY)</li>
-                <ul id="dailyNutritionValuesFeedMinerals" class="hs full">
-                </ul>
-                <li id="gridTitle" class="item">MY WATER (TODAY)</li>
-                <ul id="dailyNutritionValuesFeedWater" class="hs full">
+            <li id="apiInfo" class="item">A GOOD REFERENCE FOR IDEAL NUTRITION LEVELS CAN BE FOUND BELOW:</li>
+
+            <div id="idealNutritionValuesFeed">
+                <li id="gridTitle" class="item">ADULT MALE<br><br>Calories: Between 2000-2800<br>Water: 1 gal<br>...
+                </li>
+                <li id="gridTitle" class="item">ADULT FEMALE<br><br>Calories: 2000<br>Water: 1 gal<br>...</li>
             </div>
 
-        
             <div id="totalFeed">
                 <li id="gridTitle" class="item" style="">TOTAL NUTRIENTS (TODAY)</li>
-                <ul id="todayNutrientFeed" class="hs full">
+                <ul id="todayNutrientFeed">
                 </ul>
-                <li id="gridTitle" class="item" style="">TOTAL NUTRIENTS (LAST 7 DAYS)</li>
+                <!-- <li id="gridTitle" class="item" style="">TOTAL NUTRIENTS (LAST 7 DAYS)</li> -->
                 <ul id="weekNutrientFeed" class="hs full">
             </div>
+            <div id="reccomendedFeed">
+                <li id="gridTitle" class="item" style="margin-top: 5%;">RECCOMENDED FOOD FOR YOU, GIVEN YOUR DAILY NUTRIENTS</li>
+                <ul id="dailyReccomendedNutrientFeed" class="hs full">
+                </ul>
+                <li id="gridTitle" class="item" style="">RECCOMENDED FOOD FOR YOU, GIVEN YOUR WEEKLY NUTRIENTS</li>
+                <ul id="weeklyReccomendedNutrientFeed" class="hs full">
+                </ul>
+                    <li id="gridTitle" class="item" style="">RANDYS RECCOMENDED FOOD FOR YOU (MY PERSONAL FAVORITES)</li>
+                    <ul id="randyReccomendedNutrientFeed" class="hs full">
+                        <li id = "favID">GRILLED CHICKEN, LETTUCE, HUMMUS</li>
+                        <li id = "favID">MAC & CHEESE</li>
+                        <li id = "favID">QUEST PROTEIN SHAKE</li>
+                        <li id = "favID">LETTUCE, CUCUMBER, FETA CHEEESE, CARROT CHIPS, SUGAR SNAP PEAS, ITALIAN DRESSING</li>
+                        
+                    </ul>
+            </div>
             <div id="nutritionValues">
-                <li id = "apiInfo" class="item">RESULTS ARE MORE PRECISE WITH PROPER/DETAILED INPUTS. TRY TO SEPERATE FOOD ENTRIES WITH A COMMA (EX: INSTEAD OF SALAD, WRITE "LETTUCE, TOMATO, CARROTS". INSTEAD OF "PITA," WRITE "PITA BREAD"). EACH LISTING IS ONE SERVING SIZE AND IS TAKEN FROM THE FIRST SEARCH MATCH FROM THE USDA FOOD DATABASE API</li>
+                <li id="apiInfo" class="item" style="text-align: left;">TOTAL NUTRIENT RESULTS ARE MUCH MORE ACCURATE
+                    WITH DETAILED/PROPER FOOD INPUTS.
+                    <br><br>1. BE SURE TO SEPERATE FOOD ENTRIES WITH A COMMA (EX: INSTEAD OF SALAD, WRITE "LETTUCE,
+                    TOMATO, CARROTS," OR INSTEAD OF "CHICKEN SANDWICH," WRITE "GRILLED CHICKEN PATTY, LETTUCE, BBQ
+                    SAUCE").
+                    <br><br>2. TRY TO ADD DETAILS TO INPUTS (EX: INSTEAD OF "PITA," WRITE "PITA BREAD," OR INSTEAD OF
+                    "WATER," WRITE "TAP WATER").
+                    <br><br>3. NOTE: EACH LISTING IS ONE SERVING SIZE AND IS TAKEN FROM THE FIRST SEARCH MATCH FROM THE
+                    FOOD DATA CENTRAL (FDC) API.
+                </li>
 
                 <li id="gridTitle" class="item">FOOD NUTRITION (TODAY):</li>
                 <ul id="nutritionValuesFeedDaily" class="hs full">
@@ -707,11 +719,11 @@
                 <ul id="nutritionValuesFeedWater" class="hs full">
                 </ul> -->
             </div>
-            <div id="recentFoods">
+            <!-- <div id="recentFoods" style="display:none">
                 <li id="gridTitle" class="item">MY RECENT FOODS (LAST 7 DAYS)</li>
                 <ul id="recentFoodsFeed" class="hs full">
                 </ul>
-            </div>
+            </div> -->
         </div>
     </body>
 </div>

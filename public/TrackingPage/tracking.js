@@ -19,17 +19,10 @@ var userID;
 var username;
 var email;
 
-var proteinTotal = 0;
-var carbTotal = 0;
-var vitaminTotal = 0;
-var energyTotal = 0;
-var waterTotal = 0;
+var proteinTotal,carbTotal,vitaminTotal,energyTotal,waterTotal = 0;
 
-var proteinTotalDaily = 0;
-var carbTotalDaily = 0;
-var vitaminTotalDaily = 0;
-var energyTotalDaily = 0;
-var waterTotalDaily = 0;
+var proteinTotalDaily,carbTotalDaily,vitaminTotalDaily,energyTotalDaily,waterTotalDaily = 0;
+
 
 var root = document.documentElement;
 const lists = document.querySelectorAll('.hs');
@@ -55,17 +48,17 @@ lists.forEach(el => {
 ///////////////////////////////////////////////////////////////////////////////////// 
 // GET/SET TODAYS DATE, STYLE CALENDAR/FEED, SET GLOBAL VARS, CLEAR/LOAD FEED 
 window.onload = function () {
-     proteinTotal = 0;
-     carbTotal = 0;
-     vitaminTotal = 0;
-     energyTotal = 0;
-     waterTotal = 0;
-     proteinTotalDaily = 0;
-     carbTotalDaily = 0;
-     vitaminTotalDaily = 0;
-     energyTotalDaily = 0;
-     waterTotalDaily = 0;
-    
+    proteinTotal = 0;
+    carbTotal = 0;
+    vitaminTotal = 0;
+    energyTotal = 0;
+    waterTotal = 0;
+    proteinTotalDaily = 0;
+    carbTotalDaily = 0;
+    vitaminTotalDaily = 0;
+    energyTotalDaily = 0;
+    waterTotalDaily = 0;
+
     var s = getDateAndMonth();
     var day = s.substring(0, 2);
     var month = s.substring(3, 5);
@@ -110,156 +103,156 @@ window.onload = function () {
     }
 
     firebase.auth().onAuthStateChanged((user) => {
-       
+
         if (user) {
-          // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/firebase.User
-        userID = user.uid;
-        username = user.displayName;
-        email = user.email;
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/firebase.User
+            userID = user.uid;
+            username = user.displayName;
+            email = user.email;
 
-         console.log("signed in: " + userID, username, email);
-          // user.phoneNumber
-          // user.photoURL
-          // user.emailVerified
-          // user.email
-          // ...
-           // initialize and set vars
-  // style username display title
-  document.getElementById("userHead").innerHTML = username + "'s Tracking Calendar";
+            console.log("signed in: " + userID, username, email);
+            // user.phoneNumber
+            // user.photoURL
+            // user.emailVerified
+            // user.email
+            // ...
+            // initialize and set vars
+            // style username display title
+            document.getElementById("userHead").innerHTML = username + "'s Tracking Calendar";
 
 
-  document.getElementById("notLoginRegister").style.display = "";
+            document.getElementById("notLoginRegister").style.display = "";
 
-    // clear the feed
-    clearChildren();
-    // load the feed
-    loadFeed(day, month);
+            // clear the feed
+            clearChildren();
+            // load the feed
+            loadFeed(day, month);
 
-    
+
         } else {
-          // User is signed out
-          // ...
-        //   alert("No user is logged in")
-          document.getElementById("notLoginRegister").style.display = "";
+            // User is signed out
+            // ...
+            //   alert("No user is logged in")
+            document.getElementById("notLoginRegister").style.display = "";
 
-          console.log("signed Out");
+            console.log("signed Out");
 
-          userSignedOut();
-          
+            userSignedOut();
+
 
         }
-      });
+    });
 
-   
-var mainForm1 = document.getElementById("register-form");
-mainForm1.onsubmit = function (e) {
-    // error2 var needed for when first submission is invalid
-    e.preventDefault();
-    // but second submission is correct
-    var error = false;
-    var error2 = false;
-    // initialize inputs variable from all inputs with class "required"
-    var requiredInputs = document.querySelectorAll(".required5");
-    for (var i = 0; i < requiredInputs.length; i++) {
-        error = false;
-        console.log(requiredInputs.length);
-        // if blank input, prevent form submission
-        // make input fields red and set error to true
-        if (isBlank(requiredInputs[i])) {
-            e.preventDefault();
-            makeRed(requiredInputs[i]);
-            error = true;
-            error2 = true;
-        }
-        // make input field normal if no error
-        // usage when first case is error, but second is not
-        if (error == false) {
-            makeClean(requiredInputs[i]);
-        }
-    }
-    if (error2 == false) {
-        // no input errors, should then create an account through firebase
-        // set variables from front end user input values
-        var uName = requiredInputs[0].value;
-        email = requiredInputs[1].value;
-        console.log(uName);
 
-        // create firebase account with email/password
-        // this logic may be a little buggy and route to account page before creating the document in the firestore database
-        firebase.auth().createUserWithEmailAndPassword(email, requiredInputs[2].value)
-            .then((res) => {
-                var user = firebase.auth().currentUser;
-                // set current user id 
-                userId = firebase.auth().currentUser.uid;
-                // create a new document in firestore database with the following fields
-               
-                // update this users display name with the inputted username
-                user.updateProfile({
-                    displayName: uName,
-                })
-                    .then(function () {
-                        // route to home page and set the url params respectivly
-                        db.collection("users").doc(userId).set({
-                            username: user.displayName,
-                            email: email,
-                            userID: userId,
-                        }).then(function () {
-                            alert('Account successfully created and added to database! Welcome ' + user.displayName);
-                            window.location.href = './tracking.html';
-                            // window.location.href = "../TrackingPage/tracking.html?userID=" + userId + "&username=" + username + "&email=" + email;
-                        }).catch(function (error) {
-                            // An error happened.
-                            alert(error);
-                        });
+    var mainForm1 = document.getElementById("register-form");
+    mainForm1.onsubmit = function (e) {
+        // error2 var needed for when first submission is invalid
+        e.preventDefault();
+        // but second submission is correct
+        var error = false;
+        var error2 = false;
+        // initialize inputs variable from all inputs with class "required"
+        var requiredInputs = document.querySelectorAll(".required5");
+        for (var i = 0; i < requiredInputs.length; i++) {
+            error = false;
+            console.log(requiredInputs.length);
+            // if blank input, prevent form submission
+            // make input fields red and set error to true
+            if (isBlank(requiredInputs[i])) {
+                e.preventDefault();
+                makeRed(requiredInputs[i]);
+                error = true;
+                error2 = true;
+            }
+            // make input field normal if no error
+            // usage when first case is error, but second is not
+            if (error == false) {
+                makeClean(requiredInputs[i]);
+            }
+        }
+        if (error2 == false) {
+            // no input errors, should then create an account through firebase
+            // set variables from front end user input values
+            var uName = requiredInputs[0].value;
+            email = requiredInputs[1].value;
+            console.log(uName);
+
+            // create firebase account with email/password
+            // this logic may be a little buggy and route to account page before creating the document in the firestore database
+            firebase.auth().createUserWithEmailAndPassword(email, requiredInputs[2].value)
+                .then((res) => {
+                    var user = firebase.auth().currentUser;
+                    // set current user id 
+                    userId = firebase.auth().currentUser.uid;
+                    // create a new document in firestore database with the following fields
+
+                    // update this users display name with the inputted username
+                    user.updateProfile({
+                        displayName: uName,
                     })
-            }).catch(function (error) {
-                // An error happened.
-                alert(error);
-            });;
-    }
-}
-var mainForm = document.getElementById("login-form");
-mainForm.onsubmit = function (e) {
-    // error2 var needed for when first submission is invalid
-    e.preventDefault();
-    // but second submission is correct
-    var error = false;
-    var error2 = false;
-    // initialize inputs variable from all inputs with class "required"
-    var requiredInputs = document.querySelectorAll(".required6");
-    for (var i = 0; i < requiredInputs.length; i++) {
-        error = false;
-        // if blank input, prevent form submission
-        // make input fields red and set error to true
-        if (isBlank(requiredInputs[i])) {
-            e.preventDefault();
-            makeRed(requiredInputs[i]);
-            error = true;
-            error2 = true;
-        }
-        // make input field normal if no error
-        // usage when first case is error, but second is not
-        if (error == false) {
-            makeClean(requiredInputs[i]);
+                        .then(function () {
+                            // route to home page and set the url params respectivly
+                            db.collection("users").doc(userId).set({
+                                username: user.displayName,
+                                email: email,
+                                userID: userId,
+                            }).then(function () {
+                                alert('Account successfully created and added to database! Welcome ' + user.displayName);
+                                window.location.href = './tracking.html';
+                                // window.location.href = "../TrackingPage/tracking.html?userID=" + userId + "&username=" + username + "&email=" + email;
+                            }).catch(function (error) {
+                                // An error happened.
+                                alert(error);
+                            });
+                        })
+                }).catch(function (error) {
+                    // An error happened.
+                    alert(error);
+                });;
         }
     }
-    if (error2 == false) {
-        // no input errors, should then log into account through firebase
-        var email = requiredInputs[0].value;
-        var password = requiredInputs[1].value;
-        firebase.auth().signInWithEmailAndPassword(email, password).then(user => {
-            //get current user and display the username
-            var fuser = firebase.auth().currentUser;
-            alert("Welcome " + fuser.displayName);
-            //route to tracking page
-            window.location.href = './tracking.html';
-            // window.location.href = "../TrackingPage/tracking.html?userID=" + fuser.uid + "&username=" + fuser.displayName + "&email=" + email;
-        }).catch(err => {
-            alert(err.message);
-        });
+    var mainForm = document.getElementById("login-form");
+    mainForm.onsubmit = function (e) {
+        // error2 var needed for when first submission is invalid
+        e.preventDefault();
+        // but second submission is correct
+        var error = false;
+        var error2 = false;
+        // initialize inputs variable from all inputs with class "required"
+        var requiredInputs = document.querySelectorAll(".required6");
+        for (var i = 0; i < requiredInputs.length; i++) {
+            error = false;
+            // if blank input, prevent form submission
+            // make input fields red and set error to true
+            if (isBlank(requiredInputs[i])) {
+                e.preventDefault();
+                makeRed(requiredInputs[i]);
+                error = true;
+                error2 = true;
+            }
+            // make input field normal if no error
+            // usage when first case is error, but second is not
+            if (error == false) {
+                makeClean(requiredInputs[i]);
+            }
+        }
+        if (error2 == false) {
+            // no input errors, should then log into account through firebase
+            var email = requiredInputs[0].value;
+            var password = requiredInputs[1].value;
+            firebase.auth().signInWithEmailAndPassword(email, password).then(user => {
+                //get current user and display the username
+                var fuser = firebase.auth().currentUser;
+                alert("Welcome " + fuser.displayName);
+                //route to tracking page
+                window.location.href = './tracking.html';
+                // window.location.href = "../TrackingPage/tracking.html?userID=" + fuser.uid + "&username=" + fuser.displayName + "&email=" + email;
+            }).catch(err => {
+                alert(err.message);
+            });
+        }
     }
-}
     // document.getElementById("recentFoodsFeed").style.display = '';
 
     // // set 'global' vars
@@ -276,7 +269,7 @@ mainForm.onsubmit = function (e) {
 
     // set month title and todays date on load
     document.getElementById("monthTitle").innerHTML = "" + month;
-  
+
     // hide empty feed title
     document.getElementById("filler1").style.display = "none";
 
@@ -302,30 +295,30 @@ mainForm.onsubmit = function (e) {
 function openDay(date, month) {
     // properly reformat date var with leading 0
 
-   
+
     firebase.auth().onAuthStateChanged((user) => {
-       
+
         if (user) {
             document.getElementById("notLoginRegister").style.display = "";
             document.getElementById("loginPage").style.display = "none";
             document.getElementById("registerPage").style.display = "none";
-            
-    
+
+
             var d = "" + date;
             if (d.length < 2) {
                 d = "0" + d;
             }
-        
+
             // set (reset) global date/month vars
             currDate = d;
             currMonth = setMonth(month);
-        
+
             // clear the feed
             clearChildren();
-        
+
             // load this dates feed
             loadFeed(date, month);
-        
+
             // style calendar: 
             // remove the current active class & set the new active date
             var active = document.getElementsByClassName("active");
@@ -333,12 +326,12 @@ function openDay(date, month) {
                 active[0].className = "";
             }
             document.getElementById('id' + d + month).className = "active";
-        
+
             // style feed: 
             // make date title visible & set content
             document.getElementById("todaysDate").style.display = "";
             document.getElementById("todaysDate").innerHTML = currMonth + " / " + currDate;
-        
+
             // make add entry buttons visible
             document.getElementById("taskIcon").style.display = "";
             document.getElementById("taskIconLabel").style.display = "";
@@ -346,28 +339,28 @@ function openDay(date, month) {
             document.getElementById("exerciseIconLabel").style.display = "";
             document.getElementById("foodIcon").style.display = "";
             document.getElementById("foodIconLabel").style.display = "";
-        
-        
-        
+
+
+
             // hide empty feed title element (filler1 = empty feed title)
             document.getElementById("filler1").style.display = "none";
         } else {
-          // User is signed out
-          // ...
-        //   alert("No user is logged in")
-          document.getElementById("notLoginRegister").style.display = "";
+            // User is signed out
+            // ...
+            //   alert("No user is logged in")
+            document.getElementById("notLoginRegister").style.display = "";
 
-          console.log("signed Out");
+            console.log("signed Out");
 
-          userSignedOut();
-          var active = document.getElementsByClassName("active");
-          if (active[0] != null) {
-              active[0].className = "";
-          }
-      
-       
+            userSignedOut();
+            var active = document.getElementsByClassName("active");
+            if (active[0] != null) {
+                active[0].className = "";
+            }
+
+
         }
-      });
+    });
 
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -376,7 +369,7 @@ function openDay(date, month) {
 // STYLE CALENDAR/FEED (NO DATE SELECTION) 
 function nextMonth(currMonth) {
 
-    
+
     // clear the feed
     clearChildren();
     var active = document.getElementsByClassName("active");
@@ -385,17 +378,17 @@ function nextMonth(currMonth) {
     }
 
     firebase.auth().onAuthStateChanged((user) => {
-       
+
         if (user) {
-             // show empty feed title 
-    document.getElementById("filler1").style.display = "";
+            // show empty feed title 
+            document.getElementById("filler1").style.display = "";
         } else {
-       
-          userSignedOut();
-         
-       
+
+            userSignedOut();
+
+
         }
-      });
+    });
     // hide date title, add post buttons
     document.getElementById("todaysDate").style.display = "none";
 
@@ -488,21 +481,21 @@ function prevMonth(currMonth) {
     }
 
     firebase.auth().onAuthStateChanged((user) => {
-       
+
         if (user) {
-             // show empty feed title 
-    document.getElementById("filler1").style.display = "";
+            // show empty feed title 
+            document.getElementById("filler1").style.display = "";
         } else {
-       
-          userSignedOut();
-         
-       
+
+            userSignedOut();
+
+
         }
-      });
+    });
     // hide date title, add post buttons
     document.getElementById("todaysDate").style.display = "none";
 
-      document.getElementById("taskIcon").style.display = "none";
+    document.getElementById("taskIcon").style.display = "none";
     document.getElementById("taskIconLabel").style.display = "none";
     document.getElementById("exerciseIcon").style.display = "none";
     document.getElementById("exerciseIconLabel").style.display = "none";
@@ -614,10 +607,10 @@ function clearChildren() {
 
     document.getElementById("fullFavFeed").style.display = "none";
 
-    document.getElementById("recentFoods").style.display = "none";
+    // document.getElementById("recentFoods").style.display = "none";
     document.getElementById("totalFeed").style.display = "none";
     document.getElementById("nutritionValues").style.display = "none";
-    document.getElementById("dailyNutritionValues").style.display = "none";
+    // document.getElementById("dailyNutritionValues").style.display = "none";
 
     // document.getElementById("favFeedTitle").style.display = "none";
 
@@ -652,8 +645,8 @@ function clearChildren() {
     var el2 = document.getElementById('historyFeed1');
     while (el2.firstChild) el2.innerHTML = '';
 
-    var el2 = document.getElementById('recentFoodsFeed');
-    while (el2.firstChild) el2.innerHTML = '';
+    // var el2 = document.getElementById('recentFoodsFeed');
+    // while (el2.firstChild) el2.innerHTML = '';
 
 
     var el2 = document.getElementById('nutritionValuesFeedWeek');
@@ -717,7 +710,7 @@ function createNewTask(ttl, desc, t, id) {
         document.getElementById("usernameHeader").style.display = "none";
         document.getElementById("accountIcon").style.display = "none";
         document.getElementById("todaysDate").style.display = "none";
-    
+
         // initialize div elements
         var cancelButton = document.createElement('div');
         var title = document.createElement('div');
@@ -850,7 +843,7 @@ function createNewExercise(r, s, w, t, m, id) {
         document.getElementById("usernameHeader").style.display = "none";
         document.getElementById("accountIcon").style.display = "none";
         document.getElementById("todaysDate").style.display = "none";
-    
+
         // initialize div elements
         var cancelButton = document.createElement('div');
         var message = document.createElement('div');
@@ -994,7 +987,7 @@ function createNewFood(f, w, t, m, id) {
         document.getElementById("usernameHeader").style.display = "none";
         document.getElementById("accountIcon").style.display = "none";
         document.getElementById("todaysDate").style.display = "none";
-    
+
         // initialize div elements
         var cancelButton = document.createElement('div');
         var food = document.createElement('div');
@@ -1054,7 +1047,7 @@ function createNewFavFood(f, w, m, t, id) {
     // create the new food div and set HTML content w/ respective vars
     addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + m + "," + t + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
 
-    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w +  "," + m + "," + t + '")' + "' class = 'favButtonAdd'>ADD</button>";
+    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + m + "," + t + '")' + "' class = 'favButtonAdd'>ADD</button>";
     newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
 
 
@@ -1278,11 +1271,11 @@ function createNewRecentFood(f, w, t, m, id) {
 
     // console.log(f,w,t,)
 
-    
+
 
     // console.log(f, w , t, m)
     // load new food div into the food feed
-    document.getElementById("recentFoodsFeed").appendChild(newFood);
+    // document.getElementById("recentFoodsFeed").appendChild(newFood);
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- CREATE/LOAD A NEW FAV FOOD ELEMENT ---------------//////////
@@ -1697,16 +1690,16 @@ function createNewTotalNutrientsDaily(w, e, v, c, p) {
 
 
     // var fullString = "";
-        // var food1 = document.createElement('div');
-        newNutrient.innerHTML =  p + "<br><br>" + e+ "<br><br>"  + v+ "<br><br>"  + c+ "<br><br>"  + w;
-        // newFood.appendChild(food1)
-    
+    // var food1 = document.createElement('div');
+    newNutrient.innerHTML = p + "<br><br>" + e + "<br><br>" + v + "<br><br>" + c + "<br><br>" + w;
+    // newFood.appendChild(food1)
 
-    newNutrient.id = "favID";
+
+    newNutrient.id = "dailyInfo";
     // addFavoriteElement.id = "addFavoriteElement";
     // addEditElement.id = "addEditElement";
 
-    newNutrient.className = "testtt";
+    // newNutrient.className = "testtt";
 
 
     // console.log(f,w,t,)
@@ -1735,10 +1728,10 @@ function createNewTotalNutrientsWeek(w, e, v, c, p) {
 
 
     // var fullString = "";
-        // var food1 = document.createElement('div');
-        newNutrient.innerHTML =  p + "<br><br>" + e+ "<br><br>"  + v+ "<br><br>"  + c+ "<br><br>"  + w;
-        // newFood.appendChild(food1)
-    
+    // var food1 = document.createElement('div');
+    newNutrient.innerHTML = p + "<br><br>" + e + "<br><br>" + v + "<br><br>" + c + "<br><br>" + w;
+    // newFood.appendChild(food1)
+
 
     newNutrient.id = "favID";
     // addFavoriteElement.id = "addFavoriteElement";
@@ -1751,7 +1744,8 @@ function createNewTotalNutrientsWeek(w, e, v, c, p) {
 
     // console.log(f, w , t, m)
     // load new food div into the food feed
-    document.getElementById("weekNutrientFeed").appendChild(newNutrient);
+    // document.getElementById("weekNutrientFeed").appendChild(newNutrient);
+    document.getElementById("weekNutrientFeed").style.display= "none";
 }
 
 /********************************************************************/
@@ -1927,7 +1921,7 @@ function favoriteButtonClick() {
     document.getElementById("todaysDate").style.display = "none";
     document.getElementById("filler1").style.display = "none";
 
-    
+
     document.getElementById("historyTitle").style.display = "none";
     document.getElementById("historyFeed").style.display = "none";
 
@@ -1958,55 +1952,55 @@ function favoriteButtonClick() {
 
 }
 function taskIconButtonClick() {
-// clear the feed
-clearChildren();
-loadTaskHistoryFeed();
-document.getElementById("accountIcon").style.display = "none";
-document.getElementById("calendar").style.display = "none";
+    // clear the feed
+    clearChildren();
+    loadTaskHistoryFeed();
+    document.getElementById("accountIcon").style.display = "none";
+    document.getElementById("calendar").style.display = "none";
 
-document.getElementById("exerciseIcon").style.display = "none";
-document.getElementById("taskIcon").style.display = "none";
-document.getElementById("foodIcon").style.display = "none";
-document.getElementById("favoritesIcon").style.display = "none";
-document.getElementById("favLabel").style.display = "none";
-document.getElementById("exerciseIconLabel").style.display = "none";
-document.getElementById("taskIconLabel").style.display = "none";
-document.getElementById("foodIconLabel").style.display = "none";
-document.getElementById("filler1").style.display = "none";
+    document.getElementById("exerciseIcon").style.display = "none";
+    document.getElementById("taskIcon").style.display = "none";
+    document.getElementById("foodIcon").style.display = "none";
+    document.getElementById("favoritesIcon").style.display = "none";
+    document.getElementById("favLabel").style.display = "none";
+    document.getElementById("exerciseIconLabel").style.display = "none";
+    document.getElementById("taskIconLabel").style.display = "none";
+    document.getElementById("foodIconLabel").style.display = "none";
+    document.getElementById("filler1").style.display = "none";
 
-document.getElementById("usernameHeader").style.display = "none";
-document.getElementById("todaysDate").style.display = "";
+    document.getElementById("usernameHeader").style.display = "none";
+    document.getElementById("todaysDate").style.display = "";
 
-// initialize div elements
-var cancelButton = document.createElement('div');
-var title = document.createElement('div');
-var description = document.createElement('div');
-var time = document.createElement('div');
-var postButton = document.createElement('div');
+    // initialize div elements
+    var cancelButton = document.createElement('div');
+    var title = document.createElement('div');
+    var description = document.createElement('div');
+    var time = document.createElement('div');
+    var postButton = document.createElement('div');
 
-// set ids
-cancelButton.id = "cancelNew"
-title.id = "titleNew";
-description.id = "descriptionNew";
-time.id = "timeNew";
-postButton.id = "postButton";
+    // set ids
+    cancelButton.id = "cancelNew"
+    title.id = "titleNew";
+    description.id = "descriptionNew";
+    time.id = "timeNew";
+    postButton.id = "postButton";
 
-// then add the HTML content of the element
-cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
-title.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: Chemistry, Dentist, Birthday, etc.) <br><br></label><input id='taskReq1' onclick = '" + 'makeClean(document.getElementById("taskReq1"))' + "' type='text' class = 'required'><br><br><br>";
-description.innerHTML = "<label class = 'exClass1'>Description (ex: Due at 11:59pm, buy a gift, etc.) <br><br></label> <input type='text' id='taskReq2' onclick = '" + 'makeClean(document.getElementById("taskReq2"))' + "' class = 'required'><br><br><br>";
-time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br></label><input type='text' id='taskReq3' onclick = '" + 'makeClean(document.getElementById("taskReq3"))' + "' class = 'required'><br><br><br>";
-postButton.innerHTML = "<input onclick = 'addTask()' type='submit' id = 'pButton1' value = 'POST'/>"
+    // then add the HTML content of the element
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
+    title.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: Chemistry, Dentist, Birthday, etc.) <br><br></label><input id='taskReq1' onclick = '" + 'makeClean(document.getElementById("taskReq1"))' + "' type='text' class = 'required'><br><br><br>";
+    description.innerHTML = "<label class = 'exClass1'>Description (ex: Due at 11:59pm, buy a gift, etc.) <br><br></label> <input type='text' id='taskReq2' onclick = '" + 'makeClean(document.getElementById("taskReq2"))' + "' class = 'required'><br><br><br>";
+    time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br></label><input type='text' id='taskReq3' onclick = '" + 'makeClean(document.getElementById("taskReq3"))' + "' class = 'required'><br><br><br>";
+    postButton.innerHTML = "<input onclick = 'addTask()' type='submit' id = 'pButton1' value = 'POST'/>"
 
-document.getElementById("feed")
-    .appendChild(cancelButton)
-    .appendChild(title)
-    .appendChild(description)
-    .appendChild(time)
-    .appendChild(postButton)
+    document.getElementById("feed")
+        .appendChild(cancelButton)
+        .appendChild(title)
+        .appendChild(description)
+        .appendChild(time)
+        .appendChild(postButton)
 }
 
-function foodIconButtonClick(){
+function foodIconButtonClick() {
     // clear the feed
     clearChildren();
     document.getElementById("accountIcon").style.display = "none";
@@ -2023,8 +2017,8 @@ function foodIconButtonClick(){
     document.getElementById("favoritesIcon").style.display = "none";
     document.getElementById("favLabel").style.display = "none";
     document.getElementById("exerciseIconLabel").style.display = "none";
-document.getElementById("taskIconLabel").style.display = "none";
-document.getElementById("foodIconLabel").style.display = "none";
+    document.getElementById("taskIconLabel").style.display = "none";
+    document.getElementById("foodIconLabel").style.display = "none";
     // initialize div elements
     var cancelButton = document.createElement('div');
     var food = document.createElement('div');
@@ -2059,7 +2053,7 @@ document.getElementById("foodIconLabel").style.display = "none";
         .appendChild(postButton)
 }
 
-function exerciseIconButtonClick(){
+function exerciseIconButtonClick() {
     // clear the feed
     // clearChildren();
     document.getElementById("todaysDate").style.display = "";
@@ -2078,8 +2072,8 @@ function exerciseIconButtonClick(){
     document.getElementById("favoritesIcon").style.display = "none";
     document.getElementById("favLabel").style.display = "none";
     document.getElementById("exerciseIconLabel").style.display = "none";
-document.getElementById("taskIconLabel").style.display = "none";
-document.getElementById("foodIconLabel").style.display = "none";
+    document.getElementById("taskIconLabel").style.display = "none";
+    document.getElementById("foodIconLabel").style.display = "none";
 
 
     // initialize div elements
@@ -2173,7 +2167,7 @@ function editAccount() {
 function loadMyAccount() {
     // clear the feed 
     clearChildren();
-     // style calendar: 
+    // style calendar: 
     // remove the current active class & set the new active date
     var active = document.getElementsByClassName("active");
     if (active[0] != null) {
@@ -2284,7 +2278,7 @@ function loadFeed(date, month) {
 
 
 
-    document.getElementById("recentFoods").style.display = "";
+    // document.getElementById("recentFoods").style.display = "";
     // document.getElementById("reccomendedFoods").style.display = "";
     document.getElementById("nutritionValues").style.display = "";
     // document.getElementById("fullFavFeed").style.display = "";
@@ -2321,14 +2315,13 @@ function loadFeed(date, month) {
 
     getMyFoods();
     loadNutritionFeed();
-    getMyFoodsToday();
 
 
 
     // load the exercise feed
     db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            
+
             createNewExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id);
         });
     });
@@ -2348,7 +2341,7 @@ function loadFeed(date, month) {
     db.collection("users").doc(userID).collection("favorites").where("foodID", "==", "true").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             //CREATE NEW FAV FOOD?
-            createNewFavFood(doc.data().food, doc.data().water, doc.data().message,doc.data().time, doc.id)
+            createNewFavFood(doc.data().food, doc.data().water, doc.data().message, doc.data().time, doc.id)
         });
     });
     // load the fav feed for exercise elements
@@ -2738,7 +2731,7 @@ function addFavFoodToDB(f) {
     else {
         w = strings[1];
     }
-    
+
     if (strings[2] == null) {
         m = "";
     }
@@ -4244,12 +4237,6 @@ function loadTaskHistoryFeed() {
 
 }
 
-//return a var of all foods logged in the past week
-function getMyFoodsToday(){
-
-  
-
-}
 function getMyFoods() {
     var myFoods1 = "";
 
@@ -4271,7 +4258,7 @@ function getMyFoods() {
                 // load the feed for past 7 days
                 // createNewRecentFood(doc.data().food, doc.data().water, doc.data().time, doc.data().message, doc.id);
                 //load the past seven days
-                    myFoods1 += doc.data().food + "," + doc.data().water + ",";
+                myFoods1 += doc.data().food + "," + doc.data().water + ",";
             }
         });
     }).then(() => {
@@ -4289,7 +4276,7 @@ function getMyFoods() {
 
 
                 // change the query in this url for an api search
-                const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&query=' + foodStrings[i];
+                const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&pageSize=1&pageList=3&query=' + foodStrings[i];
                 // Http.open("GET", url);
                 // Http.send();
 
@@ -4297,52 +4284,38 @@ function getMyFoods() {
                     return data.json()
                 }).then(res => {
                     // console.log(res)
-                    console.log(res);
+                    // console.log(res);
                     var s = "";
 
                     for (var i = 0; i < res.foods[0].foodNutrients.length; i++) {
                         // console.log(res.foods[0].foodNutrients[i].nutrientName + ": " + res.foods[0].foodNutrients[i].value + " " + res.foods[0].foodNutrients[i].unitName);
-                        if (res.foods[0].foodNutrients[i].value != "0"){
-                            s += res.foods[0].foodNutrients[i].nutrientName +": " + res.foods[0].foodNutrients[i].value + res.foods[0].foodNutrients[i].unitName + "<br>"
-                           if(res.foods[0].foodNutrients[i].nutrientName == "Protein") {
-                            addTotalProteinDaily(res.foods[0].foodNutrients[i].value);
-                           }
-                           if(res.foods[0].foodNutrients[i].nutrientName == "Carbohydrate, by difference") {
-                            addTotalCarbsDaily(res.foods[0].foodNutrients[i].value);
-                           }
-                           if(res.foods[0].foodNutrients[i].nutrientName == "Energy") {
-                            addTotalEnergyDaily(res.foods[0].foodNutrients[i].value);
-                           }
-                           if(res.foods[0].foodNutrients[i].nutrientName == "Vitamin C, total ascorbic acid") {
-                            addTotalVitaminDaily(res.foods[0].foodNutrients[i].value);
-                           }
-                           if(res.foods[0].foodNutrients[i].nutrientName == "Water") {
-                            addTotalWaterDaily(res.foods[0].foodNutrients[i].value);
-                           }
-                           
+                        if (res.foods[0].foodNutrients[i].value != "0") {
+                            s += res.foods[0].foodNutrients[i].nutrientName + ": " + res.foods[0].foodNutrients[i].value + res.foods[0].foodNutrients[i].unitName + "<br>"
+                            if (res.foods[0].foodNutrients[i].nutrientName == "Protein") {
+                                addTotalProteinDaily(res.foods[0].foodNutrients[i].value);
+                            }
+                            if (res.foods[0].foodNutrients[i].nutrientName == "Carbohydrate, by difference") {
+                                addTotalCarbsDaily(res.foods[0].foodNutrients[i].value);
+                            }
+                            if (res.foods[0].foodNutrients[i].nutrientName == "Energy") {
+                                addTotalEnergyDaily(res.foods[0].foodNutrients[i].value);
+                            }
+                            if (res.foods[0].foodNutrients[i].nutrientName == "Vitamin C, total ascorbic acid") {
+                                addTotalVitaminDaily(res.foods[0].foodNutrients[i].value);
+                            }
+                            if (res.foods[0].foodNutrients[i].nutrientName == "Water") {
+                                addTotalWaterDaily(res.foods[0].foodNutrients[i].value);
+                            }
 
-                        //now build a graph to show these nutrients
+                            //now build a graph to show these nutrients
+                        }
                     }
-                }
-                createNewNutritionDaily(res.foods[0].description, s, res.foods[0].allHighlightFields);
-
-
-                // console.log(res.foods[0]);
-                // createNewNutrition(res.foods[0].description, s, res.foods[0].allHighlightFields);
-                // console.log(res.foods[0].foodNutrients[1].nutrientName + ": " + res.foods[0].foodNutrients[1].value + " " + res.foods[0].foodNutrients[1].unitName);
-                }).then(() =>{
-                    // loadDailyFeed();
-                    console.log("today food");
+                    createNewNutritionDaily(res.foods[0].description, s, res.foods[0].allHighlightFields);
+                }).then(() => {
+                    loadDailyFeed();
                 });
-
-
             }
-
         }
-
-
-
-
     })
         .catch((error) => {
             // alert("ERROR submitting post! " + error);
@@ -4395,7 +4368,7 @@ function getMyFoods() {
 
 
                 // change the query in this url for an api search
-                const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&query=' + foodStrings[i];
+                const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&pageSize=1&pageList=3&query=' + foodStrings[i];
                 // Http.open("GET", url);
                 // Http.send();
 
@@ -4403,46 +4376,45 @@ function getMyFoods() {
                     return data.json()
                 }).then(res => {
                     // console.log(res)
-                    console.log(res);
+                    // console.log(res);
                     var s = "";
 
                     for (var i = 0; i < res.foods[0].foodNutrients.length; i++) {
                         // console.log(res.foods[0].foodNutrients[i].nutrientName + ": " + res.foods[0].foodNutrients[i].value + " " + res.foods[0].foodNutrients[i].unitName);
-                        if (res.foods[0].foodNutrients[i].value != "0"){
-                            s += res.foods[0].foodNutrients[i].nutrientName +": " + res.foods[0].foodNutrients[i].value + res.foods[0].foodNutrients[i].unitName + "<br>"
-                         
-                           if(res.foods[0].foodNutrients[i].nutrientName == "Protein") {
-                            addTotalProtein(res.foods[0].foodNutrients[i].value);
-                           }
-                           if(res.foods[0].foodNutrients[i].nutrientName == "Carbohydrate, by difference") {
-                            addTotalCarbs(res.foods[0].foodNutrients[i].value);
-                           }
-                           if(res.foods[0].foodNutrients[i].nutrientName == "Energy") {
-                            addTotalEnergy(res.foods[0].foodNutrients[i].value);
-                           }
-                           if(res.foods[0].foodNutrients[i].nutrientName == "Vitamin C, total ascorbic acid") {
-                            addTotalVitamin(res.foods[0].foodNutrients[i].value);
-                           }
-                           if(res.foods[0].foodNutrients[i].nutrientName == "Water") {
-                            addTotalWater(res.foods[0].foodNutrients[i].value);
-                           }
-                           
+                        if (res.foods[0].foodNutrients[i].value != "0") {
+                            s += res.foods[0].foodNutrients[i].nutrientName + ": " + res.foods[0].foodNutrients[i].value + res.foods[0].foodNutrients[i].unitName + "<br>"
 
-                        // createNewNutrition(res.foods[0].foodNutrients[i].nutrientName, res.foods[0].foodNutrients[i].value, res.foods[0].foodNutrients[i].unitName );
-                        //now build a graph to show these nutrients
-                    }
-                    
-                }// console.log(res.foods[0]);
-
-                createNewNutritionWeek(res.foods[0].description, s, res.foods[0].allHighlightFields);
-                // console.log(res.foods[0].foodNutrients[1].nutrientName + ": " + res.foods[0].foodNutrients[1].value + " " + res.foods[0].foodNutrients[1].unitName);
-                }).then(() =>{
+                            if (res.foods[0].foodNutrients[i].nutrientName == "Protein") {
+                                addTotalProtein(res.foods[0].foodNutrients[i].value);
+                            }
+                            if (res.foods[0].foodNutrients[i].nutrientName == "Carbohydrate, by difference") {
+                                addTotalCarbs(res.foods[0].foodNutrients[i].value);
+                            }
+                            if (res.foods[0].foodNutrients[i].nutrientName == "Energy") {
+                                addTotalEnergy(res.foods[0].foodNutrients[i].value);
+                            }
+                            if (res.foods[0].foodNutrients[i].nutrientName == "Vitamin C, total ascorbic acid") {
+                                addTotalVitamin(res.foods[0].foodNutrients[i].value);
+                            }
+                            if (res.foods[0].foodNutrients[i].nutrientName == "Water") {
+                                addTotalWater(res.foods[0].foodNutrients[i].value);
+                            }
+                            // createNewNutrition(res.foods[0].foodNutrients[i].nutrientName, res.foods[0].foodNutrients[i].value, res.foods[0].foodNutrients[i].unitName );
+                            //now build a graph to show these nutrients
+                        }
+                    }// console.log(res.foods[0]);
+                    createNewNutritionWeek(res.foods[0].description, s, res.foods[0].allHighlightFields);
+                    // console.log(res.foods[0].foodNutrients[1].nutrientName + ": " + res.foods[0].foodNutrients[1].value + " " + res.foods[0].foodNutrients[1].unitName);
+                }).then(() => {
                     loadWeekFeed();
-                }).then(() =>{
-                    loadDailyFeed();
+
+                }).then(() => {
+                    loadReccomendedFeed();
+
                 })
             }
         }
+
     })
         .catch((error) => {
             // alert("ERROR submitting post! " + error);
@@ -4603,7 +4575,6 @@ function addTotalCarbsDaily(carbVal) {
     console.log("total Daily carbs: " + carbTotalDaily + " g");
     // loadCarbFeed();
 
-
 }
 function addTotalVitaminDaily(vitaminVal) {
     // createNewNutrition("Nutrition Calculator", "", "", "");
@@ -4643,9 +4614,31 @@ function loadLoginPage() {
 
 }
 
-function loadRegisterPage(){
+function loadRegisterPage() {
     document.getElementById("loginPage").style.display = "none";
     document.getElementById("registerPage").style.display = "";
     document.getElementById("notLoginRegister").style.display = "none"
 
+}
+
+
+function loadReccomendedFeed() {
+    // document.getElementById("").
+    console.log(proteinTotal,carbTotal,vitaminTotal,energyTotal,waterTotal);
+    console.log(proteinTotalDaily,carbTotalDaily,vitaminTotalDaily,energyTotalDaily,waterTotalDaily);
+
+
+    var missingCals = 2000 - energyTotalDaily ;
+    var missingProtein = 200 - proteinTotalDaily ;
+
+
+
+    var el2 = document.getElementById('dailyReccomendedNutrientFeed');
+    while (el2.firstChild) el2.innerHTML = '';
+    var newRec = document.createElement('li');
+    newRec.innerHTML = "You should consume " + missingCals + " more calories to reach 2000 calories today<br><br>You should consume " + missingProtein + " more grams of protein to reach '200' grams today";
+    newRec.id = "favID";
+    newRec.className = "testtt";
+    document.getElementById("dailyReccomendedNutrientFeed").appendChild(newRec);
+    
 }
