@@ -3877,8 +3877,11 @@ function userSignedOut() {
     document.getElementById('favLabel').style.display = 'none';
     document.getElementById("historyTitle").style.display = "none";
     document.getElementById("historyFeed").style.display = "none";
-    document.getElementById("dailyNutritionValues").style.display = "none";
+    // document.getElementById("dailyNutritionValues").style.display = "none";
 
+    document.getElementById("totalFeed").style.display = "none";
+    document.getElementById("reccomendedFeed").style.display = "none";
+    document.getElementById("idealNutritionValuesFeed").style.display = "none";
 
     // document.getElementById('favoritesDivID').style.display = 'none';
     document.getElementById("fullFavFeed").style.display = "none";
