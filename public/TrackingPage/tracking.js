@@ -189,8 +189,6 @@ window.onload = function () {
             // ...
             // initialize and set vars
             // style username display title
-            document.getElementById("userHead").innerHTML = username + "'s Tracking Calendar";
-
 
             document.getElementById("notLoginRegister").style.display = "";
 
@@ -1981,6 +1979,8 @@ function editAccount() {
 function loadMyAccount() {
     // clear the feed 
     clearChildren();
+    document.getElementById("usernameHeader").style.display = "";
+    document.getElementById("userHead").innerHTML = username + "'s Account Page";
     // style calendar: 
     // remove the current active class & set the new active date
     var active = document.getElementsByClassName("active");
@@ -2000,7 +2000,7 @@ function loadMyAccount() {
     document.getElementById("calendar").style.display = "";
     document.getElementById("favoritesIcon").style.display = "";
     document.getElementById("favLabel").style.display = "";
-    document.getElementById("usernameHeader").style.display = "";
+    // document.getElementById("usernameHeader").style.display = "";
     document.getElementById("accountIcon").style.display = "";
     document.getElementById("filler1").style.display = "";
 
@@ -2115,6 +2115,7 @@ function loadFeed(date, month) {
     cholTotalDaily = 0;
     lipidFatTotalDaily = 0;
 
+
     var day = "" + date;
     // hide post buttons
     document.getElementById("trackingIcon").style.display = "";
@@ -2146,6 +2147,7 @@ function loadFeed(date, month) {
     document.getElementById("calendar").style.display = "";
     document.getElementById("accountIcon").style.display = "";
 
+    document.getElementById("userHead").innerHTML = username + "'s Tracking Calendar";
 
 
     // document.getElementById("recentFoods").style.display = "";
@@ -5210,7 +5212,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
 
         // create the edit form by setting the HTML content of each div
         cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
-        title.innerHTML = "<br><br><br><label class = 'exClass1'>Comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
+        title.innerHTML = "<br><br><br><label class = 'postClass'>Comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
         // update button
         commentButton.innerHTML = "<input onclick = 'addCommentToPost(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
         // delete button
@@ -5310,11 +5312,15 @@ function createNewComment(cTitle, cUsername) {
 
 function loadMyPublicPage() {
     clearChildren();
+    document.getElementById("usernameHeader").style.display = "";
+    document.getElementById("userHead").innerHTML = "Welcome to the public feed!";
+  
+
     document.getElementById("publicFeed").style.display = "";
     document.getElementById("publicPostIcon").style.display = "";
     document.getElementById("favoritesIcon").style.display = "";
     document.getElementById("favLabel").style.display = "";
-    document.getElementById("usernameHeader").style.display = "none";
+    // document.getElementById("usernameHeader").style.display = "none";
     document.getElementById("favoritesIcon").style.display = "none";
     document.getElementById("favLabel").style.display = "none";
     document.getElementById("publicPostDivID").style.display = '';
