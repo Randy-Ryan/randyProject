@@ -2162,6 +2162,8 @@ function loadFeed(date, month) {
     // document.getElementById("favFeedTitle").style.display = '';
     document.getElementById("historyTitle").style.display = 'none';
     document.getElementById("historyFeed").style.display = 'none';
+    document.getElementById("publicFeed").style.display = 'none';
+    document.getElementById("publicPostDivID").style.display = 'none';
     document.getElementById("commentFeed").style.display = 'none';
     document.getElementById("feed").style.display = 'none';
 
