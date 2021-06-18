@@ -2033,26 +2033,26 @@ function loadMyAccount() {
     // load the account feed
 
     // initialize div elements
-    var usernameEdit = document.createElement('div');
+    // var usernameEdit = document.createElement('div');
     var editButton = document.createElement('div');
     var signOutButton = document.createElement('div');
 
     //set ids
 
-    usernameEdit.id = "usernameAccountID";
+    // usernameEdit.id = "usernameAccountID";
     editButton.id = "editAccountID";
     signOutButton.id = "editAccountID";
 
     // const user = firebase.auth().currentUser;
 
-    usernameEdit.innerHTML = "<br><br><br><label id = 'accountUsername'>" + username + "'s account page <br><br></label>";
+    // usernameEdit.innerHTML = "<br><br><br><label id = 'accountUsername'>" + username + "'s account page <br><br></label>";
     editButton.innerHTML = "<input onclick = 'editAccount()' type='submit' id = 'cancelButton1' value = 'EDIT MY ACCOUNT'/>"
     signOutButton.innerHTML = "<input onclick = 'signOutAccount()' type='submit' id = 'signOutButton1' value = 'SIGN OUT'/>"
 
 
     // load the edit form on the feed
     document.getElementById("feed")
-        .appendChild(usernameEdit)
+        // .appendChild(usernameEdit)
         .appendChild(editButton)
         .appendChild(signOutButton)
 }
