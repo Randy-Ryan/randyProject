@@ -1988,6 +1988,8 @@ function loadMyAccount() {
         active[0].className = "";
     }
     // hide the buttons
+    document.getElementById("feed").style.display = "";
+
     document.getElementById("trackingIcon").style.display = "";
     document.getElementById("publicIcon").style.display = "";
     document.getElementById("taskIcon").style.display = "none";
