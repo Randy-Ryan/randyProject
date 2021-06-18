@@ -1020,6 +1020,12 @@ height: auto;
 
 }
 
+#postLabel{
+
+  margin: 5%;
+  font-size: 30px;
+}
+
 #dButton1{
 
  text-align: center;

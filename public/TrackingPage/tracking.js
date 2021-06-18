@@ -663,11 +663,13 @@ function clearChildren() {
 
 
     document.getElementById("publicPostIcon").style.display = "none";
+    document.getElementById("postLabel").style.display = "none";
 
 
-    document.getElementById("chartContainer").style.display = "none";
-    document.getElementById("chartContainer2").style.display = "none";
-    document.getElementById("chartContainer3").style.display = "none";
+
+    // document.getElementById("chartContainer").style.display = "none";
+    // document.getElementById("chartContainer2").style.display = "none";
+    // document.getElementById("chartContainer3").style.display = "none";
 
     document.getElementById("exFeedTitle").style.display = "none";
     document.getElementById("taskFeedTitle").style.display = "none";
@@ -1699,6 +1701,12 @@ function favoriteButtonClick() {
 
     // clear the feed
     clearChildren();
+
+    document.getElementById("feed").style.display = "";
+
+
+    document.getElementById("trackingIcon").style.display = "none";
+    document.getElementById("publicIcon").style.display = "none";
     document.getElementById("accountIcon").style.display = "none";
     document.getElementById("favoritesIcon").style.display = "none";
     document.getElementById("favLabel").style.display = "none";
@@ -1748,6 +1756,10 @@ function taskIconButtonClick() {
     // clear the feed
     clearChildren();
     loadTaskHistoryFeed();
+    document.getElementById("feed").style.display = "";
+
+    document.getElementById("trackingIcon").style.display = "none";
+    document.getElementById("publicIcon").style.display = "none";
     document.getElementById("accountIcon").style.display = "none";
     document.getElementById("calendar").style.display = "none";
 
@@ -1796,6 +1808,10 @@ function taskIconButtonClick() {
 function foodIconButtonClick() {
     // clear the feed
     clearChildren();
+    document.getElementById("feed").style.display = "";
+
+    document.getElementById("trackingIcon").style.display = "none";
+    document.getElementById("publicIcon").style.display = "none";
     document.getElementById("accountIcon").style.display = "none";
     document.getElementById("todaysDate").style.display = "";
 
@@ -1849,6 +1865,10 @@ function foodIconButtonClick() {
 function exerciseIconButtonClick() {
     // clear the feed
     // clearChildren();
+    document.getElementById("feed").style.display = "";
+
+    document.getElementById("trackingIcon").style.display = "none";
+    document.getElementById("publicIcon").style.display = "none";
     document.getElementById("todaysDate").style.display = "";
 
     document.getElementById("historyFeed").style.display = "";
@@ -1968,15 +1988,17 @@ function loadMyAccount() {
         active[0].className = "";
     }
     // hide the buttons
+    document.getElementById("trackingIcon").style.display = "";
+    document.getElementById("publicIcon").style.display = "";
     document.getElementById("taskIcon").style.display = "none";
     document.getElementById("taskIconLabel").style.display = "none";
     document.getElementById("exerciseIcon").style.display = "none";
     document.getElementById("exerciseIconLabel").style.display = "none";
     document.getElementById("foodIcon").style.display = "none";
     document.getElementById("foodIconLabel").style.display = "none";
-    document.getElementById("favoritesIcon").style.display = "none";
-    document.getElementById("favLabel").style.display = "none";
     document.getElementById("calendar").style.display = "";
+    document.getElementById("favoritesIcon").style.display = "";
+    document.getElementById("favLabel").style.display = "";
     document.getElementById("usernameHeader").style.display = "";
     document.getElementById("accountIcon").style.display = "";
     document.getElementById("filler1").style.display = "";
@@ -2094,6 +2116,8 @@ function loadFeed(date, month) {
 
     var day = "" + date;
     // hide post buttons
+    document.getElementById("trackingIcon").style.display = "";
+    document.getElementById("publicIcon").style.display = "";
     document.getElementById("usernameHeader").style.display = "";
     document.getElementById("todaysDate").style.display = "";
     document.getElementById("favoritesIcon").style.display = "";
@@ -2138,6 +2162,11 @@ function loadFeed(date, month) {
     // document.getElementById("favFeedTitle").style.display = '';
     document.getElementById("historyTitle").style.display = 'none';
     document.getElementById("historyFeed").style.display = 'none';
+    document.getElementById("commentFeed").style.display = 'none';
+    document.getElementById("feed").style.display = 'none';
+
+
+    
 
 
 
@@ -2154,9 +2183,9 @@ function loadFeed(date, month) {
     document.getElementById("dRecco").style.display = "";
 
 
-    document.getElementById("chartContainer").style.display = "";
-    document.getElementById("chartContainer2").style.display = "";
-    document.getElementById("chartContainer3").style.display = "";
+    // document.getElementById("chartContainer").style.display = "";
+    // document.getElementById("chartContainer2").style.display = "";
+    // document.getElementById("chartContainer3").style.display = "";
     document.getElementById("totalFeed2").style.display = "";
 
 
@@ -5152,7 +5181,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
 
     var newPost = document.createElement('li');
     var comments = "";
-    newPost.innerHTML = "Username: " + pUsername + "<br>Title: " + pTitle + "<br>Description: " + pDesc + "<br><br>Click to view or add comments";
+    newPost.innerHTML = "Username: " + pUsername + "<br><br>Title:<br> " + pTitle + "<br><br>-----" + pDesc + "<br><br><br>Click to view or add comments";
     newPost.id = "publicPostElement";
     newPost.className = "postClass";
 
@@ -5174,6 +5203,13 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
         var cancelButton = document.createElement('div');
         var title = document.createElement('div');
         var commentButton = document.createElement('div');
+        var thisPostUsername = document.createElement('div');
+        var thisPostTitle = document.createElement('div');
+        var thisPostDesc= document.createElement('div');
+
+        thisPostUsername.innerHTML = "<br><br><br><label class = 'exClass1'>Username: "+pUsername+" <br><br></label>";
+        thisPostTitle.innerHTML = "<br><br><br><label class = 'exClass1'>Title: "+pTitle+" <br><br></label>";
+        thisPostDesc.innerHTML = "<br><br><br><label class = 'exClass1'>"+pDesc +"<br><br><br></label>";
 
 
         // create the edit form by setting the HTML content of each div
@@ -5185,7 +5221,11 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
       
         // load the edit form on the feed
         document.getElementById("feed")
-            .appendChild(cancelButton)
+        .appendChild(cancelButton)
+
+        .appendChild(thisPostUsername)
+        .appendChild(thisPostTitle)
+        .appendChild(thisPostDesc)
             .appendChild(title)
             .appendChild(commentButton)
     }
@@ -5197,7 +5237,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
 function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
 
     var newPost = document.createElement('li');
-    newPost.innerHTML = "Username: " + pUsername + "<br>Title: " + pTitle + "<br>Description: " + pDesc + "<br><br>Click to view or add comments";
+    newPost.innerHTML = "Username: " + pUsername + "<br><br>Title:<br> " + pTitle + "<br><br>-----" + pDesc + "<br><br><br>Click to view or add comments";
     newPost.id = "myPostElement";
     newPost.className = "postClass";
 
@@ -5213,11 +5253,11 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
         document.getElementById("todaysDate").style.display = "none";
         document.getElementById("filler1").style.display = "none";
         document.getElementById("accountFeed").style.display = "none";
-        
+    
          
         db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                createNewComment(doc.data().title, doc.data().username);
+                createNewComment(doc.data().title, doc.data().username, doc.id);
         })
     })
 
@@ -5225,10 +5265,17 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
 
         // initialize div elements
         var cancelButton = document.createElement('div');
+        var thisPostUsername = document.createElement('div');
+
+        var thisPostTitle = document.createElement('div');
+        var thisPostDesc= document.createElement('div');
         var title = document.createElement('div');
         var commentButton = document.createElement('div');
         var deleteButton = document.createElement('div');
 
+        thisPostUsername.innerHTML = "<br><br><br><label class = 'exClass1'>Username: "+pUsername+" <br><br></label>";
+        thisPostTitle.innerHTML = "<br><br><br><label class = 'exClass1'>Title: <br>"+pTitle+" <br><br></label>";
+        thisPostDesc.innerHTML = "<br><br><br><label class = 'exClass1'>"+pDesc+"<br><br><br></label>";
 
 
         // create the edit form by setting the HTML content of each div
@@ -5241,7 +5288,11 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
 
         // load the edit form on the feed
         document.getElementById("feed")
-            .appendChild(cancelButton)
+        .appendChild(cancelButton)
+
+            .appendChild(thisPostUsername)
+            .appendChild(thisPostTitle)
+            .appendChild(thisPostDesc)
             .appendChild(title)
             .appendChild(commentButton)
             .appendChild(deleteButton)
@@ -5253,6 +5304,18 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
 
 
 
+function loadThePostToo(cTitle, cUsername) {
+
+    var newComm = document.createElement('li');
+    newComm.innerHTML = "Username: " + cUsername + "<br>Comment: " + cTitle;
+    newComm.id = "publicPostElementComment";
+    newComm.className = "postClassComment";
+    document.getElementById("commentPostFeed").appendChild(newComm);
+    document.getElementById("commentFeed").style.display = "";
+
+}
+
+
 function createNewComment(cTitle, cUsername) {
 
     var newComm = document.createElement('li');
@@ -5262,7 +5325,6 @@ function createNewComment(cTitle, cUsername) {
     document.getElementById("commentPostFeed").appendChild(newComm);
     document.getElementById("commentFeed").style.display = "";
 
-
 }
 
 
@@ -5270,7 +5332,8 @@ function loadMyPublicPage() {
     clearChildren();
     document.getElementById("publicFeed").style.display = "";
     document.getElementById("publicPostIcon").style.display = "";
-
+    document.getElementById("favoritesIcon").style.display = "";
+    document.getElementById("favLabel").style.display = "";
     document.getElementById("usernameHeader").style.display = "none";
     document.getElementById("favoritesIcon").style.display = "none";
     document.getElementById("favLabel").style.display = "none";
@@ -5279,6 +5342,7 @@ function loadMyPublicPage() {
     document.getElementById("todaysDate").style.display = "none";
     document.getElementById("filler1").style.display = "none";
     document.getElementById("accountFeed").style.display = "none";
+    document.getElementById("postLabel").style.display = "";
 
     // load the exercise feed
     db.collection("posts").get().then((querySnapshot) => {

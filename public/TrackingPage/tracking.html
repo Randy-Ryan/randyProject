@@ -89,12 +89,6 @@
         <img id="accountIcon" onclick="loadMyAccount()" src="./contact.png" alt="accountIcon">
     </div>
 
-
-    <div id = "commentFeed">
-        <li id="gridTitleComments" class="item">COMMENTS ON THIS POST</li>
-        <ul id="commentPostFeed">
-        </ul>
-    </div>
     <body>
 
 
@@ -607,6 +601,7 @@
             <ul id="accountPostFeed">
             </ul>
         </div>
+   
         <div id="favoritesDivID" style="text-align: center;">
             <img id="favoritesIcon" onclick="favoriteButtonClick()" src="./icons8-plus-144.png" alt="favoritesIcon">
             <label id="favLabel">NEW FAVORITE</label>
@@ -623,12 +618,18 @@
             <img id="foodIcon" onclick="foodIconButtonClick()" src="./icons8-plus-144.png" alt="favoritesIcon">
             <label id="foodIconLabel">NEW FOOD</label>
         </div>
+        <div id = "commentFeed">
+            <li id="gridTitleComments" class="item">COMMENTS ON THIS POST</li>
+            <ul id="commentPostFeed">
+            </ul>
+        </div>
         <!-- GENERAL FEED INITIALIZATION -->
         <div id="feed">
             <div id="exerciseID" style="display: none; align-items: center; text-align: center;"></div><br><br><br>
             <div id="foodID" style="display: none; align-items: center; text-align: center; "></div>
             <div id="activeDay"></div>
         </div>
+  
         <!-- FAV FEED TITLE INITIALIZATION -->
 
         </h2>
@@ -813,13 +814,14 @@
  
         <!-- NEW PUBLIC POST ICON -->
         <div id="publicPostDivID">
+            <label id = "postLabel">NEW PUBLIC POST</label>
             <img id="publicPostIcon" onclick="newPublicPost()" src="./icons8-add-new-64.png"
                 alt="publicPostIcon">
         </div>
 
-        <div id="chartContainer" style=""></div>
+        <!-- <div id="chartContainer" style=""></div>
         <div id="chartContainer2" style=""></div>
-        <div id="chartContainer3" style=""></div>
+        <div id="chartContainer3" style=""></div> -->
         <!-- <div id="recentFoods" style="display:none">
                 <li id="gridTitle" class="item">MY RECENT FOODS (LAST 7 DAYS)</li>
                 <ul id="recentFoodsFeed" class="hs full">
