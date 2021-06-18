@@ -30,10 +30,12 @@ body{
 /* INPUT FIELDS ON FORMS */
 /* REQUIRED CLASS NAME STYLING */
 .required{
-  width: 85%;
-  height: 10%;
-  font-size: 50px;
+  width: 50%;
+  height: 50px;
+  font-size:50px;
+  /* pointer-events: visible; */
   border-radius: 10px;
+  padding: 0;
   background-color: white;
   color: black;
 }
@@ -1219,7 +1221,7 @@ text-align: center;}
   width: 100%;
     font-size: 40px;
     align-items: center;
-    padding: 5%;
+    margin: 5%;
     position: relative;
 }
 #currentDateDisplay{
