@@ -1020,6 +1020,15 @@ height: auto;
 
 }
 
+#dButton1{
+
+ text-align: center;
+ width: auto;
+ font-size: 40px;
+ padding: 5%;
+ margin: 5%;
+}
+
 /* SIGNOUT BUTTONS */
 #signOutButton1{
   width: auto;

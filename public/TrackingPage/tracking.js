@@ -197,8 +197,8 @@ window.onload = function () {
             // clear the feed
             clearChildren();
             // load the feed
-            loadFeed(day, month);
-
+            // loadFeed(day, month);
+            loadMyPublicPage();
 
         } else {
             // User is signed out
@@ -1930,6 +1930,7 @@ function editAccount() {
     //load form to edit my account
     // initialize div elements
     var cancelButton = document.createElement('div');
+    // var postT = 
     var username1 = document.createElement('div');
     //  var edit2 = document.createElement('div');
     var postButton = document.createElement('div');
@@ -1973,6 +1974,8 @@ function loadMyAccount() {
     document.getElementById("exerciseIconLabel").style.display = "none";
     document.getElementById("foodIcon").style.display = "none";
     document.getElementById("foodIconLabel").style.display = "none";
+    document.getElementById("favoritesIcon").style.display = "none";
+    document.getElementById("favLabel").style.display = "none";
     document.getElementById("calendar").style.display = "";
     document.getElementById("usernameHeader").style.display = "";
     document.getElementById("accountIcon").style.display = "";
@@ -3137,6 +3140,21 @@ function deleteTask(id) {
         clearChildren();
         // load the feed
         loadFeed(currDate, currMonth);
+    }).catch((error) => {
+        alert("Error: " + error);
+    });
+}
+/////////////////////////////////////////////////////////////////////////////////////
+/////////------------------- DELETE TASK POST FROM DB ---------------////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+// DELETE THIS 'ID' TASK ENTRY, CLEAR FEED, LOAD FEED
+function deletePost(id) {
+    // delete task post document with reference id var passed through function
+    db.collection("posts").doc(""+id).delete().then(() => {
+        // clear the feed
+        clearChildren();
+        // load the feed
+        loadMyAccount();
     }).catch((error) => {
         alert("Error: " + error);
     });
@@ -5209,6 +5227,8 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
         var cancelButton = document.createElement('div');
         var title = document.createElement('div');
         var commentButton = document.createElement('div');
+        var deleteButton = document.createElement('div');
+
 
 
         // create the edit form by setting the HTML content of each div
@@ -5217,12 +5237,14 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
         // update button
         commentButton.innerHTML = "<input onclick = 'addCommentToPost(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
         // delete button
-      
+        deleteButton.innerHTML = "<input onclick = 'deletePost(" + id + ")'type='submit' form='mainForm' id = 'dButton1' value = 'DELETE POST'/>"
+
         // load the edit form on the feed
         document.getElementById("feed")
             .appendChild(cancelButton)
             .appendChild(title)
             .appendChild(commentButton)
+            .appendChild(deleteButton)
     }
 
     document.getElementById("accountPostFeed").appendChild(newPost);
@@ -5257,24 +5279,6 @@ function loadMyPublicPage() {
     document.getElementById("todaysDate").style.display = "none";
     document.getElementById("filler1").style.display = "none";
     document.getElementById("accountFeed").style.display = "none";
-    
-
-
-
-
-//     var comments = "";
-//     doc.collection("comments").get().then((querySnapshot) => {
-//         querySnapshot.forEach((doc) => {
-//             comments += "Username: " + doc.data().username + " , Comment: " + doc.data().title;
-//         }).then(()=>{
-//             createNewPublicPost(doc.data().desc, doc.data().title, doc.data().username,comments, doc.id);
-
-//         })
-    
-
-//     // createNewExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id);
-// });
-
 
     // load the exercise feed
     db.collection("posts").get().then((querySnapshot) => {
@@ -5410,4 +5414,9 @@ function newPublicPost() {
 
 
 
+}
+
+
+function trackingIconClick(){
+    loadFeed(currDate,currMonth);
 }
