@@ -3912,6 +3912,10 @@ function userSignedOut() {
     document.getElementById('favLabel').style.display = 'none';
     document.getElementById("historyTitle").style.display = "none";
     document.getElementById("historyFeed").style.display = "none";
+
+    document.getElementById('publicIcon').style.display = 'none';
+    document.getElementById('trackingIcon').style.display = 'none';
+
     // document.getElementById("dailyNutritionValues").style.display = "none";
 
     document.getElementById("totalFeed").style.display = "none";
