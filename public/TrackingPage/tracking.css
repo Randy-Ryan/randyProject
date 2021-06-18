@@ -1350,7 +1350,11 @@ text-align: center;
 /* ************************************************************************* */
 /* ************************************************************************* */
 
-
+#accountPostFeed{
+  height: 50%;
+  overflow-y: auto;
+  margin-bottom: 20%;
+}
 /* DIV FOR ACCOUNT ICON */
 #accountDivID{
  display: unset;
