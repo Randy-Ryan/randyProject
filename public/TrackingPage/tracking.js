@@ -741,6 +741,8 @@ function clearChildren() {
     while (el2.firstChild) el2.innerHTML = '';
     var el2 = document.getElementById('commentPostFeed');
     while (el2.firstChild) el2.innerHTML = '';
+    var el2 = document.getElementById('accountPostFeed');
+    while (el2.firstChild) el2.innerHTML = '';
 
     // var el2 = document.getElementById('recentFoodsFeed');
     // while (el2.firstChild) el2.innerHTML = '';
