@@ -5232,7 +5232,7 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
 
 
         // create the edit form by setting the HTML content of each div
-        cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+        cancelButton.innerHTML = "<input onclick = 'loadMyAccount()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
         title.innerHTML = "<br><br><br><label class = 'exClass1'>Comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
         // update button
         commentButton.innerHTML = "<input onclick = 'addCommentToPost(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
