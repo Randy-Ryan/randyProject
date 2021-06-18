@@ -5339,6 +5339,7 @@ function loadMyPublicPage() {
     document.getElementById("usernameHeader").style.display = "none";
     document.getElementById("favoritesIcon").style.display = "none";
     document.getElementById("favLabel").style.display = "none";
+    document.getElementById("publicPostDivID").style.display = '';
 
     document.getElementById("calendar").style.display = "none";
     document.getElementById("todaysDate").style.display = "none";
