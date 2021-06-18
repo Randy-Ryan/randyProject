@@ -1989,7 +1989,6 @@ function loadMyAccount() {
     }
     // hide the buttons
     document.getElementById("feed").style.display = "";
-
     document.getElementById("trackingIcon").style.display = "";
     document.getElementById("publicIcon").style.display = "";
     document.getElementById("taskIcon").style.display = "none";
@@ -5185,7 +5184,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
 
     var newPost = document.createElement('li');
     var comments = "";
-    newPost.innerHTML = "Username: " + pUsername + "<br><br>Title:<br> " + pTitle + "<br><br>-----" + pDesc + "<br><br><br>Click to view or add comments";
+    newPost.innerHTML = "Username: " + pUsername + "<br><br>Title:<br> " + pTitle + "<br><br>" + pDesc + "<br><br><br>Click to view or add comments";
     newPost.id = "publicPostElement";
     newPost.className = "postClass";
 
@@ -5207,14 +5206,9 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
         var cancelButton = document.createElement('div');
         var title = document.createElement('div');
         var commentButton = document.createElement('div');
-        var thisPostUsername = document.createElement('div');
         var thisPostTitle = document.createElement('div');
-        var thisPostDesc = document.createElement('div');
 
-        thisPostUsername.innerHTML = "<br><br><br><label class = 'exClass1'>Username: " + pUsername + " <br><br></label>";
-        thisPostTitle.innerHTML = "<br><br><br><label class = 'exClass1'>Title: " + pTitle + " <br><br></label>";
-        thisPostDesc.innerHTML = "<br><br><br><label class = 'exClass1'>" + pDesc + "<br><br><br></label>";
-
+        thisPostTitle.innerHTML = "<div id = 'thisPostTitle'>Username: " + pUsername + " <br><br>Title: <br>" + pTitle + " <br><br>"+pDesc+"<br><br><br></div>"
 
         // create the edit form by setting the HTML content of each div
         cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
@@ -5227,9 +5221,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
         document.getElementById("feed")
             .appendChild(cancelButton)
 
-            .appendChild(thisPostUsername)
             .appendChild(thisPostTitle)
-            .appendChild(thisPostDesc)
             .appendChild(title)
             .appendChild(commentButton)
         document.getElementById("feed").style.display = "";
@@ -5271,17 +5263,15 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
 
         // initialize div elements
         var cancelButton = document.createElement('div');
-        var thisPostUsername = document.createElement('div');
-
         var thisPostTitle = document.createElement('div');
-        var thisPostDesc = document.createElement('div');
         var title = document.createElement('div');
         var commentButton = document.createElement('div');
         var deleteButton = document.createElement('div');
 
-        thisPostUsername.innerHTML = "<br><br><br><label class = 'exClass1'>Username: " + pUsername + " <br><br></label>";
-        thisPostTitle.innerHTML = "<br><br><br><label class = 'exClass1'>Title: <br>" + pTitle + " <br><br></label>";
-        thisPostDesc.innerHTML = "<br><br><br><label class = 'exClass1'>" + pDesc + "<br><br><br></label>";
+
+
+        thisPostTitle.innerHTML = "<div id = 'thisPostTitle'>Username: " + pUsername + " <br><br>Title: <br<" + pTitle + " <br><br>"+pDesc+"<br><br><br></div>";
+
 
 
         // create the edit form by setting the HTML content of each div
@@ -5295,10 +5285,7 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
         // load the edit form on the feed
         document.getElementById("feed")
             .appendChild(cancelButton)
-
-            .appendChild(thisPostUsername)
             .appendChild(thisPostTitle)
-            .appendChild(thisPostDesc)
             .appendChild(title)
             .appendChild(commentButton)
             .appendChild(deleteButton)

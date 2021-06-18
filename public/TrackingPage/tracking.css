@@ -1026,6 +1026,13 @@ height: auto;
   font-size: 30px;
 }
 
+#thisPostTitle{
+  background-color: white;
+  margin: 10%;
+  font-size: 40px;
+  padding: 5%;
+text-align: center;}
+
 #dButton1{
 
  text-align: center;
