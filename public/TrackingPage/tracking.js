@@ -2167,9 +2167,7 @@ function loadFeed(date, month) {
     document.getElementById("publicPostDivID").style.display = 'none';
     document.getElementById("commentFeed").style.display = 'none';
     document.getElementById("feed").style.display = 'none';
-
-
-
+    document.getElementById("accountPFeed").style.display = 'none';
 
 
 
