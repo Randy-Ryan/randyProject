@@ -650,7 +650,7 @@ function prevMonth(currMonth) {
 //TO DO SPLIT THIS INTO STYLING/SHOWING INSTEAD OF CLEARING CHILDREN
 function clearChildren() {
     // clear HTML/TEXT content of all feeds
-    
+
     document.getElementById('feed').textContent = '';
     document.getElementById('feed').innerHTML = '';
     document.getElementById('exFeed').textContent = '';
@@ -2022,12 +2022,12 @@ function loadMyAccount() {
     // get username var
 
     //  loadAccountPostFeed();
-    
+
     db.collection("posts").where("username", "==", username).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             createNewAccountPublicPost(doc.data().desc, doc.data().title, doc.data().username, doc.id);
+        })
     })
-})
 
     // load the account feed
 
@@ -2168,7 +2168,7 @@ function loadFeed(date, month) {
     document.getElementById("feed").style.display = 'none';
 
 
-    
+
 
 
 
@@ -3181,7 +3181,7 @@ function deleteTask(id) {
 // DELETE THIS 'ID' TASK ENTRY, CLEAR FEED, LOAD FEED
 function deletePost(id) {
     // delete task post document with reference id var passed through function
-    db.collection("posts").doc(""+id).delete().then(() => {
+    db.collection("posts").doc("" + id).delete().then(() => {
         // clear the feed
         clearChildren();
         // load the feed
@@ -5191,13 +5191,13 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
         // clear the feed
         clearChildren();
 
-     
+
 
         db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 createNewComment(doc.data().title, doc.data().username);
+            })
         })
-    })
 
         //load comments and ability to add a new comment
 
@@ -5207,11 +5207,11 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
         var commentButton = document.createElement('div');
         var thisPostUsername = document.createElement('div');
         var thisPostTitle = document.createElement('div');
-        var thisPostDesc= document.createElement('div');
+        var thisPostDesc = document.createElement('div');
 
-        thisPostUsername.innerHTML = "<br><br><br><label class = 'exClass1'>Username: "+pUsername+" <br><br></label>";
-        thisPostTitle.innerHTML = "<br><br><br><label class = 'exClass1'>Title: "+pTitle+" <br><br></label>";
-        thisPostDesc.innerHTML = "<br><br><br><label class = 'exClass1'>"+pDesc +"<br><br><br></label>";
+        thisPostUsername.innerHTML = "<br><br><br><label class = 'exClass1'>Username: " + pUsername + " <br><br></label>";
+        thisPostTitle.innerHTML = "<br><br><br><label class = 'exClass1'>Title: " + pTitle + " <br><br></label>";
+        thisPostDesc.innerHTML = "<br><br><br><label class = 'exClass1'>" + pDesc + "<br><br><br></label>";
 
 
         // create the edit form by setting the HTML content of each div
@@ -5220,16 +5220,18 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
         // update button
         commentButton.innerHTML = "<input onclick = 'addCommentToPost(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
         // delete button
-      
+
         // load the edit form on the feed
         document.getElementById("feed")
-        .appendChild(cancelButton)
+            .appendChild(cancelButton)
 
-        .appendChild(thisPostUsername)
-        .appendChild(thisPostTitle)
-        .appendChild(thisPostDesc)
+            .appendChild(thisPostUsername)
+            .appendChild(thisPostTitle)
+            .appendChild(thisPostDesc)
             .appendChild(title)
             .appendChild(commentButton)
+        document.getElementById("feed").style.display = "";
+
     }
 
     document.getElementById("publicPostFeed").appendChild(newPost);
@@ -5246,22 +5248,22 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
     newPost.onclick = function () {
         // clear the feed
         clearChildren();
-    
+
         document.getElementById("usernameHeader").style.display = "none";
         document.getElementById("favoritesIcon").style.display = "none";
         document.getElementById("favLabel").style.display = "none";
-    
+
         document.getElementById("calendar").style.display = "none";
         document.getElementById("todaysDate").style.display = "none";
         document.getElementById("filler1").style.display = "none";
         document.getElementById("accountFeed").style.display = "none";
-    
-         
+
+
         db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 createNewComment(doc.data().title, doc.data().username, doc.id);
+            })
         })
-    })
 
         //load comments and ability to add a new comment
 
@@ -5270,14 +5272,14 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
         var thisPostUsername = document.createElement('div');
 
         var thisPostTitle = document.createElement('div');
-        var thisPostDesc= document.createElement('div');
+        var thisPostDesc = document.createElement('div');
         var title = document.createElement('div');
         var commentButton = document.createElement('div');
         var deleteButton = document.createElement('div');
 
-        thisPostUsername.innerHTML = "<br><br><br><label class = 'exClass1'>Username: "+pUsername+" <br><br></label>";
-        thisPostTitle.innerHTML = "<br><br><br><label class = 'exClass1'>Title: <br>"+pTitle+" <br><br></label>";
-        thisPostDesc.innerHTML = "<br><br><br><label class = 'exClass1'>"+pDesc+"<br><br><br></label>";
+        thisPostUsername.innerHTML = "<br><br><br><label class = 'exClass1'>Username: " + pUsername + " <br><br></label>";
+        thisPostTitle.innerHTML = "<br><br><br><label class = 'exClass1'>Title: <br>" + pTitle + " <br><br></label>";
+        thisPostDesc.innerHTML = "<br><br><br><label class = 'exClass1'>" + pDesc + "<br><br><br></label>";
 
 
         // create the edit form by setting the HTML content of each div
@@ -5290,7 +5292,7 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
 
         // load the edit form on the feed
         document.getElementById("feed")
-        .appendChild(cancelButton)
+            .appendChild(cancelButton)
 
             .appendChild(thisPostUsername)
             .appendChild(thisPostTitle)
@@ -5298,22 +5300,11 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
             .appendChild(title)
             .appendChild(commentButton)
             .appendChild(deleteButton)
+        document.getElementById("feed").style.display = "";
+
     }
 
     document.getElementById("accountPostFeed").appendChild(newPost);
-
-}
-
-
-
-function loadThePostToo(cTitle, cUsername) {
-
-    var newComm = document.createElement('li');
-    newComm.innerHTML = "Username: " + cUsername + "<br>Comment: " + cTitle;
-    newComm.id = "publicPostElementComment";
-    newComm.className = "postClassComment";
-    document.getElementById("commentPostFeed").appendChild(newComm);
-    document.getElementById("commentFeed").style.display = "";
 
 }
 
@@ -5351,8 +5342,8 @@ function loadMyPublicPage() {
     db.collection("posts").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             createNewPublicPost(doc.data().desc, doc.data().title, doc.data().username, doc.id);
+        })
     })
-})
     //show the public feed and add on clicks to elements to create forms to make comments 
 
     //add likes to each document
@@ -5413,7 +5404,7 @@ function addCommentToPost(id) {
 
 
     // create a new food document with random number id
-    db.collection("posts").doc(""+ id).collection("comments").doc(fill).set({
+    db.collection("posts").doc("" + id).collection("comments").doc(fill).set({
         title: titleInput,
         username: username,
     }).then(() => {
@@ -5484,6 +5475,6 @@ function newPublicPost() {
 }
 
 
-function trackingIconClick(){
-    loadFeed(currDate,currMonth);
+function trackingIconClick() {
+    loadFeed(currDate, currMonth);
 }
