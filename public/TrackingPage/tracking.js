@@ -650,13 +650,20 @@ function prevMonth(currMonth) {
 //TO DO SPLIT THIS INTO STYLING/SHOWING INSTEAD OF CLEARING CHILDREN
 function clearChildren() {
     // clear HTML/TEXT content of all feeds
+    
     document.getElementById('feed').textContent = '';
     document.getElementById('feed').innerHTML = '';
     document.getElementById('exFeed').textContent = '';
     document.getElementById('exFeed').innerHTML = '';
     document.getElementById('foodFeed').textContent = '';
     document.getElementById('foodFeed').innerHTML = '';
-    
+    document.getElementById("publicFeed").style.display = "none";
+    document.getElementById("commentFeed").style.display = "none";
+    document.getElementById("accountPFeed").style.display = "none";
+
+
+    document.getElementById("publicPostIcon").style.display = "none";
+
 
     document.getElementById("chartContainer").style.display = "none";
     document.getElementById("chartContainer2").style.display = "none";
@@ -727,6 +734,12 @@ function clearChildren() {
 
 
     var el2 = document.getElementById('historyFeed1');
+    while (el2.firstChild) el2.innerHTML = '';
+
+
+    var el2 = document.getElementById('publicPostFeed');
+    while (el2.firstChild) el2.innerHTML = '';
+    var el2 = document.getElementById('commentPostFeed');
     while (el2.firstChild) el2.innerHTML = '';
 
     // var el2 = document.getElementById('recentFoodsFeed');
@@ -1963,6 +1976,8 @@ function loadMyAccount() {
     document.getElementById("accountIcon").style.display = "";
     document.getElementById("filler1").style.display = "";
 
+    document.getElementById("accountPFeed").style.display = "";
+
     document.getElementsByClassName("active").className = "";
 
     document.getElementById("todaysDate").style.display = "none";
@@ -1978,6 +1993,14 @@ function loadMyAccount() {
 
 
     // get username var
+
+    //  loadAccountPostFeed();
+    
+    db.collection("posts").where("username", "==", username).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            createNewAccountPublicPost(doc.data().desc, doc.data().title, doc.data().username, doc.id);
+    })
+})
 
     // load the account feed
 
@@ -2137,9 +2160,9 @@ function loadFeed(date, month) {
     // createNewTotalNutrientsDaily("TOTAL WATER: <br>" + (Math.round(waterTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotalDaily * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotalDaily * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL NUTRIENTS (TODAY) <br><br><br>TOTAL PROTEIN: <br>" + (Math.round(proteinTotalDaily * 100) / 100).toFixed(2) + " G");
 
 
-    getMyFoods();
-    loadLowFeedForReccos();
-    loadHighFeedForReccos();
+    // getMyFoods();
+    // loadLowFeedForReccos();
+    // loadHighFeedForReccos();
 
     // load the exercise feed
     db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
@@ -4639,81 +4662,81 @@ function loadReccomendedFeed() {
     var missingWater = 1984 - waterTotalDaily;
 
 
-    var calRatio = 1- missingCals/2000;
-    var proteinRatio = 1- missingProtein/200;
-    var carbsRatio = 1- missingCarbs/275;
-    var vitaminRatio = 1- missingVitamin/80;
-    var caffeineRatio = 1- missingCaffeine/400;
-    var potassiumRatio =1-  missingPotassium/4300;
-    var calciumRatio = 1-missingCalcium/1000;
-    var sodiumRatio = 1-missingSodium/2300;
-    var ironRatio = 1-missingIron/8;
-    var fiberRatio = 1-missingFiber/32;
-    var sugarRatio =1-missingSugar/37;
-    var transRatio =1- missingTrans/2;
-    var polyRatio = 1-missingPoly/22;
-    var monoRatio =1- missingMono/44;
-    var cholRatio = 1-missingChol/300;
-    var waterRatio = 1-missingWater/1984;
+    var calRatio = 1 - missingCals / 2000;
+    var proteinRatio = 1 - missingProtein / 200;
+    var carbsRatio = 1 - missingCarbs / 275;
+    var vitaminRatio = 1 - missingVitamin / 80;
+    var caffeineRatio = 1 - missingCaffeine / 400;
+    var potassiumRatio = 1 - missingPotassium / 4300;
+    var calciumRatio = 1 - missingCalcium / 1000;
+    var sodiumRatio = 1 - missingSodium / 2300;
+    var ironRatio = 1 - missingIron / 8;
+    var fiberRatio = 1 - missingFiber / 32;
+    var sugarRatio = 1 - missingSugar / 37;
+    var transRatio = 1 - missingTrans / 2;
+    var polyRatio = 1 - missingPoly / 22;
+    var monoRatio = 1 - missingMono / 44;
+    var cholRatio = 1 - missingChol / 300;
+    var waterRatio = 1 - missingWater / 1984;
 
 
-    const chart = new CanvasJS.Chart("chartContainer", {
-		title:{
-			text: "My Daily Nutrient Ratios (1/3)"              
-		},
-		data: [              
-		{
-			// Change type to "doughnut", "line", "splineArea", etc.
-			type: "column",
-			dataPoints: [
-				{ label: "Calories",  y: calRatio },
-				{ label: "Protein", y: proteinRatio },
-				{ label: "Carbs", y: carbsRatio },
-                { label: "Water",  y: waterRatio },
-			]
-		}
-		]
-	});
-	chart.render();
-    const chart2 = new CanvasJS.Chart("chartContainer2", {
-		title:{
-			text: "My Daily Nutrient Ratios(2/3)"              
-		},
-		data: [              
-		{
-			// Change type to "doughnut", "line", "splineArea", etc.
-			type: "column",
-			dataPoints: [
-                { label: "Cholesterol",  y: cholRatio },
-				{ label: "Potassium",  y: potassiumRatio },
-				{ label: "Calcium",  y: calciumRatio },
-                { label: "Sodium",  y: sodiumRatio },
-			]
-		}
-		]
-	});
-	chart2.render();
-    const chart3 = new CanvasJS.Chart("chartContainer3", {
-		title:{
-			text: "My Daily Nutrient Ratios (3/3)"              
-		},
-		data: [              
-		{
-			// Change type to "doughnut", "line", "splineArea", etc.
-			type: "column",
-			dataPoints: [
-				{ label: "Iron", y: ironRatio },
-				{ label: "Fiber", y: fiberRatio },
-				{ label: "Trans Fat",  y: transRatio },
-				{ label: "Poly fat",  y: polyRatio },
-                { label: "Mono fat",  y: monoRatio }
-			]
-		}
-		]
-	});
-	chart3.render();
+    // const chart = new CanvasJS.Chart("chartContainer", {
+    //     title: {
+    //         text: "My Daily Nutrient Ratios (1/3)"
+    //     },
+    //     data: [
+    //         {
+    //             // Change type to "doughnut", "line", "splineArea", etc.
+    //             type: "column",
+    //             dataPoints: [
+    //                 { label: "Calories", y: calRatio },
+    //                 { label: "Protein", y: proteinRatio },
+    //                 { label: "Carbs", y: carbsRatio },
+    //                 { label: "Water", y: waterRatio },
+    //             ]
+    //         }
+    //     ]
+    // });
+    // chart.render();
+    // const chart2 = new CanvasJS.Chart("chartContainer2", {
+    //     title: {
+    //         text: "My Daily Nutrient Ratios(2/3)"
+    //     },
+    //     data: [
+    //         {
+    //             // Change type to "doughnut", "line", "splineArea", etc.
+    //             type: "column",
+    //             dataPoints: [
+    //                 { label: "Cholesterol", y: cholRatio },
+    //                 { label: "Potassium", y: potassiumRatio },
+    //                 { label: "Calcium", y: calciumRatio },
+    //                 { label: "Sodium", y: sodiumRatio },
+    //             ]
+    //         }
+    //     ]
+    // });
+    // chart2.render();
+    // const chart3 = new CanvasJS.Chart("chartContainer3", {
+    //     title: {
+    //         text: "My Daily Nutrient Ratios (3/3)"
+    //     },
+    //     data: [
+    //         {
+    //             // Change type to "doughnut", "line", "splineArea", etc.
+    //             type: "column",
+    //             dataPoints: [
+    //                 { label: "Iron", y: ironRatio },
+    //                 { label: "Fiber", y: fiberRatio },
+    //                 { label: "Trans Fat", y: transRatio },
+    //                 { label: "Poly fat", y: polyRatio },
+    //                 { label: "Mono fat", y: monoRatio }
+    //             ]
+    //         }
+    //     ]
+    // });
+    // chart3.render();
 
-    
+
 
     // (Math.round(calRatio * 100) / 100).toFixed(2)
     // (Math.round(proteinRatio * 100) / 100).toFixed(2)
@@ -4731,31 +4754,31 @@ function loadReccomendedFeed() {
     // (Math.round(waterRatio * 100) / 100).toFixed(2)
 
     var x = document.getElementsByClassName("reccoClass")
-    for (var i = 0; i<x.length; i++){
+    for (var i = 0; i < x.length; i++) {
         x[i].style.display = "none";
     }
 
-    if(calRatio>=1){
+    if (calRatio >= 1) {
         console.log("YOU'RE EXCEEDING THE 2000 CALORIE LIMIT");
     }
-    else if (calRatio>=0.9 && calRatio <1){
-        console.log("CAL RATIO IS BETWEEN .9 AND 1: "+  (Math.round(calRatio * 100) / 100).toFixed(2));
+    else if (calRatio >= 0.9 && calRatio < 1) {
+        console.log("CAL RATIO IS BETWEEN .9 AND 1: " + (Math.round(calRatio * 100) / 100).toFixed(2));
         // reccoAFood(calRatio, "ninety", "Calories");
         document.getElementById("Low in Calories").style.display = "";
     }
     // else if (calRatio>0.25 && calRatio <.9){
     //     console.log("CAL RATIO IS BETWEEN .25 AND 1: "+  (Math.round(calRatio * 100) / 100).toFixed(2));
     // }
-    else if (calRatio<.9){
-        console.log("CAL RATIO IS LESS THAN .9: "+  (Math.round(calRatio * 100) / 100).toFixed(2));
+    else if (calRatio < .9) {
+        console.log("CAL RATIO IS LESS THAN .9: " + (Math.round(calRatio * 100) / 100).toFixed(2));
         document.getElementById("High in Calories").style.display = "";
         // reccoAFood(calRatio, "belowNinety", "Calories");
     }
-    if(proteinRatio>=1){
+    if (proteinRatio >= 1) {
         console.log("YOU'RE EXCEEDING THE 200 G PROTEIN LIMIT");
     }
-    else if (proteinRatio>=0.9 && proteinRatio <1){
-        console.log("PROTEIN RATIO IS BETWEEN .9 AND 1: "+  (Math.round(proteinRatio * 100) / 100).toFixed(2));
+    else if (proteinRatio >= 0.9 && proteinRatio < 1) {
+        console.log("PROTEIN RATIO IS BETWEEN .9 AND 1: " + (Math.round(proteinRatio * 100) / 100).toFixed(2));
         // reccoAFood(proteinRatio, "ninety", "Protein");
         document.getElementById("Low in Protein").style.display = "";
 
@@ -4763,187 +4786,187 @@ function loadReccomendedFeed() {
     // else if (proteinRatio>0.25 && proteinRatio <.9){
     //     console.log("PROTEIN RATIO IS BETWEEN .25 AND 1: "+  (Math.round(proteinRatio * 100) / 100).toFixed(2));
     // }
-    else if (proteinRatio<.9){
-        console.log("PROTEIN RATIO IS LESS THAN .9: "+  (Math.round(proteinRatio * 100) / 100).toFixed(2));
+    else if (proteinRatio < .9) {
+        console.log("PROTEIN RATIO IS LESS THAN .9: " + (Math.round(proteinRatio * 100) / 100).toFixed(2));
         // reccoAFood(proteinRatio, "belowNinety", "Protein");
         document.getElementById("High in Protein").style.display = "";
 
 
     }
-    if(carbsRatio>=1){
+    if (carbsRatio >= 1) {
         console.log("YOU'RE EXCEEDING THE 275 G CARBS LIMIT");
     }
-    else if (carbsRatio>=0.9 && carbsRatio <1){
+    else if (carbsRatio >= 0.9 && carbsRatio < 1) {
         document.getElementById("Low in Carbs").style.display = "";
 
-        console.log("CARBS RATIO IS BETWEEN .9 AND 1: "+  (Math.round(carbsRatio * 100) / 100).toFixed(2));
+        console.log("CARBS RATIO IS BETWEEN .9 AND 1: " + (Math.round(carbsRatio * 100) / 100).toFixed(2));
     }
     // else if (carbsRatio>0.25 && carbsRatio <.9){
     //     console.log("CARBS RATIO IS BETWEEN .25 AND 1: "+  (Math.round(carbsRatio * 100) / 100).toFixed(2));
     // }
-    else if (carbsRatio<.9){
+    else if (carbsRatio < .9) {
         document.getElementById("High in Carbs").style.display = "";
 
-        console.log("CARBS RATIO IS LESS THAN .9: "+  (Math.round(carbsRatio * 100) / 100).toFixed(2));
+        console.log("CARBS RATIO IS LESS THAN .9: " + (Math.round(carbsRatio * 100) / 100).toFixed(2));
     }
-    if(potassiumRatio>=1){
+    if (potassiumRatio >= 1) {
         console.log("YOU'RE EXCEEDING THE 4300 MG POTASSIUM LIMIT");
     }
-    else if (potassiumRatio>=0.9 && potassiumRatio <1){
+    else if (potassiumRatio >= 0.9 && potassiumRatio < 1) {
         document.getElementById("Low in Potassium").style.display = "";
 
-        console.log("POTASSIUM RATIO IS BETWEEN .9 AND 1: "+  (Math.round(potassiumRatio * 100) / 100).toFixed(2));
+        console.log("POTASSIUM RATIO IS BETWEEN .9 AND 1: " + (Math.round(potassiumRatio * 100) / 100).toFixed(2));
     }
     // else if (potassiumRatio>0.25 && potassiumRatio <.9){
     //     console.log("POTASSIUM RATIO IS BETWEEN .25 AND 1: "+  (Math.round(potassiumRatio * 100) / 100).toFixed(2));
     // }
-    else if (potassiumRatio<.9){
+    else if (potassiumRatio < .9) {
         document.getElementById("High in Potassium").style.display = "";
 
-        console.log("POTASSIUM RATIO IS LESS THAN .9: "+  (Math.round(potassiumRatio * 100) / 100).toFixed(2));
+        console.log("POTASSIUM RATIO IS LESS THAN .9: " + (Math.round(potassiumRatio * 100) / 100).toFixed(2));
     }
-    if(calciumRatio>=1){
+    if (calciumRatio >= 1) {
         console.log("YOU'RE EXCEEDING THE 1000 MG CALCIUM LIMIT");
     }
-    else if (calciumRatio>=0.9 && calciumRatio <1){
+    else if (calciumRatio >= 0.9 && calciumRatio < 1) {
         document.getElementById("Low in Calcium").style.display = "";
 
-        console.log("CALCIUM RATIO IS BETWEEN .9 AND 1: "+  (Math.round(calciumRatio * 100) / 100).toFixed(2));
+        console.log("CALCIUM RATIO IS BETWEEN .9 AND 1: " + (Math.round(calciumRatio * 100) / 100).toFixed(2));
     }
     // else if (calciumRatio>0.25 && calciumRatio <.9){
     //     console.log("CALCIUM RATIO IS BETWEEN .25 AND 1: "+  (Math.round(calciumRatio * 100) / 100).toFixed(2));
     // }
-    else if (calciumRatio<.9){
+    else if (calciumRatio < .9) {
         document.getElementById("High in Calcium").style.display = "";
 
-        console.log("CALCIUM RATIO IS LESS THAN .9: "+  (Math.round(calciumRatio * 100) / 100).toFixed(2));
+        console.log("CALCIUM RATIO IS LESS THAN .9: " + (Math.round(calciumRatio * 100) / 100).toFixed(2));
     }
-    if(sodiumRatio>=1){
+    if (sodiumRatio >= 1) {
         console.log("YOU'RE EXCEEDING THE 2300 MG SODIUM LIMIT");
     }
-    else if (sodiumRatio>=0.9 && sodiumRatio <1){
+    else if (sodiumRatio >= 0.9 && sodiumRatio < 1) {
         document.getElementById("Low in Sodium").style.display = "";
 
-        console.log("SODIUM RATIO IS BETWEEN .9 AND 1: "+  (Math.round(sodiumRatio * 100) / 100).toFixed(2));
+        console.log("SODIUM RATIO IS BETWEEN .9 AND 1: " + (Math.round(sodiumRatio * 100) / 100).toFixed(2));
     }
     // else if (sodiumRatio>0.25 && sodiumRatio <.9){
     //     console.log("SODIUM RATIO IS BETWEEN .25 AND 1: "+  (Math.round(sodiumRatio * 100) / 100).toFixed(2));
     // }
-    else if (sodiumRatio<.9){
+    else if (sodiumRatio < .9) {
         document.getElementById("High in Sodium").style.display = "";
 
-        console.log("SODIUM RATIO IS LESS THAN .9: "+  (Math.round(sodiumRatio * 100) / 100).toFixed(2));
+        console.log("SODIUM RATIO IS LESS THAN .9: " + (Math.round(sodiumRatio * 100) / 100).toFixed(2));
     }
-    if(ironRatio>=1){
+    if (ironRatio >= 1) {
         console.log("YOU'RE EXCEEDING THE 8 MG IRON LIMIT");
     }
-    else if (ironRatio>=0.9 && ironRatio <1){
+    else if (ironRatio >= 0.9 && ironRatio < 1) {
         document.getElementById("Low in Iron").style.display = "";
 
-        console.log("IRON RATIO IS BETWEEN .9 AND 1: "+  (Math.round(ironRatio * 100) / 100).toFixed(2));
+        console.log("IRON RATIO IS BETWEEN .9 AND 1: " + (Math.round(ironRatio * 100) / 100).toFixed(2));
     }
     // else if (ironRatio>0.25 && ironRatio <.9){
     //     console.log("IRON RATIO IS BETWEEN .25 AND 1: "+  (Math.round(ironRatio * 100) / 100).toFixed(2));
     // }
-    else if (ironRatio<.9){
+    else if (ironRatio < .9) {
         document.getElementById("High in Iron").style.display = "";
 
-        console.log("IRON RATIO IS LESS THAN .9: "+  (Math.round(ironRatio * 100) / 100).toFixed(2));
+        console.log("IRON RATIO IS LESS THAN .9: " + (Math.round(ironRatio * 100) / 100).toFixed(2));
     }
-    if(fiberRatio>=1){
+    if (fiberRatio >= 1) {
         console.log("YOU'RE EXCEEDING THE 32 G FIBER LIMIT");
     }
-    else if (fiberRatio>=0.9 && fiberRatio <1){
+    else if (fiberRatio >= 0.9 && fiberRatio < 1) {
         document.getElementById("Low in Fiber").style.display = "";
 
-        console.log("FIBER RATIO IS BETWEEN .9 AND 1: "+  (Math.round(fiberRatio * 100) / 100).toFixed(2));
+        console.log("FIBER RATIO IS BETWEEN .9 AND 1: " + (Math.round(fiberRatio * 100) / 100).toFixed(2));
     }
     // else if (fiberRatio>0.25 && fiberRatio <.9){
     //     console.log("FIBER RATIO IS BETWEEN .25 AND 1: "+  (Math.round(fiberRatio * 100) / 100).toFixed(2));
     // }
-    else if (fiberRatio<.25){
+    else if (fiberRatio < .25) {
         document.getElementById("High in Fiber").style.display = "";
 
-        console.log("FIBER RATIO IS LESS THAN .9: "+  (Math.round(fiberRatio * 100) / 100).toFixed(2));
+        console.log("FIBER RATIO IS LESS THAN .9: " + (Math.round(fiberRatio * 100) / 100).toFixed(2));
     }
-    if(transRatio>=1){
+    if (transRatio >= 1) {
         console.log("YOU'RE EXCEEDING THE 2 G TRANS FAT LIMIT");
     }
-    else if (transRatio>=0.9 && transRatio <1){
+    else if (transRatio >= 0.9 && transRatio < 1) {
         document.getElementById("Low in Trans fat").style.display = "";
 
-        console.log("TRANS RATIO IS BETWEEN .9 AND 1: "+  (Math.round(transRatio * 100) / 100).toFixed(2));
+        console.log("TRANS RATIO IS BETWEEN .9 AND 1: " + (Math.round(transRatio * 100) / 100).toFixed(2));
     }
     // else if (transRatio>0.25 && transRatio <.9){
     //     console.log("TRANS FAT RATIO IS BETWEEN .25 AND 1: "+  (Math.round(transRatio * 100) / 100).toFixed(2));
     // }
-    else if (transRatio<.9){
+    else if (transRatio < .9) {
         document.getElementById("High in Trans fat").style.display = "";
 
-        console.log("TRANS FAT RATIO IS LESS THAN .9: "+  (Math.round(transRatio * 100) / 100).toFixed(2));
+        console.log("TRANS FAT RATIO IS LESS THAN .9: " + (Math.round(transRatio * 100) / 100).toFixed(2));
     }
-    if(polyRatio>=1){
+    if (polyRatio >= 1) {
         console.log("YOU'RE EXCEEDING THE 22 G POLYUNSATURATED FAT LIMIT");
     }
-    else if (polyRatio>=0.9 && polyRatio <1){
+    else if (polyRatio >= 0.9 && polyRatio < 1) {
         document.getElementById("Low in Polyunsaturated fat").style.display = "";
 
-        console.log("POLYUNSATURATED RATIO IS BETWEEN .9 AND 1: "+  (Math.round(polyRatio * 100) / 100).toFixed(2));
+        console.log("POLYUNSATURATED RATIO IS BETWEEN .9 AND 1: " + (Math.round(polyRatio * 100) / 100).toFixed(2));
     }
     // else if (polyRatio>0.25 && polyRatio <.9){
     //     console.log("POLYUNSATURATED FAT RATIO IS BETWEEN .25 AND 1: "+  (Math.round(polyRatio * 100) / 100).toFixed(2));
     // }
-    else if (polyRatio<.9){
+    else if (polyRatio < .9) {
         document.getElementById("High in Polyunsaturated fat").style.display = "";
-        console.log("POLYUNSATURATED FAT RATIO IS LESS THAN .9: "+  (Math.round(polyRatio * 100) / 100).toFixed(2));
+        console.log("POLYUNSATURATED FAT RATIO IS LESS THAN .9: " + (Math.round(polyRatio * 100) / 100).toFixed(2));
     }
-    if(monoRatio>=1){
+    if (monoRatio >= 1) {
         console.log("YOU'RE EXCEEDING THE 44 G MONOUNSATURATED FAT LIMIT");
     }
-    else if (monoRatio>=0.9 && monoRatio <1){
+    else if (monoRatio >= 0.9 && monoRatio < 1) {
         document.getElementById("Low in Monounsaturated fat").style.display = "";
 
-        console.log("MONOUNSATURATED RATIO IS BETWEEN .9 AND 1: "+  (Math.round(monoRatio * 100) / 100).toFixed(2));
+        console.log("MONOUNSATURATED RATIO IS BETWEEN .9 AND 1: " + (Math.round(monoRatio * 100) / 100).toFixed(2));
     }
     // else if (monoRatio>0.25 && monoRatio <.9){
     //     console.log("MONOUNSATURATED FAT RATIO IS BETWEEN .25 AND 1: "+  (Math.round(monoRatio * 100) / 100).toFixed(2));
     // }
-    else if (monoRatio<.9){
+    else if (monoRatio < .9) {
         document.getElementById("High in Monounsaturated fat").style.display = "";
 
-        console.log("MONOUNSATURATED FAT RATIO IS LESS THAN .9: "+  (Math.round(monoRatio * 100) / 100).toFixed(2));
+        console.log("MONOUNSATURATED FAT RATIO IS LESS THAN .9: " + (Math.round(monoRatio * 100) / 100).toFixed(2));
     }
-    if(cholRatio>=1){
+    if (cholRatio >= 1) {
         console.log("YOU'RE EXCEEDING THE 300 MG CHOLESTEROL LIMIT");
     }
-    else if (cholRatio>=0.9 && cholRatio <1){
+    else if (cholRatio >= 0.9 && cholRatio < 1) {
         document.getElementById("Low in Cholesterol").style.display = "";
 
-        console.log("CHOLESTEROL RATIO IS BETWEEN .9 AND 1: "+  (Math.round(cholRatio * 100) / 100).toFixed(2));
+        console.log("CHOLESTEROL RATIO IS BETWEEN .9 AND 1: " + (Math.round(cholRatio * 100) / 100).toFixed(2));
     }
     // else if (cholRatio>0.25 && cholRatio <.9){
     //     console.log("CHOLESTEROL RATIO IS BETWEEN .25 AND 1: "+  (Math.round(cholRatio * 100) / 100).toFixed(2));
     // }
-    else if (cholRatio<.9){
+    else if (cholRatio < .9) {
         document.getElementById("High in Cholesterol").style.display = "";
 
-        console.log("CHOLESTEROL RATIO IS LESS THAN .9: "+  (Math.round(cholRatio * 100) / 100).toFixed(2));
+        console.log("CHOLESTEROL RATIO IS LESS THAN .9: " + (Math.round(cholRatio * 100) / 100).toFixed(2));
     }
-    if(waterRatio>=1){
+    if (waterRatio >= 1) {
         console.log("YOU'RE EXCEEDING THE 1984 MG WATER LIMIT");
     }
-    else if (waterRatio>=0.9 && waterRatio <1){
+    else if (waterRatio >= 0.9 && waterRatio < 1) {
         document.getElementById("Low in Water").style.display = "";
 
-        console.log("WATER RATIO IS BETWEEN .9 AND 1: "+  (Math.round(waterRatio * 100) / 100).toFixed(2));
+        console.log("WATER RATIO IS BETWEEN .9 AND 1: " + (Math.round(waterRatio * 100) / 100).toFixed(2));
     }
     // else if (waterRatio>0.25 && waterRatio <.9){
     //     console.log("WATER RATIO IS BETWEEN .25 AND 1: "+  (Math.round(waterRatio * 100) / 100).toFixed(2));
     // }
-    else if (waterRatio<.9){
+    else if (waterRatio < .9) {
         document.getElementById("High in Water").style.display = "";
 
-        console.log("WATER RATIO IS LESS THAN .9: "+  (Math.round(waterRatio * 100) / 100).toFixed(2));
+        console.log("WATER RATIO IS LESS THAN .9: " + (Math.round(waterRatio * 100) / 100).toFixed(2));
     }
     // console.log("CAL:" + calRatio,"PROTEIN:" + proteinRatio,"CARBS:" + carbsRatio,"VIT:" + vitaminRatio,
     // caffeineRatio,potassiumRatio,calciumRatio,sodiumRatio,ironRatio,
@@ -4975,7 +4998,7 @@ function loadReccomendedFeed() {
         "You should consume " + (Math.round(missingPoly * 100) / 100).toFixed(2) + " G of Polyunsaturated fat to maintain 22 G today<br><br>" +
         "You should consume " + (Math.round(missingMono * 100) / 100).toFixed(2) + " G of Monounsaturated fat to maintain 44 G today<br><br>" +
         "You should consume " + (Math.round(missingChol * 100) / 100).toFixed(2) + " MG of Cholesterol to maintain 300 MG today<br><br>";
-        // "You should consume " + (Math.round(missingLipid * 100) / 100).toFixed(2) + " more x of Lipid, or total, fat to reach 'x' x today<br><br>";
+    // "You should consume " + (Math.round(missingLipid * 100) / 100).toFixed(2) + " more x of Lipid, or total, fat to reach 'x' x today<br><br>";
 
     newRec.id = "dailyInfo";
     newRec.className = "testtt";
@@ -4983,29 +5006,25 @@ function loadReccomendedFeed() {
 
 }
 
-function reccAFood(){
-
-}
-
-function reccoAFood(ratio, below, title){
+function reccoAFood(ratio, below, title) {
     //load a new reccomendation into the feed given the inputs
 
 
-    if (below == "ninety"){
-        var t = "You're almost at your " + title + " to reach the nutrition goal for today (" + ratio +"% there). Here are a few reccomended foods to meet this goal: ";
+    if (below == "ninety") {
+        var t = "You're almost at your " + title + " to reach the nutrition goal for today (" + ratio + "% there). Here are a few reccomended foods to meet this goal: ";
         console.log(t);
 
     }
-    else if (below == "belowNinety"){
-        var t = "You should consume more"+  + title + " to reach the nutrition goal for today (" + ratio +"% there). Here are a few reccomended foods to help meet this goal:";
+    else if (below == "belowNinety") {
+        var t = "You should consume more" + + title + " to reach the nutrition goal for today (" + ratio + "% there). Here are a few reccomended foods to help meet this goal:";
         // load a new api and get recipes of foods that are high in this title var nutrient
 
         // console.log(t);
-}
+    }
 }
 
 
-function loadHighFeedForReccos(){ 
+function loadHighFeedForReccos() {
 
 
     var title = ["Calories", "Protein", "Carbs", "Water", "Potassium", "Calcium", "Sodium", "Iron", "Fiber", "Trans fat", "Polyunsaturated fat", "Monounsaturated fat", "Cholesterol"];
@@ -5013,94 +5032,376 @@ function loadHighFeedForReccos(){
 
 
 
-    for (var i = 0; i< title.length; i++){
+    for (var i = 0; i < title.length; i++) {
 
 
-    const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&pageSize=3&query=High in ' + title[i];
-    // Http.open("GET", url);
-    // Http.send();
+        const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&pageSize=3&query=High in ' + title[i];
+        // Http.open("GET", url);
+        // Http.send();
 
-    fetch(url).then(data => {
-        return data.json()
-    }).then(res => {
-        // console.log(res)
-        // console.log(t);
-        var newNutrient = document.createElement('li');
-        newNutrient.innerHTML =
-        res.foodSearchCriteria.generalSearchInput + " recc 1: <br>" + res.foods[0].description + "<br>Food category: " + res.foods[0].foodCategory + "<br><br>" +
-        res.foodSearchCriteria.generalSearchInput + " recc 2: <br>" + res.foods[1].description + "<br>Food category: " + res.foods[1].foodCategory + "<br><br>"+
-        res.foodSearchCriteria.generalSearchInput + " recc 3: <br>" + res.foods[2].description + "<br>Food category: " + res.foods[2].foodCategory + "<br><br>";
-        newNutrient.id = "" + res.foodSearchCriteria.generalSearchInput;
-        newNutrient.className = "reccoClass";
-        document.getElementById("dailyReccomendedNutrientFeedLow").appendChild(newNutrient);
+        fetch(url).then(data => {
+            return data.json()
+        }).then(res => {
+            // console.log(res)
+            // console.log(t);
+            var newNutrient = document.createElement('li');
+            newNutrient.innerHTML =
+                res.foodSearchCriteria.generalSearchInput + " recc 1: <br>" + res.foods[0].description + "<br>Food category: " + res.foods[0].foodCategory + "<br><br>" +
+                res.foodSearchCriteria.generalSearchInput + " recc 2: <br>" + res.foods[1].description + "<br>Food category: " + res.foods[1].foodCategory + "<br><br>" +
+                res.foodSearchCriteria.generalSearchInput + " recc 3: <br>" + res.foods[2].description + "<br>Food category: " + res.foods[2].foodCategory + "<br><br>";
+            newNutrient.id = "" + res.foodSearchCriteria.generalSearchInput;
+            newNutrient.className = "reccoClass";
+            document.getElementById("dailyReccomendedNutrientFeedLow").appendChild(newNutrient);
 
-        // var newNutrientWeek = document.createElement('li');
-        // newNutrientWeek.innerHTML =
-        // res.foodSearchCriteria.generalSearchInput + " recc 1: <br>" + res.foods[0].description + "<br>Food category: " + res.foods[0].foodCategory +"<br><br>" +
-        // res.foodSearchCriteria.generalSearchInput + " recc 2: <br>" + res.foods[1].description + "<br>Food category: " + res.foods[1].foodCategory + "<br><br>"+
-        // res.foodSearchCriteria.generalSearchInput + " recc 3: <br>" + res.foods[2].description + "<br>Food category: " + res.foods[2].foodCategory + "<br><br>";
-    
-        // newNutrientWeek.id = "Week " + res.foodSearchCriteria.generalSearchInput;
-        // newNutrientWeek.className = "reccoClassWeek";
-    
-        // document.getElementById("weeklyReccomendedNutrientFeedLow").appendChild(newNutrientWeek);
-    
+            // var newNutrientWeek = document.createElement('li');
+            // newNutrientWeek.innerHTML =
+            // res.foodSearchCriteria.generalSearchInput + " recc 1: <br>" + res.foods[0].description + "<br>Food category: " + res.foods[0].foodCategory +"<br><br>" +
+            // res.foodSearchCriteria.generalSearchInput + " recc 2: <br>" + res.foods[1].description + "<br>Food category: " + res.foods[1].foodCategory + "<br><br>"+
+            // res.foodSearchCriteria.generalSearchInput + " recc 3: <br>" + res.foods[2].description + "<br>Food category: " + res.foods[2].foodCategory + "<br><br>";
+
+            // newNutrientWeek.id = "Week " + res.foodSearchCriteria.generalSearchInput;
+            // newNutrientWeek.className = "reccoClassWeek";
+
+            // document.getElementById("weeklyReccomendedNutrientFeedLow").appendChild(newNutrientWeek);
+
         }).catch((error) => {
-             console.log("ERROR submitting post! " + error);
+            console.log("ERROR submitting post! " + error);
         });
 
+    }
 }
-}
-function loadLowFeedForReccos(){ 
+function loadLowFeedForReccos() {
 
     var title = ["Calories", "Protein", "Carbs", "Water", "Potassium", "Calcium", "Sodium", "Iron", "Fiber", "Trans fat", "Polyunsaturated fat", "Monounsaturated fat", "Cholesterol"];
 
 
 
-    for (var i = 0; i< title.length; i++){
+    for (var i = 0; i < title.length; i++) {
 
-    const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&pageSize=3&query=Low in ' + title[i];
-    // Http.open("GET", url);
-    // Http.send();
-
-
-    fetch(url).then(data => {
-        return data.json()
-    }).then(res => {
-        console.log(res)
-        // console.log(t);
-        // console.log(res.foods[0].description);
-        // console.log(res.foods[1].description);
-        // console.log(res.foods[2].description);
-        // console.log(title);
-
-    var newNutrient = document.createElement('li');
-    newNutrient.innerHTML =
-    res.foodSearchCriteria.generalSearchInput + " recc 1: <br>" + res.foods[0].description + "<br>Food category: " + res.foods[0].foodCategory +"<br><br>" +
-    res.foodSearchCriteria.generalSearchInput + " recc 2: <br>" + res.foods[1].description + "<br>Food category: " + res.foods[1].foodCategory + "<br><br>"+
-    res.foodSearchCriteria.generalSearchInput + " recc 3: <br>" + res.foods[2].description + "<br>Food category: " + res.foods[2].foodCategory + "<br><br>";
-
-    newNutrient.id = "" + res.foodSearchCriteria.generalSearchInput;
-    newNutrient.className = "reccoClass";
-
-    document.getElementById("dailyReccomendedNutrientFeed").appendChild(newNutrient);
-
-    // var newNutrientWeek = document.createElement('li');
-    // newNutrientWeek.innerHTML =
-    // res.foodSearchCriteria.generalSearchInput + " recc 1: <br>" + res.foods[0].description + "<br>Food category: " + res.foods[0].foodCategory +"<br><br>" +
-    // res.foodSearchCriteria.generalSearchInput + " recc 2: <br>" + res.foods[1].description + "<br>Food category: " + res.foods[1].foodCategory + "<br><br>"+
-    // res.foodSearchCriteria.generalSearchInput + " recc 3: <br>" + res.foods[2].description + "<br>Food category: " + res.foods[2].foodCategory + "<br><br>";
-
-    // newNutrientWeek.id = "Week " + res.foodSearchCriteria.generalSearchInput;
-    // newNutrientWeek.className = "reccoClassWeek";
-
-    // document.getElementById("weeklyReccomendedNutrientFeed").appendChild(newNutrientWeek);
+        const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&pageSize=3&query=Low in ' + title[i];
+        // Http.open("GET", url);
+        // Http.send();
 
 
-    }) .catch((error) => {
-         console.log("ERROR submitting post! " + error);
-    });
+        fetch(url).then(data => {
+            return data.json()
+        }).then(res => {
+            console.log(res)
+            // console.log(t);
+            // console.log(res.foods[0].description);
+            // console.log(res.foods[1].description);
+            // console.log(res.foods[2].description);
+            // console.log(title);
+
+            var newNutrient = document.createElement('li');
+            newNutrient.innerHTML =
+                res.foodSearchCriteria.generalSearchInput + " recc 1: <br>" + res.foods[0].description + "<br>Food category: " + res.foods[0].foodCategory + "<br><br>" +
+                res.foodSearchCriteria.generalSearchInput + " recc 2: <br>" + res.foods[1].description + "<br>Food category: " + res.foods[1].foodCategory + "<br><br>" +
+                res.foodSearchCriteria.generalSearchInput + " recc 3: <br>" + res.foods[2].description + "<br>Food category: " + res.foods[2].foodCategory + "<br><br>";
+
+            newNutrient.id = "" + res.foodSearchCriteria.generalSearchInput;
+            newNutrient.className = "reccoClass";
+
+            document.getElementById("dailyReccomendedNutrientFeed").appendChild(newNutrient);
+
+            // var newNutrientWeek = document.createElement('li');
+            // newNutrientWeek.innerHTML =
+            // res.foodSearchCriteria.generalSearchInput + " recc 1: <br>" + res.foods[0].description + "<br>Food category: " + res.foods[0].foodCategory +"<br><br>" +
+            // res.foodSearchCriteria.generalSearchInput + " recc 2: <br>" + res.foods[1].description + "<br>Food category: " + res.foods[1].foodCategory + "<br><br>"+
+            // res.foodSearchCriteria.generalSearchInput + " recc 3: <br>" + res.foods[2].description + "<br>Food category: " + res.foods[2].foodCategory + "<br><br>";
+
+            // newNutrientWeek.id = "Week " + res.foodSearchCriteria.generalSearchInput;
+            // newNutrientWeek.className = "reccoClassWeek";
+
+            // document.getElementById("weeklyReccomendedNutrientFeed").appendChild(newNutrientWeek);
+
+
+        }).catch((error) => {
+            console.log("ERROR submitting post! " + error);
+        });
+
+    }
+}
+
+
+function createNewPublicPost(pDesc, pTitle, pUsername, id) {
+
+    var newPost = document.createElement('li');
+    var comments = "";
+    newPost.innerHTML = "Username: " + pUsername + "<br>Title: " + pTitle + "<br>Description: " + pDesc + "<br><br>Click to view or add comments";
+    newPost.id = "publicPostElement";
+    newPost.className = "postClass";
+
+    newPost.onclick = function () {
+        // clear the feed
+        clearChildren();
+
+     
+
+        db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                createNewComment(doc.data().title, doc.data().username);
+        })
+    })
+
+        //load comments and ability to add a new comment
+
+        // initialize div elements
+        var cancelButton = document.createElement('div');
+        var title = document.createElement('div');
+        var commentButton = document.createElement('div');
+
+
+        // create the edit form by setting the HTML content of each div
+        cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+        title.innerHTML = "<br><br><br><label class = 'exClass1'>Comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
+        // update button
+        commentButton.innerHTML = "<input onclick = 'addCommentToPost(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
+        // delete button
+      
+        // load the edit form on the feed
+        document.getElementById("feed")
+            .appendChild(cancelButton)
+            .appendChild(title)
+            .appendChild(commentButton)
+    }
+
+    document.getElementById("publicPostFeed").appendChild(newPost);
 
 }
+
+function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
+
+    var newPost = document.createElement('li');
+    newPost.innerHTML = "Username: " + pUsername + "<br>Title: " + pTitle + "<br>Description: " + pDesc + "<br><br>Click to view or add comments";
+    newPost.id = "myPostElement";
+    newPost.className = "postClass";
+
+    newPost.onclick = function () {
+        // clear the feed
+        clearChildren();
+    
+        document.getElementById("usernameHeader").style.display = "none";
+        document.getElementById("favoritesIcon").style.display = "none";
+        document.getElementById("favLabel").style.display = "none";
+    
+        document.getElementById("calendar").style.display = "none";
+        document.getElementById("todaysDate").style.display = "none";
+        document.getElementById("filler1").style.display = "none";
+        document.getElementById("accountFeed").style.display = "none";
+        
+         
+        db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                createNewComment(doc.data().title, doc.data().username);
+        })
+    })
+
+        //load comments and ability to add a new comment
+
+        // initialize div elements
+        var cancelButton = document.createElement('div');
+        var title = document.createElement('div');
+        var commentButton = document.createElement('div');
+
+
+        // create the edit form by setting the HTML content of each div
+        cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+        title.innerHTML = "<br><br><br><label class = 'exClass1'>Comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
+        // update button
+        commentButton.innerHTML = "<input onclick = 'addCommentToPost(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
+        // delete button
+      
+        // load the edit form on the feed
+        document.getElementById("feed")
+            .appendChild(cancelButton)
+            .appendChild(title)
+            .appendChild(commentButton)
+    }
+
+    document.getElementById("accountPostFeed").appendChild(newPost);
+
 }
 
+
+
+function createNewComment(cTitle, cUsername) {
+
+    var newComm = document.createElement('li');
+    newComm.innerHTML = "Username: " + cUsername + "<br>Comment: " + cTitle;
+    newComm.id = "publicPostElementComment";
+    newComm.className = "postClassComment";
+    document.getElementById("commentPostFeed").appendChild(newComm);
+    document.getElementById("commentFeed").style.display = "";
+
+
+}
+
+
+function loadMyPublicPage() {
+    clearChildren();
+    document.getElementById("publicFeed").style.display = "";
+    document.getElementById("publicPostIcon").style.display = "";
+
+    document.getElementById("usernameHeader").style.display = "none";
+    document.getElementById("favoritesIcon").style.display = "none";
+    document.getElementById("favLabel").style.display = "none";
+
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("todaysDate").style.display = "none";
+    document.getElementById("filler1").style.display = "none";
+    document.getElementById("accountFeed").style.display = "none";
+    
+
+
+
+
+//     var comments = "";
+//     doc.collection("comments").get().then((querySnapshot) => {
+//         querySnapshot.forEach((doc) => {
+//             comments += "Username: " + doc.data().username + " , Comment: " + doc.data().title;
+//         }).then(()=>{
+//             createNewPublicPost(doc.data().desc, doc.data().title, doc.data().username,comments, doc.id);
+
+//         })
+    
+
+//     // createNewExercise(doc.data().reps, doc.data().sets, doc.data().weight, doc.data().time, doc.data().message, doc.id);
+// });
+
+
+    // load the exercise feed
+    db.collection("posts").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            createNewPublicPost(doc.data().desc, doc.data().title, doc.data().username, doc.id);
+    })
+})
+    //show the public feed and add on clicks to elements to create forms to make comments 
+
+    //add likes to each document
+}
+function addPublicPostToDB() {
+    // initialize and set vars
+    var requiredInputs = document.querySelectorAll(".required");
+
+    var titleInput = requiredInputs[0].value;
+    var descInput = requiredInputs[1].value;
+
+
+    //TODO//
+    // change the random number implementation?
+
+    // get a random number for the doc ID 
+    var fill = "" + generateRandomNumber(1, 1000000);
+
+    // create a new food document with random number id
+    db.collection("posts").doc(fill).set({
+        title: titleInput,
+        desc: descInput,
+        username: username,
+    }).then(() => {
+        // clear the feed
+        clearChildren();
+
+        //TODO//
+        // implement post successful alert
+
+        // load the feed
+        loadMyPublicPage()
+    })
+        .catch((error) => {
+            // alert("ERROR submitting post! " + error);
+        });
+}
+function addCommentToPost(id) {
+
+    // initialize and set vars
+    var requiredInputs = document.querySelectorAll(".required");
+
+    var titleInput = requiredInputs[0].value;
+
+
+    //TODO//
+    // change the random number implementation?
+
+    // get a random number for the doc ID 
+    var fill = "" + generateRandomNumber(1, 1000000);
+
+    console.log(fill);
+    console.log(id);
+
+    console.log(titleInput);
+    console.log(username);
+
+
+
+    // create a new food document with random number id
+    db.collection("posts").doc(""+ id).collection("comments").doc(fill).set({
+        title: titleInput,
+        username: username,
+    }).then(() => {
+        // clear the feed
+        clearChildren();
+
+        //TODO//
+        // implement post successful alert
+
+        // load the feed
+        loadMyPublicPage()
+    })
+        .catch((error) => {
+            // alert("ERROR submitting post! " + error);
+        });
+}
+function newPublicPost() {
+    clearChildren();
+
+    document.getElementById("usernameHeader").style.display = "none";
+    document.getElementById("favoritesIcon").style.display = "none";
+    document.getElementById("publicPostIcon").style.display = "none";
+
+    document.getElementById("favLabel").style.display = "none";
+
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("todaysDate").style.display = "none";
+    document.getElementById("publicFeed").style.display = "none";
+
+
+
+
+    // initialize div elements
+    var cancelButton = document.createElement('div');
+    var title = document.createElement('div');
+    var inputTitle = document.createElement('div');
+    var description = document.createElement('div');
+    var usernameA = document.createElement('div');
+    var postButton = document.createElement('div');
+
+
+    // set ids
+    cancelButton.id = "cancelButtonPublicNew";
+    title.id = "titlePublicNew";
+    title.id = "titleInputPublicNew";
+    description.id = "foodPublicNew";
+    usernameA.id = "waterPublicNew";
+
+    // then add the HTML content of the element
+    cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
+    title.innerHTML = "<br><br><br><label class = 'exClass1'>NEW PUBLIC POST<br>";
+    inputTitle.innerHTML = "<br><br><br><label class = 'exClass1'>Title for post:<br><br> </label> <input type='text' id='foodReq1' onclick = '" + 'makeClean(document.getElementById("foodReq1"))' + "' class = 'required'><br><br><br>";
+    description.innerHTML = "<br><br><br><label class = 'exClass1'>Description<br><br> </label> <input type='text' id='foodReq1' onclick = '" + 'makeClean(document.getElementById("foodReq1"))' + "' class = 'required'><br><br><br>";
+    usernameA.innerHTML = "<label class = 'exClass1'>Username: " + username + "</label>";
+    postButton.innerHTML = "<input onclick = 'addPublicPostToDB()'type='submit' id = 'pButton1' value = 'POST'/>"
+
+    // this could be created as appending one div instead for better styling
+    document.getElementById("feed")
+        .appendChild(cancelButton)
+        .appendChild(usernameA)
+        .appendChild(title)
+        .appendChild(inputTitle)
+        .appendChild(description)
+        .appendChild(postButton)
+
+
+
+}

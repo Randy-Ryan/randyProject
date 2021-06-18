@@ -74,11 +74,27 @@
 
         </div>
     </div>
+
+    <!-- TRACKING ICON -->
+    <div id="trackDivID">
+        <img id="trackingIcon" onclick="window.location.href = './tracking.html';" src="./icons8-home-50.png"
+            alt="trackingIcon">
+    </div>
+    <!-- PUBLIC ICON -->
+    <div id="publicDivID">
+        <img id="publicIcon" onclick="loadMyPublicPage()" src="./icons8-activity-feed-64.png" alt="publicIcon">
+    </div>
     <!-- ACCOUNT ICON -->
     <div id="accountDivID">
         <img id="accountIcon" onclick="loadMyAccount()" src="./contact.png" alt="accountIcon">
     </div>
 
+
+    <div id = "commentFeed">
+        <li id="gridTitleComments" class="item">COMMENTS ON THIS POST</li>
+        <ul id="commentPostFeed">
+        </ul>
+    </div>
     <body>
 
 
@@ -586,6 +602,11 @@
 
         </div>
 
+        <div id="accountPFeed">
+            <li id="gridTitle" class="item">MY POSTS</li>
+            <ul id="accountPostFeed">
+            </ul>
+        </div>
         <div id="favoritesDivID" style="text-align: center;">
             <img id="favoritesIcon" onclick="favoriteButtonClick()" src="./icons8-plus-144.png" alt="favoritesIcon">
             <label id="favLabel">NEW FAVORITE</label>
@@ -673,7 +694,8 @@
                 <br>Trans Fat: &#60;2 G
                 <br>Polyunsaturated fat: &#60;22 G
                 <br>Monounsaturated fat: &#60;44 G
-                <br>Cholesterol: 300 MG</li>
+                <br>Cholesterol: 300 MG
+            </li>
             <li id="gridTitleFemale" class="item">ADULT FEMALE (DAILY)
                 <br><br>Calories: Between 2000 and 2800
                 <br>Water: 1984 G or 15.5 cups
@@ -687,35 +709,38 @@
                 <br>Trans Fat: &#60;2 G
                 <br>Polyunsaturated fat: &#60;22 G
                 <br>Monounsaturated fat: &#60;44 G
-                <br>Cholesterol: 300 MG</li>
+                <br>Cholesterol: 300 MG
+            </li>
             <li id="gridTitleMale" class="item">ADULT MALE (WEEKLY)
-                    <br><br>Calories: Between 14000 and 19600
-                    <br>Water: 13888 G or 108.5 cups
-                    <br>Protein: 1400 G (or body weight)
-                    <br>Carbs: 1925 G
-                    <br>Potassium: 30100 MG
-                    <br>Calcium: 7000 MG
-                    <br>Sodium: 16100 MG
-                    <br>Iron: 56 MG
-                    <br>Fiber: 224 G
-                    <br>Trans Fat: &#60;14 G
-                    <br>Polyunsaturated fat: &#60;154 G
-                    <br>Monounsaturated fat: &#60;308 G
-                    <br>Cholesterol: 2100 MG</li>
+                <br><br>Calories: Between 14000 and 19600
+                <br>Water: 13888 G or 108.5 cups
+                <br>Protein: 1400 G (or body weight)
+                <br>Carbs: 1925 G
+                <br>Potassium: 30100 MG
+                <br>Calcium: 7000 MG
+                <br>Sodium: 16100 MG
+                <br>Iron: 56 MG
+                <br>Fiber: 224 G
+                <br>Trans Fat: &#60;14 G
+                <br>Polyunsaturated fat: &#60;154 G
+                <br>Monounsaturated fat: &#60;308 G
+                <br>Cholesterol: 2100 MG
+            </li>
             <li id="gridTitleFemale" class="item">ADULT FEMALE (WEEKLY)
-                    <br><br>Calories: Between 14000 and 19600
-                    <br>Water: 13888 G or 108.5 cups
-                    <br>Protein: 700 G (or body weight)
-                    <br>Carbs: 1750 G
-                    <br>Potassium: 30100 MG
-                    <br>Calcium: 8400 MG
-                    <br>Sodium: 16100 MG
-                    <br>Iron: 126 MG
-                    <br>Fiber: 175 G
-                    <br>Trans Fat: &#60;14 G
-                    <br>Polyunsaturated fat: &#60;154 G
-                    <br>Monounsaturated fat: &#60;308 G
-                    <br>Cholesterol: 2100 MG</li>
+                <br><br>Calories: Between 14000 and 19600
+                <br>Water: 13888 G or 108.5 cups
+                <br>Protein: 700 G (or body weight)
+                <br>Carbs: 1750 G
+                <br>Potassium: 30100 MG
+                <br>Calcium: 8400 MG
+                <br>Sodium: 16100 MG
+                <br>Iron: 126 MG
+                <br>Fiber: 175 G
+                <br>Trans Fat: &#60;14 G
+                <br>Polyunsaturated fat: &#60;154 G
+                <br>Monounsaturated fat: &#60;308 G
+                <br>Cholesterol: 2100 MG
+            </li>
         </div>
         <div id="totalFeed">
             <li id="gridTitle" class="item" style="">TOTAL NUTRIENTS (FROM TODAY)</li>
@@ -755,9 +780,11 @@
             </ul>
         </div>
         <div id="reccomendedFeed">
-            <li id="gridTitleR1" class="item">RECCOMENDED LOW NUTRIENT FOODS FOR NUTRIENTS WHERE YOUR GOAL IS ALMOST MET (>90%)</li>
+            <li id="gridTitleR1" class="item">RECCOMENDED LOW NUTRIENT FOODS FOR NUTRIENTS WHERE YOUR GOAL IS ALMOST MET
+                (>90%)</li>
 
-            <li id="gridTitleR" class="item">RECCOMENDED HIGH NUTRIENT FOODS FOR NUTRIENTS THAT YOU'RE LACKING TODAY (&#60;90%)</li>
+            <li id="gridTitleR" class="item">RECCOMENDED HIGH NUTRIENT FOODS FOR NUTRIENTS THAT YOU'RE LACKING TODAY
+                (&#60;90%)</li>
             <ul id="dailyReccomendedNutrientFeed">
             </ul>
             <ul id="dailyReccomendedNutrientFeedLow">
@@ -777,7 +804,18 @@
                 <li id="randyFavID">4. QUEST PROTEIN SHAKE</li>
             </ul>
         </div>
+        <div id="publicFeed">
+            <li id="gridTitle" class="item">PUBLIC FEED POSTS</li>
+            <ul id="publicPostFeed">
+            </ul>
+        </div>
 
+ 
+        <!-- NEW PUBLIC POST ICON -->
+        <div id="publicPostDivID">
+            <img id="publicPostIcon" onclick="newPublicPost()" src="./icons8-add-new-64.png"
+                alt="publicPostIcon">
+        </div>
 
         <div id="chartContainer" style=""></div>
         <div id="chartContainer2" style=""></div>

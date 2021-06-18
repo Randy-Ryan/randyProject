@@ -1022,17 +1022,14 @@ height: auto;
 
 /* SIGNOUT BUTTONS */
 #signOutButton1{
-  float: right;
   width: auto;
   height: auto;
   padding: 3%;
-  margin-right: 5%;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
 
   text-align: unset;
   font-size: 40px;
   border-radius: 100px;
-  margin-top: 25%;
   background-color: black;
   color: white;
   border: 1px solid black;
@@ -1328,9 +1325,9 @@ text-align: center;
 
 
 /* DIV FOR ACCOUNT ICON */
-/* #accountDivID{
- top:0;
-} */
+#accountDivID{
+ display: unset;
+}
 
 /* ACCOUNT ICON IMG ELEMENT*/
 #accountUsername{
@@ -1344,7 +1341,7 @@ text-align: center;
 position: relative;
 height: 100px;
 text-align: left;
-margin-left: 2%;
+margin-left: 5%;
 margin-top: 0%;
 width: 100px;
 margin-bottom: 5%;
@@ -1354,10 +1351,72 @@ border: 10px solid gray;
 
 
 }
+/* ACCOUNT ICON IMG ELEMENT*/
+#trackingIcon{
+  position: relative;
+  float: left;
+  height: 100px;
+  text-align: left;
+  margin-left: 5%;
 
+  margin-top: 0%;
+  width: 100px;
+  margin-bottom: 5%;
+  border-radius: 75px;
+  box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+  border: 10px solid gray;
+  
+  
+  }
+  /* ACCOUNT ICON IMG ELEMENT*/
+#publicIcon{
+  position: relative;
+  float: left;
+  margin-left: 5%;
+
+  height: 100px;
+  text-align: left;
+  margin-top: 0%;
+  width: 100px;
+  margin-bottom: 5%;
+  border-radius: 75px;
+  box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+  border: 10px solid gray;
+  
+  
+  }
+
+  .postClassComment{
+    background-color: white;
+    margin: 10%;
+  }
+
+  .postClass{
+    background-color: white;
+    margin: 10%;
+  }
+
+  #publicPostIcon{
+    position: relative;
+    float: left;
+    height: 100px;
+    text-align: left;
+    margin-left: 5%;
+  
+    margin-top: 0%;
+    width: 100px;
+    margin-bottom: 5%;
+    border-radius: 75px;
+    box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+    border: 10px solid gray;
+    
+    
+    }
 /* FAVORITES ICON IMG ELEMENT*/
 #favoritesIcon{
   position: absolute;
+  float: left;
+
   top: 2%;
   right: 2%;
   padding: 0;
