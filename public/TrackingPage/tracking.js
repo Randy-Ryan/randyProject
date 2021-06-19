@@ -1052,19 +1052,21 @@ function createNewHistoryEx(r, s, w, t, m, id) {
     // var addEditElement = document.createElement('div');
     var addFavoriteElement = document.createElement('div');
     var addToFavButton = document.createElement('div');
-    newExercise.id = "favIDEx";
+    newExercise.id = "hisIDEx";
     newExercise.className = "testtt";
+    addToFavButton.innerHTML = "<input onclick = '" + 'addFavHistoryEx("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "' type='submit' class = 'favButtonAddHistory' value = 'ADD TO FAV EXERCISES'/>"
 
     // create the new exercise div and set HTML content w/ respective vars
     addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavExerciseToDB("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "' id = 'historyAdd' class = 'favButtonAdd'>ADD TODAY</button>";
 
-    addToFavButton.innerHTML = "<input onclick = '" + 'addFavHistoryEx("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "' type='submit' id = 'favAdd' value = 'ADD TO FAVORITE EXERCISES'/>"
 
     // load new exercise div into the exercise feed
     newExercise.appendChild(addFavoriteElement).appendChild(addToFavButton);
 
+
     //format a string to set element html
     // var fullString = "";
+    newExercise.innerHTML += "<br>"
     if (m != "") {
         newExercise.innerHTML += "Workout:<br>" + m + "<br><br>";
     }
@@ -1101,7 +1103,7 @@ function createNewHistoryFood(f, w, t, m, id) {
     var addToFavButton = document.createElement('div');
 
 
-    addToFavButton.innerHTML = "<input onclick = '" + 'addFavHistoryFood("' + f + "," + w + "," + t + "," + m + '")' + "' type='submit' id = 'favAdd' value = 'ADD TO FAVORITE FOOD'/>"
+    addToFavButton.innerHTML = "<input onclick = '" + 'addFavHistoryFood("' + f + "," + w + "," + t + "," + m + '")' + "' type='submit' class = 'favButtonAddHistory' value = 'ADD TO FAV FOODS'/>"
 
     // create the new food div and set HTML content w/ respective vars
     addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' id = 'historyAdd' class = 'favButtonAdd'>ADD TODAY</button>";
@@ -1152,7 +1154,7 @@ function createNewHistoryTask(ttl, desc, t, id) {
     newTask.id = "favIDTask";
     newTask.className = "testtt";
 
-    addToFavButton.innerHTML = "<input onclick = '" + 'addFavHistoryTask("' + ttl + "," + desc + "," + t + '")' + "' type='submit' id = 'favAdd' value = 'ADD TO FAVORITE TASKS'/>"
+    addToFavButton.innerHTML = "<input onclick = '" + 'addFavHistoryTask("' + ttl + "," + desc + "," + t + '")' + "' type='submit' class = 'favButtonAddHistory' value = 'ADD TO FAV TASKS'/>"
 
     addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavTaskToDB("' + ttl + "," + desc + "," + t + '")' + "' id = 'historyAdd' class = 'favButtonAdd'>ADD TODAY</button>";
     newTask.appendChild(addFavoriteElement).appendChild(addToFavButton);
@@ -1505,9 +1507,9 @@ function newFavFood() {
     // then add the HTML content of the element
     cancelButton.innerHTML = "<input onclick = 'favoriteButtonClick()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
     title.innerHTML = "<br><br><br><label class = 'exClass1'>FAVORITE FOOD<br>";
-    food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: PB&J plus a banana)<br><br> </label> <input type='text' id='foodReq1' onclick = '" + 'makeClean(document.getElementById("foodReq1"))' + "' class = 'required'><br><br><br>";
+    food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: Banana, scrambled eggs)<br><br> </label> <input type='text' id='foodReq1' onclick = '" + 'makeClean(document.getElementById("foodReq1"))' + "' class = 'required'><br><br><br>";
     water.innerHTML = "<label class = 'exClass1'>Water/Beverages (ex: Water, Protein Shake)<br> <br> </label><input type='text' id='foodReq2' onclick = '" + 'makeClean(document.getElementById("foodReq2"))' + "' class = 'required'><br><br><br>";
-    message.innerHTML = "<label class = 'exClass1'>Note (ex: 400 calories)<br><br> </label><input type='text' id='foodReq3' onclick = '" + 'makeClean(document.getElementById("foodReq3"))' + "' class = 'required'><br><br><br>";
+    message.innerHTML = "<label class = 'exClass1'>Note (ex: 4 servings, taste rating 6/10)<br><br> </label><input type='text' id='foodReq3' onclick = '" + 'makeClean(document.getElementById("foodReq3"))' + "' class = 'required'><br><br><br>";
     time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br>  </label><input type='text' id='foodReq4' onclick = '" + 'makeClean(document.getElementById("foodReq4"))' + "' class = 'required' ><br><br><br>";
     postButton.innerHTML = "<input onclick = 'addFavFoodAndWater()'type='submit' id = 'pButton1' value = 'POST'/>"
 
@@ -1645,9 +1647,9 @@ function foodIconButtonClick() {
 
     // then add the HTML content of the element
     cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
-    food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: PB&J plus a banana)<br><br> </label> <input type='text' id='foodReq1' onclick = '" + 'makeClean(document.getElementById("foodReq1"))' + "' class = 'required'><br><br><br>";
+    food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: Banana, scrambled eggs)<br><br> </label> <input type='text' id='foodReq1' onclick = '" + 'makeClean(document.getElementById("foodReq1"))' + "' class = 'required'><br><br><br>";
     water.innerHTML = "<label class = 'exClass1'>Water/Beverages (ex: Water, Protein Shake)<br> <br> </label><input type='text' id='foodReq2' onclick = '" + 'makeClean(document.getElementById("foodReq2"))' + "' class = 'required'><br><br><br>";
-    message.innerHTML = "<label class = 'exClass1'>Note (ex: 400 calories)<br><br> </label><input type='text' id='foodReq3' onclick = '" + 'makeClean(document.getElementById("foodReq3"))' + "' class = 'required'><br><br><br>";
+    message.innerHTML = "<label class = 'exClass1'>Note (ex: 4 servings, taste rating 6/10)<br><br> </label><input type='text' id='foodReq3' onclick = '" + 'makeClean(document.getElementById("foodReq3"))' + "' class = 'required'><br><br><br>";
     time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br>  </label><input type='text' id='foodReq4' onclick = '" + 'makeClean(document.getElementById("foodReq4"))' + "' class = 'required' ><br><br><br>";
     postButton.innerHTML = "<input onclick = 'addFoodAndWater()'type='submit' id = 'pButton1' value = 'POST'/>"
 
@@ -3872,10 +3874,10 @@ function editThisFoodFav(f) {
 
     // create the edit form by setting the HTML content of each div
     cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
-    food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: PB&J plus a banana)<br><br> </label> <input type='text' id='foodInput' class = 'required' value = '" + f1 + "'><br><br><br>  ";
+    food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: Banana, scrambled eggs)<br><br> </label> <input type='text' id='foodInput' class = 'required' value = '" + f1 + "'><br><br><br>  ";
     water.innerHTML = "<label class = 'exClass1'>Water/Beverages (ex: Water, Protein Shake)<br> <br> </label><input type='text' class = 'required' id='waterInput' value = '" + w + "'><br><br><br>  ";
     time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br>  </label><input type='text' id='timeFoodInput' class = 'required' value = '" + t + "'><br><br> <br> ";
-    message.innerHTML = "<label class = 'exClass1'>Note (ex: 400 calories)<br><br> </label><input type='text' id='messageFoodInput'class = 'required' value = '" + m + "'><br><br><br>";
+    message.innerHTML = "<label class = 'exClass1'>Note (ex: 4 servings, taste rating 6/10)<br><br> </label><input type='text' id='messageFoodInput'class = 'required' value = '" + m + "'><br><br><br>";
     // update button
     postButton.innerHTML = "<input onclick = 'updateFavFoodEntry(" + id + ")' type='submit' id = 'pButton1' value = 'UPDATE'/>";
     // delete button
