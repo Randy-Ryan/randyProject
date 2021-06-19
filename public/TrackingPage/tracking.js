@@ -18,6 +18,7 @@ var currMonth;
 var userID;
 var username;
 var email;
+var myPhoneNumber;
 
 var proteinTotal = 0;
 var carbTotal = 0;
@@ -181,6 +182,14 @@ window.onload = function () {
             userID = user.uid;
             username = user.displayName;
             email = user.email;
+            // myPhoneNumber = user.phoneNumber;
+
+            db.collection("users").where("username", "==", username).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    myPhoneNumber = doc.data().phoneNumber;
+                    console.log(myPhoneNumber);
+                })
+            })
 
             console.log("signed in: " + userID, username, email);
             // user.phoneNumber
@@ -1739,31 +1748,33 @@ function editAccount() {
     document.getElementById("feed").style.display = "";
 
 
+ 
+
     //load form to edit my account
     // initialize div elements
     var cancelButton = document.createElement('div');
     // var postT = 
     var username1 = document.createElement('div');
-    //  var edit2 = document.createElement('div');
+    var phoneNum = document.createElement('div');
     var postButton = document.createElement('div');
 
     cancelButton.id = "cancelAccountID";
     username1.id = "usernameAccountID";
-    //  edit2.id = "editAccountID";
+    phoneNum.id = "phoneNumID";
     postButton.id = "postAccountID";
 
 
     //set vars to pre load the edit form
     cancelButton.innerHTML = "<input onclick = 'loadMyAccount()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
     username1.innerHTML = "<br><br><br><label class = 'exClass1'>Username: <br><br></label><input type='text' class = 'required' value = '" + username + "'><br><br><br>";
-    //  edit2.innerHTML = "<br><br><br><label class = 'exClass1'>Edit 2 <br><br></label><input type='text' class = 'required' value = '" + userID + "'><br><br><br>";
+    phoneNum.innerHTML = "<br><br><br><label class = 'exClass1'>Phone Number:<br> (Proper format: 123-456-7890) <br><br></label><input type='text' class = 'required' value = '" + myPhoneNumber + "'><br><br><br>";
     postButton.innerHTML = "<input onclick = 'updateAccount()' type='submit' id = 'cancelButton1' value = 'UPDATE'/>"
 
     // load the edit form on the feed
     document.getElementById("feed")
         .appendChild(cancelButton)
         .appendChild(username1)
-        //  .appendChild(edit2)
+        .appendChild(phoneNum)
         .appendChild(postButton)
 }
 /////////////////////////////////////////////////////////////////////////////////////
@@ -3526,6 +3537,7 @@ function updateAccount() {
     date = "" + currDate;
     month = "" + currMonth;
     var usernameEdit = username;
+    var phoneNumEdit = myPhoneNumber;
     // var edit2, edit3;
     var requiredInputs = document.querySelectorAll(".required");
 
@@ -3536,10 +3548,10 @@ function updateAccount() {
                 // username
                 usernameEdit = requiredInputs[i].value;
             }
-            // else if (i == 1) {
-            //     // edit2
-            //     edit2 = requiredInputs[i].value;
-            // }
+            else if (i == 1) {
+                // edit2
+                phoneNumEdit = requiredInputs[i].value;
+            }
             // else if (i == 2) {
             //     // edit3
             //     edit3 = requiredInputs[i].value;
@@ -3552,15 +3564,18 @@ function updateAccount() {
         }
     }
 
+
+    console.log(phoneNumEdit);
     //user must be logged in to update account
     const user = firebase.auth().currentUser;
 
     // update firebase account display name
     user.updateProfile({
         displayName: usernameEdit,
+        // phoneNumber: phoneNumEdit
         // photoURL: "https://example.com/jane-q-user/profile.jpg"
     }).then(() => {
-        console.log("updated this display name");
+        console.log("updated this display name and phone number");
     }).catch((error) => {
         console.log(error);
     });
@@ -3569,9 +3584,11 @@ function updateAccount() {
     db.collection("users").doc(userID).set({
         username: usernameEdit,
         userID: userID,
-        email: email
+        email: email,
+        phoneNumber: phoneNumEdit
     }).then(() => {
-        window.location.href = "../TrackingPage/tracking.html?userID=" + userID + "&username=" + usernameEdit + "&email=" + email;
+        loadMyAccount();
+        // window.location.href = "../TrackingPage/tracking.html?userID=" + userID + "&username=" + usernameEdit + "&email=" + email;
     })
         .catch((error) => {
             // alert("ERROR submitting post!" + error);
@@ -4451,45 +4468,29 @@ function loadTaskHistoryFeed() {
 function getMyFoods() {
     var myFoods1 = "";
 
-    //add a check for the past week
-    //.where date is between today and 7 days ago
-    //implementation for the month
+
     db.collection("users").doc(userID).collection("foodAndWater").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            // console.log(doc.data().food);
-            // console.log(doc.data().water);
-            // console.log(doc.data().date, doc.data().month);
+         
             var dayInt = parseInt(doc.data().date);
-            // console.log(dayInt);
-
             var todaysDayInt = parseInt(currDate);
-            // console.log(todaysDayInt);
-            //and month check?
+
             if (dayInt == todaysDayInt) {
-                // load the feed for past 7 days
-                // createNewRecentFood(doc.data().food, doc.data().water, doc.data().time, doc.data().message, doc.id);
-                //load the past seven days
+               //load todays food list
                 myFoods1 += doc.data().food + "," + doc.data().water + ",";
             }
+            
         });
     }).then(() => {
         var foodStrings = myFoods1.split(',');
         for (var i = 0; i < foodStrings.length; i++) {
             if (foodStrings[i] != "") {
-                // console.log(foodStrings[i]);
                 //NOW WE HAVE AN ARRAY OF THE LAST 7 DAYS OF FOOD INPUTS
-                //USE THESE STRINGS WITH AN NUTRITION API/CALCULATOR
-
-                // const Http = new XMLHttpRequest();
-
-                //demo key = 3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf
-                //full food list url = https://api.nal.usda.gov/fdc/v1/foods/list?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf
-
+                //USE THESE STRINGS WITH A NUTRITION API/CALCULATOR
 
                 // change the query in this url for an api search
                 const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&pageSize=1&pageList=3&query=' + foodStrings[i];
-                // Http.open("GET", url);
-                // Http.send();
+        
 
                 fetch(url).then(data => {
                     return data.json()
@@ -4801,79 +4802,79 @@ function loadRegisterPage() {
 
 }
 
-function drawMultSeriesWeek(calRatioWeek,proteinRatioWeek,carbsRatioWeek,potassiumRatioWeek,calciumRatioWeek,sodiumRatioWeek,ironRatioWeek,fiberRatioWeek,transRatioWeek,polyRatioWeek,monoRatioWeek,cholRatioWeek,waterRatioWeek) {
-   console.log("Week: " + calRatioWeek,proteinRatioWeek,carbsRatioWeek,potassiumRatioWeek,calciumRatioWeek,sodiumRatioWeek,ironRatioWeek,fiberRatioWeek,transRatioWeek,polyRatioWeek,monoRatioWeek,cholRatioWeek,waterRatioWeek);
-   
-   
+function drawMultSeriesWeek(calRatioWeek, proteinRatioWeek, carbsRatioWeek, potassiumRatioWeek, calciumRatioWeek, sodiumRatioWeek, ironRatioWeek, fiberRatioWeek, transRatioWeek, polyRatioWeek, monoRatioWeek, cholRatioWeek, waterRatioWeek) {
+    console.log("Week: " + calRatioWeek, proteinRatioWeek, carbsRatioWeek, potassiumRatioWeek, calciumRatioWeek, sodiumRatioWeek, ironRatioWeek, fiberRatioWeek, transRatioWeek, polyRatioWeek, monoRatioWeek, cholRatioWeek, waterRatioWeek);
+
+
     var data = google.visualization.arrayToDataTable([
-      ["NUTRIENT", 'MY WEEKLY PERCENTAGE', 'RECCOMENDED WEEKLY PERCENTAGE'],
-      ["WEEKLY CARBS", carbsRatioWeek*100, 100],
-      ["WEEKLY PROTEIN", proteinRatioWeek*100, 100],
-      ["WEEKLY CARBS", carbsRatioWeek*100, 100],
-      ["WEEKLY WATER", waterRatioWeek*100, 100],
-      ["WEEKLY CALORIES", calRatioWeek*100, 100],
-      ["WEEKLY POTASSIUM", potassiumRatioWeek*100, 100],
-      ["WEEKLY CALCIUM", calciumRatioWeek*100, 100],
-      ["WEEKLY SODIUM", sodiumRatioWeek*100, 100],
-      ["WEEKLY IRON", ironRatioWeek*100, 100],
-      ["WEEKLY FIBER", fiberRatioWeek*100, 100],
-      ["WEEKLY TRANS FAT", transRatioWeek*100, 100],
-      ["WEEKLY POLY FAT", polyRatioWeek*100, 100],
-      ["WEEKLY MONO FAT", monoRatioWeek*100, 100],
-      ["WEEKLY CHOLESTEROL", cholRatioWeek*100, 100]
+        ["NUTRIENT", 'MY WEEKLY PERCENTAGE', 'RECCOMENDED WEEKLY PERCENTAGE'],
+        ["WEEKLY CARBS", carbsRatioWeek * 100, 100],
+        ["WEEKLY PROTEIN", proteinRatioWeek * 100, 100],
+        ["WEEKLY CARBS", carbsRatioWeek * 100, 100],
+        ["WEEKLY WATER", waterRatioWeek * 100, 100],
+        ["WEEKLY CALORIES", calRatioWeek * 100, 100],
+        ["WEEKLY POTASSIUM", potassiumRatioWeek * 100, 100],
+        ["WEEKLY CALCIUM", calciumRatioWeek * 100, 100],
+        ["WEEKLY SODIUM", sodiumRatioWeek * 100, 100],
+        ["WEEKLY IRON", ironRatioWeek * 100, 100],
+        ["WEEKLY FIBER", fiberRatioWeek * 100, 100],
+        ["WEEKLY TRANS FAT", transRatioWeek * 100, 100],
+        ["WEEKLY POLY FAT", polyRatioWeek * 100, 100],
+        ["WEEKLY MONO FAT", monoRatioWeek * 100, 100],
+        ["WEEKLY CHOLESTEROL", cholRatioWeek * 100, 100]
     ]);
 
     var options = {
-      title: 'MY WEEKLY NUTRITION PERCENTAGES',
-      chartArea: {width: '50%'},
-      hAxis: {
-        title: 'PERCENTAGE',
-        minValue: 0
-      },
-      vAxis: {
-        title: 'NUTRIENT'
-      }
+        title: 'MY WEEKLY NUTRITION PERCENTAGES',
+        chartArea: { width: '50%' },
+        hAxis: {
+            title: 'PERCENTAGE',
+            minValue: 0
+        },
+        vAxis: {
+            title: 'NUTRIENT'
+        }
     };
 
     var chart = new google.visualization.BarChart(document.getElementById('chart_div_week'));
     chart.draw(data, options);
-  }
- 
-  function drawMultSeries(calRatio,proteinRatio,carbsRatio,potassiumRatio,calciumRatio,sodiumRatio,ironRatio,fiberRatio,transRatio,polyRatio,monoRatio,cholRatio,waterRatio) {
-    
-    console.log("day: " + calRatio,proteinRatio,carbsRatio,potassiumRatio,calciumRatio,sodiumRatio,ironRatio,fiberRatio,transRatio,polyRatio,monoRatio,cholRatio,waterRatio);
+}
+
+function drawMultSeries(calRatio, proteinRatio, carbsRatio, potassiumRatio, calciumRatio, sodiumRatio, ironRatio, fiberRatio, transRatio, polyRatio, monoRatio, cholRatio, waterRatio) {
+
+    console.log("day: " + calRatio, proteinRatio, carbsRatio, potassiumRatio, calciumRatio, sodiumRatio, ironRatio, fiberRatio, transRatio, polyRatio, monoRatio, cholRatio, waterRatio);
     var data = google.visualization.arrayToDataTable([
-      ["NUTRIENT", 'MY DAILY PERCENTAGE', 'RECCOMENDED DAILY PERCENTAGE'],
-      ["DAILY CARBS", Math.abs(carbsRatio*100), 100],
-      ["DAILY PROTEIN", Math.abs(proteinRatio*100), 100],
-      ["DAILY CALORIES", Math.abs(calRatio*100), 100],
-      ["DAILY WATER", Math.abs(waterRatio*100), 100],
-      ["DAILY POTASSIUM", Math.abs(potassiumRatio*100), 100],
-      ["DAILY CALCIUM", Math.abs(calciumRatio*100), 100],
-      ["DAILY SODIUM", Math.abs(sodiumRatio*100), 100],
-      ["DAILY IRON", Math.abs(ironRatio*100), 100],
-      ["DAILY FIBER", Math.abs(fiberRatio*100), 100],
-      ["DAILY TRANS FAT", Math.abs(transRatio*100), 100],
-      ["DAILY POLY FAT", Math.abs(polyRatio*100), 100],
-      ["DAILY MONO FAT", Math.abs(monoRatio*100), 100],
-      ["DAILY CHOLESTEROL", Math.abs(cholRatio*100), 100],
+        ["NUTRIENT", 'MY DAILY PERCENTAGE', 'RECCOMENDED DAILY PERCENTAGE'],
+        ["DAILY CARBS", Math.abs(carbsRatio * 100), 100],
+        ["DAILY PROTEIN", Math.abs(proteinRatio * 100), 100],
+        ["DAILY CALORIES", Math.abs(calRatio * 100), 100],
+        ["DAILY WATER", Math.abs(waterRatio * 100), 100],
+        ["DAILY POTASSIUM", Math.abs(potassiumRatio * 100), 100],
+        ["DAILY CALCIUM", Math.abs(calciumRatio * 100), 100],
+        ["DAILY SODIUM", Math.abs(sodiumRatio * 100), 100],
+        ["DAILY IRON", Math.abs(ironRatio * 100), 100],
+        ["DAILY FIBER", Math.abs(fiberRatio * 100), 100],
+        ["DAILY TRANS FAT", Math.abs(transRatio * 100), 100],
+        ["DAILY POLY FAT", Math.abs(polyRatio * 100), 100],
+        ["DAILY MONO FAT", Math.abs(monoRatio * 100), 100],
+        ["DAILY CHOLESTEROL", Math.abs(cholRatio * 100), 100],
     ]);
 
     var options = {
-      title: 'MY DAILY NUTRITION PERCENTAGES',
-      chartArea: {width: '50%'},
-      hAxis: {
-        title: 'PERCENTAGE',
-        minValue: 0
-      },
-      vAxis: {
-        title: 'NUTRIENT'
-      }
+        title: 'MY DAILY NUTRITION PERCENTAGES',
+        chartArea: { width: '50%' },
+        hAxis: {
+            title: 'PERCENTAGE',
+            minValue: 0
+        },
+        vAxis: {
+            title: 'NUTRIENT'
+        }
     };
 
     var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
     chart.draw(data, options);
-  }
+}
 
 function loadReccomendedFeed() {
     // document.getElementById("").
@@ -4913,52 +4914,52 @@ function loadReccomendedFeed() {
     var waterRatio = 1 - missingWater / 1984;
 
 
-    var missingCalsWeek = (2000*7) - energyTotal;
-    var missingProteinWeek = (200*7) - proteinTotal;
-    var missingCarbsWeek = (275*7) - carbTotal;
+    var missingCalsWeek = (2000 * 7) - energyTotal;
+    var missingProteinWeek = (200 * 7) - proteinTotal;
+    var missingCarbsWeek = (275 * 7) - carbTotal;
     // var missingVitamin = 80 - vitaminTotalDaily;
     // var missingCaffeine = 400 - caffeineTotalDaily;
-    var missingPotassiumWeek = (4300*7) - potassiumTotal;
-    var missingCalciumWeek = (1000*7) - calciumTotal;
-    var missingSodiumWeek = (2300*7) - sodiumTotal;
-    var missingIronWeek = (8*7) - ironTotalDaily;
-    var missingFiberWeek = (32*7) - fiberTotal;
+    var missingPotassiumWeek = (4300 * 7) - potassiumTotal;
+    var missingCalciumWeek = (1000 * 7) - calciumTotal;
+    var missingSodiumWeek = (2300 * 7) - sodiumTotal;
+    var missingIronWeek = (8 * 7) - ironTotalDaily;
+    var missingFiberWeek = (32 * 7) - fiberTotal;
     // var missingSugar = 37 - sugarTotalDaily;
-    var missingTransWeek = (2*7) - transTotal;
-    var missingPolyWeek = (22*7) - polyTotal;
-    var missingMonoWeek = (44*7) - monoTotal;
-    var missingCholWeek = (300*7) - cholTotal;
-    var missingWaterWeek = (1984*7) - waterTotal;
+    var missingTransWeek = (2 * 7) - transTotal;
+    var missingPolyWeek = (22 * 7) - polyTotal;
+    var missingMonoWeek = (44 * 7) - monoTotal;
+    var missingCholWeek = (300 * 7) - cholTotal;
+    var missingWaterWeek = (1984 * 7) - waterTotal;
 
-    var calRatioWeek = 1 - missingCalsWeek / (2000*7);
-    var proteinRatioWeek = 1 - missingProteinWeek / (200*7);
-    var carbsRatioWeek = 1 - missingCarbsWeek / (275*7);
+    var calRatioWeek = 1 - missingCalsWeek / (2000 * 7);
+    var proteinRatioWeek = 1 - missingProteinWeek / (200 * 7);
+    var carbsRatioWeek = 1 - missingCarbsWeek / (275 * 7);
     // var vitaminRatio = 1 - missingVitamin / 80;
     // var caffeineRatio = 1 - missingCaffeine / 400;
-    var potassiumRatioWeek = 1 - missingPotassiumWeek / (4300*7);
-    var calciumRatioWeek = 1 - missingCalciumWeek / (1000*7);
-    var sodiumRatioWeek = 1 - missingSodiumWeek / (2300*7);
-    var ironRatioWeek = 1 - missingIronWeek / (8*7);
-    var fiberRatioWeek = 1 - missingFiberWeek / (32*7);
+    var potassiumRatioWeek = 1 - missingPotassiumWeek / (4300 * 7);
+    var calciumRatioWeek = 1 - missingCalciumWeek / (1000 * 7);
+    var sodiumRatioWeek = 1 - missingSodiumWeek / (2300 * 7);
+    var ironRatioWeek = 1 - missingIronWeek / (8 * 7);
+    var fiberRatioWeek = 1 - missingFiberWeek / (32 * 7);
     // var sugarRatio = 1 - missingSugar / 37;
-    var transRatioWeek = 1 - missingTransWeek / (2*7);
-    var polyRatioWeek = 1 - missingPolyWeek / (22*7);
-    var monoRatioWeek = 1 - missingMonoWeek / (44*7);
-    var cholRatioWeek = 1 - missingCholWeek / (300*7);
-    var waterRatioWeek = 1 - missingWaterWeek / (1984*7);
+    var transRatioWeek = 1 - missingTransWeek / (2 * 7);
+    var polyRatioWeek = 1 - missingPolyWeek / (22 * 7);
+    var monoRatioWeek = 1 - missingMonoWeek / (44 * 7);
+    var cholRatioWeek = 1 - missingCholWeek / (300 * 7);
+    var waterRatioWeek = 1 - missingWaterWeek / (1984 * 7);
 
 
 
-    google.charts.load('current', {packages: ['corechart', 'bar']});
-    google.charts.setOnLoadCallback(drawMultSeriesWeek(calRatioWeek,proteinRatioWeek,carbsRatioWeek,potassiumRatioWeek,calciumRatioWeek,sodiumRatioWeek,ironRatioWeek,fiberRatioWeek,transRatioWeek,polyRatioWeek,monoRatioWeek,cholRatioWeek,waterRatioWeek));
-   
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
+    google.charts.setOnLoadCallback(drawMultSeriesWeek(calRatioWeek, proteinRatioWeek, carbsRatioWeek, potassiumRatioWeek, calciumRatioWeek, sodiumRatioWeek, ironRatioWeek, fiberRatioWeek, transRatioWeek, polyRatioWeek, monoRatioWeek, cholRatioWeek, waterRatioWeek));
 
 
 
-    google.charts.load('current', {packages: ['corechart', 'bar']});
-    google.charts.setOnLoadCallback(drawMultSeries(calRatio,proteinRatio,carbsRatio,potassiumRatio,calciumRatio,sodiumRatio,ironRatio,fiberRatio,transRatio,polyRatio,monoRatio,cholRatio,waterRatio));
-    
-   
+
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
+    google.charts.setOnLoadCallback(drawMultSeries(calRatio, proteinRatio, carbsRatio, potassiumRatio, calciumRatio, sodiumRatio, ironRatio, fiberRatio, transRatio, polyRatio, monoRatio, cholRatio, waterRatio));
+
+
     // (Math.round(calRatio * 100) / 100).toFixed(2)
     // (Math.round(proteinRatio * 100) / 100).toFixed(2)
     // (Math.round(carbsRatio * 100) / 100).toFixed(2)
@@ -5533,3 +5534,6 @@ function trackingIconClick() {
 }
 
 
+function textTest() {
+    console.log(myPhoneNumber);
+}
