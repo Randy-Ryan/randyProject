@@ -4806,7 +4806,7 @@ function drawMultSeriesWeek(calRatioWeek,proteinRatioWeek,carbsRatioWeek,potassi
    
    
     var data = google.visualization.arrayToDataTable([
-      ["NUTRIENT", 'TOTAL WEEKLY PERCENTAGE', 'RECCOMENDED WEEKLY PERCENTAGE'],
+      ["NUTRIENT", 'MY WEEKLY PERCENTAGE', 'RECCOMENDED WEEKLY PERCENTAGE'],
       ["WEEKLY CARBS", carbsRatioWeek*100, 100],
       ["WEEKLY PROTEIN", proteinRatioWeek*100, 100],
       ["WEEKLY CARBS", carbsRatioWeek*100, 100],
@@ -4843,7 +4843,7 @@ function drawMultSeriesWeek(calRatioWeek,proteinRatioWeek,carbsRatioWeek,potassi
     
     console.log("day: " + calRatio,proteinRatio,carbsRatio,potassiumRatio,calciumRatio,sodiumRatio,ironRatio,fiberRatio,transRatio,polyRatio,monoRatio,cholRatio,waterRatio);
     var data = google.visualization.arrayToDataTable([
-      ["NUTRIENT", 'TOTAL DAILY PERCENTAGE', 'RECCOMENDED DAILY PERCENTAGE'],
+      ["NUTRIENT", 'MY DAILY PERCENTAGE', 'RECCOMENDED DAILY PERCENTAGE'],
       ["DAILY CARBS", Math.abs(carbsRatio*100), 100],
       ["DAILY PROTEIN", Math.abs(proteinRatio*100), 100],
       ["DAILY CALORIES", Math.abs(calRatio*100), 100],
