@@ -1122,7 +1122,7 @@ height: auto;
   font-weight: 800;
   margin-top: 0%;
   font-size: 50px;
-  background-image: linear-gradient(to right, #000000, #434343);
+  background-image: linear-gradient(#0B486B, #F56217);
 
 text-shadow: 0 1px 0 #ccc,
 0 2px 0 #c9c9c9,
@@ -1138,6 +1138,19 @@ text-shadow: 0 1px 0 #ccc,
 0 20px 20px rgba(0,0,0,.15);
 
 }
+
+#chart_div{
+  height: 200%;
+  padding: 2%;
+  margin: 0%;
+}
+
+#chart_div_week{
+  height: 200%;
+  padding: 2%;
+  margin: 0%;
+}
+
 
 #dButton1{
 
@@ -1644,7 +1657,7 @@ background-color: #ee9ca7;
   }
 
   .postClass{
-    /* background-image: linear-gradient(#0B486B, #F56217) */
+    background-image: linear-gradient(#0B486B, #F56217);
     margin: 10%;
     padding: 10%;
     box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
@@ -1654,7 +1667,6 @@ background-color: #ee9ca7;
     color: white;
     font-weight: 800;
     font-size: 50px;
-
   text-shadow: 0 1px 0 #ccc,
   0 2px 0 #c9c9c9,
   0 3px 0 #bbb,

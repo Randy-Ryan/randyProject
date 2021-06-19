@@ -71,6 +71,7 @@ lists.forEach(el => {
 });
 
 
+
 /********************************************************************/
 
 /********************************************************************/
@@ -689,7 +690,7 @@ function clearChildren() {
     // document.getElementById("totalFeed").style.display = "none";
     document.getElementById("nutritionValues").style.display = "none";
     document.getElementById("apiInfo").style.display = "none";
-    document.getElementById("apiInfo2").style.display = "none";
+    // document.getElementById("apiInfo2").style.display = "none";
     document.getElementById("dRecco").style.display = "none";
     document.getElementById("totalFeed2").style.display = "none";
 
@@ -796,7 +797,7 @@ function createNewTask(ttl, desc, t, id) {
     newTask.className = "testtt";
     newTask.innerHTML = fullString;
     var addEditElement = document.createElement('div');
-    addEditElement.innerHTML = "<div onclick = '" + 'editThisTaskFav("' + ttl + "," + desc + "," + t + "," + id + '")' + "' class = 'buttonEditFeed'>EDIT</div>";
+    addEditElement.innerHTML = "<div onclick = '" + 'editThisTask("' + ttl + "," + desc + "," + t + "," + id + '")' + "' class = 'buttonEditFeed'>EDIT</div>";
     // newTask.appendChild(addEditElement);
     // load new exercise div into the exercise feed
     document.getElementById("taskFeed").appendChild(newTask).appendChild(addEditElement);
@@ -887,7 +888,7 @@ function createNewExercise(r, s, w, t, m, id) {
     newExercise.className = "testtt";
     newExercise.innerHTML = fullString;
     var addEditElement = document.createElement('div');
-    addEditElement.innerHTML = "<div onclick = '" + 'editThisExerciseFav("' + m + "," + r + "," + s + "," + w + "," + t + "," + + id + '")' + "' class = 'buttonEditFeed'>EDIT</div>";
+    addEditElement.innerHTML = "<div onclick = '" + 'editThisExercise("' + m + "," + r + "," + s + "," + w + "," + t + "," + + id + '")' + "' class = 'buttonEditFeed'>EDIT</div>";
 
     // load new exercise div into the exercise feed
     document.getElementById("exFeed").appendChild(newExercise).appendChild(addEditElement);
@@ -969,7 +970,7 @@ function createNewFood(f, w, t, m, id) {
 
     newFood.innerHTML = fullString;
     var addEditElement = document.createElement('div');
-    addEditElement.innerHTML = "<div onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + m + "," + t + "," + id + '")' + "' class = 'buttonEditFeed'>EDIT</div>";
+    addEditElement.innerHTML = "<div onclick = '" + 'editThisFood("' + f + "," + w + "," + m + "," + t + "," + id + '")' + "' class = 'buttonEditFeed'>EDIT</div>";
 
     // fullString = fullString + "</label>";
 
@@ -1926,7 +1927,7 @@ function loadFeed(date, month) {
     document.getElementById("reccomendedFeed").style.display = "";
     document.getElementById("idealNutritionValuesFeed").style.display = "";
     document.getElementById("apiInfo").style.display = "";
-    document.getElementById("apiInfo2").style.display = "";
+    // document.getElementById("apiInfo2").style.display = "";
     document.getElementById("exFeed").style.display = "";
     document.getElementById("foodFeed").style.display = "";
     document.getElementById("taskFeed").style.display = "";
@@ -3901,6 +3902,107 @@ function editThisFoodFav(f) {
     // // load the feed
     // loadFeed(currDate, currMonth);
 }
+/////EDIT FOOOD FAV
+function editThisFood(f) {
+    // reload the page
+
+    clearChildren();
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("usernameHeader").style.display = "none";
+    // document.getElementById("accountIcon").style.display = "none";
+    document.getElementById("todaysDate").style.display = "none";
+    document.getElementById("feed").style.display = "";
+    document.getElementById("fullFavFeed").style.display = "none";
+    document.getElementById("addButtonsDiv").style.display = "none";
+
+
+    // document.getElementById("filler1").style.display = "none";
+    var strings = f.split(',');
+
+    var f1, w, t, m, id;
+
+    //TODO//
+    // change the random number implementation?
+
+    if (strings[0] == null) {
+        f1 = "";
+    }
+    else {
+        f1 = strings[0];
+    }
+    if (strings[1] == null) {
+        w = "";
+    }
+    else {
+        w = strings[1];
+    }
+    if (strings[2] == null) {
+        m = "";
+    }
+    else {
+        m = strings[2];
+    }
+    if (strings[3] == null) {
+        t = "";
+    }
+    else {
+        t = strings[3];
+    }
+
+    id = strings[4];
+
+    // id.substring(1);
+    console.log(id);
+    //DO CHECKS AND ADD THIS AN ELEMENT
+
+    // console.log("hey edit, " + f,w,t,m)
+
+    var cancelButton = document.createElement('div');
+    var food = document.createElement('div');
+    var water = document.createElement('div');
+    var time = document.createElement('div');
+    var message = document.createElement('div');
+    var postButton = document.createElement('div');
+    var deleteButton = document.createElement('div');
+
+    // set the ids
+    cancelButton.id = "cancelNewEdit";
+    food.id = "foodNewEdit";
+    water.id = "waterNewEdit";
+    time.id = "timeFoodNewEdit";
+    message.id = "messageFoodNewEdit";
+    postButton.id = "postButtonFoodNewEdit";
+    deleteButton.id = "deleteButtonExNewEdit";
+
+    // create the edit form by setting the HTML content of each div
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+    food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: Banana, scrambled eggs)<br><br> </label> <input type='text' id='foodInput' class = 'required' value = '" + f1 + "'><br><br><br>  ";
+    water.innerHTML = "<label class = 'exClass1'>Water/Beverages (ex: Water, Protein Shake)<br> <br> </label><input type='text' class = 'required' id='waterInput' value = '" + w + "'><br><br><br>  ";
+    time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br>  </label><input type='text' id='timeFoodInput' class = 'required' value = '" + t + "'><br><br> <br> ";
+    message.innerHTML = "<label class = 'exClass1'>Note (ex: 4 servings, taste rating 6/10)<br><br> </label><input type='text' id='messageFoodInput'class = 'required' value = '" + m + "'><br><br><br>";
+    // update button
+    postButton.innerHTML = "<input onclick = 'updateFavFoodEntry(" + id + ")' type='submit' id = 'pButton1' value = 'UPDATE'/>";
+    // delete button
+    deleteButton.innerHTML = "<input onclick = 'deleteFood(" + id + ")' type='submit' id = 'pButton1' value = 'DELETE'/>";
+
+    // load the food form on the feed
+    document.getElementById("feed")
+        .appendChild(cancelButton)
+        .appendChild(food)
+        .appendChild(water)
+        .appendChild(message)
+        .appendChild(time)
+        .appendChild(postButton)
+        .appendChild(deleteButton);
+
+
+
+
+    // // clear the feed
+    // clearChildren();
+    // // load the feed
+    // loadFeed(currDate, currMonth);
+}
 
 /////EDIT TASK FAV
 function editThisTaskFav(f) {
@@ -3972,6 +4074,93 @@ function editThisTaskFav(f) {
     postButton.innerHTML = "<input onclick = 'updateFavTaskEntry(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'UPDATE'/>"
     // delete button
     deleteButton.innerHTML = "<input onclick = 'deleteFavTask(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'DELETE'/>"
+
+    // load the edit form on the feed
+    document.getElementById("feed")
+        .appendChild(cancelButton)
+        .appendChild(title)
+        .appendChild(description)
+        .appendChild(time)
+        .appendChild(postButton)
+        .appendChild(deleteButton);
+
+
+
+    // // clear the feed
+    // clearChildren();
+    // // load the feed
+    // loadFeed(currDate, currMonth);
+}
+/////EDIT TASK FAV
+function editThisTask(f) {
+    // reload the page
+
+    clearChildren();
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("usernameHeader").style.display = "none";
+    // document.getElementById("accountIcon").style.display = "none";
+    document.getElementById("todaysDate").style.display = "none";
+    document.getElementById("feed").style.display = "";
+    document.getElementById("addButtonsDiv").style.display = "none";
+    document.getElementById("fullFavFeed").style.display = "none";
+    var strings = f.split(',');
+
+    var ttl, desc, t;
+
+    //TODO//
+    // change the random number implementation?
+
+    if (strings[0] == null) {
+        ttl = "";
+    }
+    else {
+        ttl = strings[0];
+    }
+    if (strings[1] == null) {
+        desc = "";
+    }
+    else {
+        desc = strings[1];
+    }
+    if (strings[2] == null) {
+        t = "";
+    }
+    else {
+        t = strings[2];
+    }
+
+    id = strings[3];
+
+    // id.substring(1);
+    //DO CHECKS AND ADD THIS AN ELEMENT
+
+    // console.log("hey edit, " + f,w,t,m)
+
+    // initialize div elements
+    var cancelButton = document.createElement('div');
+    var title = document.createElement('div');
+    var description = document.createElement('div');
+    var time = document.createElement('div');
+    var postButton = document.createElement('div');
+    var deleteButton = document.createElement('div');
+
+    // set the ids
+    cancelButton.id = "cancelButtonNewEdit";
+    title.id = "titleNewEdit";
+    description.id = "descriptionNewEdit";
+    time.id = "timeExNewEdit";
+    postButton.id = "postButtonExNewEdit";
+    deleteButton.id = "deleteButtonExNewEdit";
+
+    // create the edit form by setting the HTML content of each div
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+    title.innerHTML = "<br><br><br><label class = 'exClass1'>Title: <br><br></label><input type='text' class = 'required' id='12345' value = '" + ttl + "'><br><br><br>";
+    description.innerHTML = "<label class = 'exClass1'>Description: <br><br></label> <input type='text' id='repsInput' class = 'required' value = '" + desc + "'><br><br><br>";
+    time.innerHTML = "<label class = 'exClass1'>Time: <br><br></label><input type='text' id='timeInput' class = 'required' value = '" + t + "'><br><br><br>";
+    // update button
+    postButton.innerHTML = "<input onclick = 'updateFavTaskEntry(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'UPDATE'/>"
+    // delete button
+    deleteButton.innerHTML = "<input onclick = 'deleteTask(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'DELETE'/>"
 
     // load the edit form on the feed
     document.getElementById("feed")
@@ -4097,6 +4286,114 @@ function editThisExerciseFav(f) {
     // // load the feed
     // loadFeed(currDate, currMonth);
 }
+/////EDIT EXERCISE FAV
+function editThisExercise(f) {
+    // reload the page
+
+    clearChildren();
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("usernameHeader").style.display = "none";
+    // document.getElementById("accountIcon").style.display = "none";
+    document.getElementById("todaysDate").style.display = "none";
+    document.getElementById("addButtonsDiv").style.display = "none";
+    document.getElementById("fullFavFeed").style.display = "none";
+
+
+    document.getElementById("feed").style.display = "";
+
+    var strings = f.split(',');
+
+    var m, r, s, w, t;
+
+    //TODO//
+    // change the random number implementation?
+
+    if (strings[0] == null) {
+        m = "";
+    }
+    else {
+        m = strings[0];
+    }
+    if (strings[1] == null) {
+        r = "";
+    }
+    else {
+        r = strings[1];
+    }
+    if (strings[2] == null) {
+        s = "";
+    }
+    else {
+        s = strings[2];
+    }
+    if (strings[3] == null) {
+        w = "";
+    }
+    else {
+        w = strings[3];
+    }
+    if (strings[4] == null) {
+        t = "";
+    }
+    else {
+        t = strings[4];
+    }
+
+    id = strings[5];
+
+    // id.substring(1);
+    //DO CHECKS AND ADD THIS AN ELEMENT
+
+    // initialize div elements
+    var cancelButton = document.createElement('div');
+    var message = document.createElement('div');
+    var reps = document.createElement('div');
+    var sets = document.createElement('div');
+    var weight = document.createElement('div');
+    var time = document.createElement('div');
+    var postButton = document.createElement('div');
+    var deleteButton = document.createElement('div');
+
+    // set the ids
+    cancelButton.id = "cancelNewEdit";
+    message.id = "messageNewEdit";
+    reps.id = "repsNewEdit";
+    sets.id = "setsNewEdit";
+    weight.id = "weightNewEdit";
+    time.id = "timeExNewEdit";
+    postButton.id = "postButtonExNewEdit";
+    deleteButton.id = "deleteButtonExNewEdit";
+
+    // create the edit form by setting the HTML content of each div
+    cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+    message.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: DB Bench Press. Difficult) <br><br></label><input type='text' class = 'required' id='12345' value = '" + m + "'><br><br><br>";
+    reps.innerHTML = "<label class = 'exClass1'>Reps (ex: 8) <br><br></label> <input type='text' id='repsInput' class = 'required' value = '" + r + "'><br><br><br>";
+    sets.innerHTML = "<label class = 'exClass1'>Sets (ex: 3)<br><br></label><input type='text' id='setsInput' class = 'required' value = '" + s + "'><br><br><br>";
+    weight.innerHTML = "<label class = 'exClass1'>Weight (ex: 100 lbs)<br><br></label><input type='text' id='weightInput' class = 'required' value = '" + w + "'><br><br><br>";
+    time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm) <br><br></label><input type='text' id='timeInput' class = 'required' value = '" + t + "'><br><br><br>";
+    // update button
+    postButton.innerHTML = "<input onclick = 'updateFavExerciseEntry(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'UPDATE'/>"
+    // delete button
+    deleteButton.innerHTML = "<input onclick = 'deleteExercise(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'DELETE'/>"
+
+    // load the edit form on the feed
+    document.getElementById("feed")
+        .appendChild(cancelButton)
+        .appendChild(message)
+        .appendChild(reps)
+        .appendChild(sets)
+        .appendChild(weight)
+        .appendChild(time)
+        .appendChild(postButton)
+        .appendChild(deleteButton);
+
+
+    // // clear the feed
+    // clearChildren();
+    // // load the feed
+    // loadFeed(currDate, currMonth);
+}
+
 
 /////EDIT EXERCISE FAV
 function loadExHistoryFeed() {
@@ -4504,6 +4801,79 @@ function loadRegisterPage() {
 
 }
 
+function drawMultSeriesWeek(calRatioWeek,proteinRatioWeek,carbsRatioWeek,potassiumRatioWeek,calciumRatioWeek,sodiumRatioWeek,ironRatioWeek,fiberRatioWeek,transRatioWeek,polyRatioWeek,monoRatioWeek,cholRatioWeek,waterRatioWeek) {
+   console.log("Week: " + calRatioWeek,proteinRatioWeek,carbsRatioWeek,potassiumRatioWeek,calciumRatioWeek,sodiumRatioWeek,ironRatioWeek,fiberRatioWeek,transRatioWeek,polyRatioWeek,monoRatioWeek,cholRatioWeek,waterRatioWeek);
+   
+   
+    var data = google.visualization.arrayToDataTable([
+      ["NUTRIENT", 'TOTAL WEEKLY PERCENTAGE', 'RECCOMENDED WEEKLY PERCENTAGE'],
+      ["WEEKLY CARBS", carbsRatioWeek*100, 100],
+      ["WEEKLY PROTEIN", proteinRatioWeek*100, 100],
+      ["WEEKLY CARBS", carbsRatioWeek*100, 100],
+      ["WEEKLY WATER", waterRatioWeek*100, 100],
+      ["WEEKLY CALORIES", calRatioWeek*100, 100],
+      ["WEEKLY POTASSIUM", potassiumRatioWeek*100, 100],
+      ["WEEKLY CALCIUM", calciumRatioWeek*100, 100],
+      ["WEEKLY SODIUM", sodiumRatioWeek*100, 100],
+      ["WEEKLY IRON", ironRatioWeek*100, 100],
+      ["WEEKLY FIBER", fiberRatioWeek*100, 100],
+      ["WEEKLY TRANS FAT", transRatioWeek*100, 100],
+      ["WEEKLY POLY FAT", polyRatioWeek*100, 100],
+      ["WEEKLY MONO FAT", monoRatioWeek*100, 100],
+      ["WEEKLY CHOLESTEROL", cholRatioWeek*100, 100]
+    ]);
+
+    var options = {
+      title: 'MY WEEKLY NUTRITION PERCENTAGES',
+      chartArea: {width: '50%'},
+      hAxis: {
+        title: 'PERCENTAGE',
+        minValue: 0
+      },
+      vAxis: {
+        title: 'NUTRIENT'
+      }
+    };
+
+    var chart = new google.visualization.BarChart(document.getElementById('chart_div_week'));
+    chart.draw(data, options);
+  }
+ 
+  function drawMultSeries(calRatio,proteinRatio,carbsRatio,potassiumRatio,calciumRatio,sodiumRatio,ironRatio,fiberRatio,transRatio,polyRatio,monoRatio,cholRatio,waterRatio) {
+    
+    console.log("day: " + calRatio,proteinRatio,carbsRatio,potassiumRatio,calciumRatio,sodiumRatio,ironRatio,fiberRatio,transRatio,polyRatio,monoRatio,cholRatio,waterRatio);
+    var data = google.visualization.arrayToDataTable([
+      ["NUTRIENT", 'TOTAL DAILY PERCENTAGE', 'RECCOMENDED DAILY PERCENTAGE'],
+      ["DAILY CARBS", Math.abs(carbsRatio*100), 100],
+      ["DAILY PROTEIN", Math.abs(proteinRatio*100), 100],
+      ["DAILY CALORIES", Math.abs(calRatio*100), 100],
+      ["DAILY WATER", Math.abs(waterRatio*100), 100],
+      ["DAILY POTASSIUM", Math.abs(potassiumRatio*100), 100],
+      ["DAILY CALCIUM", Math.abs(calciumRatio*100), 100],
+      ["DAILY SODIUM", Math.abs(sodiumRatio*100), 100],
+      ["DAILY IRON", Math.abs(ironRatio*100), 100],
+      ["DAILY FIBER", Math.abs(fiberRatio*100), 100],
+      ["DAILY TRANS FAT", Math.abs(transRatio*100), 100],
+      ["DAILY POLY FAT", Math.abs(polyRatio*100), 100],
+      ["DAILY MONO FAT", Math.abs(monoRatio*100), 100],
+      ["DAILY CHOLESTEROL", Math.abs(cholRatio*100), 100],
+    ]);
+
+    var options = {
+      title: 'MY DAILY NUTRITION PERCENTAGES',
+      chartArea: {width: '50%'},
+      hAxis: {
+        title: 'PERCENTAGE',
+        minValue: 0
+      },
+      vAxis: {
+        title: 'NUTRIENT'
+      }
+    };
+
+    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
 
 function loadReccomendedFeed() {
     // document.getElementById("").
@@ -4511,32 +4881,31 @@ function loadReccomendedFeed() {
     var missingCals = 2000 - energyTotalDaily;
     var missingProtein = 200 - proteinTotalDaily;
     var missingCarbs = 275 - carbTotalDaily;
-    var missingVitamin = 80 - vitaminTotalDaily;
-    var missingCaffeine = 400 - caffeineTotalDaily;
+    // var missingVitamin = 80 - vitaminTotalDaily;
+    // var missingCaffeine = 400 - caffeineTotalDaily;
     var missingPotassium = 4300 - potassiumTotalDaily;
     var missingCalcium = 1000 - calciumTotalDaily;
     var missingSodium = 2300 - sodiumTotalDaily;
     var missingIron = 8 - ironTotalDaily;
     var missingFiber = 32 - fiberTotalDaily;
-    var missingSugar = 37 - sugarTotalDaily;
+    // var missingSugar = 37 - sugarTotalDaily;
     var missingTrans = 2 - transTotalDaily;
     var missingPoly = 22 - polyTotalDaily;
     var missingMono = 44 - monoTotalDaily;
     var missingChol = 300 - cholTotalDaily;
     var missingWater = 1984 - waterTotalDaily;
 
-
     var calRatio = 1 - missingCals / 2000;
     var proteinRatio = 1 - missingProtein / 200;
     var carbsRatio = 1 - missingCarbs / 275;
-    var vitaminRatio = 1 - missingVitamin / 80;
-    var caffeineRatio = 1 - missingCaffeine / 400;
+    // var vitaminRatio = 1 - missingVitamin / 80;
+    // var caffeineRatio = 1 - missingCaffeine / 400;
     var potassiumRatio = 1 - missingPotassium / 4300;
     var calciumRatio = 1 - missingCalcium / 1000;
     var sodiumRatio = 1 - missingSodium / 2300;
     var ironRatio = 1 - missingIron / 8;
     var fiberRatio = 1 - missingFiber / 32;
-    var sugarRatio = 1 - missingSugar / 37;
+    // var sugarRatio = 1 - missingSugar / 37;
     var transRatio = 1 - missingTrans / 2;
     var polyRatio = 1 - missingPoly / 22;
     var monoRatio = 1 - missingMono / 44;
@@ -4544,64 +4913,52 @@ function loadReccomendedFeed() {
     var waterRatio = 1 - missingWater / 1984;
 
 
-    // const chart = new CanvasJS.Chart("chartContainer", {
-    //     title: {
-    //         text: "My Daily Nutrient Ratios (1/3)"
-    //     },
-    //     data: [
-    //         {
-    //             // Change type to "doughnut", "line", "splineArea", etc.
-    //             type: "column",
-    //             dataPoints: [
-    //                 { label: "Calories", y: calRatio },
-    //                 { label: "Protein", y: proteinRatio },
-    //                 { label: "Carbs", y: carbsRatio },
-    //                 { label: "Water", y: waterRatio },
-    //             ]
-    //         }
-    //     ]
-    // });
-    // chart.render();
-    // const chart2 = new CanvasJS.Chart("chartContainer2", {
-    //     title: {
-    //         text: "My Daily Nutrient Ratios(2/3)"
-    //     },
-    //     data: [
-    //         {
-    //             // Change type to "doughnut", "line", "splineArea", etc.
-    //             type: "column",
-    //             dataPoints: [
-    //                 { label: "Cholesterol", y: cholRatio },
-    //                 { label: "Potassium", y: potassiumRatio },
-    //                 { label: "Calcium", y: calciumRatio },
-    //                 { label: "Sodium", y: sodiumRatio },
-    //             ]
-    //         }
-    //     ]
-    // });
-    // chart2.render();
-    // const chart3 = new CanvasJS.Chart("chartContainer3", {
-    //     title: {
-    //         text: "My Daily Nutrient Ratios (3/3)"
-    //     },
-    //     data: [
-    //         {
-    //             // Change type to "doughnut", "line", "splineArea", etc.
-    //             type: "column",
-    //             dataPoints: [
-    //                 { label: "Iron", y: ironRatio },
-    //                 { label: "Fiber", y: fiberRatio },
-    //                 { label: "Trans Fat", y: transRatio },
-    //                 { label: "Poly fat", y: polyRatio },
-    //                 { label: "Mono fat", y: monoRatio }
-    //             ]
-    //         }
-    //     ]
-    // });
-    // chart3.render();
+    var missingCalsWeek = (2000*7) - energyTotal;
+    var missingProteinWeek = (200*7) - proteinTotal;
+    var missingCarbsWeek = (275*7) - carbTotal;
+    // var missingVitamin = 80 - vitaminTotalDaily;
+    // var missingCaffeine = 400 - caffeineTotalDaily;
+    var missingPotassiumWeek = (4300*7) - potassiumTotal;
+    var missingCalciumWeek = (1000*7) - calciumTotal;
+    var missingSodiumWeek = (2300*7) - sodiumTotal;
+    var missingIronWeek = (8*7) - ironTotalDaily;
+    var missingFiberWeek = (32*7) - fiberTotal;
+    // var missingSugar = 37 - sugarTotalDaily;
+    var missingTransWeek = (2*7) - transTotal;
+    var missingPolyWeek = (22*7) - polyTotal;
+    var missingMonoWeek = (44*7) - monoTotal;
+    var missingCholWeek = (300*7) - cholTotal;
+    var missingWaterWeek = (1984*7) - waterTotal;
+
+    var calRatioWeek = 1 - missingCalsWeek / (2000*7);
+    var proteinRatioWeek = 1 - missingProteinWeek / (200*7);
+    var carbsRatioWeek = 1 - missingCarbsWeek / (275*7);
+    // var vitaminRatio = 1 - missingVitamin / 80;
+    // var caffeineRatio = 1 - missingCaffeine / 400;
+    var potassiumRatioWeek = 1 - missingPotassiumWeek / (4300*7);
+    var calciumRatioWeek = 1 - missingCalciumWeek / (1000*7);
+    var sodiumRatioWeek = 1 - missingSodiumWeek / (2300*7);
+    var ironRatioWeek = 1 - missingIronWeek / (8*7);
+    var fiberRatioWeek = 1 - missingFiberWeek / (32*7);
+    // var sugarRatio = 1 - missingSugar / 37;
+    var transRatioWeek = 1 - missingTransWeek / (2*7);
+    var polyRatioWeek = 1 - missingPolyWeek / (22*7);
+    var monoRatioWeek = 1 - missingMonoWeek / (44*7);
+    var cholRatioWeek = 1 - missingCholWeek / (300*7);
+    var waterRatioWeek = 1 - missingWaterWeek / (1984*7);
 
 
 
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawMultSeriesWeek(calRatioWeek,proteinRatioWeek,carbsRatioWeek,potassiumRatioWeek,calciumRatioWeek,sodiumRatioWeek,ironRatioWeek,fiberRatioWeek,transRatioWeek,polyRatioWeek,monoRatioWeek,cholRatioWeek,waterRatioWeek));
+   
+
+
+
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawMultSeries(calRatio,proteinRatio,carbsRatio,potassiumRatio,calciumRatio,sodiumRatio,ironRatio,fiberRatio,transRatio,polyRatio,monoRatio,cholRatio,waterRatio));
+    
+   
     // (Math.round(calRatio * 100) / 100).toFixed(2)
     // (Math.round(proteinRatio * 100) / 100).toFixed(2)
     // (Math.round(carbsRatio * 100) / 100).toFixed(2)
@@ -4623,107 +4980,107 @@ function loadReccomendedFeed() {
     }
 
     if (calRatio >= .9) {
-        document.getElementById("Low in Calories").style.display = "";
-        document.getElementById("High in Calories").style.display = "none";
+        document.getElementById("Foods Low in Calories").style.display = "";
+        document.getElementById("Foods High in Calories").style.display = "none";
     }
     if (calRatio < 0.9) {
-        document.getElementById("High in Calories").style.display = "";
-        document.getElementById("Low in Calories").style.display = "none";
+        document.getElementById("Foods High in Calories").style.display = "";
+        document.getElementById("Foods Low in Calories").style.display = "none";
     }
     if (proteinRatio >= .9) {
-        document.getElementById("Low in Protein").style.display = "";
-        document.getElementById("High in Protein").style.display = "none";
+        document.getElementById("Foods Low in Protein").style.display = "";
+        document.getElementById("Foods High in Protein").style.display = "none";
 
     }
     if (proteinRatio < 0.9) {
-        document.getElementById("High in Protein").style.display = "";
-        document.getElementById("Low in Protein").style.display = "none";
+        document.getElementById("Foods High in Protein").style.display = "";
+        document.getElementById("Foods Low in Protein").style.display = "none";
     }
     if (carbsRatio >= .9) {
-        document.getElementById("Low in Carbs").style.display = "";
-        document.getElementById("High in Carbs").style.display = "none";
+        document.getElementById("Foods Low in Carbs").style.display = "";
+        document.getElementById("Foods High in Carbs").style.display = "none";
     }
     if (carbsRatio < 0.9) {
-        document.getElementById("High in Carbs").style.display = "";
-        document.getElementById("Low in Carbs").style.display = "none";
+        document.getElementById("Foods High in Carbs").style.display = "";
+        document.getElementById("Foods Low in Carbs").style.display = "none";
     }
     if (potassiumRatio >= .9) {
-        document.getElementById("Low in Potassium").style.display = "";
-        document.getElementById("High in Potassium").style.display = "none";
+        document.getElementById("Foods Low in Potassium").style.display = "";
+        document.getElementById("Foods High in Potassium").style.display = "none";
     }
     if (potassiumRatio < 0.9) {
-        document.getElementById("High in Potassium").style.display = "";
-        document.getElementById("Low in Potassium").style.display = "none";
+        document.getElementById("Foods High in Potassium").style.display = "";
+        document.getElementById("Foods Low in Potassium").style.display = "none";
     }
 
 
     if (calciumRatio >= .9) {
-        document.getElementById("Low in Calcium").style.display = "";
-        document.getElementById("High in Calcium").style.display = "none";
+        document.getElementById("Foods Low in Calcium").style.display = "";
+        document.getElementById("Foods High in Calcium").style.display = "none";
     }
     if (calciumRatio < 0.9) {
-        document.getElementById("High in Calcium").style.display = "";
-        document.getElementById("Low in Calcium").style.display = "none";
+        document.getElementById("Foods High in Calcium").style.display = "";
+        document.getElementById("Foods Low in Calcium").style.display = "none";
     }
 
 
     if (sodiumRatio >= .9) {
-        document.getElementById("Low in Sodium").style.display = "";
-        document.getElementById("High in Sodium").style.display = "none";
+        document.getElementById("Foods Low in Sodium").style.display = "";
+        document.getElementById("Foods High in Sodium").style.display = "none";
     }
     if (sodiumRatio < 0.9) {
-        document.getElementById("High in Sodium").style.display = "";
-        document.getElementById("Low in Sodium").style.display = "none";
+        document.getElementById("Foods High in Sodium").style.display = "";
+        document.getElementById("Foods Low in Sodium").style.display = "none";
     }
 
     if (ironRatio >= .9) {
-        document.getElementById("Low in Iron").style.display = "";
-        document.getElementById("High in Iron").style.display = "none";
+        document.getElementById("Foods Low in Iron").style.display = "";
+        document.getElementById("Foods High in Iron").style.display = "none";
     }
     if (ironRatio < 0.9) {
-        document.getElementById("High in Iron").style.display = "";
-        document.getElementById("Low in Iron").style.display = "none";
+        document.getElementById("Foods High in Iron").style.display = "";
+        document.getElementById("Foods Low in Iron").style.display = "none";
     }
     if (fiberRatio >= .9) {
-        document.getElementById("Low in Fiber").style.display = "";
-        document.getElementById("High in Fiber").style.display = "none";
+        document.getElementById("Foods Low in Fiber").style.display = "";
+        document.getElementById("Foods High in Fiber").style.display = "none";
     }
     if (fiberRatio < 0.9) {
-        document.getElementById("High in Fiber").style.display = "";
-        document.getElementById("Low in Fiber").style.display = "none";
+        document.getElementById("Foods High in Fiber").style.display = "";
+        document.getElementById("Foods Low in Fiber").style.display = "none";
     }
     if (transRatio >= .9) {
-        document.getElementById("Low in Trans fat").style.display = "";
-        document.getElementById("High in Trans fat").style.display = "none";
+        document.getElementById("Foods Low in Trans fat").style.display = "";
+        document.getElementById("Foods High in Trans fat").style.display = "none";
     }
     // if (transRatio < 0.9) {
     //     document.getElementById("High in Trans fat").style.display = "";
     //     document.getElementById("Low in Trans fat").style.display = "none";
     // }
     if (polyRatio >= .9) {
-        document.getElementById("Low in Polyunsaturated fat").style.display = "";
-        document.getElementById("High in Polyunsaturated fat").style.display = "none";
+        document.getElementById("Foods Low in Polyunsaturated fat").style.display = "";
+        document.getElementById("Foods High in Polyunsaturated fat").style.display = "none";
     }
     // if (polyRatio < 0.9) {
     //     document.getElementById("High in Polyunsaturated fat").style.display = "";
     //     document.getElementById("Low in Polyunsaturated fat").style.display = "none";
     // } 
     if (monoRatio >= .9) {
-        document.getElementById("Low in Monounsaturated fat").style.display = "";
-        document.getElementById("High in Monounsaturated fat").style.display = "none";
+        document.getElementById("Foods Low in Monounsaturated fat").style.display = "";
+        document.getElementById("Foods High in Monounsaturated fat").style.display = "none";
     }
     // if (monoRatio < 0.9) {
     //     document.getElementById("High in Monounsaturated fat").style.display = "";
     //     document.getElementById("Low in Monounsaturated fat").style.display = "none";
     // }
     if (cholRatio >= .9) {
-        document.getElementById("Low in Cholesterol").style.display = "";
-        document.getElementById("High in Cholesterol").style.display = "none";
+        document.getElementById("Foods Low in Cholesterol").style.display = "";
+        document.getElementById("Foods High in Cholesterol").style.display = "none";
     }
-    if (cholRatio < 0.9) {
-        document.getElementById("High in Cholesterol").style.display = "";
-        document.getElementById("Low in Cholesterol").style.display = "none";
-    }
+    // if (cholRatio < 0.9) {
+    //     document.getElementById("Foods High in Cholesterol").style.display = "";
+    //     document.getElementById("Foods Low in Cholesterol").style.display = "none";
+    // }
 
 
 
@@ -4787,7 +5144,7 @@ function loadHighFeedForReccos() {
     for (var i = 0; i < title.length; i++) {
 
 
-        const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&pageSize=3&query=High in ' + title[i];
+        const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&pageSize=3&query=Foods High in ' + title[i];
         // Http.open("GET", url);
         // Http.send();
 
@@ -4830,7 +5187,7 @@ function loadLowFeedForReccos() {
 
     for (var i = 0; i < title.length; i++) {
 
-        const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&pageSize=3&query=Low in ' + title[i];
+        const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&pageSize=3&query=Foods Low in ' + title[i];
         // Http.open("GET", url);
         // Http.send();
 
@@ -5174,3 +5531,5 @@ function newPublicPost() {
 function trackingIconClick() {
     loadFeed(currDate, currMonth);
 }
+
+

@@ -7,6 +7,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <!-- ***************************************************************************************************** -->
     <!-- ******************* THIS CODE IS FOR THE WEB ICON AND URL LINK THUMBNAILS ************************** -->
     <!-- ***************************************************************************************************** -->
@@ -697,10 +699,23 @@
         </div>
 
 
-        <li id="apiInfo" class="item">A GOOD REFERENCE FOR YOUR NUTRITION LEVELS CAN BE FOUND BELOW (NOTE: ALL
+
+        <li id="apiInfo" class="item">A REFERENCE FOR YOUR NUTRITION LEVELS CAN BE FOUND BELOW (NOTE: ALL
             CALCULATIONS ARE CURRENTLY FOR AN ADULT MALE. ADULT FEMALE IS LISTED FOR REFERENCE AND WILL BE IMPLEMENTED
-            FOR ADJUSTMENT SOON)</li>
+            FOR ADJUSTMENT SOON)
+            <br><br>TOTAL NUTRIENT RESULTS ARE MUCH MORE ACCURATE WITH DETAILED/PROPER FOOD INPUTS.
+            <br><br>1. BE SURE TO SEPERATE FOOD ENTRIES WITH A COMMA (EX: INSTEAD OF SALAD, WRITE "LETTUCE,
+            TOMATO,CARROTS," OR INSTEAD OF "CHICKEN SANDWICH," WRITE "GRILLED CHICKEN PATTY, LETTUCE, BBQ SAUCE").
+            <br><br>2. TRY TO ADD DETAILS TO INPUTS (EX: INSTEAD OF "PITA," WRITE "PITA BREAD," OR INSTEAD OF "WATER," WRITE "TAP WATER").
+            <br><br>3. NOTE: EACH LISTING IS ONE SERVING SIZE AND IS TAKEN FROM THE FIRST SEARCH MATCH FROM THE FOODDATA CENTRAL (FDC) API.</li>
+
+
         <div id="idealNutritionValuesFeed">
+
+
+            <div id="chart_div"></div>
+            <div id="chart_div_week"></div>
+
             <li id="gridTitleMale" class="item">ADULT MALE (FOR DAILY REFERENCE)
                 <br><br>Calories: Between 2000 and 2800
                 <br>Water: 1984 G or 15.5 cups
@@ -771,17 +786,6 @@
             <li id="gridTitle" class="item" style="">TOTAL NUTRIENTS (PAST 7 DAYS)</li>
             <ul id="weekNutrientFeed"></ul>
         </div>
-
-
-
-        <li id="apiInfo2" class="item">TOTAL NUTRIENT RESULTS ARE MUCH MORE ACCURATE WITH DETAILED/PROPER FOOD INPUTS.
-            <br><br>1. BE SURE TO SEPERATE FOOD ENTRIES WITH A COMMA (EX: INSTEAD OF SALAD, WRITE "LETTUCE,
-            TOMATO,CARROTS," OR INSTEAD OF "CHICKEN SANDWICH," WRITE "GRILLED CHICKEN PATTY, LETTUCE, BBQ SAUCE").
-            <br><br>2. TRY TO ADD DETAILS TO INPUTS (EX: INSTEAD OF "PITA," WRITE "PITA BREAD," OR INSTEAD OF "WATER,
-            "WRITE "TAP WATER").
-            <br><br>3. NOTE: EACH LISTING IS ONE SERVING SIZE AND IS TAKEN FROM THE FIRST SEARCH MATCH FROM THE FOODDATA
-            CENTRAL (FDC) API.
-        </li>
 
         <div id="dRecco">
             <li id="gridTitle" class="item">DAILY NUTRIENT RECCOMENDATIONS</li>
