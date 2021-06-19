@@ -75,10 +75,18 @@
         </div>
     </div>
 
+
+    <div id = "iconLabelsDiv">
+    <li id = "trackingIconLabel">MY TRACKING</li>
+    <li id = "publicIconLabel">PUBLIC FEED</li>
+    <li id = "accountIconLabel">MY ACCOUNT</li>
+</div>
+
+<div id = "iconImagesDiv">
     <!-- TRACKING ICON -->
     <div id="trackDivID">
-        <img id="trackingIcon" onclick="trackingIconClick()" src="./icons8-schedule-64.png"
-            alt="trackingIcon">
+        <img id="trackingIcon" onclick="trackingIconClick()" src="./icons8-schedule-64.png" alt="trackingIcon">
+
     </div>
     <!-- PUBLIC ICON -->
     <div id="publicDivID">
@@ -88,14 +96,26 @@
     <div id="accountDivID">
         <img id="accountIcon" onclick="loadMyAccount()" src="./icons8-head-profile-100.png" alt="accountIcon">
     </div>
+</div>
 
-    <body>
-
-
+    <body>      
         <!-- USERNAME TITLE -->
         <div id="usernameHeader">
             <div id="userHead"></div>
         </div><br><br>
+    <!-- NEW PUBLIC POST ICON -->
+    <div id="publicPostDivID">
+        <label id = "postLabel">NEW PUBLIC POST</label>
+        <img id="publicPostIcon" onclick="newPublicPost()" src="./icons8-add-new-64.png"
+            alt="publicPostIcon">
+    </div>
+
+    <div id="publicFeed">
+        <li id="gridTitle" class="item">PUBLIC FEED POSTS</li>
+        <ul id="publicPostFeed">
+        </ul>
+    </div>
+ 
         <!-- CALENDER DIV -->
         <div id="calendar">
             <div class="month">
@@ -576,6 +596,24 @@
         <h2 id="filler1">Choose a date to add exercises, food, or tasks</h2>
         <!-- CURRENT DATE TITLE ELEMENT -->
         <h2 id="todaysDate"></h2><br>
+        <div id ="addButtonsDiv">
+            <div id="favoritesDivID">
+                <img id="favoritesIcon" onclick="favoriteButtonClick()" src="./icons8-plus-144.png" alt="favoritesIcon">
+                <label id="favLabel">NEW FAVORITE</label>
+            </div>
+            <div id="taskIconDivID" >
+                <img id="taskIcon" onclick="taskIconButtonClick()" src="./icons8-plus-144.png" alt="favoritesIcon">
+                <label id="taskIconLabel">NEW TASK</label>
+            </div>
+            <div id="exerciseIconDivID" >
+                <img id="exerciseIcon" onclick="exerciseIconButtonClick()" src="./icons8-plus-144.png" alt="favoritesIcon">
+                <label id="exerciseIconLabel">NEW EXERCISE</label>
+            </div>
+            <div id="foodIconDivID" >
+                <img id="foodIcon" onclick="foodIconButtonClick()" src="./icons8-plus-144.png" alt="favoritesIcon">
+                <label id="foodIconLabel">NEW FOOD</label>
+            </div>
+        </div>
         <!-- SIGNED OUT USER DISPLAY DESCRIPTION-->
         <h2 id="signedOut1" style="display: none;">This task manager offers the ability to
             create tasks/exercises/diet entries and more! This is currently in the works and constantly receiving new
@@ -588,6 +626,7 @@
         <br>
         <!-- FAVORITES ICON -->
 
+        <div id = "historyTotalFeed">
         <h2 id="historyTitle" style="display: none;">
         </h2>
         <div id="historyFeed" class="app">
@@ -595,34 +634,15 @@
             </div>
 
         </div>
-
+    </div>
         <div id="accountPFeed">
             <li id="gridTitle" class="item">MY POSTS</li>
             <ul id="accountPostFeed">
             </ul>
         </div>
    
-        <div id="favoritesDivID" style="text-align: center;">
-            <img id="favoritesIcon" onclick="favoriteButtonClick()" src="./icons8-plus-144.png" alt="favoritesIcon">
-            <label id="favLabel">NEW FAVORITE</label>
-        </div>
-        <div id="taskIconDivID" style="text-align: center;">
-            <img id="taskIcon" onclick="taskIconButtonClick()" src="./icons8-plus-144.png" alt="favoritesIcon">
-            <label id="taskIconLabel">NEW TASK</label>
-        </div>
-        <div id="exerciseIconDivID" style="text-align: center;">
-            <img id="exerciseIcon" onclick="exerciseIconButtonClick()" src="./icons8-plus-144.png" alt="favoritesIcon">
-            <label id="exerciseIconLabel">NEW EXERCISE</label>
-        </div>
-        <div id="foodIconDivID" style="text-align: center;">
-            <img id="foodIcon" onclick="foodIconButtonClick()" src="./icons8-plus-144.png" alt="favoritesIcon">
-            <label id="foodIconLabel">NEW FOOD</label>
-        </div>
-        <div id = "commentFeed">
-            <li id="gridTitleComments" class="item">COMMENTS ON THIS POST</li>
-            <ul id="commentPostFeed">
-            </ul>
-        </div>
+  
+        
         <!-- GENERAL FEED INITIALIZATION -->
         <div id="feed">
             <div id="exerciseID" style="display: none; align-items: center; text-align: center;"></div><br><br><br>
@@ -631,7 +651,6 @@
         </div>
   
         <!-- FAV FEED TITLE INITIALIZATION -->
-
         </h2>
         <div id="fullFavFeed" class="app">
             <!-- <h1 style="text-align: center;">FAVORITES</h1> -->
@@ -781,11 +800,8 @@
             </ul>
         </div>
         <div id="reccomendedFeed">
-            <li id="gridTitleR1" class="item">RECCOMENDED LOW NUTRIENT FOODS FOR NUTRIENTS WHERE YOUR GOAL IS ALMOST MET
-                (>90%)</li>
-
-            <li id="gridTitleR" class="item">RECCOMENDED HIGH NUTRIENT FOODS FOR NUTRIENTS THAT YOU'RE LACKING TODAY
-                (&#60;90%)</li>
+            <li id="gridTitleR1" class="item">RECCOMENDED SUBSTITUTE LOW NUTRIENT FOODS FOR NUTRIENTS THAT YOU ARE GETTING ENOUGH OF (>90% DAILY INTAKE).</li>
+            <li id="gridTitleR" class="item">RECCOMENDED HIGH NUTRIENT FOODS FOR ALL OF THE NUTRIENTS THAT YOU ARE LACKING TODAY (&#60;90% DAILY INTAKE).</li>
             <ul id="dailyReccomendedNutrientFeed">
             </ul>
             <ul id="dailyReccomendedNutrientFeedLow">
@@ -805,18 +821,13 @@
                 <li id="randyFavID">4. QUEST PROTEIN SHAKE</li>
             </ul>
         </div>
-        <div id="publicFeed">
-            <li id="gridTitle" class="item">PUBLIC FEED POSTS</li>
-            <ul id="publicPostFeed">
-            </ul>
-        </div>
+         
+    
 
- 
-        <!-- NEW PUBLIC POST ICON -->
-        <div id="publicPostDivID">
-            <label id = "postLabel">NEW PUBLIC POST</label>
-            <img id="publicPostIcon" onclick="newPublicPost()" src="./icons8-add-new-64.png"
-                alt="publicPostIcon">
+        <div id = "commentFeed">
+            <li id="gridTitleComments" class="item">COMMENTS ON THIS POST</li>
+            <ul id="commentPostFeed">
+            </ul>
         </div>
 
         <!-- <div id="chartContainer" style=""></div>

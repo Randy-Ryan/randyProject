@@ -30,8 +30,8 @@ body{
 /* INPUT FIELDS ON FORMS */
 /* REQUIRED CLASS NAME STYLING */
 .required{
-  width: 50%;
-  height: 50px;
+  width: 80%;
+  height: 10%;
   font-size:50px;
   /* pointer-events: visible; */
   border-radius: 10px;
@@ -73,7 +73,9 @@ body{
   0 10px 10px rgba(0,0,0,.2),
   0 20px 20px rgba(0,0,0,.15); */
 }
-
+#foodID{
+  padding: 1%;
+}
 /* FOOD POST ELEMENT */
 #foodId{
   text-align: center;
@@ -388,6 +390,7 @@ ul {
   margin-bottom: 5%;
 
 }
+
 
 /* h1,
 h2,
@@ -805,25 +808,25 @@ width: 47%;
 
 /* FAV DISPLAY FEED */
 #fullFavFeed{
-  /* overflow: auto; */
-  /* width: 90%;
+  overflow: auto; 
+  width: 80%;
   height: 60%;
   margin-top: 5%;
   margin-bottom: 10%;
-  margin-left: 5%;
-
+  margin-left: 10%;
   border: 10px solid black;
-  overflow-x:auto;
-  white-space: nowrap; */
-
-  /* background-color: #772f1a; */
-  /* background-image: linear-gradient(to right, #f6d285, #bbf0f3);
-  box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8); */
-
-   /* overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap; */
+  white-space: nowrap;
+  overflow-y: auto;
+  white-space: nowrap;
+  /* background-image: linear-gradient(to right, #f6d285, #bbf0f3); */
+  box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+  background-color: #772f1a;
 }
+
+ 
+
+   
+
 /* ************************************************************************* */
 /* ************************************************************************* */
 /*                                CALENDAR STYLING                                            */
@@ -889,7 +892,7 @@ width: 47%;
 #calendar {
   margin-left: 10%;
   margin-right: 10%;
-  margin-top: 3%;
+  /* margin-top: 3%; */
   border: 2px solid black;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
 
@@ -1007,14 +1010,15 @@ width: 47%;
 
 /* CANCEL BUTTONS */
 #cancelButton1{
-/* float: left;   */
 width: auto;
 height: auto;
   padding: 3%;
-  text-align: unset;
+  text-align: center;
+  position: relative;
   font-size: 40px;
   border-radius: 100px;
   margin-bottom: 5%;
+  margin-top: 5%;
   background-color: gray;
   color: white;
   border: 1px solid black;
@@ -1023,14 +1027,19 @@ height: auto;
 }
 
 #postLabel{
-
+  position: absolute;
   top: 50%;
-  font-size: 30px;
+  margin-left: 50%;
+  transform: translateY(-50%);
+  font-size: 35px;
 }
 
 #thisPostTitle{
   background-color: white;
   margin: 10%;
+  margin-bottom: 0%;
+  margin-top: 0%;
+
   font-size: 40px;
   padding: 5%;
 text-align: center;}
@@ -1180,16 +1189,25 @@ text-align: center;}
 
 #userHead{
   margin: 0;
-  margin-top: 5%;
+  margin-top: 20%;
   font-size: 75px;
-  width: 200%;
+  width: auto;
+  text-align: center;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 5%;
+  padding: 5%;
+  padding-bottom: 0%;
+  /* margin-bottom: 10%; */
+
 }
 /* USERNAME TITLE */
 #usernameHeader{
-  font-size: 50px;
-  text-align: left;
-  margin-left: 2%;
-  margin-right: 60%;
+  /* font-size: 50px; */
+  /* text-align: left; */
+  /* margin-left: 2%; */
+  /* margin-right: 60%; */
+  margin-top: 10%;
 }
 /* CURRENT DATE TITLE */
 #todaysDate{
@@ -1355,10 +1373,7 @@ text-align: center;
   overflow-y: auto;
   margin-bottom: 20%;
 }
-/* DIV FOR ACCOUNT ICON */
-#accountDivID{
- display: unset;
-}
+
 
 /* ACCOUNT ICON IMG ELEMENT*/
 #accountUsername{
@@ -1371,11 +1386,9 @@ text-align: center;
 #accountIcon{
 position: relative;
 height: 100px;
-text-align: left;
-margin-left: 5%;
-margin-top: 0%;
+margin-top: 5%;
 width: 100px;
-margin-bottom: 5%;
+margin-bottom: 10%;
 border-radius: 75px;
 box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
 border: 10px solid gray;
@@ -1385,14 +1398,11 @@ border: 10px solid gray;
 /* ACCOUNT ICON IMG ELEMENT*/
 #trackingIcon{
   position: relative;
-  float: left;
   height: 100px;
-  text-align: left;
-  margin-left: 5%;
 
-  margin-top: 0%;
+  margin-top: 5%;
   width: 100px;
-  margin-bottom: 5%;
+  margin-bottom: 10%;
   border-radius: 75px;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
   border: 10px solid gray;
@@ -1402,19 +1412,78 @@ border: 10px solid gray;
   /* ACCOUNT ICON IMG ELEMENT*/
 #publicIcon{
   position: relative;
-  float: left;
-  margin-left: 5%;
 
   height: 100px;
-  text-align: left;
   margin-top: 0%;
   width: 100px;
-  margin-bottom: 5%;
+  margin-top: 5%;
+
+  margin-bottom: 10%;
   border-radius: 75px;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
   border: 10px solid gray;
   
   
+  }
+
+  #trackDivID{
+    width: 33%;
+    float: left;
+    text-align: center;
+  }
+  #publicDivID{
+    width: 33%;
+    float: left;
+    text-align: center;
+
+  }
+  #accountDivID{
+    width: 33%;
+    float: left;
+    text-align: center;
+
+  }
+  #iconImagesDiv{
+    width: 100%;
+    position: relative;
+    text-align: center;
+  }
+  #iconLabelsDiv{
+    width: 100%;
+    position: relative;
+    text-align: center;
+
+  }
+  #trackingIconLabel{
+    float: left;
+    width: 33%;
+    font-size: 30px;
+    list-style-type: none;
+
+  }
+  #publicIconLabel{
+    float: left;
+width: 33%;
+font-size: 30px;
+list-style-type: none;
+
+
+  }
+  #accountIconLabel{
+    float: left;
+width: 33%;
+font-size: 30px;
+list-style-type: none;
+
+
+  }
+  
+
+
+  #commentLabel{
+    font-size: 40px;
+margin: 0;
+margin-bottom: 5%;
   }
 
   .postClassComment{
@@ -1425,10 +1494,15 @@ border: 10px solid gray;
   .postClass{
     background-color: white;
     margin: 10%;
+    padding: 5%;
   }
 
   #publicPostDivID{
-   text-align: center;
+   /* text-align: center; */
+   position: relative;
+   margin-bottom: 20%;
+   margin-top: 10%;
+   
   }
 
   #publicPostFeed{
@@ -1436,30 +1510,61 @@ border: 10px solid gray;
     overflow-y: auto;
   }
   #publicPostIcon{
-    position: relative;
+    /* position: relative; */
     height: 100px;
-    text-align: center;
+    /* text-align: center; */
   
-    margin-top: 0%;
+    /* margin-top: 0%; */
     width: 100px;
-    margin-bottom: 5%;
+    margin-left: 30%;
+    /* margin-bottom: 5%; */
     border-radius: 75px;
     box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
     border: 10px solid gray;
     
-    
+    position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+    }
+
+    #addButtonsDiv{
+      float: left;
+      width: 100%;
+    }
+    #taskIconDivID{
+      text-align: left;
+      width: 100%;
+    }
+    #favoritesDivID{
+      text-align: left;
+      width: 100%;
+
+    }
+    #exerciseIconDivID{
+      text-align: left;
+      width: 100%;
+
+    }
+    #foodIconDivID{
+      text-align: left;
+      width: 100%;
+      margin-bottom: 10%;
+
     }
 /* FAVORITES ICON IMG ELEMENT*/
 #favoritesIcon{
-  position: absolute;
+  /* position: absolute;
   float: left;
 
   top: 2%;
-  right: 2%;
+  right: 2%; */
   padding: 0;
+  left: 0%;
+  margin-left: 10%;
   /* top: 135%; */
   height: 40px;
   width: 40px;
+  margin-top: 5%;
   border-radius: 75px;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
   border: 5px solid gray;
@@ -1467,39 +1572,48 @@ border: 10px solid gray;
   }
 
   #taskIcon{
-    position: absolute;
+    /* position: absolute;
     top: 10%;
     right: 2%;
-    padding: 0;
+    padding: 0; */
     /* top: 135%; */
     height: 40px;
     width: 40px;
+    left: 0%;
+    margin-left: 10%;
+    margin-top: 5%;
     border-radius: 75px;
     box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
     border: 5px solid yellow;
   }
 
   #exerciseIcon{
-    position: absolute;
+    /* position: absolute;
     top: 18%;
-    right: 2%;
+    right: 2%; */
     padding: 0;
     /* top: 135%; */
     height: 40px;
     width: 40px;
+    left: 0%;
+    margin-left: 10%;
+    margin-top: 5%;
     border-radius: 75px;
     box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
     border: 5px solid blue;
   }
 
   #foodIcon{
-    position: absolute;
-    top: 26%;
-    right: 2%;
+    /* position: absolute; */
+    /* top: 26%;
+    right: 2%; */
     padding: 0;
     /* top: 135%; */
     height: 40px;
     width: 40px;
+    left: 0%;
+    margin-left: 10%;
+    margin-top: 5%;
     border-radius: 75px;
     box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
     border: 5px solid red;
@@ -1507,38 +1621,43 @@ border: 10px solid gray;
 
   #taskIconLabel{
     font-size: 35px;
-    position: absolute;
+    /* position: absolute;
     top: 10%;
-    right: 10%;
+    right: 10%; */
     font-weight: 900;
+    /* width: auto; */
+    margin-left: 10%; 
     color: black;
   }
   #exerciseIconLabel{
     font-size: 35px;
-    position: absolute;
+    /* position: absolute;
     top: 18%;
-    right: 10%;
+    right: 10%; */
     font-weight: 900;
+    width: auto;
+    margin-left: 10%; 
     color: black;
   }
   #foodIconLabel{
     font-size: 35px;
-    position: absolute;
+    /* position: absolute;
     top: 26%;
-    right: 10%;
+    right: 10%; */
+    width: auto;
+    margin-left: 10%; 
     font-weight: 900;
     color: black;
   }
-
-/* FAVORITES ICON IMG ELEMENT*/
 #favLabel{
   font-size: 35px;
-  position: absolute;
+  /* position: absolute;
   top: 2%;
-  right: 10%;
+  right: 10%; */
   font-weight: 900;
+  width: auto;
   color: black;
-  }
+margin-left: 10%;  }
 
   /* LOGIN STYLE*/
 #regLink{

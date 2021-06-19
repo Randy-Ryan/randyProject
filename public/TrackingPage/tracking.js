@@ -278,6 +278,7 @@ window.onload = function () {
                     alert(error);
                 });;
         }
+        
     }
     var mainForm = document.getElementById("login-form");
     mainForm.onsubmit = function (e) {
@@ -332,29 +333,21 @@ window.onload = function () {
     // document.getElementById("ex56").innerHTML = "EX";
     // document.getElementById("food56").innerHTML= "FOOD";
     // document.getElementById("task56").innerHTML = "TASK";
-
-
-    // set month title and todays date on load
-    document.getElementById("monthTitle").innerHTML = "" + month;
-
-    // hide empty feed title
-    document.getElementById("filler1").style.display = "none";
-
-    // style the active date on calendar
-    document.getElementById("days" + month).style.display = "";
-    document.getElementById('id' + day + month).className = "active";
-
-    // set global date/month vars
-    currDate = day;
-    currMonth = month;
-
-    // style date title respectivly
-    document.getElementById("todaysDate").innerHTML = currMonth + " / " + currDate;
-
-
-    document.getElementById("historyFeed").style.display = "none";
-    document.getElementById("historyTitle").style.display = "none";
-
+   // format day var 
+        // set month title and todays date on load
+        document.getElementById("monthTitle").innerHTML = "" + month;
+        // hide empty feed title
+        document.getElementById("filler1").style.display = "none";
+        // style the active date on calendar
+        document.getElementById("days" + month).style.display = "";
+        document.getElementById('id' + day + month).className = "active";
+        // set global date/month vars
+        currDate = day;
+        currMonth = month;
+        // style date title respectivly
+        document.getElementById("todaysDate").innerHTML = currMonth + " / " + currDate;
+        document.getElementById("historyFeed").style.display = "none";
+        document.getElementById("historyTitle").style.display = "none";
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- ON CALENDAR DAY CLICK ------------------////////////////
@@ -658,10 +651,12 @@ function clearChildren() {
     document.getElementById("publicFeed").style.display = "none";
     document.getElementById("commentFeed").style.display = "none";
     document.getElementById("accountPFeed").style.display = "none";
+    // document.getElementById("addFavButtonsDiv").style.display = "none";
+    document.getElementById("publicPostDivID").style.display = "none";
+    document.getElementById("historyTotalFeed").style.display = "none";
 
-
-    document.getElementById("publicPostIcon").style.display = "none";
-    document.getElementById("postLabel").style.display = "none";
+    // document.getElementById("publicPostIcon").style.display = "none";
+    // document.getElementById("postLabel").style.display = "none";
 
 
 
@@ -688,7 +683,7 @@ function clearChildren() {
     document.getElementById("reccomendedFeed").style.display = "none";
     document.getElementById("idealNutritionValuesFeed").style.display = "none";
 
-    document.getElementById("fullFavFeed").style.display = "none";
+    // document.getElementById("fullFavFeed").style.display = "none";
 
     // document.getElementById("recentFoods").style.display = "none";
     // document.getElementById("totalFeed").style.display = "none";
@@ -809,7 +804,10 @@ function createNewTask(ttl, desc, t, id) {
         document.getElementById("usernameHeader").style.display = "none";
         document.getElementById("accountIcon").style.display = "none";
         document.getElementById("todaysDate").style.display = "none";
-
+        document.getElementById("feed").style.display = "";
+        document.getElementById("fullFavFeed").style.display = "none";
+        document.getElementById("addButtonsDiv").style.display = "none";
+        
         // initialize div elements
         var cancelButton = document.createElement('div');
         var addToFavButton = document.createElement('div');
@@ -947,9 +945,11 @@ function createNewExercise(r, s, w, t, m, id) {
         clearChildren();
         document.getElementById("calendar").style.display = "none";
         document.getElementById("usernameHeader").style.display = "none";
-        document.getElementById("accountIcon").style.display = "none";
+        // document.getElementById("accountIcon").style.display = "none";
         document.getElementById("todaysDate").style.display = "none";
-
+        document.getElementById("feed").style.display = "";
+        document.getElementById("fullFavFeed").style.display = "none";
+        document.getElementById("addButtonsDiv").style.display = "none";
         var addToFavButton = document.createElement('div');
         // initialize div elements
         var cancelButton = document.createElement('div');
@@ -1098,9 +1098,11 @@ function createNewFood(f, w, t, m, id) {
         clearChildren();
         document.getElementById("calendar").style.display = "none";
         document.getElementById("usernameHeader").style.display = "none";
-        document.getElementById("accountIcon").style.display = "none";
+        // document.getElementById("accountIcon").style.display = "none";
         document.getElementById("todaysDate").style.display = "none";
-
+        document.getElementById("feed").style.display = "";
+        document.getElementById("fullFavFeed").style.display = "none";
+        document.getElementById("addButtonsDiv").style.display = "none";
         // initialize div elements
         var cancelButton = document.createElement('div');
         var food = document.createElement('div');
@@ -1701,28 +1703,17 @@ function favoriteButtonClick() {
     clearChildren();
 
     document.getElementById("feed").style.display = "";
+    document.getElementById("historyTotalFeed").style.display = "none";
+    document.getElementById("fullFavFeed").style.display = "none";
+    document.getElementById("addButtonsDiv").style.display = "none";
 
-
-    document.getElementById("trackingIcon").style.display = "none";
-    document.getElementById("publicIcon").style.display = "none";
-    document.getElementById("accountIcon").style.display = "none";
-    document.getElementById("favoritesIcon").style.display = "none";
-    document.getElementById("favLabel").style.display = "none";
     //load the favorite button form
     document.getElementById("calendar").style.display = "none";
     document.getElementById("usernameHeader").style.display = "none";
-    document.getElementById("taskIcon").style.display = "none";
-    document.getElementById("taskIconLabel").style.display = "none";
-    document.getElementById("exerciseIcon").style.display = "none";
-    document.getElementById("exerciseIconLabel").style.display = "none";
-    document.getElementById("foodIcon").style.display = "none";
-    document.getElementById("foodIconLabel").style.display = "none";
+   
     document.getElementById("todaysDate").style.display = "none";
     document.getElementById("filler1").style.display = "none";
-
-
-    document.getElementById("historyTitle").style.display = "none";
-    document.getElementById("historyFeed").style.display = "none";
+    
 
     // initialize div elements
     var cancelButton = document.createElement('div');
@@ -1755,24 +1746,13 @@ function taskIconButtonClick() {
     clearChildren();
     loadTaskHistoryFeed();
     document.getElementById("feed").style.display = "";
-
-    document.getElementById("trackingIcon").style.display = "none";
-    document.getElementById("publicIcon").style.display = "none";
-    document.getElementById("accountIcon").style.display = "none";
     document.getElementById("calendar").style.display = "none";
-
-    document.getElementById("exerciseIcon").style.display = "none";
-    document.getElementById("taskIcon").style.display = "none";
-    document.getElementById("foodIcon").style.display = "none";
-    document.getElementById("favoritesIcon").style.display = "none";
-    document.getElementById("favLabel").style.display = "none";
-    document.getElementById("exerciseIconLabel").style.display = "none";
-    document.getElementById("taskIconLabel").style.display = "none";
-    document.getElementById("foodIconLabel").style.display = "none";
     document.getElementById("filler1").style.display = "none";
-
     document.getElementById("usernameHeader").style.display = "none";
     document.getElementById("todaysDate").style.display = "";
+    document.getElementById("fullFavFeed").style.display = "none";
+    document.getElementById("addButtonsDiv").style.display = "none";
+    document.getElementById("historyTotalFeed").style.display = "";
 
     // initialize div elements
     var cancelButton = document.createElement('div');
@@ -1806,26 +1786,18 @@ function taskIconButtonClick() {
 function foodIconButtonClick() {
     // clear the feed
     clearChildren();
-    document.getElementById("feed").style.display = "";
-
-    document.getElementById("trackingIcon").style.display = "none";
-    document.getElementById("publicIcon").style.display = "none";
-    document.getElementById("accountIcon").style.display = "none";
-    document.getElementById("todaysDate").style.display = "";
-
     loadFoodHistoryFeed();
-    document.getElementById("calendar").style.display = "none";
-    document.getElementById("usernameHeader").style.display = "none";
-    document.getElementById("filler1").style.display = "none";
 
-    document.getElementById("exerciseIcon").style.display = "none";
-    document.getElementById("taskIcon").style.display = "none";
-    document.getElementById("foodIcon").style.display = "none";
-    document.getElementById("favoritesIcon").style.display = "none";
-    document.getElementById("favLabel").style.display = "none";
-    document.getElementById("exerciseIconLabel").style.display = "none";
-    document.getElementById("taskIconLabel").style.display = "none";
-    document.getElementById("foodIconLabel").style.display = "none";
+    document.getElementById("feed").style.display = "";
+    document.getElementById("feed").style.display = "";
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("filler1").style.display = "none";
+    document.getElementById("usernameHeader").style.display = "none";
+    document.getElementById("todaysDate").style.display = "";
+    document.getElementById("fullFavFeed").style.display = "none";
+    document.getElementById("addButtonsDiv").style.display = "none";
+    document.getElementById("historyTotalFeed").style.display = "";
+
     // initialize div elements
     var cancelButton = document.createElement('div');
     var food = document.createElement('div');
@@ -1862,29 +1834,18 @@ function foodIconButtonClick() {
 
 function exerciseIconButtonClick() {
     // clear the feed
-    // clearChildren();
-    document.getElementById("feed").style.display = "";
-
-    document.getElementById("trackingIcon").style.display = "none";
-    document.getElementById("publicIcon").style.display = "none";
-    document.getElementById("todaysDate").style.display = "";
-
-    document.getElementById("historyFeed").style.display = "";
-    document.getElementById("usernameHeader").style.display = "none";
-    document.getElementById("accountIcon").style.display = "none";
-    document.getElementById("filler1").style.display = "none";
-
-    document.getElementById("historyTitle").style.display = "";
+    clearChildren();
     loadExHistoryFeed();
+    document.getElementById("historyTotalFeed").style.display = "";
+
+    document.getElementById("feed").style.display = "";
+    document.getElementById("feed").style.display = "";
     document.getElementById("calendar").style.display = "none";
-    document.getElementById("exerciseIcon").style.display = "none";
-    document.getElementById("taskIcon").style.display = "none";
-    document.getElementById("foodIcon").style.display = "none";
-    document.getElementById("favoritesIcon").style.display = "none";
-    document.getElementById("favLabel").style.display = "none";
-    document.getElementById("exerciseIconLabel").style.display = "none";
-    document.getElementById("taskIconLabel").style.display = "none";
-    document.getElementById("foodIconLabel").style.display = "none";
+    document.getElementById("filler1").style.display = "none";
+    document.getElementById("usernameHeader").style.display = "none";
+    document.getElementById("todaysDate").style.display = "";
+    document.getElementById("fullFavFeed").style.display = "none";
+    document.getElementById("addButtonsDiv").style.display = "none";
 
 
     // initialize div elements
@@ -1943,6 +1904,7 @@ function editAccount() {
     document.getElementById("calendar").style.display = "none";
     document.getElementById("usernameHeader").style.display = "none";
     document.getElementById("filler1").style.display = "none";
+    document.getElementById("feed").style.display = "";
 
 
     //load form to edit my account
@@ -1980,6 +1942,8 @@ function loadMyAccount() {
     // clear the feed 
     clearChildren();
     document.getElementById("usernameHeader").style.display = "";
+    document.getElementById("userHead").style.display = "";
+
     document.getElementById("userHead").innerHTML = username + "'s Account Page";
     // style calendar: 
     // remove the current active class & set the new active date
@@ -1988,18 +1952,13 @@ function loadMyAccount() {
         active[0].className = "";
     }
     // hide the buttons
+    document.getElementById("addButtonsDiv").style.display = "none";
+
     document.getElementById("feed").style.display = "";
     document.getElementById("trackingIcon").style.display = "";
     document.getElementById("publicIcon").style.display = "";
-    document.getElementById("taskIcon").style.display = "none";
-    document.getElementById("taskIconLabel").style.display = "none";
-    document.getElementById("exerciseIcon").style.display = "none";
-    document.getElementById("exerciseIconLabel").style.display = "none";
-    document.getElementById("foodIcon").style.display = "none";
-    document.getElementById("foodIconLabel").style.display = "none";
     document.getElementById("calendar").style.display = "";
-    document.getElementById("favoritesIcon").style.display = "";
-    document.getElementById("favLabel").style.display = "";
+
     // document.getElementById("usernameHeader").style.display = "";
     document.getElementById("accountIcon").style.display = "";
     document.getElementById("filler1").style.display = "";
@@ -2018,6 +1977,7 @@ function loadMyAccount() {
     document.getElementById("totalFeed").style.display = "none";
     document.getElementById("reccomendedFeed").style.display = "none";
     document.getElementById("idealNutritionValuesFeed").style.display = "none";
+    document.getElementById("fullFavFeed").style.display = "none";
 
 
     // get username var
@@ -2072,7 +2032,7 @@ function loadMyAccount() {
 /////////////////////////////////////////////////////////////////////////////////////
 // FORMAT DATE, LOAD EXERCISE, FOODANDWATER, TASK FEEDS
 function loadFeed(date, month) {
-    // format day var 
+ 
     proteinTotal = 0;
     carbTotal = 0;
     vitaminTotal = 0;
@@ -2117,6 +2077,7 @@ function loadFeed(date, month) {
 
 
     var day = "" + date;
+    
     // hide post buttons
     document.getElementById("trackingIcon").style.display = "";
     document.getElementById("publicIcon").style.display = "";
@@ -2142,10 +2103,12 @@ function loadFeed(date, month) {
     document.getElementById("foodFeedTitle").style.display = "";
     document.getElementById("taskFeedTitle").style.display = "";
     document.getElementById("favoritesDivID").style.display = "";
-    document.getElementById("fullFavFeed").style.display = "";
     document.getElementById("totalFeed").style.display = "";
     document.getElementById("calendar").style.display = "";
     document.getElementById("accountIcon").style.display = "";
+    document.getElementById("userHead").style.display = "";
+
+    // document.getElementById("addFavButtonsDiv").style.display = "";
 
     document.getElementById("userHead").innerHTML = username + "'s Tracking Calendar";
 
@@ -2170,6 +2133,7 @@ function loadFeed(date, month) {
     document.getElementById("commentFeed").style.display = 'none';
     document.getElementById("feed").style.display = 'none';
     document.getElementById("accountPFeed").style.display = 'none';
+    document.getElementById("fullFavFeed").style.display = "";
 
 
 
@@ -2190,16 +2154,16 @@ function loadFeed(date, month) {
     // document.getElementById("chartContainer2").style.display = "";
     // document.getElementById("chartContainer3").style.display = "";
     document.getElementById("totalFeed2").style.display = "";
-
+    document.getElementById("addButtonsDiv").style.display = "";
 
     // console.log(document.getElementsByClassName("favLab"));
 
     // createNewTotalNutrientsDaily("TOTAL WATER: <br>" + (Math.round(waterTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotalDaily * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotalDaily * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL NUTRIENTS (TODAY) <br><br><br>TOTAL PROTEIN: <br>" + (Math.round(proteinTotalDaily * 100) / 100).toFixed(2) + " G");
 
 
-    getMyFoods();
-    loadLowFeedForReccos();
-    loadHighFeedForReccos();
+    // getMyFoods();
+    // loadLowFeedForReccos();
+    // loadHighFeedForReccos();
 
     // load the exercise feed
     db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
@@ -3776,7 +3740,6 @@ function updateAccount() {
         email: email
     }).then(() => {
         window.location.href = "../TrackingPage/tracking.html?userID=" + userID + "&username=" + usernameEdit + "&email=" + email;
-        // loadMyAccount();
     })
         .catch((error) => {
             // alert("ERROR submitting post!" + error);
@@ -4009,8 +3972,11 @@ function editThisFoodFav(f) {
     clearChildren();
     document.getElementById("calendar").style.display = "none";
     document.getElementById("usernameHeader").style.display = "none";
-    document.getElementById("accountIcon").style.display = "none";
+    // document.getElementById("accountIcon").style.display = "none";
     document.getElementById("todaysDate").style.display = "none";
+    document.getElementById("feed").style.display = "";
+    document.getElementById("fullFavFeed").style.display = "none";
+    document.getElementById("addButtonsDiv").style.display = "none";
 
 
     // document.getElementById("filler1").style.display = "none";
@@ -4108,8 +4074,9 @@ function editThisTaskFav(f) {
     clearChildren();
     document.getElementById("calendar").style.display = "none";
     document.getElementById("usernameHeader").style.display = "none";
-    document.getElementById("accountIcon").style.display = "none";
+    // document.getElementById("accountIcon").style.display = "none";
     document.getElementById("todaysDate").style.display = "none";
+    document.getElementById("feed").style.display = "";
 
     var strings = f.split(',');
 
@@ -4194,8 +4161,9 @@ function editThisExerciseFav(f) {
     clearChildren();
     document.getElementById("calendar").style.display = "none";
     document.getElementById("usernameHeader").style.display = "none";
-    document.getElementById("accountIcon").style.display = "none";
+    // document.getElementById("accountIcon").style.display = "none";
     document.getElementById("todaysDate").style.display = "none";
+    document.getElementById("feed").style.display = "";
 
     var strings = f.split(',');
 
@@ -4811,13 +4779,13 @@ function loadReccomendedFeed() {
 
     var x = document.getElementsByClassName("reccoClass")
     for (var i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
+        x[i].style.display = "";
     }
 
     if (calRatio >= 1) {
         console.log("YOU'RE EXCEEDING THE 2000 CALORIE LIMIT");
     }
-    else if (calRatio >= 0.9 && calRatio < 1) {
+    else if (calRatio >= 0.9) {
         console.log("CAL RATIO IS BETWEEN .9 AND 1: " + (Math.round(calRatio * 100) / 100).toFixed(2));
         // reccoAFood(calRatio, "ninety", "Calories");
         document.getElementById("Low in Calories").style.display = "";
@@ -4825,16 +4793,16 @@ function loadReccomendedFeed() {
     // else if (calRatio>0.25 && calRatio <.9){
     //     console.log("CAL RATIO IS BETWEEN .25 AND 1: "+  (Math.round(calRatio * 100) / 100).toFixed(2));
     // }
-    else if (calRatio < .9) {
-        console.log("CAL RATIO IS LESS THAN .9: " + (Math.round(calRatio * 100) / 100).toFixed(2));
-        document.getElementById("High in Calories").style.display = "";
-        // reccoAFood(calRatio, "belowNinety", "Calories");
-    }
+    // else if (calRatio < .9) {
+    //     console.log("CAL RATIO IS LESS THAN .9: " + (Math.round(calRatio * 100) / 100).toFixed(2));
+    //     document.getElementById("High in Calories").style.display = "";
+    //     // reccoAFood(calRatio, "belowNinety", "Calories");
+    // }
     if (proteinRatio >= 1) {
-        console.log("YOU'RE EXCEEDING THE 200 G PROTEIN LIMIT");
+        // console.log("YOU'RE EXCEEDING THE 200 G PROTEIN LIMIT");
     }
-    else if (proteinRatio >= 0.9 && proteinRatio < 1) {
-        console.log("PROTEIN RATIO IS BETWEEN .9 AND 1: " + (Math.round(proteinRatio * 100) / 100).toFixed(2));
+    else if (proteinRatio >= 0.9) {
+        // console.log("PROTEIN RATIO IS BETWEEN .9 AND 1: " + (Math.round(proteinRatio * 100) / 100).toFixed(2));
         // reccoAFood(proteinRatio, "ninety", "Protein");
         document.getElementById("Low in Protein").style.display = "";
 
@@ -4843,19 +4811,19 @@ function loadReccomendedFeed() {
     //     console.log("PROTEIN RATIO IS BETWEEN .25 AND 1: "+  (Math.round(proteinRatio * 100) / 100).toFixed(2));
     // }
     else if (proteinRatio < .9) {
-        console.log("PROTEIN RATIO IS LESS THAN .9: " + (Math.round(proteinRatio * 100) / 100).toFixed(2));
+        // console.log("PROTEIN RATIO IS LESS THAN .9: " + (Math.round(proteinRatio * 100) / 100).toFixed(2));
         // reccoAFood(proteinRatio, "belowNinety", "Protein");
         document.getElementById("High in Protein").style.display = "";
 
 
     }
     if (carbsRatio >= 1) {
-        console.log("YOU'RE EXCEEDING THE 275 G CARBS LIMIT");
+        // console.log("YOU'RE EXCEEDING THE 275 G CARBS LIMIT");
     }
-    else if (carbsRatio >= 0.9 && carbsRatio < 1) {
+    else if (carbsRatio >= 0.9) {
         document.getElementById("Low in Carbs").style.display = "";
 
-        console.log("CARBS RATIO IS BETWEEN .9 AND 1: " + (Math.round(carbsRatio * 100) / 100).toFixed(2));
+        // console.log("CARBS RATIO IS BETWEEN .9 AND 1: " + (Math.round(carbsRatio * 100) / 100).toFixed(2));
     }
     // else if (carbsRatio>0.25 && carbsRatio <.9){
     //     console.log("CARBS RATIO IS BETWEEN .25 AND 1: "+  (Math.round(carbsRatio * 100) / 100).toFixed(2));
@@ -4863,15 +4831,15 @@ function loadReccomendedFeed() {
     else if (carbsRatio < .9) {
         document.getElementById("High in Carbs").style.display = "";
 
-        console.log("CARBS RATIO IS LESS THAN .9: " + (Math.round(carbsRatio * 100) / 100).toFixed(2));
+        // console.log("CARBS RATIO IS LESS THAN .9: " + (Math.round(carbsRatio * 100) / 100).toFixed(2));
     }
     if (potassiumRatio >= 1) {
-        console.log("YOU'RE EXCEEDING THE 4300 MG POTASSIUM LIMIT");
+        // console.log("YOU'RE EXCEEDING THE 4300 MG POTASSIUM LIMIT");
     }
-    else if (potassiumRatio >= 0.9 && potassiumRatio < 1) {
+    else if (potassiumRatio >= 0.9) {
         document.getElementById("Low in Potassium").style.display = "";
 
-        console.log("POTASSIUM RATIO IS BETWEEN .9 AND 1: " + (Math.round(potassiumRatio * 100) / 100).toFixed(2));
+    //  console.log("POTASSIUM RATIO IS BETWEEN .9 AND 1: " + (Math.round(potassiumRatio * 100) / 100).toFixed(2));
     }
     // else if (potassiumRatio>0.25 && potassiumRatio <.9){
     //     console.log("POTASSIUM RATIO IS BETWEEN .25 AND 1: "+  (Math.round(potassiumRatio * 100) / 100).toFixed(2));
@@ -4879,15 +4847,15 @@ function loadReccomendedFeed() {
     else if (potassiumRatio < .9) {
         document.getElementById("High in Potassium").style.display = "";
 
-        console.log("POTASSIUM RATIO IS LESS THAN .9: " + (Math.round(potassiumRatio * 100) / 100).toFixed(2));
+        // console.log("POTASSIUM RATIO IS LESS THAN .9: " + (Math.round(potassiumRatio * 100) / 100).toFixed(2));
     }
     if (calciumRatio >= 1) {
-        console.log("YOU'RE EXCEEDING THE 1000 MG CALCIUM LIMIT");
+        // console.log("YOU'RE EXCEEDING THE 1000 MG CALCIUM LIMIT");
     }
-    else if (calciumRatio >= 0.9 && calciumRatio < 1) {
+    else if (calciumRatio >= 0.9) {
         document.getElementById("Low in Calcium").style.display = "";
 
-        console.log("CALCIUM RATIO IS BETWEEN .9 AND 1: " + (Math.round(calciumRatio * 100) / 100).toFixed(2));
+        // console.log("CALCIUM RATIO IS BETWEEN .9 AND 1: " + (Math.round(calciumRatio * 100) / 100).toFixed(2));
     }
     // else if (calciumRatio>0.25 && calciumRatio <.9){
     //     console.log("CALCIUM RATIO IS BETWEEN .25 AND 1: "+  (Math.round(calciumRatio * 100) / 100).toFixed(2));
@@ -4895,15 +4863,15 @@ function loadReccomendedFeed() {
     else if (calciumRatio < .9) {
         document.getElementById("High in Calcium").style.display = "";
 
-        console.log("CALCIUM RATIO IS LESS THAN .9: " + (Math.round(calciumRatio * 100) / 100).toFixed(2));
+        // console.log("CALCIUM RATIO IS LESS THAN .9: " + (Math.round(calciumRatio * 100) / 100).toFixed(2));
     }
     if (sodiumRatio >= 1) {
-        console.log("YOU'RE EXCEEDING THE 2300 MG SODIUM LIMIT");
+        // console.log("YOU'RE EXCEEDING THE 2300 MG SODIUM LIMIT");
     }
-    else if (sodiumRatio >= 0.9 && sodiumRatio < 1) {
+    else if (sodiumRatio >= 0.9) {
         document.getElementById("Low in Sodium").style.display = "";
 
-        console.log("SODIUM RATIO IS BETWEEN .9 AND 1: " + (Math.round(sodiumRatio * 100) / 100).toFixed(2));
+        // console.log("SODIUM RATIO IS BETWEEN .9 AND 1: " + (Math.round(sodiumRatio * 100) / 100).toFixed(2));
     }
     // else if (sodiumRatio>0.25 && sodiumRatio <.9){
     //     console.log("SODIUM RATIO IS BETWEEN .25 AND 1: "+  (Math.round(sodiumRatio * 100) / 100).toFixed(2));
@@ -4911,78 +4879,78 @@ function loadReccomendedFeed() {
     else if (sodiumRatio < .9) {
         document.getElementById("High in Sodium").style.display = "";
 
-        console.log("SODIUM RATIO IS LESS THAN .9: " + (Math.round(sodiumRatio * 100) / 100).toFixed(2));
+        // console.log("SODIUM RATIO IS LESS THAN .9: " + (Math.round(sodiumRatio * 100) / 100).toFixed(2));
     }
     if (ironRatio >= 1) {
-        console.log("YOU'RE EXCEEDING THE 8 MG IRON LIMIT");
+        // console.log("YOU'RE EXCEEDING THE 8 MG IRON LIMIT");
     }
-    else if (ironRatio >= 0.9 && ironRatio < 1) {
-        document.getElementById("Low in Iron").style.display = "";
+    // else if (ironRatio >= 0.9 && ironRatio < 1) {
+    //     document.getElementById("Low in Iron").style.display = "";
 
-        console.log("IRON RATIO IS BETWEEN .9 AND 1: " + (Math.round(ironRatio * 100) / 100).toFixed(2));
-    }
+    //     console.log("IRON RATIO IS BETWEEN .9 AND 1: " + (Math.round(ironRatio * 100) / 100).toFixed(2));
+    // }
     // else if (ironRatio>0.25 && ironRatio <.9){
     //     console.log("IRON RATIO IS BETWEEN .25 AND 1: "+  (Math.round(ironRatio * 100) / 100).toFixed(2));
     // }
     else if (ironRatio < .9) {
         document.getElementById("High in Iron").style.display = "";
 
-        console.log("IRON RATIO IS LESS THAN .9: " + (Math.round(ironRatio * 100) / 100).toFixed(2));
+        // console.log("IRON RATIO IS LESS THAN .9: " + (Math.round(ironRatio * 100) / 100).toFixed(2));
     }
     if (fiberRatio >= 1) {
-        console.log("YOU'RE EXCEEDING THE 32 G FIBER LIMIT");
+        // console.log("YOU'RE EXCEEDING THE 32 G FIBER LIMIT");
     }
-    else if (fiberRatio >= 0.9 && fiberRatio < 1) {
-        document.getElementById("Low in Fiber").style.display = "";
+    // else if (fiberRatio >= 0.9) {
+    //     document.getElementById("Low in Fiber").style.display = "";
 
-        console.log("FIBER RATIO IS BETWEEN .9 AND 1: " + (Math.round(fiberRatio * 100) / 100).toFixed(2));
-    }
-    // else if (fiberRatio>0.25 && fiberRatio <.9){
+    //     // console.log("FIBER RATIO IS BETWEEN .9 AND 1: " + (Math.round(fiberRatio * 100) / 100).toFixed(2));
+    // }
+    // // else if (fiberRatio>0.25 && fiberRatio <.9){
     //     console.log("FIBER RATIO IS BETWEEN .25 AND 1: "+  (Math.round(fiberRatio * 100) / 100).toFixed(2));
     // }
     else if (fiberRatio < .25) {
         document.getElementById("High in Fiber").style.display = "";
 
-        console.log("FIBER RATIO IS LESS THAN .9: " + (Math.round(fiberRatio * 100) / 100).toFixed(2));
+        // console.log("FIBER RATIO IS LESS THAN .9: " + (Math.round(fiberRatio * 100) / 100).toFixed(2));
     }
     if (transRatio >= 1) {
-        console.log("YOU'RE EXCEEDING THE 2 G TRANS FAT LIMIT");
+        // console.log("YOU'RE EXCEEDING THE 2 G TRANS FAT LIMIT");
     }
-    else if (transRatio >= 0.9 && transRatio < 1) {
+    else if (transRatio >= 0.9) {
         document.getElementById("Low in Trans fat").style.display = "";
 
-        console.log("TRANS RATIO IS BETWEEN .9 AND 1: " + (Math.round(transRatio * 100) / 100).toFixed(2));
+        // console.log("TRANS RATIO IS BETWEEN .9 AND 1: " + (Math.round(transRatio * 100) / 100).toFixed(2));
     }
     // else if (transRatio>0.25 && transRatio <.9){
     //     console.log("TRANS FAT RATIO IS BETWEEN .25 AND 1: "+  (Math.round(transRatio * 100) / 100).toFixed(2));
     // }
-    else if (transRatio < .9) {
-        document.getElementById("High in Trans fat").style.display = "";
+    // else if (transRatio < .9) {
+    //     document.getElementById("High in Trans fat").style.display = "";
 
-        console.log("TRANS FAT RATIO IS LESS THAN .9: " + (Math.round(transRatio * 100) / 100).toFixed(2));
-    }
+    //     console.log("TRANS FAT RATIO IS LESS THAN .9: " + (Math.round(transRatio * 100) / 100).toFixed(2));
+    // }
     if (polyRatio >= 1) {
-        console.log("YOU'RE EXCEEDING THE 22 G POLYUNSATURATED FAT LIMIT");
+        // console.log("YOU'RE EXCEEDING THE 22 G POLYUNSATURATED FAT LIMIT");
     }
-    else if (polyRatio >= 0.9 && polyRatio < 1) {
+    else if (polyRatio >= 0.9) {
         document.getElementById("Low in Polyunsaturated fat").style.display = "";
 
-        console.log("POLYUNSATURATED RATIO IS BETWEEN .9 AND 1: " + (Math.round(polyRatio * 100) / 100).toFixed(2));
+        // console.log("POLYUNSATURATED RATIO IS BETWEEN .9 AND 1: " + (Math.round(polyRatio * 100) / 100).toFixed(2));
     }
     // else if (polyRatio>0.25 && polyRatio <.9){
     //     console.log("POLYUNSATURATED FAT RATIO IS BETWEEN .25 AND 1: "+  (Math.round(polyRatio * 100) / 100).toFixed(2));
     // }
     else if (polyRatio < .9) {
         document.getElementById("High in Polyunsaturated fat").style.display = "";
-        console.log("POLYUNSATURATED FAT RATIO IS LESS THAN .9: " + (Math.round(polyRatio * 100) / 100).toFixed(2));
+        // console.log("POLYUNSATURATED FAT RATIO IS LESS THAN .9: " + (Math.round(polyRatio * 100) / 100).toFixed(2));
     }
     if (monoRatio >= 1) {
-        console.log("YOU'RE EXCEEDING THE 44 G MONOUNSATURATED FAT LIMIT");
+        // console.log("YOU'RE EXCEEDING THE 44 G MONOUNSATURATED FAT LIMIT");
     }
-    else if (monoRatio >= 0.9 && monoRatio < 1) {
+    else if (monoRatio >= 0.9) {
         document.getElementById("Low in Monounsaturated fat").style.display = "";
 
-        console.log("MONOUNSATURATED RATIO IS BETWEEN .9 AND 1: " + (Math.round(monoRatio * 100) / 100).toFixed(2));
+        // console.log("MONOUNSATURATED RATIO IS BETWEEN .9 AND 1: " + (Math.round(monoRatio * 100) / 100).toFixed(2));
     }
     // else if (monoRatio>0.25 && monoRatio <.9){
     //     console.log("MONOUNSATURATED FAT RATIO IS BETWEEN .25 AND 1: "+  (Math.round(monoRatio * 100) / 100).toFixed(2));
@@ -4990,15 +4958,15 @@ function loadReccomendedFeed() {
     else if (monoRatio < .9) {
         document.getElementById("High in Monounsaturated fat").style.display = "";
 
-        console.log("MONOUNSATURATED FAT RATIO IS LESS THAN .9: " + (Math.round(monoRatio * 100) / 100).toFixed(2));
+        // console.log("MONOUNSATURATED FAT RATIO IS LESS THAN .9: " + (Math.round(monoRatio * 100) / 100).toFixed(2));
     }
     if (cholRatio >= 1) {
-        console.log("YOU'RE EXCEEDING THE 300 MG CHOLESTEROL LIMIT");
+        // console.log("YOU'RE EXCEEDING THE 300 MG CHOLESTEROL LIMIT");
     }
-    else if (cholRatio >= 0.9 && cholRatio < 1) {
+    else if (cholRatio >= 0.9) {
         document.getElementById("Low in Cholesterol").style.display = "";
 
-        console.log("CHOLESTEROL RATIO IS BETWEEN .9 AND 1: " + (Math.round(cholRatio * 100) / 100).toFixed(2));
+        // console.log("CHOLESTEROL RATIO IS BETWEEN .9 AND 1: " + (Math.round(cholRatio * 100) / 100).toFixed(2));
     }
     // else if (cholRatio>0.25 && cholRatio <.9){
     //     console.log("CHOLESTEROL RATIO IS BETWEEN .25 AND 1: "+  (Math.round(cholRatio * 100) / 100).toFixed(2));
@@ -5006,24 +4974,24 @@ function loadReccomendedFeed() {
     else if (cholRatio < .9) {
         document.getElementById("High in Cholesterol").style.display = "";
 
-        console.log("CHOLESTEROL RATIO IS LESS THAN .9: " + (Math.round(cholRatio * 100) / 100).toFixed(2));
+        // console.log("CHOLESTEROL RATIO IS LESS THAN .9: " + (Math.round(cholRatio * 100) / 100).toFixed(2));
     }
     if (waterRatio >= 1) {
-        console.log("YOU'RE EXCEEDING THE 1984 MG WATER LIMIT");
+        // console.log("YOU'RE EXCEEDING THE 1984 MG WATER LIMIT");
     }
-    else if (waterRatio >= 0.9 && waterRatio < 1) {
-        document.getElementById("Low in Water").style.display = "";
+    // else if (waterRatio >= 0.9) {
+    //     document.getElementById("Low in Water").style.display = "";
 
-        console.log("WATER RATIO IS BETWEEN .9 AND 1: " + (Math.round(waterRatio * 100) / 100).toFixed(2));
-    }
+    //     console.log("WATER RATIO IS BETWEEN .9 AND 1: " + (Math.round(waterRatio * 100) / 100).toFixed(2));
+    // }
     // else if (waterRatio>0.25 && waterRatio <.9){
     //     console.log("WATER RATIO IS BETWEEN .25 AND 1: "+  (Math.round(waterRatio * 100) / 100).toFixed(2));
     // }
-    else if (waterRatio < .9) {
-        document.getElementById("High in Water").style.display = "";
+    // else if (waterRatio < .9) {
+    //     document.getElementById("High in Water").style.display = "";
 
-        console.log("WATER RATIO IS LESS THAN .9: " + (Math.round(waterRatio * 100) / 100).toFixed(2));
-    }
+    //     console.log("WATER RATIO IS LESS THAN .9: " + (Math.round(waterRatio * 100) / 100).toFixed(2));
+    // }
     // console.log("CAL:" + calRatio,"PROTEIN:" + proteinRatio,"CARBS:" + carbsRatio,"VIT:" + vitaminRatio,
     // caffeineRatio,potassiumRatio,calciumRatio,sodiumRatio,ironRatio,
     //     fiberRatio,transRatio,polyRatio,monoRatio,cholRatio,waterRatio)
@@ -5192,6 +5160,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
         // clear the feed
         clearChildren();
 
+        document.getElementById("userHead").style.display = "none";
 
 
         db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
@@ -5212,7 +5181,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
 
         // create the edit form by setting the HTML content of each div
         cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
-        title.innerHTML = "<br><br><br><label class = 'postClass'>Comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
+        title.innerHTML = "<br><br><br><label id = 'commentLabel'>Comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
         // update button
         commentButton.innerHTML = "<input onclick = 'addCommentToPost(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
         // delete button
@@ -5242,8 +5211,12 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
     newPost.onclick = function () {
         // clear the feed
         clearChildren();
+        
+        // document.getElementById("publicPostDivID").style.display = "none";
 
         document.getElementById("usernameHeader").style.display = "none";
+        document.getElementById("userHead").style.display = "none";
+
         document.getElementById("favoritesIcon").style.display = "none";
         document.getElementById("favLabel").style.display = "none";
 
@@ -5313,16 +5286,16 @@ function createNewComment(cTitle, cUsername) {
 function loadMyPublicPage() {
     clearChildren();
     document.getElementById("usernameHeader").style.display = "";
+    document.getElementById("userHead").style.display = "";
     document.getElementById("userHead").innerHTML = "Welcome to the public feed!";
-  
+    document.getElementById("fullFavFeed").style.display = "none";
+
 
     document.getElementById("publicFeed").style.display = "";
-    document.getElementById("publicPostIcon").style.display = "";
-    document.getElementById("favoritesIcon").style.display = "";
-    document.getElementById("favLabel").style.display = "";
-    // document.getElementById("usernameHeader").style.display = "none";
-    document.getElementById("favoritesIcon").style.display = "none";
-    document.getElementById("favLabel").style.display = "none";
+    // document.getElementById("publicPostIcon").style.display = "";
+    // document.getElementById("favoritesIcon").style.display = "";
+    document.getElementById("addButtonsDiv").style.display = "none";
+
     document.getElementById("publicPostDivID").style.display = '';
 
     document.getElementById("calendar").style.display = "none";
@@ -5418,8 +5391,8 @@ function newPublicPost() {
     clearChildren();
 
     document.getElementById("usernameHeader").style.display = "none";
-    document.getElementById("favoritesIcon").style.display = "none";
-    document.getElementById("publicPostIcon").style.display = "none";
+    // document.getElementById("favoritesIcon").style.display = "none";
+    // document.getElementById("publicPostIcon").style.display = "none";
 
     document.getElementById("favLabel").style.display = "none";
 
