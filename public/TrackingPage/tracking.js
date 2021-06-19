@@ -280,6 +280,7 @@ window.onload = function () {
                                 username: user.displayName,
                                 email: email,
                                 userID: userId,
+                                phoneNumber:""
                             }).then(function () {
                                 alert('Account successfully created and added to database! Welcome ' + user.displayName);
                                 window.location.href = './tracking.html';
