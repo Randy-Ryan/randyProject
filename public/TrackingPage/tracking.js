@@ -4878,7 +4878,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
 
     var newPost = document.createElement('li');
     var comments = "";
-    newPost.innerHTML = "Username: " + pUsername + "<br><br>Title:<br> " + pTitle + "<br><br>" + pDesc + "<br><br><br>Click to view or add comments";
+    newPost.innerHTML = "" + pUsername + "<br><br>Title:<br> " + pTitle + "<br><br>" + pDesc + "<br><br><br>Click to view or add comments";
     newPost.id = "publicPostElement";
     newPost.className = "postClass";
 
@@ -4930,7 +4930,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
 function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
 
     var newPost = document.createElement('li');
-    newPost.innerHTML = "Username: " + pUsername + "<br><br>Title:<br> " + pTitle + "<br><br>-----" + pDesc + "<br><br><br>Click to view or add comments";
+    newPost.innerHTML = "" + pUsername + "<br><br>Title:<br> " + pTitle + "<br><br>-----" + pDesc + "<br><br><br>Click to view or add comments";
     newPost.id = "myPostElement";
     newPost.className = "postClass";
 
