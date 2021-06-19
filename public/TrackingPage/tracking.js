@@ -4909,7 +4909,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
 
         // create the edit form by setting the HTML content of each div
         cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
-        title.innerHTML = "<br><br><br><label id = 'commentLabel'>Comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
+        title.innerHTML = "<br><br><br><label id = 'commentLabel'>My comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
         // update button
         commentButton.innerHTML = "<input onclick = 'addCommentToPost(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
         // delete button
@@ -4917,10 +4917,10 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
         // load the edit form on the feed
         document.getElementById("feed")
             .appendChild(cancelButton)
-
             .appendChild(thisPostTitle)
-            .appendChild(title)
             .appendChild(commentButton)
+            .appendChild(title)
+
         document.getElementById("feed").style.display = "";
 
     }
@@ -5002,7 +5002,7 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
 function createNewComment(cTitle, cUsername) {
 
     var newComm = document.createElement('li');
-    newComm.innerHTML = "Username: " + cUsername + "<br>Comment: " + cTitle;
+    newComm.innerHTML = "Username: " + cUsername + "<br><br>" + cTitle;
     newComm.id = "publicPostElementComment";
     newComm.className = "postClassComment";
     document.getElementById("commentPostFeed").appendChild(newComm);
