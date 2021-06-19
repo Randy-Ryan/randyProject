@@ -58,6 +58,7 @@ body{
   margin: 10%;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
   border-radius: 20px;
+  margin-bottom: 30%;
 
 
   /* text-shadow: 0 1px 0 #ccc,
@@ -86,6 +87,7 @@ body{
   border: 2px solid black;
   display:block;
   margin: 10%;
+  margin-bottom: 30%;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
   border-radius: 20px;
 
@@ -112,10 +114,10 @@ body{
   position: relative;
   background-color: #ECECEC;
   border-radius: 20px;
-  margin-bottom: 10%;
   border: 2px solid black;
   margin: 10%;
   display:block;
+  margin-bottom: 30%;
 
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
 
@@ -428,6 +430,10 @@ width: 47%;
 .reccoClass{
   margin:5%;
   background-color: white;
+  padding: 5%;
+  margin-top: 20%;
+  margin-bottom: 20%;
+  /* margin-bottom: 10%; */
 }
 
 .reccoClassWeek{
@@ -809,18 +815,21 @@ width: 47%;
 /* FAV DISPLAY FEED */
 #fullFavFeed{
   overflow: auto; 
-  width: 80%;
+  width: 48%;
   height: 60%;
-  margin-top: 5%;
+  /* margin-top: 5%; */
   margin-bottom: 10%;
-  margin-left: 10%;
-  border: 10px solid black;
+  float: left;
+  margin-left: 0%;
+  /* margin-left: 10%; */
+  margin-right: 1%;
+  /* border: 10px solid black; */
   white-space: nowrap;
   overflow-y: auto;
   white-space: nowrap;
   /* background-image: linear-gradient(to right, #f6d285, #bbf0f3); */
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
-  background-color: #772f1a;
+  /* background-color: #772f1a; */
 }
 
  
@@ -1152,22 +1161,51 @@ text-align: center;}
 
 
 .favButtonAdd{
-  width: 200px;
-  height: auto;
+  width: 90%; 
+  /* float: right; */
+ height: auto;
+
   padding: 5%;
   font-size: 20px;
   background-color: green;
   color: white;
-  border: 2px solid black;
+  font-weight: 900;
+  /* border: 2px solid black; */
   border-radius: 10px;
   margin: 0%;
-}
-#historyAdd{
   margin-bottom: 10%;
+
+  box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+
 }
+
+.buttonEditFeed{
+  width: 65%; 
+  float: left;
+  margin: 1%;
+  margin-left: 12%;
+  margin-right: 0%;
+  margin-top: 3%;
+  height: auto;
+  padding: 5%;
+  font-size: 20px;
+  border-radius: 10px;
+
+  background-color: gray;
+  color: black;
+  font-weight: 100;
+  box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+  margin-bottom: 15%;
+
+}
+
 .favButtonEdit{
-  width: 200px;
+  width: 40%; 
+  float: left;
   margin: 0%;
+  /* margin-right: 5%; */
+
+
 
   height: auto;
   padding: 5%;
@@ -1175,11 +1213,15 @@ text-align: center;}
   border-radius: 10px;
 
   background-color: gray;
-  color: white;
-  border: 2px solid black;
+  color: black;
+  font-weight: 100;
+  box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+  margin-bottom: 15%;
+
+
+}
+#historyAdd{
   margin-bottom: 10%;
-
-
 }
 /* ************************************************************************* */
 /* ************************************************************************* */
@@ -1529,7 +1571,7 @@ margin-bottom: 5%;
 
     #addButtonsDiv{
       float: left;
-      width: 100%;
+      width: 50%;
     }
     #taskIconDivID{
       text-align: left;
@@ -1551,6 +1593,59 @@ margin-bottom: 5%;
       margin-bottom: 10%;
 
     }
+
+    #foodGridFeed{
+      background-color: #557A95;
+      border-radius: 50px;
+      box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+      padding: 2%;
+      width: auto;
+      margin-left: 7%;
+      margin-right: 7%;
+      margin-bottom: 10%;
+
+    }
+    #exerciseGridFeed{
+      background-color: #7395AE;
+      border-radius: 50px;
+      box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+      padding: 2%;
+      width: auto;
+      margin-left: 7%;
+      margin-right: 7%;
+      margin-bottom: 10%;
+
+    }
+    #taskGridFeed{
+      background-color: #379683;
+      border-radius: 50px;
+      box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+      padding: 2%;
+      width: auto;
+      margin-left: 7%;
+      margin-right: 7%;
+      margin-bottom: 10%;
+    }
+
+    #favIDTask{
+    background-color: #ECECEC;
+    color: #379683;
+    margin: 0%;
+    padding: 2%;
+    }
+    #favIDEx{
+      background-color: #f78888;
+      color: black;
+      /* font-weight: 600; */
+      margin: 0%;
+    padding: 2%;
+    }
+      #favIDFood{
+        background-color: #f3d250;
+        color: #557A95;
+        margin: 0%;
+    padding: 2%;
+      }
 /* FAVORITES ICON IMG ELEMENT*/
 #favoritesIcon{
   /* position: absolute;

@@ -278,7 +278,7 @@ window.onload = function () {
                     alert(error);
                 });;
         }
-        
+
     }
     var mainForm = document.getElementById("login-form");
     mainForm.onsubmit = function (e) {
@@ -333,21 +333,21 @@ window.onload = function () {
     // document.getElementById("ex56").innerHTML = "EX";
     // document.getElementById("food56").innerHTML= "FOOD";
     // document.getElementById("task56").innerHTML = "TASK";
-   // format day var 
-        // set month title and todays date on load
-        document.getElementById("monthTitle").innerHTML = "" + month;
-        // hide empty feed title
-        document.getElementById("filler1").style.display = "none";
-        // style the active date on calendar
-        document.getElementById("days" + month).style.display = "";
-        document.getElementById('id' + day + month).className = "active";
-        // set global date/month vars
-        currDate = day;
-        currMonth = month;
-        // style date title respectivly
-        document.getElementById("todaysDate").innerHTML = currMonth + " / " + currDate;
-        document.getElementById("historyFeed").style.display = "none";
-        document.getElementById("historyTitle").style.display = "none";
+    // format day var 
+    // set month title and todays date on load
+    document.getElementById("monthTitle").innerHTML = "" + month;
+    // hide empty feed title
+    document.getElementById("filler1").style.display = "none";
+    // style the active date on calendar
+    document.getElementById("days" + month).style.display = "";
+    document.getElementById('id' + day + month).className = "active";
+    // set global date/month vars
+    currDate = day;
+    currMonth = month;
+    // style date title respectivly
+    document.getElementById("todaysDate").innerHTML = currMonth + " / " + currDate;
+    document.getElementById("historyFeed").style.display = "none";
+    document.getElementById("historyTitle").style.display = "none";
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- ON CALENDAR DAY CLICK ------------------////////////////
@@ -772,10 +772,6 @@ function createNewTask(ttl, desc, t, id) {
     //TODO//
     // needs a hover attribute
 
-    // initialize new task div: set id & class name
-    var newTask = document.createElement('div');
-    newTask.id = "taskID";
-    newTask.className = "testtt";
 
     //TODO//
     // furthis this style implementation
@@ -794,65 +790,16 @@ function createNewTask(ttl, desc, t, id) {
 
     fullString = fullString + "</label>";
 
-    // create the new task div and set HTML content w/ respective vars
+    // initialize new task div: set id & class name
+    var newTask = document.createElement('div');
+    newTask.id = "taskID";
+    newTask.className = "testtt";
     newTask.innerHTML = fullString;
-    // set on-click to edit/load this task div
-    newTask.onclick = function () {
-        // clear the feed
-        clearChildren();
-        document.getElementById("calendar").style.display = "none";
-        document.getElementById("usernameHeader").style.display = "none";
-        document.getElementById("accountIcon").style.display = "none";
-        document.getElementById("todaysDate").style.display = "none";
-        document.getElementById("feed").style.display = "";
-        document.getElementById("fullFavFeed").style.display = "none";
-        document.getElementById("addButtonsDiv").style.display = "none";
-        
-        // initialize div elements
-        var cancelButton = document.createElement('div');
-        var addToFavButton = document.createElement('div');
-
-        var title = document.createElement('div');
-        var description = document.createElement('div');
-        var time = document.createElement('div');
-        var postButton = document.createElement('div');
-        var deleteButton = document.createElement('div');
-
-        addToFavButton.id = "addToFavEdit";
-        // set the ids
-        cancelButton.id = "cancelButtonNewEdit";
-        title.id = "titleNewEdit";
-        description.id = "descriptionNewEdit";
-        time.id = "timeTaskNewEdit";
-        postButton.id = "postButtonExNewEdit";
-        deleteButton.id = "deleteButtonExNewEdit";
-
-
-        addToFavButton.innerHTML = "<input onclick = '" + 'addFavTask()' + "' type='submit' id = 'cancelButton1' value = 'ADD TO FAVORITE TASKS'/>"
-
-        // create the edit form by setting the HTML content of each div
-        cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
-        title.innerHTML = "<br><br><br><label class = 'exClass1'>Title: <br><br></label><input type='text' class = 'required' id='12345' value = '" + ttl + "'><br><br><br>";
-        description.innerHTML = "<label class = 'exClass1'>Description: <br><br></label> <input type='text' id='repsInput' class = 'required' value = '" + desc + "'><br><br><br>";
-        time.innerHTML = "<label class = 'exClass1'>Time: <br><br></label><input type='text' id='timeInput' class = 'required' value = '" + t + "'><br><br><br>";
-        // update button
-        postButton.innerHTML = "<input onclick = 'updateTaskEntry(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'UPDATE'/>"
-        // delete button
-        deleteButton.innerHTML = "<input onclick = 'deleteTask(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'DELETE'/>"
-
-        // load the edit form on the feed
-        document.getElementById("feed")
-            .appendChild(cancelButton)
-            .appendChild(addToFavButton)
-            .appendChild(title)
-            .appendChild(description)
-            .appendChild(time)
-            .appendChild(postButton)
-            .appendChild(deleteButton);
-    }
-
+    var addEditElement = document.createElement('div');
+    addEditElement.innerHTML = "<div onclick = '" + 'editThisTaskFav("' + ttl + "," + desc + "," + t + "," + id + '")' + "' class = 'buttonEditFeed'>EDIT</div>";
+    // newTask.appendChild(addEditElement);
     // load new exercise div into the exercise feed
-    document.getElementById("taskFeed").appendChild(newTask);
+    document.getElementById("taskFeed").appendChild(newTask).appendChild(addEditElement);
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- CREATE/LOAD A NEW FAV TASK ELEMENT -----------//////////////
@@ -871,13 +818,13 @@ function createNewFavTask(ttl, desc, t, id) {
 
 
     // create the new task div and set HTML content w/ respective vars
-    addEditElement.innerHTML = "<br><button onclick = '" + 'editThisTaskFav("' + ttl + "," + desc + "," + t + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
+    addEditElement.innerHTML = "<div onclick = '" + 'editThisTaskFav("' + ttl + "," + desc + "," + t + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</div>";
 
-    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavTaskToDB("' + ttl + "," + desc + "," + t + '")' + "' class = 'favButtonAdd'>ADD</button>";
+    addFavoriteElement.innerHTML = "<div onclick = '" + 'addFavTaskToDB("' + ttl + "," + desc + "," + t + '")' + "' class = 'favButtonAdd'>ADD</div>";
     newTask.appendChild(addFavoriteElement).appendChild(addEditElement);
     addEditElement.id = "editID"
     addFavoriteElement.id = "favoriteID"
-    newTask.id = "favID";
+    newTask.id = "favIDTask";
     newTask.className = "testtt";
 
     //TODO//
@@ -908,10 +855,7 @@ function createNewExercise(r, s, w, t, m, id) {
     //TODO//
     // needs a hover attribute
 
-    // initialize new exercise div: set id & class name
-    var newExercise = document.createElement('div');
-    newExercise.id = "exerciseID";
-    newExercise.className = "testtt";
+
 
     //format a string to set element html
     var fullString = "<br>";
@@ -937,72 +881,16 @@ function createNewExercise(r, s, w, t, m, id) {
     // add a check for empty params and setting the following HTML
 
     // create the new exercise div and set HTML content w/ respective vars
+    // initialize new exercise div: set id & class name
+    var newExercise = document.createElement('div');
+    newExercise.id = "exerciseID";
+    newExercise.className = "testtt";
     newExercise.innerHTML = fullString;
-
-    // set on-click to edit/load this exercise div
-    newExercise.onclick = function () {
-        // clear the feed
-        clearChildren();
-        document.getElementById("calendar").style.display = "none";
-        document.getElementById("usernameHeader").style.display = "none";
-        // document.getElementById("accountIcon").style.display = "none";
-        document.getElementById("todaysDate").style.display = "none";
-        document.getElementById("feed").style.display = "";
-        document.getElementById("fullFavFeed").style.display = "none";
-        document.getElementById("addButtonsDiv").style.display = "none";
-        var addToFavButton = document.createElement('div');
-        // initialize div elements
-        var cancelButton = document.createElement('div');
-        var message = document.createElement('div');
-        var reps = document.createElement('div');
-        var sets = document.createElement('div');
-        var weight = document.createElement('div');
-        var time = document.createElement('div');
-        var postButton = document.createElement('div');
-        var deleteButton = document.createElement('div');
-
-        addToFavButton.id = "addToFavEdit";
-        // set the ids
-
-        cancelButton.id = "cancelNewEdit";
-        message.id = "messageNewEdit";
-        reps.id = "repsNewEdit";
-        sets.id = "setsNewEdit";
-        weight.id = "weightNewEdit";
-        time.id = "timeExNewEdit";
-        postButton.id = "postButtonExNewEdit";
-        deleteButton.id = "deleteButtonExNewEdit";
-
-
-        addToFavButton.innerHTML = "<input onclick = '" + 'addFavExercise()' + "' type='submit' id = 'cancelButton1' value = 'ADD TO FAVORITE EXERCISES'/>"
-
-        // create the edit form by setting the HTML content of each div
-        cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
-        message.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: DB Bench Press. Difficult) <br><br></label><input type='text' class = 'required' id='12345' value = '" + m + "'><br><br><br>";
-        reps.innerHTML = "<label class = 'exClass1'>Reps (ex: 8) <br><br></label> <input type='text' id='repsInput' class = 'required' value = '" + r + "'><br><br><br>";
-        sets.innerHTML = "<label class = 'exClass1'>Sets (ex: 3)<br><br></label><input type='text' id='setsInput' class = 'required' value = '" + s + "'><br><br><br>";
-        weight.innerHTML = "<label class = 'exClass1'>Weight (ex: 100 lbs)<br><br></label><input type='text' id='weightInput' class = 'required' value = '" + w + "'><br><br><br>";
-        time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm) <br><br></label><input type='text' id='timeInput' class = 'required' value = '" + t + "'><br><br><br>";
-        // update button
-        postButton.innerHTML = "<input onclick = 'updateExerciseEntry(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'UPDATE'/>"
-        // delete button
-        deleteButton.innerHTML = "<input onclick = 'deleteExercise(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'DELETE'/>"
-
-        // load the edit form on the feed
-        document.getElementById("feed")
-            .appendChild(cancelButton)
-            .appendChild(addToFavButton)
-            .appendChild(message)
-            .appendChild(reps)
-            .appendChild(sets)
-            .appendChild(weight)
-            .appendChild(time)
-            .appendChild(postButton)
-            .appendChild(deleteButton);
-    }
+    var addEditElement = document.createElement('div');
+    addEditElement.innerHTML = "<div onclick = '" + 'editThisExerciseFav("' + m + "," + r + "," + s + "," + w + "," + t + "," + + id + '")' + "' class = 'buttonEditFeed'>EDIT</div>";
 
     // load new exercise div into the exercise feed
-    document.getElementById("exFeed").appendChild(newExercise);
+    document.getElementById("exFeed").appendChild(newExercise).appendChild(addEditElement);
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- CREATE/LOAD A NEW FAV EXERCISE ELEMENT -----------//////////
@@ -1016,11 +904,11 @@ function createNewFavExercise(r, s, w, t, m, id) {
     var newExercise = document.createElement('li');
     var addEditElement = document.createElement('div');
     var addFavoriteElement = document.createElement('div');
-    newExercise.id = "favID";
+    newExercise.id = "favIDEx";
     newExercise.className = "testtt";
     // create the new exercise div and set HTML content w/ respective vars
-    addEditElement.innerHTML = "<br><button onclick = '" + 'editThisExerciseFav("' + m + "," + r + "," + s + "," + w + "," + t + "," + + id + '")' + "'  class = 'favButtonEdit'>EDIT</button>";
-    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavExerciseToDB("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "'  class = 'favButtonAdd'>ADD</button>";
+    addEditElement.innerHTML = "<div onclick = '" + 'editThisExerciseFav("' + m + "," + r + "," + s + "," + w + "," + t + "," + + id + '")' + "'  class = 'favButtonEdit'>EDIT</div>";
+    addFavoriteElement.innerHTML = "<div onclick = '" + 'addFavExerciseToDB("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "'  class = 'favButtonAdd'>ADD</div>";
     // load new exercise div into the exercise feed
     newExercise.appendChild(addFavoriteElement).appendChild(addEditElement);
     //format a string to set element html
@@ -1080,7 +968,8 @@ function createNewFood(f, w, t, m, id) {
     // create the new exercise div and set HTML content w/ respective vars
 
     newFood.innerHTML = fullString;
-
+    var addEditElement = document.createElement('div');
+    addEditElement.innerHTML = "<div onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + m + "," + t + "," + id + '")' + "' class = 'buttonEditFeed'>EDIT</div>";
 
     // fullString = fullString + "</label>";
 
@@ -1089,68 +978,8 @@ function createNewFood(f, w, t, m, id) {
     newFood.id = "foodID";
     newFood.className = "testtt";
 
-    // create the new food div and set HTML content w/ respective vars
-    // newFood.innerHTML = fullString;
-
-    // set on-click to edit/load this food div
-    newFood.onclick = function () {
-        // clear the feed
-        clearChildren();
-        document.getElementById("calendar").style.display = "none";
-        document.getElementById("usernameHeader").style.display = "none";
-        // document.getElementById("accountIcon").style.display = "none";
-        document.getElementById("todaysDate").style.display = "none";
-        document.getElementById("feed").style.display = "";
-        document.getElementById("fullFavFeed").style.display = "none";
-        document.getElementById("addButtonsDiv").style.display = "none";
-        // initialize div elements
-        var cancelButton = document.createElement('div');
-        var food = document.createElement('div');
-        var water = document.createElement('div');
-        var time = document.createElement('div');
-        var message = document.createElement('div');
-        var postButton = document.createElement('div');
-        var deleteButton = document.createElement('div');
-        var addToFavButton = document.createElement('div');
-
-
-        addToFavButton.id = "addToFavEdit";
-        // set the ids
-        cancelButton.id = "cancelNewEdit";
-        food.id = "foodNewEdit";
-        water.id = "waterNewEdit";
-        time.id = "timeFoodNewEdit";
-        message.id = "messageFoodNewEdit";
-        postButton.id = "postButtonFoodNewEdit";
-        deleteButton.id = "deleteButtonExNewEdit";
-
-        addToFavButton.innerHTML = "<input onclick = '" + 'addFavFoodAndWater()' + "' type='submit' id = 'cancelButton1' value = 'ADD TO FAVORITE FOOD'/>"
-
-        // create the edit form by setting the HTML content of each div
-        cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
-        food.innerHTML = "<br><br><br><label class = 'exClass1'>Food (ex: PB&J plus a banana)<br><br> </label> <input type='text' id='foodInput' class = 'required' value = '" + f + "'><br><br><br>  ";
-        water.innerHTML = "<label class = 'exClass1'>Water/Beverages (ex: Water, Protein Shake)<br> <br> </label><input type='text' class = 'required' id='waterInput' value = '" + w + "'><br><br><br>  ";
-        time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br>  </label><input type='text' id='timeFoodInput' class = 'required' value = '" + t + "'><br><br> <br> ";
-        message.innerHTML = "<label class = 'exClass1'>Note (ex: 400 calories)<br><br> </label><input type='text' id='messageFoodInput'class = 'required' value = '" + m + "'><br><br><br>";
-        // update button
-        postButton.innerHTML = "<input onclick = 'updateFoodEntry(" + id + ");' type='submit' id = 'pButton1' value = 'UPDATE'/>";
-        // delete button
-        deleteButton.innerHTML = "<input onclick = 'deleteFood(" + id + ");' type='submit' id = 'pButton1' value = 'DELETE'/>";
-
-        // load the food form on the feed
-        document.getElementById("feed")
-            .appendChild(cancelButton)
-            .appendChild(addToFavButton)
-            .appendChild(food)
-            .appendChild(water)
-            .appendChild(message)
-            .appendChild(time)
-            .appendChild(postButton)
-            .appendChild(deleteButton);
-    }
-
     // load new food div into the food feed
-    document.getElementById("foodFeed").appendChild(newFood);
+    document.getElementById("foodFeed").appendChild(newFood).appendChild(addEditElement);
 }
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- CREATE/LOAD A NEW FAV FOOD ELEMENT ---------------//////////
@@ -1166,9 +995,9 @@ function createNewFavFood(f, w, m, t, id) {
     var addEditElement = document.createElement('div');
 
     // create the new food div and set HTML content w/ respective vars
-    addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + m + "," + t + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
+    addEditElement.innerHTML = "<div onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + m + "," + t + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</div>";
 
-    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + m + "," + t + '")' + "' class = 'favButtonAdd'>ADD</button>";
+    addFavoriteElement.innerHTML = "<div onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + m + "," + t + '")' + "' class = 'favButtonAdd'>ADD</div>";
     newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
 
 
@@ -1197,7 +1026,7 @@ function createNewFavFood(f, w, m, t, id) {
 
 
 
-    newFood.id = "favID";
+    newFood.id = "favIDFood";
     addFavoriteElement.id = "addFavoriteElement";
     addEditElement.id = "addEditElement";
 
@@ -1223,7 +1052,7 @@ function createNewHistoryEx(r, s, w, t, m, id) {
     // var addEditElement = document.createElement('div');
     var addFavoriteElement = document.createElement('div');
     var addToFavButton = document.createElement('div');
-    newExercise.id = "favID";
+    newExercise.id = "favIDEx";
     newExercise.className = "testtt";
 
     // create the new exercise div and set HTML content w/ respective vars
@@ -1299,7 +1128,7 @@ function createNewHistoryFood(f, w, t, m, id) {
 
 
     newFood.innerHTML += fullString;
-    newFood.id = "favID";
+    newFood.id = "favIDFood";
     newFood.className = "testtt";
 
 
@@ -1320,7 +1149,7 @@ function createNewHistoryTask(ttl, desc, t, id) {
     var newTask = document.createElement('li');
     var addFavoriteElement = document.createElement('div');
     var addToFavButton = document.createElement('div');
-    newTask.id = "favID";
+    newTask.id = "favIDTask";
     newTask.className = "testtt";
 
     addToFavButton.innerHTML = "<input onclick = '" + 'addFavHistoryTask("' + ttl + "," + desc + "," + t + '")' + "' type='submit' id = 'favAdd' value = 'ADD TO FAVORITE TASKS'/>"
@@ -1710,10 +1539,10 @@ function favoriteButtonClick() {
     //load the favorite button form
     document.getElementById("calendar").style.display = "none";
     document.getElementById("usernameHeader").style.display = "none";
-   
+
     document.getElementById("todaysDate").style.display = "none";
     document.getElementById("filler1").style.display = "none";
-    
+
 
     // initialize div elements
     var cancelButton = document.createElement('div');
@@ -2032,7 +1861,7 @@ function loadMyAccount() {
 /////////////////////////////////////////////////////////////////////////////////////
 // FORMAT DATE, LOAD EXERCISE, FOODANDWATER, TASK FEEDS
 function loadFeed(date, month) {
- 
+
     proteinTotal = 0;
     carbTotal = 0;
     vitaminTotal = 0;
@@ -2077,7 +1906,7 @@ function loadFeed(date, month) {
 
 
     var day = "" + date;
-    
+
     // hide post buttons
     document.getElementById("trackingIcon").style.display = "";
     document.getElementById("publicIcon").style.display = "";
@@ -2161,9 +1990,9 @@ function loadFeed(date, month) {
     // createNewTotalNutrientsDaily("TOTAL WATER: <br>" + (Math.round(waterTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotalDaily * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotalDaily * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL NUTRIENTS (TODAY) <br><br><br>TOTAL PROTEIN: <br>" + (Math.round(proteinTotalDaily * 100) / 100).toFixed(2) + " G");
 
 
-    // getMyFoods();
-    // loadLowFeedForReccos();
-    // loadHighFeedForReccos();
+    getMyFoods();
+    loadLowFeedForReccos();
+    loadHighFeedForReccos();
 
     // load the exercise feed
     db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
@@ -3931,6 +3760,10 @@ function userSignedOut() {
     document.getElementById('publicIcon').style.display = 'none';
     document.getElementById('trackingIcon').style.display = 'none';
 
+    document.getElementById('publicIconLabel').style.display = 'none';
+    document.getElementById('trackingIconLabel').style.display = 'none';
+    document.getElementById('accountIconLabel').style.display = 'none';
+
     // document.getElementById("dailyNutritionValues").style.display = "none";
 
     document.getElementById("totalFeed").style.display = "none";
@@ -4077,7 +3910,8 @@ function editThisTaskFav(f) {
     // document.getElementById("accountIcon").style.display = "none";
     document.getElementById("todaysDate").style.display = "none";
     document.getElementById("feed").style.display = "";
-
+    document.getElementById("addButtonsDiv").style.display = "none";
+    document.getElementById("fullFavFeed").style.display = "none";
     var strings = f.split(',');
 
     var ttl, desc, t;
@@ -4163,6 +3997,10 @@ function editThisExerciseFav(f) {
     document.getElementById("usernameHeader").style.display = "none";
     // document.getElementById("accountIcon").style.display = "none";
     document.getElementById("todaysDate").style.display = "none";
+    document.getElementById("addButtonsDiv").style.display = "none";
+    document.getElementById("fullFavFeed").style.display = "none";
+
+
     document.getElementById("feed").style.display = "";
 
     var strings = f.split(',');
@@ -4777,225 +4615,113 @@ function loadReccomendedFeed() {
     // (Math.round(cholRatio * 100) / 100).toFixed(2)
     // (Math.round(waterRatio * 100) / 100).toFixed(2)
 
-    var x = document.getElementsByClassName("reccoClass")
+    var x = document.getElementsByClassName("reccoClass");
     for (var i = 0; i < x.length; i++) {
-        x[i].style.display = "";
+        x[i].style.display = "none";
     }
 
-    if (calRatio >= 1) {
-        console.log("YOU'RE EXCEEDING THE 2000 CALORIE LIMIT");
-    }
-    else if (calRatio >= 0.9) {
-        console.log("CAL RATIO IS BETWEEN .9 AND 1: " + (Math.round(calRatio * 100) / 100).toFixed(2));
-        // reccoAFood(calRatio, "ninety", "Calories");
+    if (calRatio >= .9) {
         document.getElementById("Low in Calories").style.display = "";
+        document.getElementById("High in Calories").style.display = "none";
     }
-    // else if (calRatio>0.25 && calRatio <.9){
-    //     console.log("CAL RATIO IS BETWEEN .25 AND 1: "+  (Math.round(calRatio * 100) / 100).toFixed(2));
-    // }
-    // else if (calRatio < .9) {
-    //     console.log("CAL RATIO IS LESS THAN .9: " + (Math.round(calRatio * 100) / 100).toFixed(2));
-    //     document.getElementById("High in Calories").style.display = "";
-    //     // reccoAFood(calRatio, "belowNinety", "Calories");
-    // }
-    if (proteinRatio >= 1) {
-        // console.log("YOU'RE EXCEEDING THE 200 G PROTEIN LIMIT");
+    if (calRatio < 0.9) {
+        document.getElementById("High in Calories").style.display = "";
+        document.getElementById("Low in Calories").style.display = "none";
     }
-    else if (proteinRatio >= 0.9) {
-        // console.log("PROTEIN RATIO IS BETWEEN .9 AND 1: " + (Math.round(proteinRatio * 100) / 100).toFixed(2));
-        // reccoAFood(proteinRatio, "ninety", "Protein");
+    if (proteinRatio >= .9) {
         document.getElementById("Low in Protein").style.display = "";
+        document.getElementById("High in Protein").style.display = "none";
 
     }
-    // else if (proteinRatio>0.25 && proteinRatio <.9){
-    //     console.log("PROTEIN RATIO IS BETWEEN .25 AND 1: "+  (Math.round(proteinRatio * 100) / 100).toFixed(2));
-    // }
-    else if (proteinRatio < .9) {
-        // console.log("PROTEIN RATIO IS LESS THAN .9: " + (Math.round(proteinRatio * 100) / 100).toFixed(2));
-        // reccoAFood(proteinRatio, "belowNinety", "Protein");
+    if (proteinRatio < 0.9) {
         document.getElementById("High in Protein").style.display = "";
-
-
+        document.getElementById("Low in Protein").style.display = "none";
     }
-    if (carbsRatio >= 1) {
-        // console.log("YOU'RE EXCEEDING THE 275 G CARBS LIMIT");
-    }
-    else if (carbsRatio >= 0.9) {
+    if (carbsRatio >= .9) {
         document.getElementById("Low in Carbs").style.display = "";
-
-        // console.log("CARBS RATIO IS BETWEEN .9 AND 1: " + (Math.round(carbsRatio * 100) / 100).toFixed(2));
+        document.getElementById("High in Carbs").style.display = "none";
     }
-    // else if (carbsRatio>0.25 && carbsRatio <.9){
-    //     console.log("CARBS RATIO IS BETWEEN .25 AND 1: "+  (Math.round(carbsRatio * 100) / 100).toFixed(2));
-    // }
-    else if (carbsRatio < .9) {
+    if (carbsRatio < 0.9) {
         document.getElementById("High in Carbs").style.display = "";
-
-        // console.log("CARBS RATIO IS LESS THAN .9: " + (Math.round(carbsRatio * 100) / 100).toFixed(2));
+        document.getElementById("Low in Carbs").style.display = "none";
     }
-    if (potassiumRatio >= 1) {
-        // console.log("YOU'RE EXCEEDING THE 4300 MG POTASSIUM LIMIT");
-    }
-    else if (potassiumRatio >= 0.9) {
+    if (potassiumRatio >= .9) {
         document.getElementById("Low in Potassium").style.display = "";
-
-    //  console.log("POTASSIUM RATIO IS BETWEEN .9 AND 1: " + (Math.round(potassiumRatio * 100) / 100).toFixed(2));
+        document.getElementById("High in Potassium").style.display = "none";
     }
-    // else if (potassiumRatio>0.25 && potassiumRatio <.9){
-    //     console.log("POTASSIUM RATIO IS BETWEEN .25 AND 1: "+  (Math.round(potassiumRatio * 100) / 100).toFixed(2));
-    // }
-    else if (potassiumRatio < .9) {
+    if (potassiumRatio < 0.9) {
         document.getElementById("High in Potassium").style.display = "";
+        document.getElementById("Low in Potassium").style.display = "none";
+    }
 
-        // console.log("POTASSIUM RATIO IS LESS THAN .9: " + (Math.round(potassiumRatio * 100) / 100).toFixed(2));
-    }
-    if (calciumRatio >= 1) {
-        // console.log("YOU'RE EXCEEDING THE 1000 MG CALCIUM LIMIT");
-    }
-    else if (calciumRatio >= 0.9) {
+
+    if (calciumRatio >= .9) {
         document.getElementById("Low in Calcium").style.display = "";
-
-        // console.log("CALCIUM RATIO IS BETWEEN .9 AND 1: " + (Math.round(calciumRatio * 100) / 100).toFixed(2));
+        document.getElementById("High in Calcium").style.display = "none";
     }
-    // else if (calciumRatio>0.25 && calciumRatio <.9){
-    //     console.log("CALCIUM RATIO IS BETWEEN .25 AND 1: "+  (Math.round(calciumRatio * 100) / 100).toFixed(2));
-    // }
-    else if (calciumRatio < .9) {
+    if (calciumRatio < 0.9) {
         document.getElementById("High in Calcium").style.display = "";
+        document.getElementById("Low in Calcium").style.display = "none";
+    }
 
-        // console.log("CALCIUM RATIO IS LESS THAN .9: " + (Math.round(calciumRatio * 100) / 100).toFixed(2));
-    }
-    if (sodiumRatio >= 1) {
-        // console.log("YOU'RE EXCEEDING THE 2300 MG SODIUM LIMIT");
-    }
-    else if (sodiumRatio >= 0.9) {
+
+    if (sodiumRatio >= .9) {
         document.getElementById("Low in Sodium").style.display = "";
-
-        // console.log("SODIUM RATIO IS BETWEEN .9 AND 1: " + (Math.round(sodiumRatio * 100) / 100).toFixed(2));
+        document.getElementById("High in Sodium").style.display = "none";
     }
-    // else if (sodiumRatio>0.25 && sodiumRatio <.9){
-    //     console.log("SODIUM RATIO IS BETWEEN .25 AND 1: "+  (Math.round(sodiumRatio * 100) / 100).toFixed(2));
-    // }
-    else if (sodiumRatio < .9) {
+    if (sodiumRatio < 0.9) {
         document.getElementById("High in Sodium").style.display = "";
-
-        // console.log("SODIUM RATIO IS LESS THAN .9: " + (Math.round(sodiumRatio * 100) / 100).toFixed(2));
+        document.getElementById("Low in Sodium").style.display = "none";
     }
-    if (ironRatio >= 1) {
-        // console.log("YOU'RE EXCEEDING THE 8 MG IRON LIMIT");
-    }
-    // else if (ironRatio >= 0.9 && ironRatio < 1) {
-    //     document.getElementById("Low in Iron").style.display = "";
 
-    //     console.log("IRON RATIO IS BETWEEN .9 AND 1: " + (Math.round(ironRatio * 100) / 100).toFixed(2));
-    // }
-    // else if (ironRatio>0.25 && ironRatio <.9){
-    //     console.log("IRON RATIO IS BETWEEN .25 AND 1: "+  (Math.round(ironRatio * 100) / 100).toFixed(2));
-    // }
-    else if (ironRatio < .9) {
+    if (ironRatio >= .9) {
+        document.getElementById("Low in Iron").style.display = "";
+        document.getElementById("High in Iron").style.display = "none";
+    }
+    if (ironRatio < 0.9) {
         document.getElementById("High in Iron").style.display = "";
-
-        // console.log("IRON RATIO IS LESS THAN .9: " + (Math.round(ironRatio * 100) / 100).toFixed(2));
+        document.getElementById("Low in Iron").style.display = "none";
     }
-    if (fiberRatio >= 1) {
-        // console.log("YOU'RE EXCEEDING THE 32 G FIBER LIMIT");
+    if (fiberRatio >= .9) {
+        document.getElementById("Low in Fiber").style.display = "";
+        document.getElementById("High in Fiber").style.display = "none";
     }
-    // else if (fiberRatio >= 0.9) {
-    //     document.getElementById("Low in Fiber").style.display = "";
-
-    //     // console.log("FIBER RATIO IS BETWEEN .9 AND 1: " + (Math.round(fiberRatio * 100) / 100).toFixed(2));
-    // }
-    // // else if (fiberRatio>0.25 && fiberRatio <.9){
-    //     console.log("FIBER RATIO IS BETWEEN .25 AND 1: "+  (Math.round(fiberRatio * 100) / 100).toFixed(2));
-    // }
-    else if (fiberRatio < .25) {
+    if (fiberRatio < 0.9) {
         document.getElementById("High in Fiber").style.display = "";
-
-        // console.log("FIBER RATIO IS LESS THAN .9: " + (Math.round(fiberRatio * 100) / 100).toFixed(2));
+        document.getElementById("Low in Fiber").style.display = "none";
     }
-    if (transRatio >= 1) {
-        // console.log("YOU'RE EXCEEDING THE 2 G TRANS FAT LIMIT");
-    }
-    else if (transRatio >= 0.9) {
+    if (transRatio >= .9) {
         document.getElementById("Low in Trans fat").style.display = "";
-
-        // console.log("TRANS RATIO IS BETWEEN .9 AND 1: " + (Math.round(transRatio * 100) / 100).toFixed(2));
+        document.getElementById("High in Trans fat").style.display = "none";
     }
-    // else if (transRatio>0.25 && transRatio <.9){
-    //     console.log("TRANS FAT RATIO IS BETWEEN .25 AND 1: "+  (Math.round(transRatio * 100) / 100).toFixed(2));
-    // }
-    // else if (transRatio < .9) {
+    // if (transRatio < 0.9) {
     //     document.getElementById("High in Trans fat").style.display = "";
-
-    //     console.log("TRANS FAT RATIO IS LESS THAN .9: " + (Math.round(transRatio * 100) / 100).toFixed(2));
+    //     document.getElementById("Low in Trans fat").style.display = "none";
     // }
-    if (polyRatio >= 1) {
-        // console.log("YOU'RE EXCEEDING THE 22 G POLYUNSATURATED FAT LIMIT");
-    }
-    else if (polyRatio >= 0.9) {
+    if (polyRatio >= .9) {
         document.getElementById("Low in Polyunsaturated fat").style.display = "";
-
-        // console.log("POLYUNSATURATED RATIO IS BETWEEN .9 AND 1: " + (Math.round(polyRatio * 100) / 100).toFixed(2));
+        document.getElementById("High in Polyunsaturated fat").style.display = "none";
     }
-    // else if (polyRatio>0.25 && polyRatio <.9){
-    //     console.log("POLYUNSATURATED FAT RATIO IS BETWEEN .25 AND 1: "+  (Math.round(polyRatio * 100) / 100).toFixed(2));
-    // }
-    else if (polyRatio < .9) {
-        document.getElementById("High in Polyunsaturated fat").style.display = "";
-        // console.log("POLYUNSATURATED FAT RATIO IS LESS THAN .9: " + (Math.round(polyRatio * 100) / 100).toFixed(2));
-    }
-    if (monoRatio >= 1) {
-        // console.log("YOU'RE EXCEEDING THE 44 G MONOUNSATURATED FAT LIMIT");
-    }
-    else if (monoRatio >= 0.9) {
+    // if (polyRatio < 0.9) {
+    //     document.getElementById("High in Polyunsaturated fat").style.display = "";
+    //     document.getElementById("Low in Polyunsaturated fat").style.display = "none";
+    // } 
+    if (monoRatio >= .9) {
         document.getElementById("Low in Monounsaturated fat").style.display = "";
-
-        // console.log("MONOUNSATURATED RATIO IS BETWEEN .9 AND 1: " + (Math.round(monoRatio * 100) / 100).toFixed(2));
+        document.getElementById("High in Monounsaturated fat").style.display = "none";
     }
-    // else if (monoRatio>0.25 && monoRatio <.9){
-    //     console.log("MONOUNSATURATED FAT RATIO IS BETWEEN .25 AND 1: "+  (Math.round(monoRatio * 100) / 100).toFixed(2));
+    // if (monoRatio < 0.9) {
+    //     document.getElementById("High in Monounsaturated fat").style.display = "";
+    //     document.getElementById("Low in Monounsaturated fat").style.display = "none";
     // }
-    else if (monoRatio < .9) {
-        document.getElementById("High in Monounsaturated fat").style.display = "";
-
-        // console.log("MONOUNSATURATED FAT RATIO IS LESS THAN .9: " + (Math.round(monoRatio * 100) / 100).toFixed(2));
-    }
-    if (cholRatio >= 1) {
-        // console.log("YOU'RE EXCEEDING THE 300 MG CHOLESTEROL LIMIT");
-    }
-    else if (cholRatio >= 0.9) {
+    if (cholRatio >= .9) {
         document.getElementById("Low in Cholesterol").style.display = "";
-
-        // console.log("CHOLESTEROL RATIO IS BETWEEN .9 AND 1: " + (Math.round(cholRatio * 100) / 100).toFixed(2));
+        document.getElementById("High in Cholesterol").style.display = "none";
     }
-    // else if (cholRatio>0.25 && cholRatio <.9){
-    //     console.log("CHOLESTEROL RATIO IS BETWEEN .25 AND 1: "+  (Math.round(cholRatio * 100) / 100).toFixed(2));
-    // }
-    else if (cholRatio < .9) {
+    if (cholRatio < 0.9) {
         document.getElementById("High in Cholesterol").style.display = "";
-
-        // console.log("CHOLESTEROL RATIO IS LESS THAN .9: " + (Math.round(cholRatio * 100) / 100).toFixed(2));
+        document.getElementById("Low in Cholesterol").style.display = "none";
     }
-    if (waterRatio >= 1) {
-        // console.log("YOU'RE EXCEEDING THE 1984 MG WATER LIMIT");
-    }
-    // else if (waterRatio >= 0.9) {
-    //     document.getElementById("Low in Water").style.display = "";
-
-    //     console.log("WATER RATIO IS BETWEEN .9 AND 1: " + (Math.round(waterRatio * 100) / 100).toFixed(2));
-    // }
-    // else if (waterRatio>0.25 && waterRatio <.9){
-    //     console.log("WATER RATIO IS BETWEEN .25 AND 1: "+  (Math.round(waterRatio * 100) / 100).toFixed(2));
-    // }
-    // else if (waterRatio < .9) {
-    //     document.getElementById("High in Water").style.display = "";
-
-    //     console.log("WATER RATIO IS LESS THAN .9: " + (Math.round(waterRatio * 100) / 100).toFixed(2));
-    // }
-    // console.log("CAL:" + calRatio,"PROTEIN:" + proteinRatio,"CARBS:" + carbsRatio,"VIT:" + vitaminRatio,
-    // caffeineRatio,potassiumRatio,calciumRatio,sodiumRatio,ironRatio,
-    //     fiberRatio,transRatio,polyRatio,monoRatio,cholRatio,waterRatio)
-
 
 
 
@@ -5070,9 +4796,9 @@ function loadHighFeedForReccos() {
             // console.log(t);
             var newNutrient = document.createElement('li');
             newNutrient.innerHTML =
-                res.foodSearchCriteria.generalSearchInput + " recc 1: <br>" + res.foods[0].description + "<br>Food category: " + res.foods[0].foodCategory + "<br><br>" +
-                res.foodSearchCriteria.generalSearchInput + " recc 2: <br>" + res.foods[1].description + "<br>Food category: " + res.foods[1].foodCategory + "<br><br>" +
-                res.foodSearchCriteria.generalSearchInput + " recc 3: <br>" + res.foods[2].description + "<br>Food category: " + res.foods[2].foodCategory + "<br><br>";
+                res.foodSearchCriteria.generalSearchInput + " reccomendation 1: <br><br>" + res.foods[0].description + "<br><br>Food category: <br>" + res.foods[0].foodCategory + "<br><br><br>" +
+                res.foodSearchCriteria.generalSearchInput + " reccomendation 2: <br><br>" + res.foods[1].description + "<br><br>Food category: <br>" + res.foods[1].foodCategory + "<br><br><br>" +
+                res.foodSearchCriteria.generalSearchInput + " reccomendation 3: <br><br>" + res.foods[2].description + "<br><br>Food category: <br>" + res.foods[2].foodCategory + "<br><br><br>";
             newNutrient.id = "" + res.foodSearchCriteria.generalSearchInput;
             newNutrient.className = "reccoClass";
             document.getElementById("dailyReccomendedNutrientFeedLow").appendChild(newNutrient);
@@ -5119,9 +4845,9 @@ function loadLowFeedForReccos() {
 
             var newNutrient = document.createElement('li');
             newNutrient.innerHTML =
-                res.foodSearchCriteria.generalSearchInput + " recc 1: <br>" + res.foods[0].description + "<br>Food category: " + res.foods[0].foodCategory + "<br><br>" +
-                res.foodSearchCriteria.generalSearchInput + " recc 2: <br>" + res.foods[1].description + "<br>Food category: " + res.foods[1].foodCategory + "<br><br>" +
-                res.foodSearchCriteria.generalSearchInput + " recc 3: <br>" + res.foods[2].description + "<br>Food category: " + res.foods[2].foodCategory + "<br><br>";
+                res.foodSearchCriteria.generalSearchInput + " reccomendation 1: <br><br>" + res.foods[0].description + "<br><br>Food category: <br>" + res.foods[0].foodCategory + "<br><br><br>" +
+                res.foodSearchCriteria.generalSearchInput + " reccomendation 2: <br><br>" + res.foods[1].description + "<br><br>Food category: <br>" + res.foods[1].foodCategory + "<br><br><br>" +
+                res.foodSearchCriteria.generalSearchInput + " reccomendation 3: <br><br>" + res.foods[2].description + "<br><br>Food category: <br>" + res.foods[2].foodCategory + "<br><br><br>";
 
             newNutrient.id = "" + res.foodSearchCriteria.generalSearchInput;
             newNutrient.className = "reccoClass";
@@ -5177,7 +4903,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, id) {
         var commentButton = document.createElement('div');
         var thisPostTitle = document.createElement('div');
 
-        thisPostTitle.innerHTML = "<div id = 'thisPostTitle'>Username: " + pUsername + " <br><br>Title: <br>" + pTitle + " <br><br>"+pDesc+"<br><br><br></div>"
+        thisPostTitle.innerHTML = "<div id = 'thisPostTitle'>Username: " + pUsername + " <br><br>Title: <br>" + pTitle + " <br><br>" + pDesc + "<br><br><br></div>"
 
         // create the edit form by setting the HTML content of each div
         cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
@@ -5211,7 +4937,7 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
     newPost.onclick = function () {
         // clear the feed
         clearChildren();
-        
+
         // document.getElementById("publicPostDivID").style.display = "none";
 
         document.getElementById("usernameHeader").style.display = "none";
@@ -5243,7 +4969,7 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
 
 
 
-        thisPostTitle.innerHTML = "<div id = 'thisPostTitle'>Username: " + pUsername + " <br><br>Title: <br<" + pTitle + " <br><br>"+pDesc+"<br><br><br></div>";
+        thisPostTitle.innerHTML = "<div id = 'thisPostTitle'>Username: " + pUsername + " <br><br>Title: <br<" + pTitle + " <br><br>" + pDesc + "<br><br><br></div>";
 
 
 
@@ -5290,7 +5016,9 @@ function loadMyPublicPage() {
     document.getElementById("userHead").innerHTML = "Welcome to the public feed!";
     document.getElementById("fullFavFeed").style.display = "none";
 
-
+    document.getElementById('publicIconLabel').style.display = '';
+    document.getElementById('trackingIconLabel').style.display = '';
+    document.getElementById('accountIconLabel').style.display = '';
     document.getElementById("publicFeed").style.display = "";
     // document.getElementById("publicPostIcon").style.display = "";
     // document.getElementById("favoritesIcon").style.display = "";
