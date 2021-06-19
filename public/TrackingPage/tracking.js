@@ -1,3 +1,4 @@
+
 // link firebase with this config var
 var firebaseConfig = {
     apiKey: "AIzaSyAXKfv_fm_ok-EzL7yJ93ji6tQNYj4RsB4",
@@ -11,6 +12,11 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 // initialize 'global' var for database
 const db = firebase.firestore();
+
+// Download the helper library from https://www.twilio.com/docs/node/install
+// Find your Account SID and Auth Token at twilio.com/console
+// and set the environment variables. See http://twil.io/secure
+
 
 // set other 'global' vars
 var currDate;
@@ -1748,7 +1754,7 @@ function editAccount() {
     document.getElementById("feed").style.display = "";
 
 
- 
+
 
     //load form to edit my account
     // initialize div elements
@@ -2004,9 +2010,9 @@ function loadFeed(date, month) {
     // createNewTotalNutrientsDaily("TOTAL WATER: <br>" + (Math.round(waterTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotalDaily * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotalDaily * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL NUTRIENTS (TODAY) <br><br><br>TOTAL PROTEIN: <br>" + (Math.round(proteinTotalDaily * 100) / 100).toFixed(2) + " G");
 
 
-    getMyFoods();
-    loadLowFeedForReccos();
-    loadHighFeedForReccos();
+    // getMyFoods();
+    // loadLowFeedForReccos();
+    // loadHighFeedForReccos();
 
     // load the exercise feed
     db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
@@ -3998,7 +4004,7 @@ function editThisFood(f) {
     time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br>  </label><input type='text' id='timeFoodInput' class = 'required' value = '" + t + "'><br><br> <br> ";
     message.innerHTML = "<label class = 'exClass1'>Note (ex: 4 servings, taste rating 6/10)<br><br> </label><input type='text' id='messageFoodInput'class = 'required' value = '" + m + "'><br><br><br>";
     // update button
-    postButton.innerHTML = "<input onclick = 'updateFavFoodEntry(" + id + ")' type='submit' id = 'pButton1' value = 'UPDATE'/>";
+    postButton.innerHTML = "<input onclick = 'updateFoodEntry(" + id + ")' type='submit' id = 'pButton1' value = 'UPDATE'/>";
     // delete button
     deleteButton.innerHTML = "<input onclick = 'deleteFood(" + id + ")' type='submit' id = 'pButton1' value = 'DELETE'/>";
 
@@ -4158,8 +4164,14 @@ function editThisTask(f) {
     var title = document.createElement('div');
     var description = document.createElement('div');
     var time = document.createElement('div');
+
     var postButton = document.createElement('div');
     var deleteButton = document.createElement('div');
+
+
+    var addReminderButton = document.createElement('div');
+    addReminderButton.id = "addReminderButton";
+    addReminderButton.innerHTML = "<input onclick = 'textTest() 'type='submit' form='mainForm' id = 'textButton' value = 'TEXT ME'/>"
 
     // set the ids
     cancelButton.id = "cancelButtonNewEdit";
@@ -4175,13 +4187,14 @@ function editThisTask(f) {
     description.innerHTML = "<label class = 'exClass1'>Description: <br><br></label> <input type='text' id='repsInput' class = 'required' value = '" + desc + "'><br><br><br>";
     time.innerHTML = "<label class = 'exClass1'>Time: <br><br></label><input type='text' id='timeInput' class = 'required' value = '" + t + "'><br><br><br>";
     // update button
-    postButton.innerHTML = "<input onclick = 'updateFavTaskEntry(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'UPDATE'/>"
+    postButton.innerHTML = "<input onclick = 'updateTaskEntry(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'UPDATE'/>"
     // delete button
     deleteButton.innerHTML = "<input onclick = 'deleteTask(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'DELETE'/>"
 
     // load the edit form on the feed
     document.getElementById("feed")
         .appendChild(cancelButton)
+        .appendChild(addReminderButton)
         .appendChild(title)
         .appendChild(description)
         .appendChild(time)
@@ -4389,7 +4402,7 @@ function editThisExercise(f) {
     weight.innerHTML = "<label class = 'exClass1'>Weight (ex: 100 lbs)<br><br></label><input type='text' id='weightInput' class = 'required' value = '" + w + "'><br><br><br>";
     time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm) <br><br></label><input type='text' id='timeInput' class = 'required' value = '" + t + "'><br><br><br>";
     // update button
-    postButton.innerHTML = "<input onclick = 'updateFavExerciseEntry(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'UPDATE'/>"
+    postButton.innerHTML = "<input onclick = 'updateExerciseEntry(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'UPDATE'/>"
     // delete button
     deleteButton.innerHTML = "<input onclick = 'deleteExercise(" + id + ")'type='submit' form='mainForm' id = 'pButton1' value = 'DELETE'/>"
 
@@ -4471,15 +4484,15 @@ function getMyFoods() {
 
     db.collection("users").doc(userID).collection("foodAndWater").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-         
+
             var dayInt = parseInt(doc.data().date);
             var todaysDayInt = parseInt(currDate);
 
             if (dayInt == todaysDayInt) {
-               //load todays food list
+                //load todays food list
                 myFoods1 += doc.data().food + "," + doc.data().water + ",";
             }
-            
+
         });
     }).then(() => {
         var foodStrings = myFoods1.split(',');
@@ -4490,7 +4503,7 @@ function getMyFoods() {
 
                 // change the query in this url for an api search
                 const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&pageSize=1&pageList=3&query=' + foodStrings[i];
-        
+
 
                 fetch(url).then(data => {
                     return data.json()
@@ -5535,5 +5548,21 @@ function trackingIconClick() {
 
 
 function textTest() {
-    console.log(myPhoneNumber);
+
+    // const accountSid = "ACfe485fc20f11da0bc9dba9ac534de18b";
+    // const authToken = "70177ea29ad3bce5927373cb9fae0c5c";
+    // const client = require('twilio')(accountSid, authToken);
+    
+    // client.messages
+    //   .create({
+    //      body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+    //      from: '+19402414167',
+    //      to: '+19088643147'
+    //    })
+    //   .then(message => console.log(message.sid));
+
+    // var accountSid = 'ACfe485fc20f11da0bc9dba9ac534de18b';
+    // var authToken = '70177ea29ad3bce5927373cb9fae0c5c';
+  
+ 
 }
