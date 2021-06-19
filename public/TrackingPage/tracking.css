@@ -1959,7 +1959,7 @@ margin-top: 0%;
     overflow-y: auto;
     background-image: linear-gradient(#eacda3, #d6ae7b);
     box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
-
+    padding: 3%;
     /* width: 100%; */
   }
   #totalFeed2{
