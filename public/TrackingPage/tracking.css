@@ -46,6 +46,15 @@ body{
 /* ************************************************************************* */
 /* ************************************************************************* */
 
+
+#textButton{
+  font-size: 50px;
+  margin: 5%;
+  padding: 5%;
+  border-radius: 50%;
+  width: auto;
+  background-color: gray;
+}
 /* EXERCISE POST ELEMENT */
 #exerciseId {
   font-size: 250%;
@@ -1178,7 +1187,7 @@ height: auto;
   font-weight: 900;
   margin-top: 0%;
   font-size: 50px;
-  background-image: linear-gradient(#304352, #d7d2cc);
+  background-image: linear-gradient(to right, #141e30, #243b55) ;
 
 text-shadow: 0 1px 0 #ccc,
 0 2px 0 #c9c9c9,
@@ -1468,6 +1477,7 @@ text-shadow: 0 1px 0 #ccc,
     font-size: 40px;
     align-items: center;
     margin: 5%;
+    margin-left: 0%;
     position: relative;
 }
 #currentDateDisplay{
@@ -1722,7 +1732,7 @@ background-color: #ee9ca7;
   }
 
   .postClass{
-    background-image: linear-gradient(#304352, #d7d2cc);
+    background-image: linear-gradient(to right, #141e30, #243b55) ;
     margin: 10%;
     padding: 10%;
     box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);

@@ -1606,6 +1606,10 @@ function taskIconButtonClick() {
     var time = document.createElement('div');
     var postButton = document.createElement('div');
 
+    var addReminderButton = document.createElement('div');
+    addReminderButton.id = "addReminderButton";
+    addReminderButton.innerHTML = "<input onclick = 'textTest() 'type='submit' form='mainForm' id = 'textButton' value = 'TEXT ME'/>"
+
     // set ids
     cancelButton.id = "cancelNew"
     title.id = "titleNew";
@@ -1622,6 +1626,8 @@ function taskIconButtonClick() {
 
     document.getElementById("feed")
         .appendChild(cancelButton)
+        .appendChild(addReminderButton)
+
         .appendChild(title)
         .appendChild(description)
         .appendChild(time)
@@ -4834,7 +4840,7 @@ function loadRegisterPage() {
 }
 
 function drawMultSeriesWeek(calRatioWeek, proteinRatioWeek, carbsRatioWeek, potassiumRatioWeek, calciumRatioWeek, sodiumRatioWeek, ironRatioWeek, fiberRatioWeek, transRatioWeek, polyRatioWeek, monoRatioWeek, cholRatioWeek, waterRatioWeek) {
-    console.log("Week: " + calRatioWeek, proteinRatioWeek, carbsRatioWeek, potassiumRatioWeek, calciumRatioWeek, sodiumRatioWeek, ironRatioWeek, fiberRatioWeek, transRatioWeek, polyRatioWeek, monoRatioWeek, cholRatioWeek, waterRatioWeek);
+    // console.log("Week: " + calRatioWeek, proteinRatioWeek, carbsRatioWeek, potassiumRatioWeek, calciumRatioWeek, sodiumRatioWeek, ironRatioWeek, fiberRatioWeek, transRatioWeek, polyRatioWeek, monoRatioWeek, cholRatioWeek, waterRatioWeek);
 
 
     var data = google.visualization.arrayToDataTable([
@@ -4873,7 +4879,7 @@ function drawMultSeriesWeek(calRatioWeek, proteinRatioWeek, carbsRatioWeek, pota
 
 function drawMultSeries(calRatio, proteinRatio, carbsRatio, potassiumRatio, calciumRatio, sodiumRatio, ironRatio, fiberRatio, transRatio, polyRatio, monoRatio, cholRatio, waterRatio) {
 
-    console.log("day: " + calRatio, proteinRatio, carbsRatio, potassiumRatio, calciumRatio, sodiumRatio, ironRatio, fiberRatio, transRatio, polyRatio, monoRatio, cholRatio, waterRatio);
+    // console.log("day: " + calRatio, proteinRatio, carbsRatio, potassiumRatio, calciumRatio, sodiumRatio, ironRatio, fiberRatio, transRatio, polyRatio, monoRatio, cholRatio, waterRatio);
     var data = google.visualization.arrayToDataTable([
         ["NUTRIENT", 'MY DAILY PERCENTAGE', 'RECCOMENDED DAILY PERCENTAGE'],
         ["DAILY CARBS", Math.abs(carbsRatio * 100), 100],
@@ -4981,12 +4987,13 @@ function loadReccomendedFeed() {
 
 
 
+    // console.log(calRatioWeek, proteinRatioWeek, carbsRatioWeek, potassiumRatioWeek, calciumRatioWeek, sodiumRatioWeek, ironRatioWeek, fiberRatioWeek, transRatioWeek, polyRatioWeek, monoRatioWeek, cholRatioWeek, waterRatioWeek)
     google.charts.load('current', { packages: ['corechart', 'bar'] });
     google.charts.setOnLoadCallback(drawMultSeriesWeek(calRatioWeek, proteinRatioWeek, carbsRatioWeek, potassiumRatioWeek, calciumRatioWeek, sodiumRatioWeek, ironRatioWeek, fiberRatioWeek, transRatioWeek, polyRatioWeek, monoRatioWeek, cholRatioWeek, waterRatioWeek));
 
 
 
-
+// console.log(calRatio, proteinRatio, carbsRatio, potassiumRatio, calciumRatio, sodiumRatio, ironRatio, fiberRatio, transRatio, polyRatio, monoRatio, cholRatio, waterRatio)
     google.charts.load('current', { packages: ['corechart', 'bar'] });
     google.charts.setOnLoadCallback(drawMultSeries(calRatio, proteinRatio, carbsRatio, potassiumRatio, calciumRatio, sodiumRatio, ironRatio, fiberRatio, transRatio, polyRatio, monoRatio, cholRatio, waterRatio));
 
@@ -5564,7 +5571,7 @@ function trackingIconClick() {
 
 
 function textTest() {
- 
+    alert("This will be implemented to set a reminder for yourself with a phone number input. You can set your phone number on the account edit page. ");
 }
 
 
