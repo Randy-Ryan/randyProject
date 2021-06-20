@@ -1886,11 +1886,11 @@ background-color: #ee9ca7;
   top: 2%;
   right: 2%; */
   padding: 0;
-  left: 0%;
+  /* left: 0%; */
   margin-left: 10%;
   /* top: 135%; */
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
   margin-top: 10%;
   border-radius: 75px;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
@@ -1985,7 +1985,7 @@ background-color: #ee9ca7;
     color: black;
   }
 #favLabel{
-  font-size: 65px;
+  font-size: 75px;
   /* position: absolute;
   top: 2%;
   right: 10%; */
