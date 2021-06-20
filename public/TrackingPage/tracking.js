@@ -3532,28 +3532,11 @@ function updateAccount() {
     // var edit2, edit3;
     var requiredInputs = document.querySelectorAll(".required");
 
-    // set edit vars respectively (none if empty)
-    for (var i = 0; i < requiredInputs.length; i++) {
-        if (requiredInputs[i] != "undefined" && requiredInputs[i] != "null") {
-            if (i == 0) {
-                // username
-                usernameEdit = requiredInputs[i].value;
-            }
-            else if (i == 1) {
+                usernameEdit = requiredInputs[0].value;
+        
                 // edit2
-                phoneNumEdit = requiredInputs[i].value;
-            }
-            // else if (i == 2) {
-            //     // edit3
-            //     edit3 = requiredInputs[i].value;
-            // }
-        }
-        else {
-            //empty input
-            //cant do empy input (this would mean setting to no username)
-            alert("Error empty username!")
-        }
-    }
+                phoneNumEdit = requiredInputs[1].value;
+        myPhoneNumber = requiredInputs[1].value
 
 
     console.log(phoneNumEdit);
