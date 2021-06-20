@@ -3533,6 +3533,7 @@ function updateAccount() {
     var requiredInputs = document.querySelectorAll(".required");
 
                 usernameEdit = requiredInputs[0].value;
+                username = requiredInputs[0].value;
         
                 // edit2
                 phoneNumEdit = requiredInputs[1].value;
