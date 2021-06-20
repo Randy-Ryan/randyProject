@@ -1894,7 +1894,7 @@ background-color: #ee9ca7;
   margin-top: 10%;
   border-radius: 75px;
   box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
-  border: 5px solid gray;
+  border: 15px solid gray;
 
   }
 
@@ -1911,7 +1911,9 @@ background-color: #ee9ca7;
     margin-top: 10%;
     border-radius: 75px;
     box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
-    border: 5px solid yellow;
+    border: 15px solid #ECECEC;
+
+  /* background-color: #ECECEC; */
   }
 
   #exerciseIcon{
@@ -1927,7 +1929,7 @@ background-color: #ee9ca7;
     margin-top: 10%;
     border-radius: 75px;
     box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
-    border: 5px solid blue;
+    border: 15px solid #f78888;
   }
 
   #foodIcon{
@@ -1943,22 +1945,23 @@ background-color: #ee9ca7;
     margin-top: 10%;
     border-radius: 75px;
     box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
-    border: 5px solid red;
+    border: 15px solid #f3d250;
   }
 
   #taskIconLabel{
-    font-size: 50px;
+    font-size: 65px;
     /* position: absolute;
     top: 10%;
     right: 10%; */
     font-weight: 900;
     margin-bottom: 10%;
     /* width: auto; */
-    margin-left: 10%; 
+    margin-left: 2%; 
+    bottom: 10%;
     color: black;
   }
   #exerciseIconLabel{
-    font-size: 50px;
+    font-size: 65px;
     /* position: absolute;
     top: 18%;
     right: 10%; */
@@ -1966,23 +1969,23 @@ background-color: #ee9ca7;
 
     font-weight: 900;
     width: auto;
-    margin-left: 10%; 
+    margin-left: 2%; 
     color: black;
   }
   #foodIconLabel{
-    font-size: 50px;
+    font-size: 65px;
     /* position: absolute;
     top: 26%;
     right: 10%; */
     width: auto;
-    margin-left: 10%; 
+    margin-left: 2%; 
     margin-bottom: 10%;
 
     font-weight: 900;
     color: black;
   }
 #favLabel{
-  font-size: 50px;
+  font-size: 65px;
   /* position: absolute;
   top: 2%;
   right: 10%; */
@@ -1991,7 +1994,7 @@ background-color: #ee9ca7;
 
   width: auto;
   color: black;
-margin-left: 10%;  }
+margin-left: 2%;  }
 
   /* LOGIN STYLE*/
 #regLink{
