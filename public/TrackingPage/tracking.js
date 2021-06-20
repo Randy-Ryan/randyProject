@@ -21,6 +21,7 @@ const db = firebase.firestore();
 // set other 'global' vars
 var currDate;
 var currMonth;
+var currTime;
 var userID;
 var username;
 var email;
@@ -280,7 +281,7 @@ window.onload = function () {
                                 username: user.displayName,
                                 email: email,
                                 userID: userId,
-                                phoneNumber: ""
+                                phoneNumber: "undefined"
                             }).then(function () {
                                 alert('Account successfully created and added to database! Welcome ' + user.displayName);
                                 window.location.href = './tracking.html';
@@ -1398,18 +1399,16 @@ function createNewTotalNutrientsWeek(w, e, v, c, p) {
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////
+
 /////////------------------- LOAD FAV TASK FORM -------------------------////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // INITIALIZE VAR DIVS, SET IDS, SET FORM HTML CONTENT 
 function newFavTask() {
     // clear the feed
     clearChildren();
-
     // initialize div elements
     var cancelButton = document.createElement('div');
     var head = document.createElement('div');
-
     var title = document.createElement('div');
     var description = document.createElement('div');
     var time = document.createElement('div');
@@ -1434,14 +1433,13 @@ function newFavTask() {
     document.getElementById("feed")
         .appendChild(cancelButton)
         .appendChild(head)
-
         .appendChild(title)
         .appendChild(description)
         .appendChild(time)
         .appendChild(postButton)
 }
 
-/////////////////////////////////////////////////////////////////////////////////////
+
 /////////------------------- LOAD FAV EXERCISE FORM ---------------------////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // INITIALIZE VAR DIVS, SET IDS, SET FORM HTML CONTENT 
@@ -1492,7 +1490,7 @@ function newFavExercise() {
         .appendChild(postButton)
 }
 
-/////////////////////////////////////////////////////////////////////////////////////
+
 /////////------------------- LOAD FAV FOOD/WATER FORM -------------------////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // INITIALIZE VAR DIVS, SET IDS, SET FORM HTML CONTENT 
@@ -1537,7 +1535,7 @@ function newFavFood() {
         .appendChild(time)
         .appendChild(postButton)
 }
-/////////////////////////////////////////////////////////////////////////////////////
+
 /////////------------------- LOAD FAVORITE BUTTON FORM-------------------////////////
 ///////////////////////////////////////////////////////////////////////////////////// 
 // LOAD A FAVORITE BUTTON FORM
@@ -1608,7 +1606,7 @@ function taskIconButtonClick() {
 
     var addReminderButton = document.createElement('div');
     addReminderButton.id = "addReminderButton";
-    addReminderButton.innerHTML = "<input onclick = 'textTest() 'type='submit' form='mainForm' id = 'textButton' value = 'TEXT ME'/>"
+    addReminderButton.innerHTML = "<input onclick = 'textTest() 'type='submit' form='mainForm' id = 'textButton' value = 'ADD REMINDER'/>"
 
     // set ids
     cancelButton.id = "cancelNew"
@@ -1624,14 +1622,23 @@ function taskIconButtonClick() {
     time.innerHTML = "<label class = 'exClass1'>Time (ex: 530pm)<br><br></label><input type='text' id='taskReq3' onclick = '" + 'makeClean(document.getElementById("taskReq3"))' + "' class = 'required'><br><br><br>";
     postButton.innerHTML = "<input onclick = 'addTask()' type='submit' id = 'pButton1' value = 'POST'/>"
 
+
+    var dateVar = document.createElement('div');
+    var amPM = document.createElement('div');
+    dateVar.innerHTML = "<label class = 'exClass1'>Reminder date<br><br></label><input type='date' id='taskReq4' onclick = '" + 'makeClean(document.getElementById("taskReq4"))' + "' class = 'required'><br><br><br>";
+    amPM.innerHTML = "<label class = 'exClass1'> Reminder Time<br><br></label><input type='time' id='taskReq6' onclick = '" + 'makeClean(document.getElementById("taskReq6"))' + "' class = 'required'><br><br><br>";
+
+
     document.getElementById("feed")
         .appendChild(cancelButton)
-        .appendChild(addReminderButton)
-
         .appendChild(title)
         .appendChild(description)
         .appendChild(time)
         .appendChild(postButton)
+        .appendChild(dateVar)
+        .appendChild(amPM)
+        .appendChild(addReminderButton)
+
 }
 
 function foodIconButtonClick() {
@@ -1880,7 +1887,7 @@ function loadMyAccount() {
 
 /********************************************************************/
 
-/////////////////////////////////////////////////////////////////////////////////////
+
 /////////------------------- LOAD THE FEED ----------------------------//////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // FORMAT DATE, LOAD EXERCISE, FOODANDWATER, TASK FEEDS
@@ -2058,7 +2065,6 @@ function loadFeed(date, month) {
 
 
 }
-/////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- ADD TASK POST IN DATABASE -----------------/////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // FORM SUBMIT LOGIC, SET FORM VARS FOR POST, CREATE FOOD DOC IN DB W/ RANDOM ID
@@ -2121,18 +2127,7 @@ function addTask() {
         month: month,
         taskID: "true"
     }).then(() => {
-        // clear the feed
-        // clearChildren();
-
-        // //TODO//
-        // // implement post successful alert
-
-        // // load the feed
-        // loadFeed(date, month);
-    })
-        .catch((error) => {
-            // alert("ERROR submitting post! " + error);
-        });;
+    }).catch((error) => {});
     // create a new food document with random number id
     db.collection("users").doc(userID).collection("tasks").doc(fill).set({
         title: title,
@@ -2150,11 +2145,9 @@ function addTask() {
         // load the feed
         loadFeed(date, month);
     })
-        .catch((error) => {
-            // alert("ERROR submitting post! " + error);
-        });;
+        .catch((error) => {});
 }
-/////////////////////////////////////////////////////////////////////////////////////
+
 /////////------------------- ADD FAV TASK POST IN DATABASE -----------------/////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // FORM SUBMIT LOGIC, SET FORM VARS FOR POST, CREATE FOOD DOC IN DB W/ RANDOM ID
@@ -2229,7 +2222,7 @@ function addFavTask() {
             // alert("ERROR submitting post! " + error);
         });;
 }
-/////////////////////////////////////////////////////////////////////////////////////
+
 /////////------------------- ADD FOOD POST IN DATABASE -----------------/////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // FORM SUBMIT LOGIC, SET FORM VARS FOR POST, CREATE FOOD DOC IN DB W/ RANDOM ID
@@ -2325,7 +2318,7 @@ function addFoodAndWater() {
             // alert("ERROR submitting post! " + error);
         });;
 }
-/////////////////////////////////////////////////////////////////////////////////////
+
 /////////------------------- ADD FAV FOOD POST IN DATABASE -----------------/////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // FORM SUBMIT LOGIC, SET FORM VARS FOR POST, CREATE FOOD DOC IN DB W/ RANDOM ID
@@ -2399,7 +2392,6 @@ function addFavFoodAndWater() {
             // alert("ERROR submitting post! " + error);
         });
 }
-/////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- ADD FAV FOOD POST IN DATABASE FROM FAV FEED -----------------/////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // FORM SUBMIT LOGIC, SET FORM VARS FOR POST, CREATE FOOD DOC IN DB W/ RANDOM ID
@@ -2534,7 +2526,6 @@ function addFavHistoryFood(f) {
             // alert("ERROR submitting post! " + error);
         });;
 }
-/////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- ADD FAV TASK POST IN DATABASE FROM FAV FEED -----------------/////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // FORM SUBMIT LOGIC, SET FORM VARS FOR POST, CREATE FOOD DOC IN DB W/ RANDOM ID
@@ -2593,7 +2584,6 @@ function addFavTaskToDB(f) {
             // alert("ERROR submitting post! " + error);
         });;
 }
-/////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- ADD FAV TASK POST IN DATABASE FROM FAV FEED -----------------/////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // FORM SUBMIT LOGIC, SET FORM VARS FOR POST, CREATE FOOD DOC IN DB W/ RANDOM ID
@@ -2653,7 +2643,6 @@ function addFavHistoryTask(f) {
             // alert("ERROR submitting post! " + error);
         });;
 }
-/////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- ADD FAV EXERCISE POST IN DATABASE FROM FAV FEED -----------------/////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // FORM SUBMIT LOGIC, SET FORM VARS FOR POST, CREATE FOOD DOC IN DB W/ RANDOM ID
@@ -2725,7 +2714,7 @@ function addFavExerciseToDB(f) {
             // alert("ERROR submitting post! " + error);
         });;
 }
-/////////////////////////////////////////////////////////////////////////////////////
+
 /////////------------------- ADD FAV EXERCISE POST IN DATABASE FROM FAV FEED -----------------/////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // FORM SUBMIT LOGIC, SET FORM VARS FOR POST, CREATE FOOD DOC IN DB W/ RANDOM ID
@@ -2798,7 +2787,7 @@ function addFavHistoryEx(f) {
             // alert("ERROR submitting post! " + error);
         });;
 }
-/////////////////////////////////////////////////////////////////////////////////////
+
 /////////------------------- ADD EXERCISE POST IN DATABASE --------------////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // FORM SUBMIT LOGIC, SET FORM VARS FOR POST, CREATE EXERCISE DOC IN DB W/ RANDOM ID
@@ -2899,7 +2888,6 @@ function addExercise() {
             // alert("ERROR submitting post! " + error);
         });;
 }
-/////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- ADD FAV EXERCISE POST IN DATABASE --------------////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // FORM SUBMIT LOGIC, SET FORM VARS FOR POST, CREATE EXERCISE DOC IN DB W/ RANDOM ID
@@ -2974,7 +2962,6 @@ function addFavExercise() {
             // alert("ERROR submitting post! " + error);
         });;
 }
-/////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- DELETE TASK POST FROM DB ---------------////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // DELETE THIS 'ID' TASK ENTRY, CLEAR FEED, LOAD FEED
@@ -2989,7 +2976,7 @@ function deleteTask(id) {
         alert("Error: " + error);
     });
 }
-/////////////////////////////////////////////////////////////////////////////////////
+
 /////////------------------- DELETE TASK POST FROM DB ---------------////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // DELETE THIS 'ID' TASK ENTRY, CLEAR FEED, LOAD FEED
@@ -3004,7 +2991,7 @@ function deletePost(id) {
         alert("Error: " + error);
     });
 }
-/////////////////////////////////////////////////////////////////////////////////////
+
 /////////------------------- DELETE TASK POST FROM DB ---------------////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // DELETE THIS 'ID' TASK ENTRY, CLEAR FEED, LOAD FEED
@@ -3019,7 +3006,7 @@ function deleteFavTask(id) {
         alert("Error: " + error);
     });
 }
-/////////////////////////////////////////////////////////////////////////////////////
+
 /////////------------------- DELETE EXERCISE POST FROM DB ---------------////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // DELETE THIS 'ID' EXERCISE ENTRY, CLEAR FEED, LOAD FEED
@@ -3034,7 +3021,7 @@ function deleteExercise(id) {
         alert("Error: " + error);
     });
 }
-/////////////////////////////////////////////////////////////////////////////////////
+
 /////////------------------- DELETE FAV EXERCISE POST FROM DB ---------------////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // DELETE THIS 'ID' EXERCISE ENTRY, CLEAR FEED, LOAD FEED
@@ -3049,7 +3036,6 @@ function deleteFavExercise(id) {
         alert("Error: " + error);
     });
 }
-/////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- DELETE FOOD POST FROM DB -------------------////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // DELETE THIS 'ID' FOOD ENTRY, CLEAR FEED, LOAD FEED
@@ -3064,7 +3050,6 @@ function deleteFood(id) {
         alert("Error: " + error);
     });
 }
-/////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- DELETE FAV FOOD POST FROM DB -------------------////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // DELETE THIS 'ID' FOOD ENTRY, CLEAR FEED, LOAD FEED
@@ -3079,7 +3064,7 @@ function deleteFavFood(id) {
         alert("Error: " + error);
     });
 }
-/////////////////////////////////////////////////////////////////////////////////////
+
 /////////------------------- UPDATE TASK POST ----------------------/////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 // INITIALIZE & SET EDIT VARS RESPECTIVELY, UPDATE TASK DB POST, RELOAD FEED
@@ -5569,20 +5554,55 @@ function trackingIconClick() {
     loadFeed(currDate, currMonth);
 }
 
-
 function textTest() {
-    // alert("This will be implemented to set a reminder for yourself with a phone number input. You can set your phone number on the account edit page. ");
+    var requiredInputs = document.querySelectorAll(".required");
 
-    //pass  myPhoneNumber, "test message 1" params for backend
-    axios.post('http://localhost:1337/sms')
+    var taskTitleInput = requiredInputs[0].value;
+    var taskDescInput = requiredInputs[1].value;
+    var taskTimeInput = requiredInputs[2].value;
+
+    var arr = requiredInputs[3].value.split('-');
+    var remY = arr[0];
+    var remM = arr[1];
+    var remD = arr[2];
+    var arr2 = requiredInputs[4].value.split(':');
+    var remH = arr2[0];
+    var remMin = arr2[1];
+    console.log(remY);
+    console.log(remM);
+    console.log(remD);
+    console.log(remH);
+    console.log(remMin);
+
+console.log(arr2);
+    var reminderDateTime = new Date(remY, remM-1,remD,remH, remMin);
+    var today = new Date();
+
+    var timeUntilReminder = reminderDateTime - today;
+    console.log(timeUntilReminder, reminderDateTime, today);
+     
+    // var reminderTime = "10pm"
+    var string = "Reminder for: "+ taskTitleInput+", " +taskDescInput+", "+taskTimeInput+"//" +timeUntilReminder+"";
+
+    if (myPhoneNumber != null && myPhoneNumber!= "undefined"){
+
+        axios.post('http://localhost:1337/sms',{
+          variable1:"" + myPhoneNumber,
+          variable2:"" + string
+    })
         .then(response => {
             const users = response.data.data;
             console.log(`GET users`, users);
         })
-        .catch(error => console.error(error));
+        .catch(error => console.error(error.response.data));
+
+
+    }
+    else{
+        alert ("please set your phone number or an error occured");
+    }
+ 
 }
-
-
 function loadMyNutritionInfo() {
 
 
