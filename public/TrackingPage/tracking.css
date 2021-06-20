@@ -1063,7 +1063,25 @@ color: white;
 
 }
 
+.addButtonFeedFav{
+background-color: black;
+color: white;
+font-size: 40px;
+float: left;
+width: 45%;
+height: auto;
+padding: 2%;
+}
 
+.addButtonToday{
+background-color: green;
+font-size: 40px;
+float: right;
+width: 45%;
+padding: 2%;
+
+
+}
 /* SUBMIT/POST/DELETE BUTTONS */
 #pButton1{
   width: auto;
@@ -1962,7 +1980,7 @@ margin-top: 0%;
     /* width: 100%; */
   }
   #totalFeed2{
-    width: 47%;
+    width: 48%;
     height: 50%;
     overflow-y: auto;
     float: right;
@@ -1975,7 +1993,7 @@ margin-top: 0%;
   }
 
   #totalFeed{
-    width: 47%;
+    width: 48%;
     height: 50%;
     overflow-y: auto;
         float: left;

@@ -813,7 +813,7 @@ function createNewTask(ttl, desc, t, id) {
     newTask.className = "testtt";
     newTask.innerHTML = fullString;
     var addEditElement = document.createElement('div');
-    addEditElement.innerHTML = "<div onclick = '" + 'editThisTask("' + ttl + "," + desc + "," + t + "," + id + '")' + "' class = 'buttonEditFeed'>EDIT</div>";
+    addEditElement.innerHTML = "<div onclick = '" + 'editThisTask("' + ttl + "^^^" + desc + "^^^" + t + "^^^" + id + '")' + "' class = 'buttonEditFeed'>EDIT</div>";
     // newTask.appendChild(addEditElement);
     // load new exercise div into the exercise feed
     document.getElementById("taskFeed").appendChild(newTask).appendChild(addEditElement);
@@ -835,7 +835,7 @@ function createNewFavTask(ttl, desc, t, id) {
 
 
     // create the new task div and set HTML content w/ respective vars
-    addEditElement.innerHTML = "<div onclick = '" + 'editThisTaskFav("' + ttl + "," + desc + "," + t + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</div>";
+    addEditElement.innerHTML = "<div onclick = '" + 'editThisTaskFav("' + ttl + "^^^" + desc + "^^^" + t + "^^^" + id + '")' + "' class = 'favButtonEdit'>EDIT</div>";
 
     addFavoriteElement.innerHTML = "<div onclick = '" + 'addFavTaskToDB("' + ttl + "," + desc + "," + t + '")' + "' class = 'favButtonAdd'>ADD</div>";
     newTask.appendChild(addFavoriteElement).appendChild(addEditElement);
@@ -904,7 +904,7 @@ function createNewExercise(r, s, w, t, m, id) {
     newExercise.className = "testtt";
     newExercise.innerHTML = fullString;
     var addEditElement = document.createElement('div');
-    addEditElement.innerHTML = "<div onclick = '" + 'editThisExercise("' + m + "," + r + "," + s + "," + w + "," + t + "," + + id + '")' + "' class = 'buttonEditFeed'>EDIT</div>";
+    addEditElement.innerHTML = "<div onclick = '" + 'editThisExercise("' + m + "^^^" + r + "^^^" + s + "^^^" + w + "^^^" + t + "^^^" + + id + '")' + "' class = 'buttonEditFeed'>EDIT</div>";
 
     // load new exercise div into the exercise feed
     document.getElementById("exFeed").appendChild(newExercise).appendChild(addEditElement);
@@ -924,7 +924,7 @@ function createNewFavExercise(r, s, w, t, m, id) {
     newExercise.id = "favIDEx";
     newExercise.className = "testtt";
     // create the new exercise div and set HTML content w/ respective vars
-    addEditElement.innerHTML = "<div onclick = '" + 'editThisExerciseFav("' + m + "," + r + "," + s + "," + w + "," + t + "," + + id + '")' + "'  class = 'favButtonEdit'>EDIT</div>";
+    addEditElement.innerHTML = "<div onclick = '" + 'editThisExerciseFav("' + m + "^^^" + r + "^^^" + s + "^^^" + w + "^^^" + t + "^^^" + + id + '")' + "'  class = 'favButtonEdit'>EDIT</div>";
     addFavoriteElement.innerHTML = "<div onclick = '" + 'addFavExerciseToDB("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "'  class = 'favButtonAdd'>ADD</div>";
     // load new exercise div into the exercise feed
     newExercise.appendChild(addFavoriteElement).appendChild(addEditElement);
@@ -986,7 +986,7 @@ function createNewFood(f, w, t, m, id) {
 
     newFood.innerHTML = fullString;
     var addEditElement = document.createElement('div');
-    addEditElement.innerHTML = "<div onclick = '" + 'editThisFood("' + f + "," + w + "," + m + "," + t + "," + id + '")' + "' class = 'buttonEditFeed'>EDIT</div>";
+    addEditElement.innerHTML = "<div onclick = '" + 'editThisFood("' + f + "^^^" + w + "^^^" + m + "^^^" + t + "^^^" + id + '")' + "' class = 'buttonEditFeed'>EDIT</div>";
 
     // fullString = fullString + "</label>";
 
@@ -1012,7 +1012,7 @@ function createNewFavFood(f, w, m, t, id) {
     var addEditElement = document.createElement('div');
 
     // create the new food div and set HTML content w/ respective vars
-    addEditElement.innerHTML = "<div onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + m + "," + t + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</div>";
+    addEditElement.innerHTML = "<div onclick = '" + 'editThisFoodFav("' + f + "^^^" + w + "^^^" + m + "^^^" + t + "^^^" + id + '")' + "' class = 'favButtonEdit'>EDIT</div>";
 
     addFavoriteElement.innerHTML = "<div onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + m + "," + t + '")' + "' class = 'favButtonAdd'>ADD</div>";
     newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
@@ -2011,9 +2011,9 @@ function loadFeed(date, month) {
     // createNewTotalNutrientsDaily("TOTAL WATER: <br>" + (Math.round(waterTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotalDaily * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotalDaily * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL NUTRIENTS (TODAY) <br><br><br>TOTAL PROTEIN: <br>" + (Math.round(proteinTotalDaily * 100) / 100).toFixed(2) + " G");
 
 
-    getMyFoods();
-    loadLowFeedForReccos();
-    loadHighFeedForReccos();
+    // getMyFoods();
+    // loadLowFeedForReccos();
+    // loadHighFeedForReccos();
 
     // load the exercise feed
     db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
@@ -3840,7 +3840,7 @@ function editThisFoodFav(f) {
 
 
     // document.getElementById("filler1").style.display = "none";
-    var strings = f.split(',');
+    var strings = f.split('^^^');
 
     var f1, w, t, m, id;
 
@@ -3941,7 +3941,7 @@ function editThisFood(f) {
 
 
     // document.getElementById("filler1").style.display = "none";
-    var strings = f.split(',');
+    var strings = f.split('^^^');
 
     var f1, w, t, m, id;
 
@@ -3988,6 +3988,7 @@ function editThisFood(f) {
     var message = document.createElement('div');
     var postButton = document.createElement('div');
     var deleteButton = document.createElement('div');
+    
 
     // set the ids
     cancelButton.id = "cancelNewEdit";
@@ -4006,6 +4007,13 @@ function editThisFood(f) {
     message.innerHTML = "<label class = 'exClass1'>Note (ex: 4 servings, taste rating 6/10)<br><br> </label><input type='text' id='messageFoodInput'class = 'required' value = '" + m + "'><br><br><br>";
     // update button
     postButton.innerHTML = "<input onclick = 'updateFoodEntry(" + id + ")' type='submit' id = 'pButton1' value = 'UPDATE'/>";
+
+
+    var addFavBut = document.createElement('div');
+    var addTodayBut = document.createElement('div');
+    addFavBut.innerHTML = "<input onclick = 'addFavFoodAndWater()' type='submit' class = 'addButtonFeedFav' value = 'ADD TO FAVORITES'/>";
+    addTodayBut.innerHTML = "<input onclick = 'addFoodAndWater()' type='submit' class = 'addButtonToday' value = 'ADD TO TODAY'/>";
+
     // delete button
     deleteButton.innerHTML = "<input onclick = 'deleteFood(" + id + ")' type='submit' id = 'pButton1' value = 'DELETE'/>";
 
@@ -4017,6 +4025,8 @@ function editThisFood(f) {
         .appendChild(message)
         .appendChild(time)
         .appendChild(postButton)
+        .appendChild(addFavBut)
+        .appendChild(addTodayBut)
         .appendChild(deleteButton);
 
 
@@ -4040,7 +4050,7 @@ function editThisTaskFav(f) {
     document.getElementById("feed").style.display = "";
     document.getElementById("addButtonsDiv").style.display = "none";
     document.getElementById("fullFavFeed").style.display = "none";
-    var strings = f.split(',');
+    var strings = f.split('^^^');
 
     var ttl, desc, t;
 
@@ -4127,7 +4137,7 @@ function editThisTask(f) {
     document.getElementById("feed").style.display = "";
     document.getElementById("addButtonsDiv").style.display = "none";
     document.getElementById("fullFavFeed").style.display = "none";
-    var strings = f.split(',');
+    var strings = f.split('^^^');
 
     var ttl, desc, t;
 
@@ -4169,6 +4179,10 @@ function editThisTask(f) {
     var postButton = document.createElement('div');
     var deleteButton = document.createElement('div');
 
+    var addFavBut = document.createElement('div');
+    var addTodayBut = document.createElement('div');
+    addFavBut.innerHTML = "<input onclick = 'addFavTask()' type='submit' class = 'addButtonFeedFav' value = 'ADD TO FAVORITES'/>";
+    addTodayBut.innerHTML = "<input onclick = 'addTask()' type='submit' class = 'addButtonToday' value = 'ADD TO TODAY'/>";
 
     var addReminderButton = document.createElement('div');
     addReminderButton.id = "addReminderButton";
@@ -4200,6 +4214,10 @@ function editThisTask(f) {
         .appendChild(description)
         .appendChild(time)
         .appendChild(postButton)
+        .appendChild(addFavBut)
+
+        .appendChild(addTodayBut)
+
         .appendChild(deleteButton);
 
 
@@ -4225,7 +4243,7 @@ function editThisExerciseFav(f) {
 
     document.getElementById("feed").style.display = "";
 
-    var strings = f.split(',');
+    var strings = f.split('^^^');
 
     var m, r, s, w, t;
 
@@ -4332,7 +4350,7 @@ function editThisExercise(f) {
 
     document.getElementById("feed").style.display = "";
 
-    var strings = f.split(',');
+    var strings = f.split('^^^');
 
     var m, r, s, w, t;
 
@@ -4395,6 +4413,11 @@ function editThisExercise(f) {
     postButton.id = "postButtonExNewEdit";
     deleteButton.id = "deleteButtonExNewEdit";
 
+    var addFavBut = document.createElement('div');
+    var addTodayBut = document.createElement('div');
+    addFavBut.innerHTML = "<input onclick = 'addFavExercise()' type='submit' class = 'addButtonFeedFav' value = 'ADD TO FAVORITES'/>";
+    addTodayBut.innerHTML = "<input onclick = 'addExercise()' type='submit' class = 'addButtonToday' value = 'ADD TO TODAY'/>";
+
     // create the edit form by setting the HTML content of each div
     cancelButton.innerHTML = "<input onclick = 'reload()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
     message.innerHTML = "<br><br><br><label class = 'exClass1'>Title (ex: DB Bench Press. Difficult) <br><br></label><input type='text' class = 'required' id='12345' value = '" + m + "'><br><br><br>";
@@ -4416,6 +4439,8 @@ function editThisExercise(f) {
         .appendChild(weight)
         .appendChild(time)
         .appendChild(postButton)
+        .appendChild(addFavBut)
+        .appendChild(addTodayBut)
         .appendChild(deleteButton);
 
 
