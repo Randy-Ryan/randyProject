@@ -1777,7 +1777,7 @@ function editAccount() {
     //set vars to pre load the edit form
     cancelButton.innerHTML = "<input onclick = 'loadMyAccount()' type='submit' id = 'cancelButton1' value = 'CANCEL'/><br>"
     username1.innerHTML = "<br><br><br><label class = 'exClass1'>Username: <br><br></label><input type='text' class = 'required' value = '" + username + "'><br><br><br>";
-    phoneNum.innerHTML = "<br><br><br><label class = 'exClass1'>Phone Number:<br> (Proper format: 123-456-7890) <br><br></label><input type='text' class = 'required' value = '" + myPhoneNumber + "'><br><br><br>";
+    phoneNum.innerHTML = "<br><br><br><label class = 'exClass1'>Phone Number:<br> (Proper format: +11234567890 with the leading +1 as a proper country code) <br><br></label><input type='text' class = 'required' value = '" + myPhoneNumber + "'><br><br><br>";
     postButton.innerHTML = "<input onclick = 'updateAccount()' type='submit' id = 'cancelButton1' value = 'UPDATE'/>"
 
     // load the edit form on the feed
