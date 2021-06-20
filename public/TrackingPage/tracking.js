@@ -280,7 +280,7 @@ window.onload = function () {
                                 username: user.displayName,
                                 email: email,
                                 userID: userId,
-                                phoneNumber:""
+                                phoneNumber: ""
                             }).then(function () {
                                 alert('Account successfully created and added to database! Welcome ' + user.displayName);
                                 window.location.href = './tracking.html';
@@ -1943,8 +1943,8 @@ function loadFeed(date, month) {
     document.getElementById("exerciseIcon").style.display = "";
     document.getElementById("exerciseIconLabel").style.display = "";
     document.getElementById("foodIcon").style.display = "";
-   
-   
+
+
     document.getElementById("foodIconLabel").style.display = "";
     document.getElementById("nutritionLoadButton").style.display = "";
 
@@ -2005,7 +2005,7 @@ function loadFeed(date, month) {
     // document.getElementById("chartContainer").style.display = "";
     // document.getElementById("chartContainer2").style.display = "";
     // document.getElementById("chartContainer3").style.display = "";
- 
+
     document.getElementById("addButtonsDiv").style.display = "";
 
     // console.log(document.getElementsByClassName("favLab"));
@@ -3986,7 +3986,7 @@ function editThisFood(f) {
     var message = document.createElement('div');
     var postButton = document.createElement('div');
     var deleteButton = document.createElement('div');
-    
+
 
     // set the ids
     cancelButton.id = "cancelNewEdit";
@@ -4993,7 +4993,7 @@ function loadReccomendedFeed() {
 
 
 
-// console.log(calRatio, proteinRatio, carbsRatio, potassiumRatio, calciumRatio, sodiumRatio, ironRatio, fiberRatio, transRatio, polyRatio, monoRatio, cholRatio, waterRatio)
+    // console.log(calRatio, proteinRatio, carbsRatio, potassiumRatio, calciumRatio, sodiumRatio, ironRatio, fiberRatio, transRatio, polyRatio, monoRatio, cholRatio, waterRatio)
     google.charts.load('current', { packages: ['corechart', 'bar'] });
     google.charts.setOnLoadCallback(drawMultSeries(calRatio, proteinRatio, carbsRatio, potassiumRatio, calciumRatio, sodiumRatio, ironRatio, fiberRatio, transRatio, polyRatio, monoRatio, cholRatio, waterRatio));
 
@@ -5571,7 +5571,15 @@ function trackingIconClick() {
 
 
 function textTest() {
-    alert("This will be implemented to set a reminder for yourself with a phone number input. You can set your phone number on the account edit page. ");
+    // alert("This will be implemented to set a reminder for yourself with a phone number input. You can set your phone number on the account edit page. ");
+
+    //pass  myPhoneNumber, "test message 1" params for backend
+    axios.post('http://localhost:1337/sms')
+        .then(response => {
+            const users = response.data.data;
+            console.log(`GET users`, users);
+        })
+        .catch(error => console.error(error));
 }
 
 
@@ -5582,7 +5590,7 @@ function loadMyNutritionInfo() {
     loadLowFeedForReccos();
     loadHighFeedForReccos();
 
-    
+
     document.getElementById("totalFeed").style.display = "";
     document.getElementById("totalFeed2").style.display = "";
     document.getElementById("reccomendedFeed").style.display = "";
@@ -5597,7 +5605,7 @@ function loadMyNutritionInfo() {
     document.getElementById("dailyReccomendedNutrientFeed").style.display = "";
 
 
-    
+
     // document.getElementById("").style.display = "";
- 
+
 }
