@@ -696,24 +696,21 @@ function clearChildren() {
     document.getElementById("foodIconLabel").style.display = "none";
 
     document.getElementById("totalFeed").style.display = "none";
+    document.getElementById("totalFeed2").style.display = "none";
 
     document.getElementById("reccomendedFeed").style.display = "none";
     document.getElementById("idealNutritionValuesFeed").style.display = "none";
-
-    // document.getElementById("fullFavFeed").style.display = "none";
-
-    // document.getElementById("recentFoods").style.display = "none";
-    // document.getElementById("totalFeed").style.display = "none";
     document.getElementById("nutritionValues").style.display = "none";
     document.getElementById("apiInfo").style.display = "none";
     // document.getElementById("apiInfo2").style.display = "none";
     document.getElementById("dRecco").style.display = "none";
-    document.getElementById("totalFeed2").style.display = "none";
+    document.getElementById("nutritionLoadButton").style.display = "none";
+
+    // document.getElementById("totalFeed2").style.display = "none";
 
 
 
 
-    // document.getElementById("dailyNutritionValues").style.display = "none";
 
     // document.getElementById("favFeedTitle").style.display = "none";
 
@@ -1388,7 +1385,7 @@ function createNewTotalNutrientsWeek(w, e, v, c, p) {
     // console.log(f, w , t, m)
     // load new food div into the food feed
     // document.getElementById("weekNutrientFeed").appendChild(newNutrient);
-    document.getElementById("weekNutrientFeed").style.display = "none";
+    // document.getElementById("weekNutrientFeed").style.display = "";
 }
 
 /********************************************************************/
@@ -1940,12 +1937,14 @@ function loadFeed(date, month) {
     document.getElementById("exerciseIcon").style.display = "";
     document.getElementById("exerciseIconLabel").style.display = "";
     document.getElementById("foodIcon").style.display = "";
+   
+   
     document.getElementById("foodIconLabel").style.display = "";
-    document.getElementById("totalFeed").style.display = "";
-    document.getElementById("reccomendedFeed").style.display = "";
-    document.getElementById("idealNutritionValuesFeed").style.display = "";
-    document.getElementById("apiInfo").style.display = "";
-    // document.getElementById("apiInfo2").style.display = "";
+    document.getElementById("nutritionLoadButton").style.display = "";
+
+
+
+
     document.getElementById("exFeed").style.display = "";
     document.getElementById("foodFeed").style.display = "";
     document.getElementById("taskFeed").style.display = "";
@@ -1953,7 +1952,6 @@ function loadFeed(date, month) {
     document.getElementById("foodFeedTitle").style.display = "";
     document.getElementById("taskFeedTitle").style.display = "";
     document.getElementById("favoritesDivID").style.display = "";
-    document.getElementById("totalFeed").style.display = "";
     document.getElementById("calendar").style.display = "";
     document.getElementById("accountIcon").style.display = "";
     document.getElementById("userHead").style.display = "";
@@ -1965,7 +1963,6 @@ function loadFeed(date, month) {
 
     // document.getElementById("recentFoods").style.display = "";
     // document.getElementById("reccomendedFoods").style.display = "";
-    document.getElementById("nutritionValues").style.display = "";
     // document.getElementById("fullFavFeed").style.display = "";
     // document.getElementById("favFeedTitle").style.display = "";
 
@@ -1997,13 +1994,12 @@ function loadFeed(date, month) {
     document.getElementById("taskFeedTitle").innerHTML = 'TASKS';
     // document.getElementById("favFeedTitle").innerHTML = 'FAVORITES';
     document.getElementById("historyTitle").innerHTML = 'HISTORY';
-    document.getElementById("dRecco").style.display = "";
 
 
     // document.getElementById("chartContainer").style.display = "";
     // document.getElementById("chartContainer2").style.display = "";
     // document.getElementById("chartContainer3").style.display = "";
-    document.getElementById("totalFeed2").style.display = "";
+ 
     document.getElementById("addButtonsDiv").style.display = "";
 
     // console.log(document.getElementsByClassName("favLab"));
@@ -2011,9 +2007,6 @@ function loadFeed(date, month) {
     // createNewTotalNutrientsDaily("TOTAL WATER: <br>" + (Math.round(waterTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotalDaily * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotalDaily * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL NUTRIENTS (TODAY) <br><br><br>TOTAL PROTEIN: <br>" + (Math.round(proteinTotalDaily * 100) / 100).toFixed(2) + " G");
 
 
-    getMyFoods();
-    loadLowFeedForReccos();
-    loadHighFeedForReccos();
 
     // load the exercise feed
     db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
@@ -3791,7 +3784,6 @@ function userSignedOut() {
     document.getElementById('trackingIconLabel').style.display = 'none';
     document.getElementById('accountIconLabel').style.display = 'none';
 
-    // document.getElementById("dailyNutritionValues").style.display = "none";
 
     document.getElementById("totalFeed").style.display = "none";
     document.getElementById("reccomendedFeed").style.display = "none";
@@ -5348,7 +5340,6 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, id) {
         document.getElementById("calendar").style.display = "none";
         document.getElementById("todaysDate").style.display = "none";
         document.getElementById("filler1").style.display = "none";
-        document.getElementById("accountFeed").style.display = "none";
 
 
         db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
@@ -5428,7 +5419,6 @@ function loadMyPublicPage() {
     document.getElementById("calendar").style.display = "none";
     document.getElementById("todaysDate").style.display = "none";
     document.getElementById("filler1").style.display = "none";
-    document.getElementById("accountFeed").style.display = "none";
     document.getElementById("postLabel").style.display = "";
 
     // load the exercise feed
@@ -5574,21 +5564,33 @@ function trackingIconClick() {
 
 
 function textTest() {
+ 
+}
 
-    // const accountSid = "ACfe485fc20f11da0bc9dba9ac534de18b";
-    // const authToken = "70177ea29ad3bce5927373cb9fae0c5c";
-    // const client = require('twilio')(accountSid, authToken);
+
+function loadMyNutritionInfo() {
+
+
+    getMyFoods();
+    loadLowFeedForReccos();
+    loadHighFeedForReccos();
+
     
-    // client.messages
-    //   .create({
-    //      body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-    //      from: '+19402414167',
-    //      to: '+19088643147'
-    //    })
-    //   .then(message => console.log(message.sid));
+    document.getElementById("totalFeed").style.display = "";
+    document.getElementById("totalFeed2").style.display = "";
+    document.getElementById("reccomendedFeed").style.display = "";
+    document.getElementById("idealNutritionValuesFeed").style.display = "";
+    document.getElementById("apiInfo").style.display = "";
+    // document.getElementById("apiInfo2").style.display = "";
+    document.getElementById("nutritionValues").style.display = "";
+    document.getElementById("dRecco").style.display = "";
+    document.getElementById("nutritionValuesFeedDaily").style.display = "";
+    document.getElementById("nutritionValuesFeedWeek").style.display = "";
+    document.getElementById("dailyReccomendedNutrientFeedLow").style.display = "";
+    document.getElementById("dailyReccomendedNutrientFeed").style.display = "";
 
-    // var accountSid = 'ACfe485fc20f11da0bc9dba9ac534de18b';
-    // var authToken = '70177ea29ad3bce5927373cb9fae0c5c';
-  
+
+    
+    // document.getElementById("").style.display = "";
  
 }

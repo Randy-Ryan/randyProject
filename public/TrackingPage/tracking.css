@@ -1073,6 +1073,17 @@ height: auto;
 padding: 2%;
 }
 
+#nutritionLoadButton{
+  padding: 10%; 
+  border-radius: 50%;
+  font-size: 50px;
+  width: auto;
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+
+}
+
 .addButtonToday{
 background-color: green;
 font-size: 40px;
