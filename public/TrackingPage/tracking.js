@@ -5483,6 +5483,8 @@ function addCommentToPost(id) {
 function newPublicPost() {
     clearChildren();
 
+    document.getElementById("feed").style.display = "";
+
     document.getElementById("usernameHeader").style.display = "none";
     // document.getElementById("favoritesIcon").style.display = "none";
     // document.getElementById("publicPostIcon").style.display = "none";
