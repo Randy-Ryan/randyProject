@@ -3624,7 +3624,6 @@ function updateAccount() {
         // phoneNumber: phoneNumEdit
         photoURL: "" + photoRef
     }).then(() => {
-        console.log("updated this display name and phone number");
     }).catch((error) => {
         console.log(error);
     });
@@ -3637,7 +3636,7 @@ function updateAccount() {
         phoneNumber: phoneNumEdit,
         profPic: photoRef
     }).then(() => {
-        
+        alert("updated this display name,phone number, and profile picture");
             loadMyAccount();
             // window.location.href = "../TrackingPage/tracking.html?userID=" + userID + "&username=" + usernameEdit + "&email=" + email;
         })
