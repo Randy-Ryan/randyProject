@@ -899,12 +899,12 @@ color: white;
   background-color: blue;
   border-radius: 50%;
   font-size: 50px;
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-left: 20%;
+  margin-right: 20%;
   text-align: center;
-  margin-top: 5%;
+  margin-top: 10%;
   color: white;
-  padding: 10%;
+  padding: 5%;
 }
 
 #profPicDiv{
@@ -1221,7 +1221,7 @@ height: auto;
   top: 50%;
   margin-left: 50%;
   transform: translateY(-50%);
-  font-size: 35px;
+  font-size: 50px;
 
 }
 
@@ -1475,7 +1475,7 @@ text-shadow: 0 1px 0 #ccc,
 #userHead{
   margin: 0;
   margin-top: 20%;
-  font-size: 60px;
+  font-size: 75px;
   width: auto;
   text-align: center;
   margin-left: 20%;
@@ -1506,6 +1506,25 @@ text-shadow: 0 1px 0 #ccc,
   text-align: center;
   margin-top: 5%;
   font-size: 50px;
+}
+
+#file-upload-button{
+  width: auto;
+  height: auto;
+  font-size:25px;
+  /* pointer-events: visible; */
+  border-radius: 10px;
+  padding: 0;
+  background-color: unset;
+  color: black;
+
+}
+
+#attachProfPic{
+  background-color:#000428;
+  color: white;
+  width: auto;
+  height: auto;
 }
 
 /* SIGNED OUT TITLE */
@@ -1789,6 +1808,7 @@ background-color: #ee9ca7;
   .postClass{
     background-image: linear-gradient(to right, #141e30, #243b55) ;
     margin: 10%;
+    margin-top: 2%;
     padding: 10%;
     box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
     border: 1px solid white;

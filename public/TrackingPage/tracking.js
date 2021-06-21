@@ -5460,7 +5460,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
 function createNewAccountPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar, lVar) {
 
     var newPost = document.createElement('li');
-    newPost.innerHTML = "" + pUsername + "<br><br>Title:<br> " + pTitle + "<br><br>-----" + pDesc + "<br><br><br>Click to view or add comments";
+    newPost.innerHTML = "" + pUsername + "<br><br>Title:<br> " + pTitle + "<br><br>-----" + pDesc + "<br><br><br>Click to view/add comments, or delete post";
     newPost.id = "myPostElement";
     newPost.className = "postClass";
 
