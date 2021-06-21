@@ -3605,6 +3605,7 @@ function updateAccount() {
     var photoRefArr = photoRef.split('.');
     photoRef = username + "." + photoRefArr[1];
     storageRef = storage.child(photoRef);
+    profPic = photoRef;
 
     // console.log("file: " + file)
     storageRef.put(file).then((snapshot) => {
@@ -5373,7 +5374,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
         console.log(doc.data());
         numOfLikes = doc.data().likes;
         numOfComments = doc.data().numberOfComments;
-        newPost.innerHTML = "<img id = 'thisPostProfPic'><br>" + pUsername + "<br><br><br>Title:<br> " + pTitle + "<br><br>" + pDesc +
+        newPost.innerHTML = "<img class = 'thisPostProfPic' id = 'thisPostProfPic"+id+"'><br>" + pUsername + "<br><br><br>Title:<br> " + pTitle + "<br><br>" + pDesc +
             "<br><br><div id = 'likeDisplay'>Likes: " + numOfLikes + "</div><br><div id = 'commentDisplay'>Comments: " + numOfComments + "</div><br><br>Click to view or add comments";
         newPost.id = "publicPostElement";
         newPost.className = "postClass";
@@ -5381,7 +5382,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
         if (ref != "" && ref != "underfined" && ref != null) {
             storage.child(ref).getDownloadURL().then((url) => {
                 console.log(url);
-                var img = document.getElementById('thisPostProfPic');
+                var img = document.getElementById('thisPostProfPic' + id);
                 img.setAttribute('src', url);
 
             }).catch((error) => {
