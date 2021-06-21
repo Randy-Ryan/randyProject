@@ -191,18 +191,16 @@ window.onload = function () {
             userID = user.uid;
             username = user.displayName;
             email = user.email;
-            profPic = user.photoURL;
             // myPhoneNumber = user.phoneNumber;
             db.collection("users").where("userID", "==", userID).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     myPhoneNumber = doc.data().phoneNumber;
-                    // profPic = doc.data().phoneNumber;
-                    console.log(myPhoneNumber);
-                    console.log(doc.data().profPic)
+                    profPic = doc.data().profPic;
+                    // console.log(profPic);
+                    // profPic = doc.data().profPicRef;
                     document.getElementById("accountProfPicIcon").style.display = "";
                     storage.child(doc.data().profPic).getDownloadURL().then((url) => {
                         console.log(url);
-
                         var img = document.getElementById('accountProfPicIcon');
                         //  var img = document.getElementById('accountProfPicIcon');
                         img.setAttribute('src', url);
@@ -218,7 +216,6 @@ window.onload = function () {
 
 
             console.log("signed in: " + userID + " username: " + username + " email:" + email);
-            console.log(profPic);
 
             // user.phoneNumber
             // user.photoURL
@@ -696,6 +693,7 @@ function clearChildren() {
     document.getElementById("historyTotalFeed").style.display = "none";
     document.getElementById("userPFeed").style.display = "none";
     document.getElementById("userProfPicDiv").style.display = "none";
+    document.getElementById("userFollowDiv").style.display = "none";
 
 
 
@@ -1839,6 +1837,9 @@ function loadMyAccount() {
     // document.getElementById("accountProfPicIcon").style.display = "";
 
     document.getElementById("userHead").innerHTML = username + "'s Account Page";
+    document.getElementById("userPFeed").style.display = "none";
+    document.getElementById("userProfPicDiv").style.display = "none";
+
     // style calendar: 
     // remove the current active class & set the new active date
     var active = document.getElementsByClassName("active");
@@ -2075,7 +2076,20 @@ function loadFeed(date, month) {
 
     // createNewTotalNutrientsDaily("TOTAL WATER: <br>" + (Math.round(waterTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL ENERGY: <br>" + (Math.round(energyTotalDaily * 100) / 100).toFixed(2) + " KCAL", "TOTAL VITAMIN C (ASCORBIC ACID): <br>" + (Math.round(vitaminTotalDaily * 100) / 100).toFixed(2) + " MG", "TOTAL CARBS: <br>" + (Math.round(carbTotalDaily * 100) / 100).toFixed(2) + " G", "TOTAL NUTRIENTS (TODAY) <br><br><br>TOTAL PROTEIN: <br>" + (Math.round(proteinTotalDaily * 100) / 100).toFixed(2) + " G");
 
-
+    // db.collection("users").where("userID", "==", userID).get().then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //         myPhoneNumber = doc.data().phoneNumber;
+    //         profPic = doc.data().profPicRef;
+    //         document.getElementById("accountProfPicIcon").style.display = "";
+    //         storage.child(doc.data().profPic).getDownloadURL().then((url) => {
+    //             console.log(url);
+    //             var img = document.getElementById('accountProfPicIcon');
+    //             //  var img = document.getElementById('accountProfPicIcon');
+    //             img.setAttribute('src', url);
+    //             document.getElementById('profPicDiv').style.display = 'unset';
+    //         })
+    //     })
+    // })
 
     // load the exercise feed
     db.collection("users").doc(userID).collection("exercises").where("date", "==", day).where("month", "==", month).get().then((querySnapshot) => {
@@ -5542,7 +5556,7 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVa
         newPost.id = "publicPostElement";
         newPost.className = "postClass";
 
-        if (ref != "" && ref != "underfined" && ref != null) {
+        if (ref != "" && ref != "undefined" && ref != null) {
             storage.child(ref).getDownloadURL().then((url) => {
                 console.log(url);
                 var img = document.getElementById('thisPostProfPic' + id);
@@ -5833,8 +5847,8 @@ function addPublicPostToDB() {
     var descInput = requiredInputs[2].value;
 
 
+    if (photoRef != ""){
     var fill = "" + generateRandomNumber(1, 1000000);
-
     var fileInput = document.getElementById("postFileAttach");
     var file = fileInput.files.item(0);
     var photoRefArr = photoRef.split('.');
@@ -5844,7 +5858,10 @@ function addPublicPostToDB() {
     storageRef.put(file).then((snapshot) => {
         console.log("uploaded a file: " + photoRef);
         });
-
+    }
+    else {
+        photoRef = "undefined"
+    }
     //TODO//
     // change the random number implementation?
 
@@ -5999,6 +6016,19 @@ function newPublicPost() {
 
 }
 
+function followThisUser(userName1){
+    // console.log(userName);
+db.collection("users").where("username", "==", userName1).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+        db.collection("users").doc(doc.id).collection("followers").doc(username).set({
+        }).then(() =>{
+            loadUsersProfile(doc.id);
+        })
+    })
+})
+
+
+}
 function loadUsersProfile(uName) {
     clearChildren();
 
@@ -6007,6 +6037,65 @@ function loadUsersProfile(uName) {
     document.getElementById("accountPFeed").style.display = "none";
     document.getElementById("userPFeed").style.display = "";
     document.getElementById("userProfPicDiv").style.display = "";
+    document.getElementById("userFollowDiv").style.display = "";
+    var followers = 0;
+
+    // //load this users followers
+    // db.collection("users").doc().where("username", "==", uName).collection("followers").get().then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //         followers++;
+    //     })
+    // }).then(() =>{
+        db.collection("users").where("username", "==", uName).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                console.log(doc.data())
+            db.collection("users").doc(doc.id).collection("followers").get().then((querySnapshot)=>{
+                querySnapshot.forEach((doc) => {
+                    console.log(doc.data())
+                    followers++;
+                    document.getElementById("followers").innerHTML = followers + " follower(s)"
+                    if (doc.id == username){
+                        // document.getElementById("followButton").onclick = "";
+                        document.getElementById("followButton").style.display = "none";
+                        // document.getElementById("unfollowButton").onclick = "";
+                        document.getElementById("unfollowButton").style.display = "unset";
+
+
+                    }
+
+                    console.log("Followers: " + doc.id);
+                })
+        })
+    })
+}).then(() => {
+    var fButton = document.createElement('div');
+    var uButton = document.createElement('div');
+
+    var usernameDisplay = document.createElement('div');
+    var followersDisplay = document.createElement('div');
+
+
+    // var s = "";
+    fButton.innerHTML = "<div onclick = 'followThisUser("+'"'+uName+'"' +")' id = 'followButton'>FOLLOW THIS USER</div>";
+    uButton.innerHTML = "<div onclick = 'unfollowThisUser("+'"'+uName+'"' +")' id = 'unfollowButton'>UNFOLLOW THIS USER</div>";
+
+    usernameDisplay.innerHTML = "<label id ='userDisplayNameID'>"+uName+"</label>";
+    followersDisplay.innerHTML = "<label id ='followers'>"+followers+" followers</label>";
+
+
+    document.getElementById("feed")
+    .appendChild(usernameDisplay)
+    .appendChild(followersDisplay)
+    .appendChild(fButton)
+    .appendChild(uButton)
+
+
+})
+       
+
+  
+
+    // document.getElementById("userDisplayName").style.display = "";
 
     // get username var
 
@@ -6040,6 +6129,8 @@ function loadUsersProfile(uName) {
 function trackingIconClick() {
     loadFeed(currDate, currMonth);
     document.getElementById("accountProfPicIcon").style.display = "";
+    document.getElementById("userPFeed").style.display = "none";
+    document.getElementById("userProfPicDiv").style.display = "none";
 
 }
 
