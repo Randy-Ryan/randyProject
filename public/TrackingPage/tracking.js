@@ -1939,14 +1939,14 @@ function loadMyAccount() {
     // usernameEdit.innerHTML = "<br><br><br><label id = 'accountUsername'>" + username + "'s account page <br><br></label>";
     editButton.innerHTML = "<input onclick = 'editAccount()' type='submit' id = 'cancelButton1' value = 'EDIT MY ACCOUNT'/>"
     signOutButton.innerHTML = "<input onclick = 'signOutAccount()' type='submit' id = 'signOutButton1' value = 'SIGN OUT'/>"
-    fDisplay.innerHTML = "<div id = 'myFollowerCount'></div>";
+    fDisplay.innerHTML = "<div id = 'myFollowerCount'>Followers:</div>";
 
     // load the edit form on the feed
     document.getElementById("feed")
         // .appendChild(usernameEdit)
+        .appendChild(fDisplay)
         .appendChild(editButton)
         .appendChild(signOutButton)
-        .appendChild(fDisplay)
 }
 
 
