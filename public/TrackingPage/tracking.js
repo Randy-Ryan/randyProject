@@ -772,6 +772,8 @@ function clearChildren() {
 
     var el2 = document.getElementById('historyFeed1');
     while (el2.firstChild) el2.innerHTML = '';
+    var el2 = document.getElementById('userPostFeed');
+    while (el2.firstChild) el2.innerHTML = '';
 
 
     var el2 = document.getElementById('publicPostFeed');
@@ -5385,20 +5387,13 @@ function likeThisPost(s) {
 function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar, lVar) {
 
     var newPost = document.createElement('li');
-  
-
-    // dVar, mVar
-
     var s = dVar.split('//');
     var day = s[0];
     var hourMin = s[1];
     var hM = hourMin.split(':');
     var hour = hM[0];
     var min = hM[1];
-
     var displayD = mVar + " " + day + ",  " + hour+":" + min;
-
-
     var ss = '"' + id + "^^^" + pTitle + "^^^" + pDesc + "^^^" + pUsername + "^^^" + ref + "^^^" + dVar + "^^^" + mVar + "^^^" + cVar + "^^^" + lVar +'"';
     console.log("SS BEFORE LIKE:" + ss);
     var numOfComments;
@@ -5434,16 +5429,12 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
         newPost.onclick = function () {
             // clear the feed
             clearChildren();
-
             document.getElementById("userHead").style.display = "none";
-
-
             db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     createNewComment(doc.data().title, doc.data().username);
                 })
             })
-
             //load comments and ability to add a new comment
 
             // initialize div elements
@@ -5511,143 +5502,221 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
 function createNewAccountPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar, lVar) {
 
     var newPost = document.createElement('li');
-    newPost.innerHTML = "" + pUsername + "<br><br>Title:<br> " + pTitle + "<br><br>-----" + pDesc + "<br><br><br>Click to view/add comments, or delete post";
-    newPost.id = "myPostElement";
-    newPost.className = "postClass";
-
+    var s = dVar.split('//');
+    var day = s[0];
+    var hourMin = s[1];
+    var hM = hourMin.split(':');
+    var hour = hM[0];
+    var min = hM[1];
+    var displayD = mVar + " " + day + ",  " + hour+":" + min;
     var ss = '"' + id + "^^^" + pTitle + "^^^" + pDesc + "^^^" + pUsername + "^^^" + ref + "^^^" + dVar + "^^^" + mVar + "^^^" + cVar + "^^^" + lVar +'"';
+    console.log("SS BEFORE LIKE:" + ss);
+    var numOfComments;
+    var numOfLikes;
+        
+    db.collection("posts").doc("" + id).get().then((doc) => {
+        // console.log(doc.data());
+        numOfLikes = doc.data().likes;
+        numOfComments = doc.data().numberOfComments;
+        newPost.innerHTML = "<img class = 'thisPostProfPic' id = 'thisPostProfPic"+id+"'><br>" + pUsername + "<br><br><br>Title:<br> " + pTitle + "<br><br>" + pDesc +
+            "<br><br><div id = 'likeDisplay'>Likes: " + numOfLikes + "</div><br><div id = 'commentDisplay'>Comments: " + numOfComments + "</div><br><br>Click to view or add comments<br><br><div id ='dateDisplay'>" +displayD+"</div>";
+        newPost.id = "publicPostElement";
+        newPost.className = "postClass";
 
+        if (ref != "" && ref != "underfined" && ref != null) {
+            storage.child(ref).getDownloadURL().then((url) => {
+                console.log(url);
+                var img = document.getElementById('thisPostProfPic' + id);
+                img.setAttribute('src', url);
 
-    newPost.onclick = function () {
-        // clear the feed
-        clearChildren();
+            }).catch((error) => {
+                console.log('error in img download: ' + error.message);
+            });
+        }
+        else {
 
-        // document.getElementById("publicPostDivID").style.display = "none";
+        }
 
-        document.getElementById("usernameHeader").style.display = "none";
-        document.getElementById("userHead").style.display = "none";
-
-        document.getElementById("favoritesIcon").style.display = "none";
-        document.getElementById("favLabel").style.display = "none";
-
-        document.getElementById("calendar").style.display = "none";
-        document.getElementById("todaysDate").style.display = "none";
-        document.getElementById("filler1").style.display = "none";
-
-
-        db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                createNewComment(doc.data().title, doc.data().username, doc.id);
+        newPost.onclick = function () {
+            // clear the feed
+            clearChildren();
+            document.getElementById("userHead").style.display = "none";
+            db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    createNewComment(doc.data().title, doc.data().username);
+                })
             })
-        })
+            //load comments and ability to add a new comment
 
-        //load comments and ability to add a new comment
+            // initialize div elements
+            var cancelButton = document.createElement('div');
+            var title = document.createElement('div');
+            var commentButton = document.createElement('div');
+            var thisPostTitle = document.createElement('div');
+            var deleteButton = document.createElement('div');
 
-        // initialize div elements
-        var cancelButton = document.createElement('div');
-        var thisPostTitle = document.createElement('div');
-        var title = document.createElement('div');
-        var commentButton = document.createElement('div');
-        var deleteButton = document.createElement('div');
+            //    var thisPostImage = document.createElement('img');
+            //    thisPostImage.id = "thisPostImageID";
+
+            thisPostTitle.innerHTML = "<div id = 'thisPostTitle'><img id = 'thisPostImageID'> <br>" + pUsername + " <br><br>Title: <br>" + pTitle + " <br><br>" + pDesc + "<br><br><br></div>"
+
+            // create the edit form by setting the HTML content of each div
+            cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+
+            title.innerHTML = "<br><br><br><label id = 'commentLabel'>My comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
+            // update button
+            commentButton.innerHTML = "<input onclick = 'addCommentToPost(" +ss+ ")' type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
+            // delete button
+
+            deleteButton.innerHTML = "<input onclick = 'deletePost(" + id + ")' type='submit' form='mainForm' id = 'dButton1' value = 'DELETE POST'/>"
 
 
+            // load the edit form on the feed
+            document.getElementById("feed")
+                .appendChild(cancelButton)
+                .appendChild(thisPostTitle)
+                .appendChild(commentButton)
+                .appendChild(title)
+                .appendChild(deleteButton)
 
-        thisPostTitle.innerHTML = "<div id = 'thisPostTitle'>Username: " + pUsername + " <br><br>Title: <br<" + pTitle + " <br><br>" + pDesc + "<br><br><br></div>";
 
+            if (ref != "" && ref != "undefined" && ref != null) {
+                storage.child(ref).getDownloadURL().then((url) => {
+                    console.log(url);
+                    var img = document.getElementById('thisPostImageID');
+                    img.setAttribute('src', url);
 
+                }).catch((error) => {
+                    console.log('error in img download: ' + error.message);
+                });
+            }
+            else {
 
-        // create the edit form by setting the HTML content of each div
-        cancelButton.innerHTML = "<input onclick = 'loadMyAccount()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
-        title.innerHTML = "<br><br><br><label class = 'exClass1'>Comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
-        // update button
-        commentButton.innerHTML = "<input onclick = onclick = 'addCommentToPost(" +ss+ ")' type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
-        // delete button
-        deleteButton.innerHTML = "<input onclick = 'deletePost(" + id + ")' type='submit' form='mainForm' id = 'dButton1' value = 'DELETE POST'/>"
+            }
+            document.getElementById("feed").style.display = "";
 
-        // load the edit form on the feed
-        document.getElementById("feed")
-            .appendChild(cancelButton)
-            .appendChild(thisPostTitle)
-            .appendChild(title)
-            .appendChild(commentButton)
-            .appendChild(deleteButton)
-        document.getElementById("feed").style.display = "";
+        }
 
-    }
+        document.getElementById("accountPostFeed").appendChild(newPost);
+       
 
-    document.getElementById("accountPostFeed").appendChild(newPost);
-
+    });
 }
 
 
 function createNewUserPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar, lVar) {
 
+    
     var newPost = document.createElement('li');
-    newPost.innerHTML = "" + pUsername + "<br><br>Title:<br> " + pTitle + "<br><br>-----" + pDesc + "<br><br><br>Click to view/add comments, or delete post";
-    newPost.id = "myPostElement";
-    newPost.className = "postClass";
-
+    var s = dVar.split('//');
+    var day = s[0];
+    var hourMin = s[1];
+    var hM = hourMin.split(':');
+    var hour = hM[0];
+    var min = hM[1];
+    var displayD = mVar + " " + day + ",  " + hour+":" + min;
     var ss = '"' + id + "^^^" + pTitle + "^^^" + pDesc + "^^^" + pUsername + "^^^" + ref + "^^^" + dVar + "^^^" + mVar + "^^^" + cVar + "^^^" + lVar +'"';
+    console.log("SS BEFORE LIKE:" + ss);
+    var numOfComments;
+    var numOfLikes;
+    var postLikeButton = document.createElement('li');
+    postLikeButton.innerHTML = "<button onclick = 'likeThisPost(" + ss + ")' class = 'likeButton' id = 'likeButton" + id + "' calue>LIKE THIS POST</button>";
 
+   
+        
+    db.collection("posts").doc("" + id).get().then((doc) => {
+        console.log(doc.data());
+        numOfLikes = doc.data().likes;
+        numOfComments = doc.data().numberOfComments;
+        newPost.innerHTML = "<img class = 'thisPostProfPic' id = 'thisPostProfPic"+id+"'><br>" + pUsername + "<br><br><br>Title:<br> " + pTitle + "<br><br>" + pDesc +
+            "<br><br><div id = 'likeDisplay'>Likes: " + numOfLikes + "</div><br><div id = 'commentDisplay'>Comments: " + numOfComments + "</div><br><br>Click to view or add comments<br><br><div id ='dateDisplay'>" +displayD+"</div>";
+        newPost.id = "publicPostElement";
+        newPost.className = "postClass";
 
-    newPost.onclick = function () {
-        // clear the feed
-        clearChildren();
+        if (ref != "" && ref != "underfined" && ref != null) {
+            storage.child(ref).getDownloadURL().then((url) => {
+                console.log(url);
+                var img = document.getElementById('thisPostProfPic' + id);
+                img.setAttribute('src', url);
 
-        // document.getElementById("publicPostDivID").style.display = "none";
+            }).catch((error) => {
+                console.log('error in img download: ' + error.message);
+            });
+        }
+        else {
 
-        document.getElementById("usernameHeader").style.display = "none";
-        document.getElementById("userHead").style.display = "none";
+        }
 
-        document.getElementById("favoritesIcon").style.display = "none";
-        document.getElementById("favLabel").style.display = "none";
-
-        document.getElementById("calendar").style.display = "none";
-        document.getElementById("todaysDate").style.display = "none";
-        document.getElementById("filler1").style.display = "none";
-
-
-        db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                createNewComment(doc.data().title, doc.data().username, doc.id);
+        newPost.onclick = function () {
+            // clear the feed
+            clearChildren();
+            document.getElementById("userHead").style.display = "none";
+            db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    createNewComment(doc.data().title, doc.data().username);
+                })
             })
-        })
+            //load comments and ability to add a new comment
 
-        //load comments and ability to add a new comment
+            // initialize div elements
+            var cancelButton = document.createElement('div');
+            var title = document.createElement('div');
+            var commentButton = document.createElement('div');
+            var thisPostTitle = document.createElement('div');
+            var toProfile = document.createElement('div');
 
-        // initialize div elements
-        var cancelButton = document.createElement('div');
-        var thisPostTitle = document.createElement('div');
-        var title = document.createElement('div');
-        var commentButton = document.createElement('div');
-        var deleteButton = document.createElement('div');
-
-
-
-        thisPostTitle.innerHTML = "<div id = 'thisPostTitle'>Username: " + pUsername + " <br><br>Title: <br<" + pTitle + " <br><br>" + pDesc + "<br><br><br></div>";
+            //    var thisPostImage = document.createElement('img');
+            //    thisPostImage.id = "thisPostImageID";
 
 
 
-        // create the edit form by setting the HTML content of each div
-        cancelButton.innerHTML = "<input onclick = 'loadMyAccount()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
-        title.innerHTML = "<br><br><br><label class = 'exClass1'>Comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
-        // update button
-        commentButton.innerHTML = "<input onclick = onclick = 'addCommentToPost(" +ss+ ")' type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
-        // delete button
-        deleteButton.innerHTML = "<input onclick = 'deletePost(" + id + ")' type='submit' form='mainForm' id = 'dButton1' value = 'DELETE POST'/>"
+            thisPostTitle.innerHTML = "<div id = 'thisPostTitle'><img id = 'thisPostImageID'> <br>" + pUsername + " <br><br>Title: <br>" + pTitle + " <br><br>" + pDesc + "<br><br><br></div>"
 
-        // load the edit form on the feed
-        document.getElementById("feed")
-            .appendChild(cancelButton)
-            .appendChild(thisPostTitle)
-            .appendChild(title)
-            .appendChild(commentButton)
-            .appendChild(deleteButton)
-        document.getElementById("feed").style.display = "";
+            // create the edit form by setting the HTML content of each div
+            cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+            toProfile.innerHTML = "<input onclick = 'loadUsersProfile("+'"'+pUsername+'"'+")' type='submit' id = 'userProfileButton' value = 'View "+pUsername+"s profile'/>"
 
-    }
+            title.innerHTML = "<br><br><br><label id = 'commentLabel'>My comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
+            // update button
+            commentButton.innerHTML = "<input onclick = 'addCommentToPost(" +ss+ ")' type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
+            // delete button
 
-    document.getElementById("userPostFeed").appendChild(newPost);
+            // load the edit form on the feed
+            document.getElementById("feed")
+                .appendChild(cancelButton)
+                .appendChild(toProfile)
+                .appendChild(thisPostTitle)
+                .appendChild(commentButton)
+                .appendChild(title)
+
+            if (ref != "" && ref != "undefined" && ref != null) {
+                storage.child(ref).getDownloadURL().then((url) => {
+                    console.log(url);
+                    var img = document.getElementById('thisPostImageID');
+                    img.setAttribute('src', url);
+
+                }).catch((error) => {
+                    console.log('error in img download: ' + error.message);
+                });
+            }
+            else {
+
+            }
+            document.getElementById("feed").style.display = "";
+
+        }
+
+        document.getElementById("userPostFeed").appendChild(postLikeButton).appendChild(newPost);
+           //dim the like button if you already liked the post
+        db.collection("posts").doc("" + id).collection("likes").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                if (doc.data().userID == userID){
+                    document.getElementById("likeButton" + id).onclick = "";
+                    document.getElementById("likeButton" + id).style.backgroundColor = "gray";
+                }
+            })
+        })     
+    });
 
 }
 
