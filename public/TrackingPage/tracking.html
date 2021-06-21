@@ -8,6 +8,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-storage.js"></script>
     <!-- ***************************************************************************************************** -->
     <!-- ******************* THIS CODE IS FOR THE WEB ICON AND URL LINK THUMBNAILS ************************** -->
     <!-- ***************************************************************************************************** -->
@@ -54,6 +55,9 @@
     
     <script type="text/javascript" src="./tracking.js"></script>
 </head>
+<div id = "profPicDiv">
+    <img id = "accountProfPicIcon">
+</div>  
 <div id="notLoginRegister" style="display: none;">
     <br>
     <a id="logLink" style="display: none;" onclick="loadLoginPage()">LOGIN</a>
@@ -79,6 +83,7 @@
     </div>
 
 
+
     <div id = "iconLabelsDiv">
     <li id = "trackingIconLabel">MY TRACKING</li>
     <li id = "publicIconLabel">PUBLIC FEED</li>
@@ -101,7 +106,8 @@
     </div>
 </div>
 
-    <body>      
+    <body>  
+       
         <!-- USERNAME TITLE -->
         <div id="usernameHeader">
             <div id="userHead"></div>
@@ -118,7 +124,7 @@
         <ul id="publicPostFeed">
         </ul>
     </div>
- 
+    
         <!-- CALENDER DIV -->
         <div id="calendar">
             <div class="month">
@@ -622,6 +628,7 @@
         </div>
     </div>
         <div id="accountPFeed">
+           
             <li id="gridTitle" class="item">MY POSTS</li>
             <ul id="accountPostFeed">
             </ul>
