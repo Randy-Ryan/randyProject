@@ -1510,7 +1510,7 @@ text-shadow: 0 1px 0 #ccc,
 
 #file-upload-button{
   width: auto;
-  height: auto;
+  height: 100%;
   font-size:25px;
   /* pointer-events: visible; */
   border-radius: 10px;
@@ -1522,9 +1522,13 @@ text-shadow: 0 1px 0 #ccc,
 
 #attachProfPic{
   background-color:#000428;
+  margin: 5%;
+  border-radius: 20%;
+  padding:15%;
+  font-size: 60px;
   color: white;
   width: auto;
-  height: auto;
+  height: 50%;
 }
 
 /* SIGNED OUT TITLE */
