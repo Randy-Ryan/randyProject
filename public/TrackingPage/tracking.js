@@ -1906,13 +1906,28 @@ function loadMyAccount() {
         })
     })
 
+
+    var followers = 0;
+    var fNames = "";
+    db.collection("users").where("username", "==", username).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(doc.data())
+            db.collection("users").doc(doc.id).collection("followers").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    followers++;
+                    fNames += doc.id + "<br>";
+                    document.getElementById("myFollowerCount").innerHTML = followers + " follower(s)<br><br><div id ='followerNames'>"+fNames+"</div>";
+                })
+            })
+        })
+    })
     // load the account feed
 
     // initialize div elements
     // var usernameEdit = document.createElement('div');
     var editButton = document.createElement('div');
     var signOutButton = document.createElement('div');
-
+    var fDisplay = document.createElement('div');
     //set ids
 
     // usernameEdit.id = "usernameAccountID";
@@ -1924,13 +1939,14 @@ function loadMyAccount() {
     // usernameEdit.innerHTML = "<br><br><br><label id = 'accountUsername'>" + username + "'s account page <br><br></label>";
     editButton.innerHTML = "<input onclick = 'editAccount()' type='submit' id = 'cancelButton1' value = 'EDIT MY ACCOUNT'/>"
     signOutButton.innerHTML = "<input onclick = 'signOutAccount()' type='submit' id = 'signOutButton1' value = 'SIGN OUT'/>"
-
+    fDisplay.innerHTML = "<div id = 'myFollowerCount'></div>";
 
     // load the edit form on the feed
     document.getElementById("feed")
         // .appendChild(usernameEdit)
         .appendChild(editButton)
         .appendChild(signOutButton)
+        .appendChild(fDisplay)
 }
 
 
@@ -3635,7 +3651,7 @@ function updateAccount() {
             img.setAttribute('src', url);
             document.getElementById('profPicDiv').style.display = 'unset';
         })
-        });
+    });
 
     // update firebase account display name
     user.updateProfile({
@@ -3656,9 +3672,9 @@ function updateAccount() {
         profPic: photoRef
     }).then(() => {
         alert("updated this display name,phone number, and profile picture");
-            loadMyAccount();
-            // window.location.href = "../TrackingPage/tracking.html?userID=" + userID + "&username=" + usernameEdit + "&email=" + email;
-        })
+        loadMyAccount();
+        // window.location.href = "../TrackingPage/tracking.html?userID=" + userID + "&username=" + usernameEdit + "&email=" + email;
+    })
         .catch((error) => {
             // alert("ERROR submitting post!" + error);
         });;
@@ -5363,7 +5379,7 @@ function likeThisPost(s) {
         date: dateVar,
         month: monthVar,
         numberOfComments: cc,
-        fileAttachment:fRef
+        fileAttachment: fRef
     }).then(() => {
         // clear the feed
         // clearChildren();
@@ -5378,26 +5394,26 @@ function likeThisPost(s) {
         .catch((error) => {
             // alert("ERROR submitting post! " + error);
         });
-        var fill = "" + generateRandomNumber(1, 1000000);
+    var fill = "" + generateRandomNumber(1, 1000000);
 
-        db.collection("posts").doc("" + id).collection("likes").doc(fill).set({
-            userID: userID,
-            username: username,
-        }).then(() => {
-            // clear the feed
-            // clearChildren();
-            loadMyPublicPage()
-            // document.getElementById("likeButton" + id).style.display = "none";
-    
-            //TODO//
-            // implement post successful alert
-    
-            // load the feed
-        })
-            .catch((error) => {
-                // alert("ERROR submitting post! " + error);
-            });
-    
+    db.collection("posts").doc("" + id).collection("likes").doc(fill).set({
+        userID: userID,
+        username: username,
+    }).then(() => {
+        // clear the feed
+        // clearChildren();
+        loadMyPublicPage()
+        // document.getElementById("likeButton" + id).style.display = "none";
+
+        //TODO//
+        // implement post successful alert
+
+        // load the feed
+    })
+        .catch((error) => {
+            // alert("ERROR submitting post! " + error);
+        });
+
 
 }
 function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar, lVar, fVar) {
@@ -5409,22 +5425,22 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
     var hM = hourMin.split(':');
     var hour = hM[0];
     var min = hM[1];
-    var displayD = mVar + " " + day + ",  " + hour+":" + min;
-    var ss = '"' + id + "^^^" + pTitle + "^^^" + pDesc + "^^^" + pUsername + "^^^" + ref + "^^^" + dVar + "^^^" + mVar + "^^^" + cVar + "^^^" + lVar + "^^^" +fVar+'"';
+    var displayD = mVar + " " + day + ",  " + hour + ":" + min;
+    var ss = '"' + id + "^^^" + pTitle + "^^^" + pDesc + "^^^" + pUsername + "^^^" + ref + "^^^" + dVar + "^^^" + mVar + "^^^" + cVar + "^^^" + lVar + "^^^" + fVar + '"';
     console.log("SS BEFORE LIKE:" + ss);
     var numOfComments;
     var numOfLikes;
     var postLikeButton = document.createElement('li');
     postLikeButton.innerHTML = "<button onclick = 'likeThisPost(" + ss + ")' class = 'likeButton' id = 'likeButton" + id + "' calue>LIKE THIS POST</button>";
 
-   
-        
+
+
     db.collection("posts").doc("" + id).get().then((doc) => {
         console.log(doc.data());
         numOfLikes = doc.data().likes;
         numOfComments = doc.data().numberOfComments;
-        newPost.innerHTML = "<img class = 'thisPostProfPic' id = 'thisPostProfPic"+id+"'><br>" + pUsername + "<br><br><br>Title:<br> " + pTitle + "<br><img class = 'fileClass' id = 'file"+id+"'><br>" + pDesc +
-            "<br><br><div id = 'likeDisplay'>Likes: " + numOfLikes + "</div><br><div id = 'commentDisplay'>Comments: " + numOfComments + "</div><br><br>Click to view or add comments<br><br><div id ='dateDisplay'>" +displayD+"</div>";
+        newPost.innerHTML = "<img class = 'thisPostProfPic' id = 'thisPostProfPic" + id + "'><br>" + pUsername + "<br><br><br>Title:<br> " + pTitle + "<br><img class = 'fileClass' id = 'file" + id + "'><br>" + pDesc +
+            "<br><br><div id = 'likeDisplay'>Likes: " + numOfLikes + "</div><br><div id = 'commentDisplay'>Comments: " + numOfComments + "</div><br><br>Click to view or add comments<br><br><div id ='dateDisplay'>" + displayD + "</div>";
         newPost.id = "publicPostElement";
         newPost.className = "postClass";
 
@@ -5464,15 +5480,15 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
 
 
 
-            thisPostTitle.innerHTML = "<div id = 'thisPostTitle'><img id = 'thisPostImageID'> <br>" + pUsername + " <br><br>Title: <br>" + pTitle + " <br><img class = 'fileClass' id = 'file"+id+"'><br>" + pDesc + "<br><br><br></div>"
+            thisPostTitle.innerHTML = "<div id = 'thisPostTitle'><img id = 'thisPostImageID'> <br>" + pUsername + " <br><br>Title: <br>" + pTitle + " <br><img class = 'fileClass' id = 'file" + id + "'><br>" + pDesc + "<br><br><br></div>"
 
             // create the edit form by setting the HTML content of each div
             cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
-            toProfile.innerHTML = "<input onclick = 'loadUsersProfile("+'"'+pUsername+'"'+")' type='submit' id = 'userProfileButton' value = 'View "+pUsername+"s profile'/>"
+            toProfile.innerHTML = "<input onclick = 'loadUsersProfile(" + '"' + pUsername + '"' + ")' type='submit' id = 'userProfileButton' value = 'View " + pUsername + "s profile'/>"
 
             title.innerHTML = "<br><br><br><label id = 'commentLabel'>My comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
             // update button
-            commentButton.innerHTML = "<input onclick = 'addCommentToPost(" +ss+ ")' type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
+            commentButton.innerHTML = "<input onclick = 'addCommentToPost(" + ss + ")' type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
             // delete button
 
             // load the edit form on the feed
@@ -5503,7 +5519,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
                     console.log('error in img download: ' + error.message);
                 });
             }
-          
+
             document.getElementById("feed").style.display = "";
         }
 
@@ -5519,15 +5535,15 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
                 console.log('error in img download: ' + error.message);
             });
         }
-           //dim the like button if you already liked the post
+        //dim the like button if you already liked the post
         db.collection("posts").doc("" + id).collection("likes").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                if (doc.data().userID == userID){
+                if (doc.data().userID == userID) {
                     document.getElementById("likeButton" + id).onclick = "";
                     document.getElementById("likeButton" + id).style.backgroundColor = "gray";
                 }
             })
-        })     
+        })
 
     });
 }
@@ -5541,18 +5557,18 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVa
     var hM = hourMin.split(':');
     var hour = hM[0];
     var min = hM[1];
-    var displayD = mVar + " " + day + ",  " + hour+":" + min;
-    var ss = '"' + id + "^^^" + pTitle + "^^^" + pDesc + "^^^" + pUsername + "^^^" + ref + "^^^" + dVar + "^^^" + mVar + "^^^" + cVar + "^^^" + lVar + "^^^" + fVar +'"';
+    var displayD = mVar + " " + day + ",  " + hour + ":" + min;
+    var ss = '"' + id + "^^^" + pTitle + "^^^" + pDesc + "^^^" + pUsername + "^^^" + ref + "^^^" + dVar + "^^^" + mVar + "^^^" + cVar + "^^^" + lVar + "^^^" + fVar + '"';
     console.log("SS BEFORE LIKE:" + ss);
     var numOfComments;
     var numOfLikes;
-        
+
     db.collection("posts").doc("" + id).get().then((doc) => {
         // console.log(doc.data());
         numOfLikes = doc.data().likes;
         numOfComments = doc.data().numberOfComments;
-        newPost.innerHTML = "<img class = 'thisPostProfPic' id = 'thisPostProfPic"+id+"'><br>" + pUsername + "<br><br><br>Title:<br> " + pTitle + "<br><img class = 'fileClass' id = 'file"+id+"'><br>" + pDesc +
-            "<br><br><div id = 'likeDisplay'>Likes: " + numOfLikes + "</div><br><div id = 'commentDisplay'>Comments: " + numOfComments + "</div><br><br>Click to view or add comments<br><br><div id ='dateDisplay'>" +displayD+"</div>";
+        newPost.innerHTML = "<img class = 'thisPostProfPic' id = 'thisPostProfPic" + id + "'><br>" + pUsername + "<br><br><br>Title:<br> " + pTitle + "<br><img class = 'fileClass' id = 'file" + id + "'><br>" + pDesc +
+            "<br><br><div id = 'likeDisplay'>Likes: " + numOfLikes + "</div><br><div id = 'commentDisplay'>Comments: " + numOfComments + "</div><br><br>Click to view or add comments<br><br><div id ='dateDisplay'>" + displayD + "</div>";
         newPost.id = "publicPostElement";
         newPost.className = "postClass";
 
@@ -5590,14 +5606,14 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVa
             //    var thisPostImage = document.createElement('img');
             //    thisPostImage.id = "thisPostImageID";
 
-            thisPostTitle.innerHTML = "<div id = 'thisPostTitle'><img id = 'thisPostImageID'> <br>" + pUsername + " <br><br>Title: <br>" + pTitle + " <br><img class = 'fileClass' id = 'file"+id+"'><br>" + pDesc + "<br><br><br></div>"
+            thisPostTitle.innerHTML = "<div id = 'thisPostTitle'><img id = 'thisPostImageID'> <br>" + pUsername + " <br><br>Title: <br>" + pTitle + " <br><img class = 'fileClass' id = 'file" + id + "'><br>" + pDesc + "<br><br><br></div>"
 
             // create the edit form by setting the HTML content of each div
             cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
 
             title.innerHTML = "<br><br><br><label id = 'commentLabel'>My comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
             // update button
-            commentButton.innerHTML = "<input onclick = 'addCommentToPost(" +ss+ ")' type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
+            commentButton.innerHTML = "<input onclick = 'addCommentToPost(" + ss + ")' type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
             // delete button
 
             deleteButton.innerHTML = "<input onclick = 'deletePost(" + id + ")' type='submit' form='mainForm' id = 'dButton1' value = 'DELETE POST'/>"
@@ -5627,7 +5643,7 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVa
                     console.log(url);
                     var img = document.getElementById('file' + id);
                     img.setAttribute('src', url);
-    
+
                 }).catch((error) => {
                     console.log('error in img download: ' + error.message);
                 });
@@ -5650,15 +5666,15 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVa
                 console.log('error in img download: ' + error.message);
             });
         }
-        
+
 
     });
 }
 
 
-function createNewUserPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar, lVar,fVar) {
+function createNewUserPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar, lVar, fVar) {
 
-    
+
     var newPost = document.createElement('li');
     var s = dVar.split('//');
     var day = s[0];
@@ -5666,22 +5682,22 @@ function createNewUserPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, 
     var hM = hourMin.split(':');
     var hour = hM[0];
     var min = hM[1];
-    var displayD = mVar + " " + day + ",  " + hour+":" + min;
-    var ss = '"' + id + "^^^" + pTitle + "^^^" + pDesc + "^^^" + pUsername + "^^^" + ref + "^^^" + dVar + "^^^" + mVar + "^^^" + cVar + "^^^" + lVar + "^^^" +fVar+'"';
+    var displayD = mVar + " " + day + ",  " + hour + ":" + min;
+    var ss = '"' + id + "^^^" + pTitle + "^^^" + pDesc + "^^^" + pUsername + "^^^" + ref + "^^^" + dVar + "^^^" + mVar + "^^^" + cVar + "^^^" + lVar + "^^^" + fVar + '"';
     console.log("SS BEFORE LIKE:" + ss);
     var numOfComments;
     var numOfLikes;
     var postLikeButton = document.createElement('li');
     postLikeButton.innerHTML = "<button onclick = 'likeThisPost(" + ss + ")' class = 'likeButton' id = 'likeButton" + id + "' calue>LIKE THIS POST</button>";
 
-   
-        
+
+
     db.collection("posts").doc("" + id).get().then((doc) => {
         console.log(doc.data());
         numOfLikes = doc.data().likes;
         numOfComments = doc.data().numberOfComments;
-        newPost.innerHTML = "<img class = 'thisPostProfPic' id = 'thisPostProfPic"+id+"'><br>" + pUsername + "<br><br><br>Title:<br> " + pTitle + "<br><img class = 'fileClass' id = 'file"+id+"'><br>" + pDesc +
-            "<br><br><div id = 'likeDisplay'>Likes: " + numOfLikes + "</div><br><div id = 'commentDisplay'>Comments: " + numOfComments + "</div><br><br>Click to view or add comments<br><br><div id ='dateDisplay'>" +displayD+"</div>";
+        newPost.innerHTML = "<img class = 'thisPostProfPic' id = 'thisPostProfPic" + id + "'><br>" + pUsername + "<br><br><br>Title:<br> " + pTitle + "<br><img class = 'fileClass' id = 'file" + id + "'><br>" + pDesc +
+            "<br><br><div id = 'likeDisplay'>Likes: " + numOfLikes + "</div><br><div id = 'commentDisplay'>Comments: " + numOfComments + "</div><br><br>Click to view or add comments<br><br><div id ='dateDisplay'>" + displayD + "</div>";
         newPost.id = "publicPostElement";
         newPost.className = "postClass";
 
@@ -5721,15 +5737,15 @@ function createNewUserPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, 
 
 
 
-            thisPostTitle.innerHTML = "<div id = 'thisPostTitle'><img id = 'thisPostImageID'> <br>" + pUsername + " <br><br>Title: <br>" + pTitle + " <br><img class = 'fileClass' id = 'file"+id+"'><br>" + pDesc + "<br><br><br></div>"
+            thisPostTitle.innerHTML = "<div id = 'thisPostTitle'><img id = 'thisPostImageID'> <br>" + pUsername + " <br><br>Title: <br>" + pTitle + " <br><img class = 'fileClass' id = 'file" + id + "'><br>" + pDesc + "<br><br><br></div>"
 
             // create the edit form by setting the HTML content of each div
             cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
-            toProfile.innerHTML = "<input onclick = 'loadUsersProfile("+'"'+pUsername+'"'+")' type='submit' id = 'userProfileButton' value = 'View "+pUsername+"s profile'/>"
+            toProfile.innerHTML = "<input onclick = 'loadUsersProfile(" + '"' + pUsername + '"' + ")' type='submit' id = 'userProfileButton' value = 'View " + pUsername + "s profile'/>"
 
             title.innerHTML = "<br><br><br><label id = 'commentLabel'>My comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
             // update button
-            commentButton.innerHTML = "<input onclick = 'addCommentToPost(" +ss+ ")' type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
+            commentButton.innerHTML = "<input onclick = 'addCommentToPost(" + ss + ")' type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
             // delete button
 
             // load the edit form on the feed
@@ -5755,7 +5771,7 @@ function createNewUserPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, 
                     console.log(url);
                     var img = document.getElementById('file' + id);
                     img.setAttribute('src', url);
-    
+
                 }).catch((error) => {
                     console.log('error in img download: ' + error.message);
                 });
@@ -5779,15 +5795,15 @@ function createNewUserPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, 
                 console.log('error in img download: ' + error.message);
             });
         }
-           //dim the like button if you already liked the post
+        //dim the like button if you already liked the post
         db.collection("posts").doc("" + id).collection("likes").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                if (doc.data().userID == userID){
+                if (doc.data().userID == userID) {
                     document.getElementById("likeButton" + id).onclick = "";
                     document.getElementById("likeButton" + id).style.backgroundColor = "gray";
                 }
             })
-        })     
+        })
     });
 
 }
@@ -5847,16 +5863,16 @@ function addPublicPostToDB() {
     var descInput = requiredInputs[2].value;
 
 
-    if (photoRef != ""){
-    var fill = "" + generateRandomNumber(1, 1000000);
-    var fileInput = document.getElementById("postFileAttach");
-    var file = fileInput.files.item(0);
-    var photoRefArr = photoRef.split('.');
-    photoRef = fill + "." + photoRefArr[1];
-    storageRef = storage.child(photoRef);
-    // console.log("file: " + file)
-    storageRef.put(file).then((snapshot) => {
-        console.log("uploaded a file: " + photoRef);
+    if (photoRef != "") {
+        var fill = "" + generateRandomNumber(1, 1000000);
+        var fileInput = document.getElementById("postFileAttach");
+        var file = fileInput.files.item(0);
+        var photoRefArr = photoRef.split('.');
+        photoRef = fill + "." + photoRefArr[1];
+        storageRef = storage.child(photoRef);
+        // console.log("file: " + file)
+        storageRef.put(file).then((snapshot) => {
+            console.log("uploaded a file: " + photoRef);
         });
     }
     else {
@@ -5877,9 +5893,9 @@ function addPublicPostToDB() {
         profPicRef: profPic,
         likes: 0,
         numberOfComments: 0,
-        date: currDate +"//"+currT,
+        date: currDate + "//" + currT,
         month: currMonth,
-        fileAttachment:photoRef
+        fileAttachment: photoRef
     }).then(() => {
         // clear the feed
         clearChildren();
@@ -5931,7 +5947,7 @@ function addCommentToPost(s) {
         month: monthVar,
         numberOfComments: commentsPlusOne,
         likes: ll,
-        fileAttachment:fRef
+        fileAttachment: fRef
     }).then(() => {
     })
 
@@ -6016,18 +6032,34 @@ function newPublicPost() {
 
 }
 
-function followThisUser(userName1){
+function followThisUser(userName1) {
     // console.log(userName);
-db.collection("users").where("username", "==", userName1).get().then((querySnapshot) => {
+    db.collection("users").where("username", "==", userName1).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-        db.collection("users").doc(doc.id).collection("followers").doc(username).set({
-        }).then(() =>{
-            loadUsersProfile(doc.id);
+            db.collection("users").doc(doc.id).collection("followers").doc(username).set({
+            }).then(() => {
+                loadUsersProfile(doc.data().username);
+                document.getElementById("followButton").style.display = "none";
+                // document.getElementById("unfollowButton").onclick = "";
+                document.getElementById("unfollowButton").style.display = "unset";
+
+            })
         })
     })
-})
+}
+function unfollowThisUser(userName1) {
+    // console.log(userName);
+    db.collection("users").where("username", "==", userName1).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            db.collection("users").doc(doc.id).collection("followers").doc(username).delete().then(() => {
+                loadUsersProfile(doc.data().username);
+                document.getElementById("followButton").style.display = "unset";
+                // document.getElementById("unfollowButton").onclick = "";
+                document.getElementById("unfollowButton").style.display = "none";
 
-
+            })
+        })
+    })
 }
 function loadUsersProfile(uName) {
     clearChildren();
@@ -6039,22 +6071,15 @@ function loadUsersProfile(uName) {
     document.getElementById("userProfPicDiv").style.display = "";
     document.getElementById("userFollowDiv").style.display = "";
     var followers = 0;
-
-    // //load this users followers
-    // db.collection("users").doc().where("username", "==", uName).collection("followers").get().then((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //         followers++;
-    //     })
-    // }).then(() =>{
-        db.collection("users").where("username", "==", uName).get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                console.log(doc.data())
-            db.collection("users").doc(doc.id).collection("followers").get().then((querySnapshot)=>{
+    db.collection("users").where("username", "==", uName).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(doc.data())
+            db.collection("users").doc(doc.id).collection("followers").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     console.log(doc.data())
                     followers++;
                     document.getElementById("followers").innerHTML = followers + " follower(s)"
-                    if (doc.id == username){
+                    if (doc.id == username) {
                         // document.getElementById("followButton").onclick = "";
                         document.getElementById("followButton").style.display = "none";
                         // document.getElementById("unfollowButton").onclick = "";
@@ -6065,35 +6090,35 @@ function loadUsersProfile(uName) {
 
                     console.log("Followers: " + doc.id);
                 })
+            })
         })
+    }).then(() => {
+        var fButton = document.createElement('div');
+        var uButton = document.createElement('div');
+
+        var usernameDisplay = document.createElement('div');
+        var followersDisplay = document.createElement('div');
+
+
+        // var s = "";
+        fButton.innerHTML = "<div onclick = 'followThisUser(" + '"' + uName + '"' + ")' id = 'followButton'>FOLLOW THIS USER</div>";
+        uButton.innerHTML = "<div onclick = 'unfollowThisUser(" + '"' + uName + '"' + ")' id = 'unfollowButton'>UNFOLLOW THIS USER</div>";
+
+        usernameDisplay.innerHTML = "<label id ='userDisplayNameID'>" + uName + "</label>";
+        followersDisplay.innerHTML = "<label id ='followers'>" + followers + " followers</label>";
+
+
+        document.getElementById("feed")
+            .appendChild(usernameDisplay)
+            .appendChild(followersDisplay)
+            .appendChild(fButton)
+            .appendChild(uButton)
+
+
     })
-}).then(() => {
-    var fButton = document.createElement('div');
-    var uButton = document.createElement('div');
-
-    var usernameDisplay = document.createElement('div');
-    var followersDisplay = document.createElement('div');
 
 
-    // var s = "";
-    fButton.innerHTML = "<div onclick = 'followThisUser("+'"'+uName+'"' +")' id = 'followButton'>FOLLOW THIS USER</div>";
-    uButton.innerHTML = "<div onclick = 'unfollowThisUser("+'"'+uName+'"' +")' id = 'unfollowButton'>UNFOLLOW THIS USER</div>";
 
-    usernameDisplay.innerHTML = "<label id ='userDisplayNameID'>"+uName+"</label>";
-    followersDisplay.innerHTML = "<label id ='followers'>"+followers+" followers</label>";
-
-
-    document.getElementById("feed")
-    .appendChild(usernameDisplay)
-    .appendChild(followersDisplay)
-    .appendChild(fButton)
-    .appendChild(uButton)
-
-
-})
-       
-
-  
 
     // document.getElementById("userDisplayName").style.display = "";
 
@@ -6124,7 +6149,7 @@ function loadUsersProfile(uName) {
             createNewUserPublicPost(doc.data().desc, doc.data().title, doc.data().username, doc.data().profPicRef, doc.id, doc.data().date, doc.data().month, doc.data().numberOfComments, doc.data().likes, doc.data().fileAttachment);
         })
     })
-   
+
 }
 function trackingIconClick() {
     loadFeed(currDate, currMonth);
@@ -6164,6 +6189,7 @@ function textTest() {
     // var reminderTime = "10pm"
     var string = "Reminder for: " + taskTitleInput + ", " + taskDescInput + ", " + taskTimeInput + "//" + timeUntilReminder + "";
 
+
     if (myPhoneNumber != null && myPhoneNumber != "undefined") {
 
         axios.post('http://localhost:1337/sms', {
@@ -6175,8 +6201,6 @@ function textTest() {
                 console.log(`GET users`, users);
             })
             .catch(error => console.error(error.response.data));
-
-
     }
     else {
         alert("please set your phone number correctly in the edit account page");
@@ -6208,4 +6232,12 @@ function loadMyNutritionInfo() {
 
     // document.getElementById("").style.display = "";
 
+}
+
+function loadSearchPage(){
+
+    clearChildren();
+
+    
+    // create and load the search page
 }
