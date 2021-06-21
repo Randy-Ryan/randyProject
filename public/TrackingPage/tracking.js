@@ -201,20 +201,20 @@ window.onload = function () {
                     console.log(myPhoneNumber);
                     console.log(doc.data().profPic)
                     document.getElementById("accountProfPicIcon").style.display = "";
-                     storage.child(doc.data().profPic).getDownloadURL().then((url) => {
-                    console.log(url);
+                    storage.child(doc.data().profPic).getDownloadURL().then((url) => {
+                        console.log(url);
 
-                    var img = document.getElementById('accountProfPicIcon');
-                    //  var img = document.getElementById('accountProfPicIcon');
-                    img.setAttribute('src', url);
-                    document.getElementById('profPicDiv').style.display = 'unset';
-                })
+                        var img = document.getElementById('accountProfPicIcon');
+                        //  var img = document.getElementById('accountProfPicIcon');
+                        img.setAttribute('src', url);
+                        document.getElementById('profPicDiv').style.display = 'unset';
+                    })
                 })
             });
             // console.log(userID);
             // db.collection("users").where("userID", "==", userID).get().then(doc) => {
-              
-               
+
+
             // });
 
 
@@ -3630,8 +3630,15 @@ function updateAccount() {
         phoneNumber: phoneNumEdit,
         profPic: photoRef
     }).then(() => {
-        loadMyAccount();
-        // window.location.href = "../TrackingPage/tracking.html?userID=" + userID + "&username=" + usernameEdit + "&email=" + email;
+        storage.child(photoRef).getDownloadURL().then((url) => {
+            console.log(url);
+            var img = document.getElementById('accountProfPicIcon');
+            //  var img = document.getElementById('accountProfPicIcon');
+            img.setAttribute('src', url);
+            document.getElementById('profPicDiv').style.display = 'unset';
+            loadMyAccount();
+            // window.location.href = "../TrackingPage/tracking.html?userID=" + userID + "&username=" + usernameEdit + "&email=" + email;
+        })
     })
         .catch((error) => {
             // alert("ERROR submitting post!" + error);
