@@ -879,8 +879,15 @@ color: white;
 
 }
 
+#dateDisplay{
+  color: gray;
+}
+
 .thisPostProfPic{
   width: 50%;
+  border-radius: 30%;
+  border: 1px solid black;
+  margin: 2%;
 }
 
 #thisPostImageID{
@@ -1822,7 +1829,7 @@ background-color: #ee9ca7;
     color: white;
     font-weight: 800;
     font-size: 50px;
-  text-shadow: 0 1px 0 #ccc,
+  /* text-shadow: 0 1px 0 #ccc,
   0 2px 0 #c9c9c9,
   0 3px 0 #bbb,
   0 4px 0 #b9b9b9,
@@ -1833,7 +1840,7 @@ background-color: #ee9ca7;
   0 3px 5px rgba(0,0,0,.2),
   0 5px 10px rgba(0,0,0,.25),
   0 10px 10px rgba(0,0,0,.2),
-  0 20px 20px rgba(0,0,0,.15);
+  0 20px 20px rgba(0,0,0,.15); */
 
 
   }

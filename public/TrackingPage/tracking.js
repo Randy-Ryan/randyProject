@@ -29,7 +29,6 @@ var username;
 var email;
 var myPhoneNumber;
 var profPic;
-
 var proteinTotal = 0;
 var carbTotal = 0;
 var vitaminTotal = 0;
@@ -5364,6 +5363,17 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
     var newPost = document.createElement('li');
     var postLikeButton = document.createElement('li');
 
+    dVar, mVar
+
+    var s = dVar.split('//');
+    var day = s[0];
+    var hourMin = s[1];
+    var hM = hourMin.split(':');
+    var hour = hM[0];
+    var min = hM[1];
+
+    var displayD = mVar + " " + day + " " + hour + ":" + min;
+
     var ss = "'" + id + "-" + pTitle + "-" + pDesc + "-" + pUsername + "-" + ref + "-" + dVar + "-" + mVar + "-" + cVar + "-" + lVar + "'";
     console.log(ss);
     postLikeButton.innerHTML = "<button onclick = " + "likeThisPost(" + ss + ")" + " class = 'likeButton' id = 'likeButton" + id + "' calue>LIKE THIS POST</button>";
@@ -5375,7 +5385,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
         numOfLikes = doc.data().likes;
         numOfComments = doc.data().numberOfComments;
         newPost.innerHTML = "<img class = 'thisPostProfPic' id = 'thisPostProfPic"+id+"'><br>" + pUsername + "<br><br><br>Title:<br> " + pTitle + "<br><br>" + pDesc +
-            "<br><br><div id = 'likeDisplay'>Likes: " + numOfLikes + "</div><br><div id = 'commentDisplay'>Comments: " + numOfComments + "</div><br><br>Click to view or add comments";
+            "<br><br><div id = 'likeDisplay'>Likes: " + numOfLikes + "</div><br><div id = 'commentDisplay'>Comments: " + numOfComments + "</div><br><br>Click to view or add comments<br><br><div id ='dateDisplay'> Date: " + displayD +"";
         newPost.id = "publicPostElement";
         newPost.className = "postClass";
 
@@ -5587,7 +5597,8 @@ function addPublicPostToDB() {
 
     // get a random number for the doc ID 
     var fill = "" + generateRandomNumber(1, 1000000);
-
+    var today = new Date();
+    var currT = today.getHours() + ":" + today.getMinutes();
     // create a new food document with random number id
     db.collection("posts").doc(fill).set({
         title: titleInput,
@@ -5596,7 +5607,7 @@ function addPublicPostToDB() {
         profPicRef: profPic,
         likes: 0,
         numberOfComments: 0,
-        date: currDate,
+        date: currDate +"//"+currT,
         month: currMonth
     }).then(() => {
         // clear the feed
