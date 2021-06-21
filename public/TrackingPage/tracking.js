@@ -5318,7 +5318,7 @@ function loadLowFeedForReccos() {
 
 function likeThisPost(s) {
 
-    var params = s.split('-');
+    var params = s.split('^^^');
     for (var i = 0; i < params.length; i++) {
         console.log(params[i]);
     }
@@ -5351,19 +5351,39 @@ function likeThisPost(s) {
         // implement post successful alert
 
         // load the feed
-        loadMyPublicPage()
+        // loadMyPublicPage()
     })
         .catch((error) => {
             // alert("ERROR submitting post! " + error);
         });
+        var fill = "" + generateRandomNumber(1, 1000000);
+
+        db.collection("posts").doc("" + id).collection("likes").doc(fill).set({
+            userID: userID,
+            username: username,
+        }).then(() => {
+            // clear the feed
+            // clearChildren();
+            loadMyPublicPage()
+            // document.getElementById("likeButton" + id).style.display = "none";
+    
+            //TODO//
+            // implement post successful alert
+    
+            // load the feed
+        })
+            .catch((error) => {
+                // alert("ERROR submitting post! " + error);
+            });
+    
 
 }
 function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar, lVar) {
 
     var newPost = document.createElement('li');
-    var postLikeButton = document.createElement('li');
+  
 
-    dVar, mVar
+    // dVar, mVar
 
     var s = dVar.split('//');
     var day = s[0];
@@ -5372,20 +5392,24 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
     var hour = hM[0];
     var min = hM[1];
 
-    var displayD = mVar + " " + day + " " + hour + ":" + min;
+    var displayD = mVar + " " + day + ",  " + hour+":" + min;
 
-    var ss = "'" + id + "-" + pTitle + "-" + pDesc + "-" + pUsername + "-" + ref + "-" + dVar + "-" + mVar + "-" + cVar + "-" + lVar + "'";
-    console.log(ss);
-    postLikeButton.innerHTML = "<button onclick = " + "likeThisPost(" + ss + ")" + " class = 'likeButton' id = 'likeButton" + id + "' calue>LIKE THIS POST</button>";
+
+    var ss = '"' + id + "^^^" + pTitle + "^^^" + pDesc + "^^^" + pUsername + "^^^" + ref + "^^^" + dVar + "^^^" + mVar + "^^^" + cVar + "^^^" + lVar +'"';
+    console.log("SS BEFORE LIKE:" + ss);
     var numOfComments;
     var numOfLikes;
+    var postLikeButton = document.createElement('li');
+    postLikeButton.innerHTML = "<button onclick = 'likeThisPost(" + ss + ")' class = 'likeButton' id = 'likeButton" + id + "' calue>LIKE THIS POST</button>";
 
+   
+        
     db.collection("posts").doc("" + id).get().then((doc) => {
         console.log(doc.data());
         numOfLikes = doc.data().likes;
         numOfComments = doc.data().numberOfComments;
         newPost.innerHTML = "<img class = 'thisPostProfPic' id = 'thisPostProfPic"+id+"'><br>" + pUsername + "<br><br><br>Title:<br> " + pTitle + "<br><br>" + pDesc +
-            "<br><br><div id = 'likeDisplay'>Likes: " + numOfLikes + "</div><br><div id = 'commentDisplay'>Comments: " + numOfComments + "</div><br><br>Click to view or add comments<br><br><div id ='dateDisplay'> Date: " + displayD +"";
+            "<br><br><div id = 'likeDisplay'>Likes: " + numOfLikes + "</div><br><div id = 'commentDisplay'>Comments: " + numOfComments + "</div><br><br>Click to view or add comments<br><br><div id ='dateDisplay'>" +displayD+"</div>";
         newPost.id = "publicPostElement";
         newPost.className = "postClass";
 
@@ -5434,7 +5458,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
             cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
             title.innerHTML = "<br><br><br><label id = 'commentLabel'>My comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
             // update button
-            commentButton.innerHTML = "<input onclick = " + "addCommentToPost(" + ss + ")" + " type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
+            commentButton.innerHTML = "<input onclick = 'addCommentToPost(" +ss+ ")' type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
             // delete button
 
             // load the edit form on the feed
@@ -5462,6 +5486,16 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
         }
 
         document.getElementById("publicPostFeed").appendChild(postLikeButton).appendChild(newPost);
+           //dim the like button if you already liked the post
+        db.collection("posts").doc("" + id).collection("likes").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                if (doc.data().userID == userID){
+                    document.getElementById("likeButton" + id).onclick = "";
+                    document.getElementById("likeButton" + id).style.backgroundColor = "gray";
+                }
+            })
+        })     
+
     });
 
 
@@ -5474,7 +5508,7 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVa
     newPost.id = "myPostElement";
     newPost.className = "postClass";
 
-    var ss = "'" + id + "-" + pTitle + "-" + pDesc + "-" + pUsername + "-" + ref + "-" + dVar + "-" + mVar + "-" + cVar + "-" + lVar + "'";
+    var ss = '"' + id + "^^^" + pTitle + "^^^" + pDesc + "^^^" + pUsername + "^^^" + ref + "^^^" + dVar + "^^^" + mVar + "^^^" + cVar + "^^^" + lVar +'"';
 
 
     newPost.onclick = function () {
@@ -5519,7 +5553,7 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVa
         cancelButton.innerHTML = "<input onclick = 'loadMyAccount()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
         title.innerHTML = "<br><br><br><label class = 'exClass1'>Comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
         // update button
-        commentButton.innerHTML = "<input onclick = " + "addCommentToPost(" + ss + ")" + " type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
+        commentButton.innerHTML = "<input onclick = onclick = 'addCommentToPost(" +ss+ ")' type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
         // delete button
         deleteButton.innerHTML = "<input onclick = 'deletePost(" + id + ")' type='submit' form='mainForm' id = 'dButton1' value = 'DELETE POST'/>"
 
@@ -5625,7 +5659,7 @@ function addPublicPostToDB() {
 }
 function addCommentToPost(s) {
 
-    var params = s.split('-');
+    var params = s.split('^^^');
     for (var i = 0; i < params.length; i++) {
         console.log(params[i]);
     }

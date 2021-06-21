@@ -1240,13 +1240,18 @@ height: auto;
   border-radius: 200px;
   text-align: center;
   color: white;
+  white-space: pre-wrap;      
+  white-space: -moz-pre-wrap; 
+  white-space: -pre-wrap;      
+  white-space: -o-pre-wrap;    
+  word-wrap: break-word; 
   /* background-image: linear-gradient(to right, #ee9ca7, #ffdde1); */
 
   font-weight: 900;
   margin-top: 0%;
   font-size: 50px;
   background-image: linear-gradient(to right, #141e30, #243b55) ;
-
+/* 
 text-shadow: 0 1px 0 #ccc,
 0 2px 0 #c9c9c9,
 0 3px 0 #bbb,
@@ -1258,7 +1263,7 @@ text-shadow: 0 1px 0 #ccc,
 0 3px 5px rgba(0,0,0,.2),
 0 5px 10px rgba(0,0,0,.25),
 0 10px 10px rgba(0,0,0,.2),
-0 20px 20px rgba(0,0,0,.15);
+0 20px 20px rgba(0,0,0,.15); */
 
 }
 
@@ -1829,6 +1834,11 @@ background-color: #ee9ca7;
     color: white;
     font-weight: 800;
     font-size: 50px;
+    white-space: pre-wrap;      
+  white-space: -moz-pre-wrap; 
+  white-space: -pre-wrap;      
+  white-space: -o-pre-wrap;    
+  word-wrap: break-word; 
   /* text-shadow: 0 1px 0 #ccc,
   0 2px 0 #c9c9c9,
   0 3px 0 #bbb,
