@@ -3606,10 +3606,17 @@ function updateAccount() {
     photoRef = username + "." + photoRefArr[1];
     storageRef = storage.child(photoRef);
 
-    console.log("file: " + file)
+    // console.log("file: " + file)
     storageRef.put(file).then((snapshot) => {
         console.log("uploaded a file: " + photoRef);
-    });
+        storage.child(photoRef).getDownloadURL().then((url) => {
+            console.log(url);
+            var img = document.getElementById('accountProfPicIcon');
+            //  var img = document.getElementById('accountProfPicIcon');
+            img.setAttribute('src', url);
+            document.getElementById('profPicDiv').style.display = 'unset';
+        })
+        });
 
     // update firebase account display name
     user.updateProfile({
@@ -3630,16 +3637,10 @@ function updateAccount() {
         phoneNumber: phoneNumEdit,
         profPic: photoRef
     }).then(() => {
-        storage.child(photoRef).getDownloadURL().then((url) => {
-            console.log(url);
-            var img = document.getElementById('accountProfPicIcon');
-            //  var img = document.getElementById('accountProfPicIcon');
-            img.setAttribute('src', url);
-            document.getElementById('profPicDiv').style.display = 'unset';
+        
             loadMyAccount();
             // window.location.href = "../TrackingPage/tracking.html?userID=" + userID + "&username=" + usernameEdit + "&email=" + email;
         })
-    })
         .catch((error) => {
             // alert("ERROR submitting post!" + error);
         });;
