@@ -5337,6 +5337,7 @@ function likeThisPost(s) {
     var monthVar = params[6];
     var cc = params[7];
     var likesPlusOne = parseInt(params[8]) + 1;
+    fRef = params[9];
     console.log(likesPlusOne);
 
     db.collection("posts").doc("" + id).set({
@@ -5347,7 +5348,8 @@ function likeThisPost(s) {
         profPicRef: ref,
         date: dateVar,
         month: monthVar,
-        numberOfComments: cc
+        numberOfComments: cc,
+        fileAttachment:fRef
     }).then(() => {
         // clear the feed
         // clearChildren();
@@ -5429,7 +5431,6 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
         newPost.onclick = function () {
             // clear the feed
             clearChildren();
-            document.getElementById("userHead").style.display = "none";
             db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     createNewComment(doc.data().title, doc.data().username);
@@ -5558,7 +5559,6 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVa
         newPost.onclick = function () {
             // clear the feed
             clearChildren();
-            document.getElementById("userHead").style.display = "none";
             db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     createNewComment(doc.data().title, doc.data().username);
@@ -5688,7 +5688,6 @@ function createNewUserPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, 
         newPost.onclick = function () {
             // clear the feed
             clearChildren();
-            document.getElementById("userHead").style.display = "none";
             db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     createNewComment(doc.data().title, doc.data().username);
@@ -5893,6 +5892,7 @@ function addCommentToPost(s) {
     var monthVar = params[6];
     var commentsPlusOne = parseInt(params[7]) + 1;
     var ll = params[8];
+    var fRef = params[9];
     // initialize and set vars
 
     //TODO//
@@ -5913,7 +5913,8 @@ function addCommentToPost(s) {
         date: dateVar,
         month: monthVar,
         numberOfComments: commentsPlusOne,
-        likes: ll
+        likes: ll,
+        fileAttachment:fRef
     }).then(() => {
     })
 

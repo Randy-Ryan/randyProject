@@ -1237,6 +1237,7 @@ height: auto;
 .fileClass{
   border-radius: 20%;
   margin: 5%;
+  width: 50%;
 }
 #userProfPicIcon{
   width: 50%;
