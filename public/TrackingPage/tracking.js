@@ -694,7 +694,10 @@ function clearChildren() {
     // document.getElementById("addFavButtonsDiv").style.display = "none";
     document.getElementById("publicPostDivID").style.display = "none";
     document.getElementById("historyTotalFeed").style.display = "none";
-    document.getElementById("accountProfPicIcon").style.display = "none";
+    document.getElementById("userPFeed").style.display = "none";
+    document.getElementById("userProfPicDiv").style.display = "none";
+
+
 
 
     // document.getElementById("publicPostIcon").style.display = "none";
@@ -3808,6 +3811,7 @@ function userSignedOut() {
 
     // hide links to pages when user is logged in
     // document.getElementById('accLink').style.display = 'none';
+    document.getElementById("accountProfPicIcon").style.display = "none";
     document.getElementById('favLink').style.display = 'none';
     document.getElementById('usernameHeader').style.display = 'none';
     document.getElementById('feed').style.display = 'none';
@@ -5447,6 +5451,8 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
             var title = document.createElement('div');
             var commentButton = document.createElement('div');
             var thisPostTitle = document.createElement('div');
+            var toProfile = document.createElement('div');
+
             //    var thisPostImage = document.createElement('img');
             //    thisPostImage.id = "thisPostImageID";
 
@@ -5456,6 +5462,8 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
 
             // create the edit form by setting the HTML content of each div
             cancelButton.innerHTML = "<input onclick = 'loadMyPublicPage()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+            toProfile.innerHTML = "<input onclick = 'loadUsersProfile("+'"'+pUsername+'"'+")' type='submit' id = 'userProfileButton' value = 'View "+pUsername+"s profile'/>"
+
             title.innerHTML = "<br><br><br><label id = 'commentLabel'>My comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
             // update button
             commentButton.innerHTML = "<input onclick = 'addCommentToPost(" +ss+ ")' type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
@@ -5464,6 +5472,7 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
             // load the edit form on the feed
             document.getElementById("feed")
                 .appendChild(cancelButton)
+                .appendChild(toProfile)
                 .appendChild(thisPostTitle)
                 .appendChild(commentButton)
                 .appendChild(title)
@@ -5497,8 +5506,6 @@ function createNewPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar
         })     
 
     });
-
-
 }
 
 function createNewAccountPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar, lVar) {
@@ -5569,6 +5576,78 @@ function createNewAccountPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVa
     }
 
     document.getElementById("accountPostFeed").appendChild(newPost);
+
+}
+
+
+function createNewUserPublicPost(pDesc, pTitle, pUsername, ref, id, dVar, mVar, cVar, lVar) {
+
+    var newPost = document.createElement('li');
+    newPost.innerHTML = "" + pUsername + "<br><br>Title:<br> " + pTitle + "<br><br>-----" + pDesc + "<br><br><br>Click to view/add comments, or delete post";
+    newPost.id = "myPostElement";
+    newPost.className = "postClass";
+
+    var ss = '"' + id + "^^^" + pTitle + "^^^" + pDesc + "^^^" + pUsername + "^^^" + ref + "^^^" + dVar + "^^^" + mVar + "^^^" + cVar + "^^^" + lVar +'"';
+
+
+    newPost.onclick = function () {
+        // clear the feed
+        clearChildren();
+
+        // document.getElementById("publicPostDivID").style.display = "none";
+
+        document.getElementById("usernameHeader").style.display = "none";
+        document.getElementById("userHead").style.display = "none";
+
+        document.getElementById("favoritesIcon").style.display = "none";
+        document.getElementById("favLabel").style.display = "none";
+
+        document.getElementById("calendar").style.display = "none";
+        document.getElementById("todaysDate").style.display = "none";
+        document.getElementById("filler1").style.display = "none";
+
+
+        db.collection("posts").doc("" + id).collection("comments").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                createNewComment(doc.data().title, doc.data().username, doc.id);
+            })
+        })
+
+        //load comments and ability to add a new comment
+
+        // initialize div elements
+        var cancelButton = document.createElement('div');
+        var thisPostTitle = document.createElement('div');
+        var title = document.createElement('div');
+        var commentButton = document.createElement('div');
+        var deleteButton = document.createElement('div');
+
+
+
+        thisPostTitle.innerHTML = "<div id = 'thisPostTitle'>Username: " + pUsername + " <br><br>Title: <br<" + pTitle + " <br><br>" + pDesc + "<br><br><br></div>";
+
+
+
+        // create the edit form by setting the HTML content of each div
+        cancelButton.innerHTML = "<input onclick = 'loadMyAccount()' type='submit' id = 'cancelButton1' value = 'CANCEL'/>"
+        title.innerHTML = "<br><br><br><label class = 'exClass1'>Comment: <br><br></label><input type='text' class = 'required' id='12345' '><br><br><br>";
+        // update button
+        commentButton.innerHTML = "<input onclick = onclick = 'addCommentToPost(" +ss+ ")' type='submit' form='mainForm' id = 'pButton1' value = 'COMMENT'/>"
+        // delete button
+        deleteButton.innerHTML = "<input onclick = 'deletePost(" + id + ")' type='submit' form='mainForm' id = 'dButton1' value = 'DELETE POST'/>"
+
+        // load the edit form on the feed
+        document.getElementById("feed")
+            .appendChild(cancelButton)
+            .appendChild(thisPostTitle)
+            .appendChild(title)
+            .appendChild(commentButton)
+            .appendChild(deleteButton)
+        document.getElementById("feed").style.display = "";
+
+    }
+
+    document.getElementById("userPostFeed").appendChild(newPost);
 
 }
 
@@ -5774,7 +5853,44 @@ function newPublicPost() {
 
 }
 
+function loadUsersProfile(uName) {
+    clearChildren();
 
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("filler1").style.display = "none";
+    document.getElementById("accountPFeed").style.display = "none";
+    document.getElementById("userPFeed").style.display = "";
+    document.getElementById("userProfPicDiv").style.display = "";
+
+    // get username var
+
+    db.collection("users").where("username", "==", uName).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            storage.child(doc.data().profPic).getDownloadURL().then((url) => {
+                console.log(url);
+
+                var img = document.getElementById('userProfPicIcon');
+                //  var img = document.getElementById('accountProfPicIcon');
+                img.setAttribute('src', url);
+                document.getElementById('profPicDiv').style.display = 'unset';
+
+            }).catch((error) => {
+                // var img = document.getElementById('accountProfPicIcon');
+                // img.setAttribute('src', "Randall.webp");
+                // document.getElementById('profPicDiv').style.display = 'unset';
+                console.log('error in img download: ' + error.message);
+            });
+        })
+    })
+    //  loadAccountPostFeed();
+
+    db.collection("posts").where("username", "==", uName).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            createNewUserPublicPost(doc.data().desc, doc.data().title, doc.data().username, doc.data().profPicRef, doc.id, doc.data().date, doc.data().month, doc.data().numberOfComments, doc.data().likes);
+        })
+    })
+   
+}
 function trackingIconClick() {
     loadFeed(currDate, currMonth);
     document.getElementById("accountProfPicIcon").style.display = "";

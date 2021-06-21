@@ -1231,7 +1231,22 @@ height: auto;
   font-size: 50px;
 
 }
-
+#userProfPicDiv{
+  text-align: center;
+}
+#userProfPicIcon{
+  width: 50%;
+  height: auto;
+  margin:5%;
+  border-radius: 40%;
+  border: 1px solid black;
+}
+#userProfileButton{
+  padding:5%;
+  border-radius: 20px;
+  margin:5%;
+  font-size: 50px;
+}
 #thisPostTitle{
   margin: 10%;
   padding: 10%;
