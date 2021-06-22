@@ -2073,6 +2073,8 @@ function loadFeed(date, month) {
     document.getElementById("exFeed").style.display = '';
     document.getElementById("foodFeed").style.display = '';
     document.getElementById("taskFeed").style.display = '';
+    document.getElementById("filler1").style.display = 'none';
+
     // document.getElementById("favFeed").style.display = '';
 
     document.getElementById("exFeedTitle").innerHTML = 'EXERCISE';
@@ -2352,8 +2354,8 @@ function addFoodAndWater() {
     // initialize and set var params
     var food = requiredInputs[0].value;
     var water = requiredInputs[1].value;
-    var time = requiredInputs[2].value;
-    var message = requiredInputs[3].value;
+    var time = requiredInputs[3].value;
+    var message = requiredInputs[2].value;
     var date = currDate;
     var month = currMonth;
 
@@ -6173,18 +6175,11 @@ function textTest() {
     var arr2 = requiredInputs[4].value.split(':');
     var remH = arr2[0];
     var remMin = arr2[1];
-    console.log(remY);
-    console.log(remM);
-    console.log(remD);
-    console.log(remH);
-    console.log(remMin);
 
-    console.log(arr2);
     var reminderDateTime = new Date(remY, remM - 1, remD, remH, remMin);
     var today = new Date();
 
     var timeUntilReminder = reminderDateTime - today;
-    console.log(timeUntilReminder, reminderDateTime, today);
 
     // var reminderTime = "10pm"
     var string = "Reminder for: " + taskTitleInput + ", " + taskDescInput + ", " + taskTimeInput + "//" + timeUntilReminder + "";
@@ -6234,7 +6229,50 @@ function loadMyNutritionInfo() {
 function loadSearchPage(){
 
     clearChildren();
+    document.getElementById("userHead").style.display = 'none';
+    document.getElementById("filler1").style.display = 'none';
+    document.getElementById("todaysDate").style.display = 'none';
+    document.getElementById("fullFavFeed").style.display = 'none';
+    document.getElementById("addButtonsDiv").style.display = 'none';
+
+    document.getElementById("calendar").style.display = 'none';
+    document.getElementById("feed").style.display = '';
+
+    var searchInput = document.createElement('div');
+    var searchFeed = document.createElement('div');
+
+    searchInput.innerHTML = "<div id = 'searchInput'><label id = 'searchTitleInfo'>Search input must be an exact match, case sensitive</label><br><input id = 'searchInputBar' type = 'text' class = 'required' placeholder='Search...'><img id='searchBarIcon' onclick = 'searchForAccount()' src='./icons8-search-64.png'></div>";
+    searchFeed.innerHTML = "<div id = 'searchFeedElements'></div>"
 
     
     // create and load the search page
+
+
+    document.getElementById("feed").appendChild(searchInput).appendChild(searchFeed);
+
+
+}
+
+function searchForAccount(){
+    console.log(document.getElementById("searchInputBar").value);
+
+
+
+    db.collection("users").where("username", "==", document.getElementById("searchInputBar").value).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+
+            var displayFeedElement = document.createElement('div');
+            // var thisImageRef = document.createElement('div');
+            displayFeedElement.innerHTML = "<div id = 'searchFeedElement' onclick = 'loadUsersProfile(" + '"' + doc.data().username + '"' + ")' >"+doc.data().username+"<br><img class = 'searchPic' id = 'searchID"+doc.data().username+"'><br> GO TO THIS USERS PROFILE</div>"
+            document.getElementById("searchFeedElements").appendChild(displayFeedElement);
+            storage.child(doc.data().profPic).getDownloadURL().then((url) => {
+                var img = document.getElementById('searchID' + doc.data().username);
+                img.setAttribute('src', url);
+            }).catch((error) => {
+                console.log('error in img download: ' + error.message);
+            });
+        })
+    })
+
+
 }
