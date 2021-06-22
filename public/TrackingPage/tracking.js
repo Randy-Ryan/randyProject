@@ -862,7 +862,7 @@ function createNewFavTask(ttl, desc, t, id) {
     // create the new task div and set HTML content w/ respective vars
     addEditElement.innerHTML = "<div onclick = '" + 'editThisTaskFav("' + ttl + "^^^" + desc + "^^^" + t + "^^^" + id + '")' + "' class = 'favButtonEdit'>EDIT</div>";
 
-    addFavoriteElement.innerHTML = "<div onclick = '" + 'addFavTaskToDB("' + ttl + "," + desc + "," + t + '")' + "' class = 'favButtonAdd'>ADD</div>";
+    addFavoriteElement.innerHTML = "<div onclick = '" + 'addFavTaskToDB("' + ttl + "^^^" + desc + "^^^" + t + '")' + "' class = 'favButtonAdd'>ADD</div>";
     newTask.appendChild(addFavoriteElement).appendChild(addEditElement);
     addEditElement.id = "editID"
     addFavoriteElement.id = "favoriteID"
@@ -950,7 +950,7 @@ function createNewFavExercise(r, s, w, t, m, id) {
     newExercise.className = "testtt";
     // create the new exercise div and set HTML content w/ respective vars
     addEditElement.innerHTML = "<div onclick = '" + 'editThisExerciseFav("' + m + "^^^" + r + "^^^" + s + "^^^" + w + "^^^" + t + "^^^" + + id + '")' + "'  class = 'favButtonEdit'>EDIT</div>";
-    addFavoriteElement.innerHTML = "<div onclick = '" + 'addFavExerciseToDB("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "'  class = 'favButtonAdd'>ADD</div>";
+    addFavoriteElement.innerHTML = "<div onclick = '" + 'addFavExerciseToDB("' + m + "^^^" + r + "^^^" + s + "^^^" + w + "^^^" + t + '")' + "'  class = 'favButtonAdd'>ADD</div>";
     // load new exercise div into the exercise feed
     newExercise.appendChild(addFavoriteElement).appendChild(addEditElement);
     //format a string to set element html
@@ -1039,7 +1039,7 @@ function createNewFavFood(f, w, m, t, id) {
     // create the new food div and set HTML content w/ respective vars
     addEditElement.innerHTML = "<div onclick = '" + 'editThisFoodFav("' + f + "^^^" + w + "^^^" + m + "^^^" + t + "^^^" + id + '")' + "' class = 'favButtonEdit'>EDIT</div>";
 
-    addFavoriteElement.innerHTML = "<div onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + m + "," + t + '")' + "' class = 'favButtonAdd'>ADD</div>";
+    addFavoriteElement.innerHTML = "<div onclick = '" + 'addFavFoodToDB("' + f + "^^^" + w + "^^^" + m + "^^^" + t + '")' + "' class = 'favButtonAdd'>ADD</div>";
     newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
 
 
@@ -1096,10 +1096,10 @@ function createNewHistoryEx(r, s, w, t, m, id) {
     var addToFavButton = document.createElement('div');
     newExercise.id = "hisIDEx";
     newExercise.className = "testtt";
-    addToFavButton.innerHTML = "<input onclick = '" + 'addFavHistoryEx("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "' type='submit' class = 'favButtonAddHistory' value = 'ADD TO FAV EXERCISES'/>"
+    addToFavButton.innerHTML = "<input onclick = '" + 'addFavHistoryEx("' + m + "^^^" + r + "^^^" + s + "^^^" + w + "^^^" + t + '")' + "' type='submit' class = 'favButtonAddHistory' value = 'ADD TO FAV EXERCISES'/>"
 
     // create the new exercise div and set HTML content w/ respective vars
-    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavExerciseToDB("' + m + "," + r + "," + s + "," + w + "," + t + '")' + "' id = 'historyAdd' class = 'favButtonAdd'>ADD TODAY</button>";
+    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavExerciseToDB("' + m + "^^^" + r + "^^^" + s + "^^^" + w + "^^^" + t + '")' + "' id = 'historyAdd' class = 'favButtonAdd'>ADD TODAY</button>";
 
 
     // load new exercise div into the exercise feed
@@ -1145,10 +1145,10 @@ function createNewHistoryFood(f, w, t, m, id) {
     var addToFavButton = document.createElement('div');
 
 
-    addToFavButton.innerHTML = "<input onclick = '" + 'addFavHistoryFood("' + f + "," + w + "," + t + "," + m + '")' + "' type='submit' class = 'favButtonAddHistory' value = 'ADD TO FAV FOODS'/>"
+    addToFavButton.innerHTML = "<input onclick = '" + 'addFavHistoryFood("' + f + "^^^" + w + "^^^" + t + "^^^" + m + '")' + "' type='submit' class = 'favButtonAddHistory' value = 'ADD TO FAV FOODS'/>"
 
     // create the new food div and set HTML content w/ respective vars
-    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' id = 'historyAdd' class = 'favButtonAdd'>ADD TODAY</button>";
+    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "^^^" + w + "^^^" + t + "^^^" + m + '")' + "' id = 'historyAdd' class = 'favButtonAdd'>ADD TODAY</button>";
     newFood.appendChild(addFavoriteElement).appendChild(addToFavButton);
     //format a string to set element html
     var fullString = "<br>";
@@ -1196,9 +1196,9 @@ function createNewHistoryTask(ttl, desc, t, id) {
     newTask.id = "favIDTask";
     newTask.className = "testtt";
 
-    addToFavButton.innerHTML = "<input onclick = '" + 'addFavHistoryTask("' + ttl + "," + desc + "," + t + '")' + "' type='submit' class = 'favButtonAddHistory' value = 'ADD TO FAV TASKS'/>"
+    addToFavButton.innerHTML = "<input onclick = '" + 'addFavHistoryTask("' + ttl + "^^^" + desc + "^^^" + t + '")' + "' type='submit' class = 'favButtonAddHistory' value = 'ADD TO FAV TASKS'/>"
 
-    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavTaskToDB("' + ttl + "," + desc + "," + t + '")' + "' id = 'historyAdd' class = 'favButtonAdd'>ADD TODAY</button>";
+    addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavTaskToDB("' + ttl + "^^^" + desc + "^^^" + t + '")' + "' id = 'historyAdd' class = 'favButtonAdd'>ADD TODAY</button>";
     newTask.appendChild(addFavoriteElement).appendChild(addToFavButton);
 
     //TODO//
@@ -1239,11 +1239,6 @@ function createNewRecentFood(f, w, t, m, id) {
 
     // create the new food div and set HTML content w/ respective vars
     // addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + t + "," + m + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
-
-    // addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
-    // newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
-
-
 
     // var fullString = "";
     if (f != "") {
@@ -1301,7 +1296,6 @@ function createNewNutritionWeek(d, v, u) {
     // create the new food div and set HTML content w/ respective vars
     // addEditElement.innerHTML = "<br><button onclick = '" + 'editThisFoodFav("' + f + "," + w + "," + t + "," + m + "," + id + '")' + "' class = 'favButtonEdit'>EDIT</button>";
 
-    // addFavoriteElement.innerHTML = "<br><button onclick = '" + 'addFavFoodToDB("' + f + "," + w + "," + t + "," + m + '")' + "' class = 'favButtonAdd'>ADD</button>";
     // newFood.appendChild(addFavoriteElement).appendChild(addEditElement);
 
 
@@ -2487,7 +2481,7 @@ function addFavFoodToDB(f) {
     // initialize and set vars
 
     console.log(f)
-    var strings = f.split(',');
+    var strings = f.split('^^^');
     console.log(strings)
 
     var f1, w, t, m;
@@ -2554,7 +2548,7 @@ function addFavHistoryFood(f) {
     // initialize and set vars
 
     console.log(f)
-    var strings = f.split(',');
+    var strings = f.split('^^^');
     console.log(strings)
 
     var f1, w, t, m;
@@ -2620,7 +2614,7 @@ function addFavHistoryFood(f) {
 function addFavTaskToDB(f) {
     // initialize and set vars
 
-    var strings = f.split(',');
+    var strings = f.split('^^^');
 
 
     var ttl, desc, t;
@@ -2678,7 +2672,7 @@ function addFavTaskToDB(f) {
 function addFavHistoryTask(f) {
     // initialize and set vars
 
-    var strings = f.split(',');
+    var strings = f.split('^^^');
 
 
     var ttl, desc, t;
@@ -2737,7 +2731,7 @@ function addFavHistoryTask(f) {
 function addFavExerciseToDB(f) {
     // initialize and set vars
 
-    var strings = f.split(',');
+    var strings = f.split('^^^');
 
 
     var m, r, s, w, t;
@@ -2809,7 +2803,7 @@ function addFavExerciseToDB(f) {
 function addFavHistoryEx(f) {
     // initialize and set vars
 
-    var strings = f.split(',');
+    var strings = f.split('^^^');
 
 
     var m, r, s, w, t;
