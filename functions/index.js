@@ -1,15 +1,13 @@
 // The Cloud Functions for Firebase SDK to create Cloud Functions and setup triggers.
 const functions = require('firebase-functions');
-
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
 // The Firebase Admin SDK to access Firestore.
 const admin = require('firebase-admin');
 const http = require('http');
 const express = require('express');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const app = express();
-
-
-
 const cors = require('cors');
 var twilio = require('twilio');
 
@@ -27,7 +25,7 @@ app.use(express.urlencoded({
     for (var i = 0; i < params2.length; i++) {
         console.log(params2[i]);
     }
-    var client = new twilio('ACfe485fc20f11da0bc9dba9ac534de18b', '6a3370003eec9c28572ef5ad3660bd93');
+    var client = new twilio(accountSid, authToken);
     if (params2[1] > 0) {
         setTimeout(function () {
             client.messages.create({
