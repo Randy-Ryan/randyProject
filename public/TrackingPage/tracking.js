@@ -6192,10 +6192,7 @@ function textTest() {
 
     if (myPhoneNumber != null && myPhoneNumber != "undefined") {
 
-        axios.post('http://localhost:1337/sms', {
-            variable1: "" + myPhoneNumber,
-            variable2: "" + string
-        })
+        axios.post('https://us-central1-randyproject-39d05.cloudfunctions.net/sms?variable1=' + myPhoneNumber + '&variable2=' + string )
             .then(response => {
                 const users = response.data.data;
                 console.log(`GET users`, users);
