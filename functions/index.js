@@ -39,7 +39,7 @@ app.use(express.urlencoded({
   //add the validation function for twilio
   exports.validate = functions.https.onRequest(async (req, res) => {
     console.log(req.query.variable2, req.query.variable1);
-    const client = require('twilio')('ACfe485fc20f11da0bc9dba9ac534de18b', '8d0bdc71722ecebe083355c6ef3e0bb1');
+    const client = require('twilio')(accountSid, authToken);
     client.validationRequests.create({friendlyName: '' +req.query.variable2, phoneNumber: '+' + req.query.variable1})
     .then(validation_request => console.log(validation_request.friendlyName));
   });
