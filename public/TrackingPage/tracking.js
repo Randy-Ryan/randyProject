@@ -1910,7 +1910,7 @@ function loadMyAccount() {
                 querySnapshot.forEach((doc) => {
                     followers++;
                     fNames += doc.id + "<br>";
-                    document.getElementById("myFollowerCount").innerHTML = followers + " follower(s)<br><br><div id ='followerNames'>"+fNames+"</div>";
+                    document.getElementById("myFollowerCount").innerHTML = followers + " follower(s)<br><br><div id ='followerNames'>" + fNames + "</div>";
                 })
             })
         })
@@ -3675,6 +3675,23 @@ function updateAccount() {
             // alert("ERROR submitting post!" + error);
         });;
 }
+
+function validateUserPhone() {
+    //VALIDATE THIS USERS PHONE NUM
+
+    if (myPhoneNumber != null && myPhoneNumber != "undefined") {
+
+        axios.post('http://localhost:5001/randyproject-39d05/us-central1/validate?variable1=' + myPhoneNumber + '&variable2=' + username)
+            .then(response => {
+                const users = response.data.data;
+                console.log(`GET users`, users);
+            })
+            .catch(error => console.error(error.response.data));
+    }
+    else {
+        alert("please set your phone number correctly in the edit account page");
+    }
+}
 /////////////////////////////////////////////////////////////////////////////////////
 /////////------------------- SIGN OUT OF ACCOUNT-------------------//////////////////
 ///////////////////////////////////////////////////////////////////////////////////// 
@@ -4102,9 +4119,6 @@ function editThisFood(f) {
         .appendChild(addFavBut)
         .appendChild(addTodayBut)
         .appendChild(deleteButton);
-
-
-
 
     // // clear the feed
     // clearChildren();
@@ -4602,9 +4616,7 @@ function getMyFoods() {
                 //USE THESE STRINGS WITH A NUTRITION API/CALCULATOR
 
                 // change the query in this url for an api search
-                const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&pageSize=1&pageList=3&query=' + foodStrings[i];
-
-
+                const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=3tY2uZ1DEmPgwX18FzNbKed2LkrKVBwf7msqoTBf&pageSize=5&pageList=10&query=' + foodStrings[i];
                 fetch(url).then(data => {
                     return data.json()
                 }).then(res => {
@@ -4615,7 +4627,7 @@ function getMyFoods() {
                     for (var i = 0; i < res.foods[0].foodNutrients.length; i++) {
                         // console.log(res.foods[0].foodNutrients[i].nutrientName + ": " + res.foods[0].foodNutrients[i].value + " " + res.foods[0].foodNutrients[i].unitName);
                         if (res.foods[0].foodNutrients[i].value != "0") {
-                            s += res.foods[0].foodNutrients[i].nutrientName + ": " + res.foods[0].foodNutrients[i].value + res.foods[0].foodNutrients[i].unitName + "<br>"
+                            s += res.foods[0].foodNutrients[i].nutrientName + ": " + res.foods[0].foodNutrients[i].value + res.foods[0].foodNutrients[i].unitName + "<br><br>"
                             if (res.foods[0].foodNutrients[i].nutrientName == "Protein") {
                                 proteinTotalDaily += res.foods[0].foodNutrients[i].value;
                             }
@@ -4738,7 +4750,7 @@ function getMyFoods() {
                     for (var i = 0; i < res.foods[0].foodNutrients.length; i++) {
                         // console.log(res.foods[0].foodNutrients[i].nutrientName + ": " + res.foods[0].foodNutrients[i].value + " " + res.foods[0].foodNutrients[i].unitName);
                         if (res.foods[0].foodNutrients[i].value != "0") {
-                            s += res.foods[0].foodNutrients[i].nutrientName + ": " + res.foods[0].foodNutrients[i].value + res.foods[0].foodNutrients[i].unitName + "<br>"
+                            s += res.foods[0].foodNutrients[i].nutrientName + ": " + res.foods[0].foodNutrients[i].value + res.foods[0].foodNutrients[i].unitName + "<br><br>"
 
                             if (res.foods[0].foodNutrients[i].nutrientName == "Protein") {
                                 proteinTotal += res.foods[0].foodNutrients[i].value;
@@ -5840,7 +5852,7 @@ function loadMyPublicPage() {
     document.getElementById("filler1").style.display = "none";
     document.getElementById("postLabel").style.display = "";
 
-    // load the exercise feed
+
     db.collection("posts").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             createNewPublicPost(doc.data().desc, doc.data().title, doc.data().username, doc.data().profPicRef, doc.id, doc.data().date, doc.data().month, doc.data().numberOfComments, doc.data().likes, doc.data().fileAttachment);
@@ -6181,7 +6193,7 @@ function textTest() {
 
     if (myPhoneNumber != null && myPhoneNumber != "undefined") {
 
-        axios.post('https://us-central1-randyproject-39d05.cloudfunctions.net/sms?variable1=' + myPhoneNumber + '&variable2=' + string )
+        axios.post('http://localhost:5001/randyproject-39d05/us-central1/sms?variable1=' + myPhoneNumber + '&variable2=' + string)
             .then(response => {
                 const users = response.data.data;
                 console.log(`GET users`, users);
@@ -6220,7 +6232,7 @@ function loadMyNutritionInfo() {
 
 }
 
-function loadSearchPage(){
+function loadSearchPage() {
 
     clearChildren();
     document.getElementById("userHead").style.display = 'none';
@@ -6238,7 +6250,7 @@ function loadSearchPage(){
     searchInput.innerHTML = "<div id = 'searchInput'><label id = 'searchTitleInfo'>Search input must be an exact match, case sensitive</label><br><input id = 'searchInputBar' type = 'text' class = 'required' placeholder='Search...'><img id='searchBarIcon' onclick = 'searchForAccount()' src='./icons8-search-64.png'></div>";
     searchFeed.innerHTML = "<div id = 'searchFeedElements'></div>"
 
-    
+
     // create and load the search page
 
 
@@ -6247,7 +6259,7 @@ function loadSearchPage(){
 
 }
 
-function searchForAccount(){
+function searchForAccount() {
     console.log(document.getElementById("searchInputBar").value);
 
 
@@ -6257,7 +6269,7 @@ function searchForAccount(){
 
             var displayFeedElement = document.createElement('div');
             // var thisImageRef = document.createElement('div');
-            displayFeedElement.innerHTML = "<div id = 'searchFeedElement' onclick = 'loadUsersProfile(" + '"' + doc.data().username + '"' + ")' >"+doc.data().username+"<br><img class = 'searchPic' id = 'searchID"+doc.data().username+"'><br> GO TO THIS USERS PROFILE</div>"
+            displayFeedElement.innerHTML = "<div id = 'searchFeedElement' onclick = 'loadUsersProfile(" + '"' + doc.data().username + '"' + ")' >" + doc.data().username + "<br><img class = 'searchPic' id = 'searchID" + doc.data().username + "'><br> GO TO THIS USERS PROFILE</div>"
             document.getElementById("searchFeedElements").appendChild(displayFeedElement);
             storage.child(doc.data().profPic).getDownloadURL().then((url) => {
                 var img = document.getElementById('searchID' + doc.data().username);

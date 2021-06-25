@@ -22,9 +22,6 @@ app.use(express.urlencoded({
 
   exports.sms = functions.https.onRequest(async (req, res) => {
     var params2 = req.query.variable2.split('//');
-    for (var i = 0; i < params2.length; i++) {
-        console.log(params2[i]);
-    }
     var client = new twilio(accountSid, authToken);
     if (params2[1] > 0) {
         setTimeout(function () {
@@ -39,47 +36,12 @@ app.use(express.urlencoded({
     }
   });
 
-  // Listens for new messages added to /messages/:documentId/original and creates an
-// uppercase version of the message to /messages/:documentId/uppercase
-// exports.makeUppercase = functions.firestore.document('/messages/{documentId}')
-// .onCreate((snap, context) => {
-//   // Grab the current value of what was written to Firestore.
-//   const original = snap.data().original;
+  //add the validation function for twilio
+  exports.validate = functions.https.onRequest(async (req, res) => {
+    console.log(req.query.variable2, req.query.variable1);
+    const client = require('twilio')('ACfe485fc20f11da0bc9dba9ac534de18b', '8d0bdc71722ecebe083355c6ef3e0bb1');
+    client.validationRequests.create({friendlyName: '' +req.query.variable2, phoneNumber: '+' + req.query.variable1})
+    .then(validation_request => console.log(validation_request.friendlyName));
+  });
 
-//   // Access the parameter `{documentId}` with `context.params`
-//   functions.logger.log('Uppercasing', context.params.documentId, original);
   
-//   const uppercase = original.toUpperCase();
-  
-//   // You must return a Promise when performing asynchronous tasks inside a Functions such as
-//   // writing to Firestore.
-//   // Setting an 'uppercase' field in Firestore document returns a Promise.
-//   return snap.ref.set({uppercase}, {merge: true});
-// });
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-
-
-
-// var bodyParser = require('body-parser');
-
-
-
-// app.post('/sms', (req, res) => {
-
-//     //make a script for get todays date, month
-//     //make a script for get todays time
-
-//     //   cronJob = require('cron').CronJob;
-//     //   var textJob = new cronJob( '16 16 * * *', function(){
-
-//     //   })
-
-// });
-
-// http.createServer(app).listen(1337, () => {
-//   console.log('Express server listening on port 1337');
-// });
-
-// exports.app = functions.https.onRequest(app);
