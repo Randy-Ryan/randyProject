@@ -28,10 +28,10 @@
    <div id="myLinks">
      <br>
      <a onclick = "loadHomePage();myFunction()">HOME</a>
-     <a onclick = "loadAboutPage();myFunction()">ABOUT ME</a>
      <a onclick = "loadResumePage();myFunction()">MY RESUME</a>
      <a onclick = "loadProjectPage();myFunction()">MY PROJECTS</a>
      <a onclick = "loadLaxPage();myFunction()">LACROSSE PAGE</a>
+     <a onclick = "loadAboutPage();myFunction()">ABOUT ME</a>
      <a onclick = "loadContactPage();myFunction()">CONTACT ME</a>
 
    </div>
@@ -54,47 +54,41 @@
       <div class="holder">
         <body>
           <div class="backgroundImage"></div>
-          <div class="transparentText">
-            <div class="middled">
-              <div class="link-1">
-                <li onclick = "loadAboutPage()">
-                  <span class="thin">About </span><span class="thick">Me</span>
-                </li>
-                <label>Read and learn about me</label>
-
-              </div>
-
-              <br><br>
-              <div class="link-1">
-                <li onclick = "loadResumePage()">
-                  <span class="thin">My </span><span class="thick">Resume</span>
-                </li>
-                <label>View my Resume</label>
-              </div>
-              <br>
-              <br>
-              <div class="link-1">
-                <li onclick = "loadProjectPage()">
-                  <span class="thin">My </span><span class="thick">Projects</span>
-                </li>
-                <label>View my projects</label>
+             
+              <div class="section__box">
+                <a href="javascript:void(0);" onclick="loadResumePage()"
+                  class="r-link ai-element ai-element_type1 ai-element1">
+                  <span class="ai-element__label" style="font-size: 100px;">My Resume</span>
+                </a>
               </div>
               <br><br>
-              <div class="link-1">
-                <li onclick = "loadLaxPage()">
-                  <span class="thin">Lacrosse </span><span class="thick">Page</span>
-                </li>
-                <label>Check out my stick skills</label>
+              <div class="section__box">
+                <a href="javascript:void(0);" onclick="loadProjectPage()"
+                  class="r-link ai-element ai-element_type1 ai-element1">
+                  <span class="ai-element__label" style="font-size: 100px;">My Projects</span>
+                </a>
               </div>
               <br><br>
-              <div class="link-1">
-                <li onclick = "loadContactPage()">
-                  <span class="thin">Contact </span><span class="thick">Me</span>
-                </li>
-                <label>Get in touch with me</label>
+              <div class="section__box">
+                <a href="javascript:void(0);" onclick="loadLaxPage()"
+                  class="r-link ai-element ai-element_type1 ai-element1">
+                  <span class="ai-element__label" style="font-size: 100px;">Lacrosse</span>
+                </a>
               </div>
-            </div>
-          </div>
+              <br><br>
+              <div class="section__box">
+                <a href="javascript:void(0);" onclick="loadAboutPage()"
+                  class="r-link ai-element ai-element_type1 ai-element1">
+                  <span class="ai-element__label" style="font-size: 100px;">About Me</span>
+                </a>
+              </div>
+              <br><br>
+              <div class="section__box">
+                <a href="javascript:void(0);" onclick="loadContactPage()"
+                  class="r-link ai-element ai-element_type1 ai-element1">
+                  <span class="ai-element__label" style="font-size: 100px;">Contact Me</span>
+                </a>
+              </div>
           <br><br><br>
           <div style="display:flex; justify-content: center;">
             <img onclick="" src="./favicon_io/apple-touch-icon.png" loading="eager" alt="home" height=250px width=250px

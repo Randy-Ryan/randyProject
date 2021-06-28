@@ -103,6 +103,7 @@ function myFunction() {
     }
 }
 function loadHomePage() {
+    window.scrollTo(0, 0);
     document.getElementById("homePage").style.display = "";
     document.getElementById("topNav").style.display = "none";
 
@@ -111,8 +112,11 @@ function loadHomePage() {
     document.getElementById("projectPage").style.display = "none";
     document.getElementById("resumePage").style.display = "none";
     document.getElementById("laxPage").style.display = "none";
+
 }
 function loadAboutPage() {
+    window.scrollTo(0, 0);
+
     document.getElementById("homePage").style.display = "none";
     document.getElementById("topNav").style.display = "";
 
@@ -123,6 +127,8 @@ function loadAboutPage() {
     document.getElementById("laxPage").style.display = "none";
 }
 function loadContactPage() {
+    window.scrollTo(0, 0);
+
     document.getElementById("homePage").style.display = "none";
     document.getElementById("topNav").style.display = "";
 
@@ -133,6 +139,8 @@ function loadContactPage() {
     document.getElementById("laxPage").style.display = "none";
 }
 function loadProjectPage() {
+    window.scrollTo(0, 0);
+
     document.getElementById("homePage").style.display = "none";
     document.getElementById("topNav").style.display = "";
 
@@ -143,6 +151,8 @@ function loadProjectPage() {
     document.getElementById("laxPage").style.display = "none";
 }
 function loadResumePage() {
+    window.scrollTo(0, 0);
+
     document.getElementById("homePage").style.display = "none";
     document.getElementById("topNav").style.display = "";
 
@@ -153,6 +163,8 @@ function loadResumePage() {
     document.getElementById("laxPage").style.display = "none";
 }
 function loadLaxPage() {
+    window.scrollTo(0, 0);
+
     document.getElementById("homePage").style.display = "none";
     document.getElementById("topNav").style.display = "";
 
